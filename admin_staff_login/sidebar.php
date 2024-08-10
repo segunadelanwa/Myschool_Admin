@@ -20,19 +20,70 @@
 						  
 						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
-                                Registrations
+                                Account Setup
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link"  href="add_admin_staff.php">Admin/Staff Setup</a>
-                                    <a class="nav-link"  href="add_marketer.php">Marketer's Reg</a>
-                                    <a class="nav-link" href="add_new_school.php">School  Reg</a>
-                                    <a class="nav-link"  href="add_teacher.php">Teacher's Reg</a>
+                                    <a class="nav-link"  href="add_admin_staff.php">Admin/Staff</a>
+                                    <a class="nav-link"  href="add_field_admin.php">Field Admin</a>
+                                    <a class="nav-link"  href="add_new_school.php">School  Reg</a>
+                                    <a class="nav-link"  href="add_teacher.php">Teacher Reg</a>
 									 <a class="nav-link" href="add_new_parent.php">Parent Reg</a>
 									 <a class="nav-link" href="add_new_student.php">Student Reg</a>
 									 <a class="nav-link" href="student_subject_setup.php">Add Student Subject</a>
 									 <a class="nav-link" href="student_subject_check.php">Check Student Subject</a>
+                                   
+                                </nav>
+                            </div>
+						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuesLayout" aria-expanded="false" aria-controls="collapseQuesLayout">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Question Setup
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseQuesLayout" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link"  href="upload_question.php">Upload Question</a> 
+                                    <a class="nav-link"  href="view_question.php?teacher_code=<?php echo$username;?>">View Question</a> 
+                                    <a class="nav-link"  href="edit_print_question.php?type=exam&teacher_code=<?php echo$username;?>">Print Exam</a> 
+                                    <a class="nav-link"  href="edit_print_question.php?type=test&teacher_code=<?php echo$username;?>">Print Test</a>  
+                                   
+                                </nav>
+                            </div>
+						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSubjectLayout" aria-expanded="false" aria-controls="collapseSubjectLayout">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Subject Setup
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseSubjectLayout" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link"  href="add_subject.php">Add Subject</a> 
+                                    <a class="nav-link"  href="view_subject.php">View Subjects</a> 
+                                   
+                                </nav>
+                            </div>
+						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStuSubLayout" aria-expanded="false" aria-controls="collapseStuSubLayout">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Payment Approve
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseStuSubLayout" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link"  href="payment_sub.php">Student Sub</a>  
+                                   
+                                </nav>
+                            </div>
+						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseResetDataLayout" aria-expanded="false" aria-controls="collapseResetDataLayout">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                               Reset Operations
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseResetDataLayout" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a class="nav-link"  href="password_reset.php">Password Reset</a>  
+                                    <a class="nav-link"  href="payment_sub.php">Subscription</a>  
+                                    <a class="nav-link"  href="Update_student_class_teacher.php">Update student class teacher</a>  
+                                    <a class="nav-link"  href="lockschool.php">Lock School</a>  
                                    
                                 </nav>
                             </div>
@@ -42,35 +93,10 @@
 
 
 
-							<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
-                                <div class="sb-nav-link-icon"><i class="fas fa-check"></i></div>
-                              Activity's Check
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                  
-                                    <a class="nav-link" href="equip-maintenance.php">Schools Activities</a>
-                                    <a class="nav-link" href="over-due-maint.php">Marketers Activities</a>
-                                    <a class="nav-link" href="over-due-maint.php">Teachers Activities</a>
-                                </nav>
-                            </div>
+ 
 							
 
-
-							<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
-                                <div class="sb-nav-link-icon"><i class="fas fa-check"></i></div>
-                             Check Payment
-                                <div class="sb-sidenav-collapse-arrow"><i class="fa fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                  
-                                    <a class="nav-link" href="equip-maintenance.php">Marketers Payment</a>
-                                    <a class="nav-link" href="over-due-maint.php">Teachers Payment</a>
-                                    <a class="nav-link" href="over-due-maint.php">Schools Payment</a>
-                                </nav>
-                            </div>
+ 
 							
 							
  							

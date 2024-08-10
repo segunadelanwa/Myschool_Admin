@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include"../config.php";
+include("../config.php");
 
 
 
@@ -29,8 +29,8 @@ if(isset($_SESSION['password']) AND !empty($_SESSION['username']))
 			$phone        =  $row['phone'];
 			$gender       =  $row['gender'];
 			$department   =  $row['department'];  
-			$acct_level   =  $row['acct_level'];
-			 
+			$acct_level   =  $row['acct_level']; 
+			$token        =  $row['token']; 
 			$registrar    =  $row['registrar'];
 			$sub_start    =  $row['date_reg'];
  

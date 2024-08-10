@@ -2,11 +2,18 @@
 <html lang="en">
     <head>
 				<?php
+        require("../topUrl.php");
 				require("../header.php");
 				require("title.php");
 				?>
 
     </head>
+    <style>
+    .myFont{
+      font-size:12px
+    
+    }
+    </style>
     <body class="sb-nav-fixed" >
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 				<?php
@@ -20,6 +27,10 @@
 
 				<?php
 				require("sidebar.php");
+
+        $default_pass = '000000';
+        echo$encrypt_pass = md5($default_pass) 
+
 				?>
 				
 		  </div>
@@ -35,46 +46,47 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">  HOME</li>
                         </ol>
-                        <div class="row">
+                        <div class="row"  >
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
 								
-                                    <div class="card-body"><center><h2 ><?php echo $loader-> DisplayTotalSchoolRow();	?> </h2></center>TOTAL NUMBER SCHOOLS</div>
+                                    <div class="card-body"><center><h2 ><?php echo $loader-> DisplayTotalSchoolRow();	?> </h2></center>SCHOOLS</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="#school">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
 							
-							 <div class="col-xl-3 col-md-6">
+							 <div class="col-xl-3 col-md-6" >
+                   
+                              <div class="card bg-danger text-white mb-4">
+              
+                                  <div class="card-body"><center><h2 ><?php echo $loader-> AllTeachers();	?> </h2></center>TEACHERS </div> 
+                                  <div class="card-footer d-flex align-items-center justify-content-between">
+                                      <a class="small text-white stretched-link" href="#teacher">View Details</a>
+                                      <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                  </div>
+                              </div>
+                          </div>
+                     <div class="col-xl-3 col-md-6" >
                                 <div class="card bg-success text-white mb-4">
 							
-                                    <div class="card-body">	<center><h2 ><?php echo $loader-> DisplayAllStudentRow();	?></h2></center> TOTAL NUMBER OF STUDENTS</div>
+                                    <div class="card-body">	<center><h2 ><?php echo $loader-> DisplayAllStudentRow();	?></h2></center> STUDENTS</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="#student">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-								
-                                    <div class="card-body"><center><h2 ><?php echo $loader-> DisplayFieldOpRow();	?> </h2></center>TOTAL NUMBER OF FIELD ADMIN</div> 
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
 							
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-3 col-md-6"  >
                                 <div class="card bg-warning text-white mb-4">
 								
-                                    <div class="card-body"><center><h2 ><?php echo $loader-> DisplayMarketerRow();	?> </h2></center> TOTAL NUMBER OF MARKETER</div> 
+                                    <div class="card-body"><center><h2 ><?php echo $loader-> DisplayMarketerRow();	?> </h2></center> FIELD ADMINS</div> 
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="#field_admin">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -98,7 +110,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar mr-1"></i>
-                                       Equipments Approval Overview
+                                        Approval Overview
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
@@ -110,387 +122,467 @@
 						
 						
 						
-				    	<div class="card mb-4">
+				                	<div class="card mb-4" id="school">
                              <div class="card-header bg bg-primary text-white">
                                 <i class="fas fa-table mr-1"></i>
-                               <h3> Schools / Activities </h3>
+                               <h3> All Registered  Schools  </h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="dataTable_1" width="100%" cellspacing="0">
                                        
                                    
-                                        <thead>
+                                          <thead>
                                             <tr>
-                                                <th>School Code </th> 
+                                                <th>Operations </th> 
                                                 <th>School Name</th> 
                                                 <th>School Address</th> 
-                                                <th>Total Student</th>
-                                                <th>Active Student </th>
-                                                <th>Passive Student</th>
-                                                <th>Marketer</th>
-											    <th>Field Admin</th>
-											    <th>Date </th>
+                                                <th>Total Students</th>
+                                                <th>Paid Students </th>
+                                                <th>Unpaid Students</th>
+                                                <th>Field Admin</th>            
+                                                <th>School Revenue</th>
+                                                <th>38% <br/>Company Earn</th>                           
+                                                <th>20% <br/>School Earn</th>
+                                                <th>30% <br/>Teacher Earn</th>
+                                                <th>4% <br/>H-Teacher Earn</th>
+                                                <th>4% <br/>F-Admin Earn</th>
+                                                <th>4% <br/>Computer Lab-Maint</th>
+                                                <th>Date </th>
                                                 
                                             </tr>
                                         </thead> 
                                         <tbody> 
-     <?php 
-	
-	$result = $loader-> SchoolActivities();	
-	
-	foreach($result as $active)
-	{
-	$ActiveStudent = $loader-> ActiveStudent($active['school_code']);	
-	$PassiveStudent = $loader-> PassiveStudent($active['school_code']);	
-		
-	 $total_row = $loader-> SchoolStudentNummber($active['school_code']);	
-			
-			echo'<tr role="row" class="odd">
-		 
-				<td> '.$active['school_code'].'  </td> 
-				
-				<td>'.$active['school_name'].' </td>
-				<td>'.$active['school_address'].' </td>
-				<td>'.$total_row.' </td>
-				<td>'.$ActiveStudent.' </td>
-				<td>'.$PassiveStudent.' </td>
-				<td>'.$active['marketer_code'].' </td>
-				<td>'.$active['fadmin_code'].' </td> 
-				<td>'.$active['date_reg'].' </td> 
-			   
-			   
-					 
-				</td> 
-				 
-			</tr>
-			';
- 
+                                              <?php 
+                                            
+                                            $result = $loader-> SchoolActivities();	
+                                            
+                                            foreach($result as $active)
+                                            {
+                                            $ActiveStudent  = $loader-> ActiveStudent($active['school_code']);	
+                                            $PassiveStudent = $loader-> PassiveStudent($active['school_code']);	 
+                                            $SchoolRevenue  = $loader-> SchoolRevenue($active['school_code']);	 
+                                            $SchoolEarn     = $loader-> SchoolEarn($active['school_code']);	 
+                                            $TeacherEarn    = $loader-> TeacherEarn($active['school_code']);	 
+                                            $HeadTeacherEarn= $loader-> HeadTeacherEarn($active['school_code']);	 
+                                            $SchoolEarn     = $loader-> SchoolEarn($active['school_code']);	 
+                                            $FieldAdminEarn = $loader-> FieldAdminEarn($active['school_code']);	 
+                                            $CompanyEarn    = $loader-> CompanyEarn($active['school_code']);	
+                                            $total_row      = $loader-> SchoolStudentNummber($active['school_code']);	
+                                            $ComLabMaint    = $loader-> ComLabMaint($active['school_code']);	
+                                            //src="../'.$FielAdmin .'/'.$active['photo'].'"    
+                                                echo'<tr role="row" class="odd">
+                                              
+                                                  <td> 
+                                                  
+                                                  <br/>
+                                                  <a href="edit_data.php?data_id='.$active['school_code'].'&name=school">   <b class="btn btn-dark myFont mb-2"> Edit School </b>   </a> 
+                                                 <a href="payment_history.php?payee_id='.$active['school_code'].'&name='.$active['school_name'].'" class="btn btn-success myFont mb-2">  Payment History  </a> 
+                                                 <a href="teacher_school.php?school_code='.$active['school_code'].'&name='.$active['school_name'].'">  <b class="btn btn-info myFont mb-2">  Teachers </b>  </a>
+                                                 <a href="school_students.php?school_code='.$active['school_code'].'&name='.$active['school_name'].'">  <b class="btn btn-info myFont mb-2">  Students </b>  </a>
+                                                 <a href="delete_account.php?delete_id='.$active['school_code'].'&name=school">  <b class="btn btn-danger myFont mb-2">Delete Account </b>  </a>
+                                                  </td> 
+                                                  
+                                                  <td><img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['school_logo'].'"  style="height:60px"/> <br/>'.$active['school_name'].' <br/> <b>School ID: '.$active['school_code'].' </b></td>
+                                                  <td>'.$active['school_address'].' </td>
+                                                  <td>'.$total_row.' </td>
+                                                  <td>'.$ActiveStudent.' </td>
+                                                  <td>'.$PassiveStudent.' </td>
+                                                  <td>'.$active['fadmin_code'].' </td>
+                                                  <td>N'.number_format($SchoolRevenue,2).' </td> 
+                                                  <td>N'.number_format($CompanyEarn,2).' </td> 
+                                                  <td>N'.number_format($SchoolEarn,2).' </td> 
+                                                  <td>N'.number_format($TeacherEarn,2).' </td> 
+                                                  <td>N'.number_format($HeadTeacherEarn,2).' </td>        
+                                                  <td>N'.number_format($FieldAdminEarn,2).' </td> 
+                                                  <td>N'.number_format($ComLabMaint,2).' </td> 
+                                                  <td>'.$active['date_reg'].' </td> 
+                                                  
+                                                  
+                                                    
+                                                  </td> 
+                                                  
+                                                </tr>
+                                                ';
+                                          
 
 
-	  
-	} 	 
-?>                     
+                                              
+                                            } 	 
+                                          ?>                     
                                         
                                         </tbody>
                                    
 								                                    
-								  </table>
+								                    </table>
                                 </div>
                             </div>
                         </div>
-						
-						
-                        <div class="card mb-4">
-                            <div class="card-header bg bg-success text-white">
+
+				                	<div class="card mb-4"  id="teacher" >
+                             <div class="card-header bg bg-dark text-white">
                                 <i class="fas fa-table mr-1"></i>
-                               <h3> All Registered Students  </h3>
+                               <h3> All Registered  Teachers  </h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable_2" width="100%" cellspacing="0">
                                        
                                    
-                                        <thead>
+                                          <thead>
                                             <tr>
-                                                <th>Student Photo </th> 
-                                                <th>School Code</th> 
-                                                <th>Parent Code</th> 
-                                                <th>Student Names</th>
+                                                <th>Operations</th> 
+                                                <th>School/Teachers </th> 
+                                                <th>School Name</th> 
+                                                <th>Teacher username</th> 
+                                                <th>Teacher Name</th>
                                                 <th>Gender </th>
-                                                <th>Class</th>
-                                                <th>Teacher</th>
-											    <th>Payment</th>
-											    <th>Reg Date / Admin</th>
+                                                <th>Phone</th>
+                                                <th>Salary</th>
+                                                <th>Term Earn</th>
+                                                <th>Acct Details</th>
+                                                <th>Reg Date</th>
                                                 
                                             </tr>
                                         </thead> 
                                         <tbody> 
-     <?php 
-	
-	$result = $loader-> AllStudent();	
-	
-	foreach($result as $active)
-	{
-	$schoolName = $loader-> SchoolName($active['school_code']);	
-	$parent_code = $loader-> ParentName($active['parent_code']);	
-		 
-			
-			echo'<tr role="row" class="odd">
-		         
-				<td style="text-align:center;">
-					<a href="student_subject_check.php?student_id='.$active['online_stu_id'].'">
-					  <b>'.$active['online_stu_id'].' </b> <br/> <img src="../all_photo/'.$active['photo'].'"  style="height:60px"/>  <br/> Check Student
-					</a>
-				</td> 
-				
-				<td>'.$schoolName.'  </td>  
-				<td>'.$parent_code.' </td>
-				<td>'.$active['student_name'].' </td> 
-				<td>'.$active['stu_gender'].' </td> 
-				<td>'.$active['student_class'].' </td> 
-				<td>'.$active['student_teacher'].' </td> 
-				<td>'.$active['sub_status'].' </td> 
-				<td>'.$active['date'].'<br /> <b>Field Admin</b>: '.$active['admincode'].' </td> 
-			   
-			   
-					 
-				</td> 
-				 
-			</tr>
-			';
- 
+                                              <?php 
+                                            
+                                            $result = $loader-> DisplayTeachersRow();	
+                                            
+                                            foreach($result as $active)
+                                            {
+                                            $SchoolName     = $loader-> SchoolName($active['school_code']);	 
+                                            $EachTeacherEarn = $loader-> EachTeacherEarn($active['school_code']);	 
+                                            $HeadTeacherEarn = $loader-> HeadTeacherEarn($active['school_code']);	 
+                                            $subJect         = $loader-> FecthSingleSubject($active['subject']);
+                                            if($active['teacher_rank'] == 'head'){
+                                               $earn =  $HeadTeacherEarn;
+                                            } else if($active['teacher_rank'] == 'teacher'){
+                                               $earn =  $EachTeacherEarn;
+                                            }   
+
+                                                echo'<tr role="row" class="odd">
+                                                  <td>
+                                                    <a href="edit_data.php?data_id='.$active['teacher_code'].'&name=teacher">   <b class="btn btn-dark myFont mb-2"> Edit Teacher </b>   </a> 
+                                                    <a href="student_list.php?teacher_code='.$active['teacher_code'].'&name='.$active['fullname'].'&type='.$active['subject'].'" class="btn btn-primary  myFont mb-2">  Teacher students  </a>
+                                                    <a href="payment_history.php?payee_id='.$active['teacher_code'].'&name='.$active['fullname'].'" class="btn btn-success myFont mb-2">  Payment History </a>
+                                                    <a href="delete_account.php?delete_id='.$active['teacher_code'].'&name=teacher">  <b class="btn btn-danger myFont mb-2">Delete Account </b>  </a>
+                                                   </td> 
+                                                  <td>
+                                                  <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['photo'].'"  style="height:60px"/> <br/>
+                                                  School ID: <b> '.$active['school_code'].'  </b>  <br/>
+                                                  Teacher ID:<b> '.$active['teacher_code'].'</b> 
+                                                  </td> 
+                                                  <td>'.$SchoolName.' </td>  
+                                                  <td>
+                                                  '.$active['username'].'<br/>
+                                                   Status: <b> '.$active['teacher_rank'].'  </b><br/>
+                                                   Subject: <b> '.$subJect.'  </b> 
+                                                  </td> 
+                                                  <td>'.$active['fullname'].' </td> 
+                                                  <td>'.$active['gender'].' </td> 
+                                                  <td>'.$active['phone'].' </td> 
+                                                  <td>N'.number_format($active['salary'] ,2).' </td> 
+                                                  <td>N'.number_format($earn,2).' </td> 
+                                                  <td>'.$active['bank_name'].'<br/> '.$active['account_name'].'<br/>'.$active['account_number'].'<br/></td> 
+                                                  <td>'.$active['reg_date'].' </td> 
+                                                  
+                                                    
+                                                  </td> 
+                                                  
+                                                </tr>
+                                                ';
+                                          
 
 
-	  
-	} 	 
-?>                     
+                                              
+                                            } 	 
+                                          ?>                     
                                         
                                         </tbody>
                                    
 								                                    
-								  </table>
+								                    </table>
                                 </div>
                             </div>
                         </div>
-       
-	   
-                        <div class="card mb-4">
-                            <div class="card-header bg bg-danger text-white">
+
+
+                        
+				                
+						
+                        <div class="card mb-4"  id="student" >
+                              <div class="card-header bg bg-success text-white">
+                                  <i class="fas fa-table mr-1"></i>
+                                <h3> All Registered Students  </h3>
+                              </div>
+                              <div class="card-body">
+                                  <div class="table-responsive">
+                                      <table class="table table-bordered" id="dataTable_3" width="100%" cellspacing="0">
+                                        
+                                    
+                                          <thead>
+                                              <tr>
+                                                  <th>Operations</th> 
+                                                  <th>Student Photo </th> 
+                                                  <th>School Details</th> 
+                                                  <th>Parent Name</th> 
+                                                  <th>Student Details</th>
+                                                  <th>Gender </th>
+                                                  <th>Class</th> 
+                                                  <th>School Fee</th>
+                                                  <th>CBT Sub</th>
+                                                  <th>Reg Date / Admin</th>
+                                                  
+                                              </tr>
+                                          </thead> 
+
+                                          <tbody> 
+                                                  <?php 
+                                                
+                                                $result = $loader-> AllStudent();	
+                                                
+                                                foreach($result as $active)
+                                                {
+                                                $schoolName = $loader-> SchoolName($active['school_code']);	
+                                                $parent_code = $loader-> ParentName($active['parent_code']);	
+                                                  
+                                                    
+                                                    echo'<tr role="row" class="odd">
+                                                          
+                                                      <td style="text-align:center;">
+                                                        <a href="edit_data.php?data_id='.$active['online_stu_id'].'&name=student"> 
+                                                          <b class="btn btn-dark myFont mb-2"> Edit Student </b>
+                                                        </a> 
+                                                        <a href="student_subject_setup.php?student_id='.$active['online_stu_id'].'"> 
+                                                          <b class="btn btn-primary myFont mb-2"> View Subjects </b>
+                                                        </a>
+                                                        <a href="student_subject_check.php?student_id='.$active['online_stu_id'].'"> 
+                                                          <b class="btn btn-success myFont mb-2"> Remove Subjects </b>
+                                                        </a>
+                                                        <a href="student_result.php?student_id='.$active['online_stu_id'].'&name='.$active['student_name'].'"> 
+                                                          <b class="btn btn-info myFont mb-2"> Student Result </b>
+                                                        </a>
+                                                        <a href="delete_account.php?delete_id='.$active['online_stu_id'].'&name=student"> 
+                                                          <b class="btn btn-danger myFont mb-2">Delete Account </b>
+                                                        </a>
+                                                      </td> 
+                                                      <th>
+                                                       <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['photo'].'"  style="width:100px;height:100px;border-radius:1500px"/>  <br/>
+                                                      Student ID:<br/><b>'.$active['online_stu_id'].' </b> 
+                                                      </td>
+                                                      <td>
+                                                      School Name<br/><b>'.$schoolName.'</b> <hr/>
+                                                      School Code<br/><b>'.$active['school_code'].'</b> <br/>
+                                                      
+                                                      </td>  
+                                                      <td>'.$parent_code.' </td>
+                                                      <td>
+                                                      Student Name:<br/><b>'.$active['student_name'].'</b>
+                                                     
+                                                      </td> 
+                                                      <td>'.$active['stu_gender'].' </td> 
+                                                      <td>'.$active['student_class'].' </td> 
+                                              
+                                                      <td>'.$active['school_fee'].' </td> 
+                                                      <td>'.$active['sub_status'].' </td> 
+                                                      <td>'.$active['date'].'<br /> </td> 
+                                                      
+                                                      
+                                                        
+                                                      </td> 
+                                                      
+                                                    </tr>
+                                                    ';
+                                              
+
+
+                                                  
+                                                } 	 
+                                              ?>                     
+                                          
+                                          </tbody>
+                                    
+                                                      
+                                      </table>
+                                  </div>
+                              </div>
+                        </div>
+                      
+
+					              <div class="card mb-4" id="parent">
+                            <div class="card-header bg bg-success text-white">
                                 <i class="fas fa-table mr-1"></i>
-                               <h3>Field Admins  </h3>
+                               <h3> Registered Parents </h3>
                             </div>
+
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="dataTable_4" width="100%" cellspacing="0">
                                        
                                    
                                         <thead>
                                             <tr>
-                                                <th>Photo </th>
-                                                <th>Username</th> 
-                                                <th>Names</th>
-                                                <th>Phone </th>
-                                                <th>Address</th>
-                                                <th>Gender</th>
-											    <th>School Awarded</th>
-											    <th>Reg Date / Admin</th>
+                                                <th>Operations </th>
+                                                <th>Parent ID </th>
+                                                <th>Guidance Name</th>
+                                                <th>Phone Number</th> 
+                                                <th>address </th>
+                                                <th>email</th>  
+											                          <th>Reg Date / Admin</th>
                                                 
                                             </tr>
                                         </thead> 
                                         <tbody> 
-     <?php 
-	
-	$result = $loader-> AllFieldAdmin();	
-	
-	foreach($result as $active)
-	{
-	$schoolName = $loader-> SchoolName($active['school_code']);	 	
-		 
-			
-			echo'<tr role="row" class="odd">
-		         
-				<td style="text-align:center;">
-					 
-					  <b>'.$active['fadmin_code'].' </b> <br/> <img src="../all_photo/'.$active['photo'].'"  style="height:60px"/>   
-				
-				</td> 
-				 
-				<td>'.$active['username'].' </td> 
-				<td>'.$active['fullname'].' </td> 
-				<td>'.$active['phone'].' </td> 
-				<td>'.$active['address'].' </td>  
-				<td>'.$active['gender'].' </td> 
-				<td><b>School Code</b>'.$active['school_code'].'<br /> <b>School Name</b>: '.$schoolName.' </td> 
-				<td>'.$active['reg_date'].'<br /> <b> Reg Admin</b>: '.$active['registrar'].' </td> 
-			   
-			   
-					 
-				</td> 
-				 
-			</tr>
-			';
- 
+                                            <?php 
+                                          
+                                                $result = $loader-> AllRegisteredParent();	
+                                                
+                                                foreach($result as $active)
+                                                { 	 	
+                                                        
+                                                  
+                                                    echo'<tr role="row" class="odd">
+                                                          
+                                                    
+                                                      <td>  
+                                                        <a href="edit_data.php?data_id='.$active['parent_code'].'&name=parent">   <b class="btn btn-dark myFont mb-2"> Edit Parent </b>   </a> 
+                                                        <a href="enrolled_student.php?parent_code='.$active['parent_code'].'&name='.$active['guidance_name'].'" class="btn btn-success myFont mb-3">
+                                                        Enrolled Student 
+                                                        </a><br/>
+
+                                                        <a href="delete_account.php?delete_id='.$active['parent_code'].'&name=parent"> 
+                                                        <b class="btn btn-danger myFont mb-2">Delete Account </b>
+                                                        </a>
+                                                      </td> 
+                                                      <td>'.$active['parent_code'].' <br/> School ID:'.$active['sch_code'].'</td> 
+                                                      <td>'.$active['guidance_name'].' </td> 
+                                                      <td>'.$active['username'].' </td> 
+                                                      <td>'.$active['address'].' </td>    
+                                                      <td>'.$active['email'].' </td>    
+                                                      <td>'.$active['date'].'<br /> <b> Reg Admin</b>: '.$active['admin_code'].' </td> 
+                                                      
+                                                      
+                                                        
+                                                      </td> 
+                                                      
+                                                    </tr>
+                                                    ';
+                                              
 
 
-	  
-	} 	 
-?>                     
+                                                  
+                                                } 	 
+                                              ?>                     
                                         
                                         </tbody>
                                    
 								                                    
-								  </table>
+								                    </table>
                                 </div>
                             </div>
                         </div>
-                    
-						
-                        <div class="card mb-4">
+                    	
+                        
+
+                        <div class="card mb-4" id="field_admin">
                             <div class="card-header bg bg-warning text-white">
                                 <i class="fas fa-table mr-1"></i>
-                               <h3>  Freelance Marketers  </h3>
+                               <h3> Field Admin  </h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable4" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="dataTable_5" width="100%" cellspacing="0">
                                        
                                    
                                         <thead>
                                             <tr>
+                                                <th>Operations</th>
                                                 <th>Photo </th>
                                                 <th>Username</th> 
                                                 <th>Names</th>
                                                 <th>Phone </th>
                                                 <th>Address</th>
-                                                <th>School Earned</th>
-											    <th>Reg Date / Admin</th>
+                                                <th>Term Earn</th>
+                                                <th>School Onboard</th>
+											                          <th>Net Earn</th>
                                                 
                                             </tr>
                                         </thead> 
                                         <tbody> 
-     <?php 
-	
-	$result = $loader-> AllFieldMarketer();	
-	
-	foreach($result as $active)
-	{ 	 	
-		 
-		$schoolGained = $loader-> SchoolMarketed($active['marketer_code']);	 	
-		
-			echo'<tr role="row" class="odd">
-		         
-				<td style="text-align:center;">
-					 
-					  <b>'.$active['marketer_code'].' </b> <br/> <img src="../all_photo/'.$active['photo'].'"  style="height:60px"/> 				
-				</td> 
-				 
-				<td>'.$active['username'].' </td> 
-				<td>'.$active['fullname'].' </td> 
-				<td>'.$active['phone'].' </td> 
-				<td>'.$active['address'].' </td> 				
-				<td>'.$schoolGained.' </td> 
-				<td>'.$active['date_reg'].'<br /> <b> Reg Admin</b>: '.$active['admincode'].' </td> 
-			   
-			   
-					 
-				</td> 
-				 
-			</tr>
-			';
- 
+                                            <?php 
+
+                                            $result = $loader-> AllFieldAdmin();	
+                                            
+                                            foreach($result as $active)
+                                            { 	 	
+                                              $FieldAdminNetEarn = $loader-> FieldAdminNetEarn($active['marketer_code']);	
+                                              $FieldAdminEarn = $loader-> FieldAdminEarn($active['marketer_code']);	
+                                            $schoolGained = $loader-> SchoolMarketed($active['marketer_code']);	 	
+                                             
+                                            echo'<tr role="row" class="odd">
+                                                    
+                                              <td style="text-align:center;"> 
+                                                <a href="edit_data.php?data_id='.$active['marketer_code'].'&name=field_admin">   <b class="btn btn-dark myFont mb-2"> Edit Field Admin </b>   </a> 
+                                                <a href="payment_history.php?payee_id='.$active['marketer_code'].'&name='.$active['fullname'].'" class="btn btn-success  myFont mb-2">   Payment History   </a>
+                                                <a href="onboard_school.php?fadmin='.$active['marketer_code'].'&name=fieldAdmin">   <b class="btn btn-primary myFont mb-2">Onboard school </b>  </a>
+                                                <a href="delete_account.php?delete_id='.$active['marketer_code'].'&name=fieldAdmin">   <b class="btn btn-danger myFont mb-2">Delete Account </b>  </a>
+                                             </td> 
+                                              <td style="text-align:center;">  <img src="../'.$FielAdmin .'/'.$active['photo'].'"  style="height:60px"/> <br/>   <b>'.$active['marketer_code'].' </b>  </td>  
+                                              <td>'.$active['username'].' <br/><b>Acct Ofiicer</b>: '.$active['admincode'].'</td> 
+                                              <td>'.$active['fullname'].' <br/> <b>Date</b>:'.$active['date_reg'].'</td> 
+                                              <td>'.$active['phone'].' </td> 
+                                              <td>'.$active['address'].' </td>  
+                                               <td>N'.number_format($FieldAdminEarn,2).' </td> 
+                                              <td>'.$schoolGained.' </td> 
+                                              <td>N'.number_format($FieldAdminNetEarn,2).' </td> 
+                                                
+                                                
+                                                  
+                                              </td> 
+                                                
+                                            </tr>
+                                            ';
 
 
-	  
-	} 	 
-?>                     
+
+
+                                            } 	 
+                                            ?>                     
                                         
                                         </tbody>
                                    
 								                                    
-								  </table>
+								                    </table>
                                 </div>
                             </div>
                         </div>
                     
                        
 
-					   <div class="card mb-4">
-                            <div class="card-header bg bg-success text-white">
-                                <i class="fas fa-table mr-1"></i>
-                               <h3> Registered Parents </h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable5" width="100%" cellspacing="0">
-                                       
-                                   
-                                        <thead>
-                                            <tr>
-                                                <th>School Code </th>
-                                                <th>Parent Code </th>
-                                                <th>Guidance Name</th>
-                                                <th>Phone Number</th> 
-                                                <th>address </th>
-                                                <th>email</th>  
-											    <th>Reg Date / Admin</th>
-                                                
-                                            </tr>
-                                        </thead> 
-                                        <tbody> 
-     <?php 
-	
-	$result = $loader-> AllRegisteredParent();	
-	
-	foreach($result as $active)
-	{ 	 	
-		  	 	
+
 		
-			echo'<tr role="row" class="odd">
-		         
-			
-				<td>'.$active['sch_code'].' </td> 
-				<td>'.$active['parent_code'].' </td> 
-				<td>'.$active['guidance_name'].' </td> 
-				<td>'.$active['username'].' </td> 
-				<td>'.$active['address'].' </td>    
-				<td>'.$active['email'].' </td>    
-				<td>'.$active['date'].'<br /> <b> Reg Admin</b>: '.$active['admin_code'].' </td> 
-			   
-			   
-					 
-				</td> 
-				 
-			</tr>
-			';
- 
-
-
-	  
-	} 	 
-?>                     
-                                        
-                                        </tbody>
-                                   
-								                                    
-								  </table>
-                                </div>
-                            </div>
-                        </div>
-                    
-
-				
-
-
-
 
 					
-				  </div>
+				       </div>
                 </main>
                
-			   <footer class="py-4 bg-light mt-auto">
-                   <?php 
-				   require("../footer.php"); 
-				   ?>
-                </footer>
+                  <footer class="py-4 bg-light mt-auto">
+                  <?php 
+                  require("../footer.php"); 
+                  ?>
+                  </footer>
 				
 				
             </div>
         </div>
     
-       
-        <script src="../s/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-		
-        <script src="../js/scripts.js"></script>
-        <script src="../js/Chart.min.js" crossorigin="anonymous"></script>
         
-       
-		
-        <script src="../js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="../js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="../assets/demo/datatables-demo.js"></script>
-		  
-		
+        <?php 
+        //BOTTOM JAVASCRIPT CODE 
+        require("../footer2.php"); 
+        ?>	   
 		
     </body>
 </html>
@@ -610,19 +702,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-      data: [
-       <?php echo $loader-> MaintenaneOverviewJAN();	?>,
-       <?php echo $loader-> MaintenaneOverviewFEB();	?>,
-       <?php echo $loader-> MaintenaneOverviewMAR();	?>,
-       <?php echo $loader-> MaintenaneOverviewAPR();	?>,
-       <?php echo $loader-> MaintenaneOverviewMAY();	?>,
-       <?php echo $loader-> MaintenaneOverviewJUN();	?>,
-       <?php echo $loader-> MaintenaneOverviewJUL();	?>,
-       <?php echo $loader-> MaintenaneOverviewAUG();	?>,
-       <?php echo $loader-> MaintenaneOverviewSEP();	?>,
-       <?php echo $loader-> MaintenaneOverviewOCT();	?>,
-       <?php echo $loader-> MaintenaneOverviewNOV();	?>,
-	   <?php echo $loader-> MaintenaneOverviewDEC();	?>, 
+      data: [ 
 	  ],
 	  
     }],
@@ -683,18 +763,7 @@ var myLineChart = new Chart(ctx, {
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
       data: [
-       <?php echo $loader-> ApprovalMaintenaneOverviewJAN();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewFEB();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewMAR();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewAPR();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewMAY();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewJUN();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewJUL();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewAUG();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewSEP();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewOCT();	?>,
-       <?php echo $loader-> ApprovalMaintenaneOverviewNOV();	?>,
-	   <?php echo $loader-> ApprovalMaintenaneOverviewDEC();	?>, 
+ 
 	  ],
 	  
     }],
@@ -731,7 +800,7 @@ var myLineChart = new Chart(ctx, {
 
 </script>
 	
-	
+
 	
 	
 	

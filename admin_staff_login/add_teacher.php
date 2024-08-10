@@ -10,6 +10,13 @@
 		?>
 			
     </head>
+
+ <script>
+ function GoBackHandler(){
+ history.go(-1)
+ }	
+ </script>
+
     <body class="sb-nav-fixed">
 	<div id="modal" class="modal-backdrop loaderDisplayNone"  >  
 			<?php
@@ -54,7 +61,7 @@
 						Teacher's Signup
 						</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item" onclick="GoBackHandler()">Back</li>
                             <li class="breadcrumb-item active"> Teacher  Registeration</li>
                         </ol>
                   
@@ -73,10 +80,21 @@
 												<div class="card-body">
 													<div class="table-responsive">
 														  <form method="POST"   id="user_register_form">
-														  
+
+
+														    <div class="form-group">			
+															<label>Teacher Photo  </label>
+															<input type="file" name="field_operator_photo" placeholder="field_operator_photo"  id="photo" class="form-control py-4"   required />
+															</div>																											
+
+														  <div class="form-group">
+														    <label>New Teacher ID/Code </label>
+															<input class="form-control py-4" value="<?php echo$result=$Loader->TeacherNoGenerator(); ?>"   type="text" name="teacher_id" id="teacher_id" class="form-control" readonly /> 
+														   </div>
+
 														    <div class="form-group">
 															<label>School Code</label>
-															<input type="text" name="sch_code"   id="sch_code" class="form-control"  />
+															<input type="text" name="sch_code"   id="sch_code" class="form-control"  required/>
 															</div>
 
 
@@ -91,12 +109,7 @@
 															<input type="text" name="password" value="000000"  id="password" class="form-control" required Readonly/>
 															</div>
 															
-															<div class="form-group">			
-															<label>Field Operator Photo  </label>
-															<input type="file" name="field_operator_photo" placeholder="field_operator_photo"  id="photo" class="form-control py-4"   required />
-															</div>
 
-													 
 
 
 															<div class="form-group">			
@@ -105,9 +118,15 @@
 															</div>
 
 
-															<div class="form-group">			
- 															<label>Gender  </label>
-															<input type="text" name="gender" placeholder="Gender"  id="gender" class="form-control py-4"   required />
+
+															<div class="form-group">	
+															<label>Gender </label>
+														   <select   name="gender"  id="gender"  class="form-control"   required>
+															   <option disabled="disabled" selected="selected" > Select Option  </option>
+															   <option  value="Male">Male </option>
+															   <option  value="Female">Female </option> 
+															
+															</select> 
 															</div>
 
 															<div class="form-group">			
@@ -121,6 +140,43 @@
 															<input type="text" name="address" placeholder="address"  id="address" class="form-control py-4"   required />
 															</div>
 
+
+															<div class="form-group">	
+															<label>Teacher Subject </label>
+															<select id='subject' name='subject' class="form-control" >
+															        <option disabled="disabled" selected="selected">---Select Subject----</option>
+				 
+																	<?php
+																		$result = $Loader-> FecthAllSubject();
+																		foreach($result as $data)
+																		{
+																		$sub_title=$data['sub_title'];
+																		$sub_id=$data['sub_id'];  
+																		echo"<option  value='$sub_id'> $sub_title </option>";
+																		}
+																	?>
+																
+																</select>	
+															
+															</div>
+
+
+
+															<div class="form-group">	
+															<label>Teacher Rank </label>
+														   <select   name="teacher_rank"  id="teacher_rank"  class="form-control"   required>
+															   <option disabled="disabled" selected="selected" > Select Option  </option>
+															   <option  value="teacher">Teaching staff </option>
+															   <option  value="head">Head teacher </option> 
+															
+															</select> 
+															</div>
+
+
+															<div class="form-group">			
+															<label>Teacher Salary </label>
+															<input type="hidden" name="salary" value="0" id="salary" class="form-control py-4"  />
+															</div>
 
 
 															<div class="form-group">			
@@ -146,7 +202,7 @@
 																	<input type="hidden" name="page"   value='admin_signup_page' />
 																	<input type="hidden" name="action" value="teacher_account_setup" />
 
-																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Signup Field Admin">
+																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Signup ">
 																</div>
 															</form>
 													</div>
@@ -205,13 +261,6 @@
     event.preventDefault();
 
 
-
-    $('#phone_no').attr('required', 'required');
-
-    $('#gender').attr('required', 'required');
-
-    $('#department').attr('required', 'required');
-
  
 
 
@@ -242,7 +291,7 @@
 							elementmodal.classList.remove('loaderDisplayblock');
 							elementmodal.classList.add('loaderDisplayNone');	
 							   alert(data.feedback);
-							  // window.location="../";
+							   window.location="index.php";
 							
 					 
 						  }else{
@@ -250,7 +299,7 @@
 							elementmodal.classList.remove('loaderDisplayblock');
 							elementmodal.classList.add('loaderDisplayNone');	
 							alert(data.feedback);
-							//window.location.reload();
+							window.location.reload();
 
 						   
 						  }

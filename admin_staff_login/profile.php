@@ -100,10 +100,7 @@
                                                  <td style="width:80%;"> <?php echo $acct_level; ?></td> 
                                             </tr>
 											
-                                             <tr style="width:100%;">
-                                                 <td style="width:20%;">Access  Code:</td> 
-                                                 <td style="width:80%;"><?php echo $level_code; ?></td> 
-                                            </tr>
+                                              
 
                                              <tr style="width:100%;">
                                                  <td style="width:20%;">Account Registrar:</td> 

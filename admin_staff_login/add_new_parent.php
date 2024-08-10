@@ -80,7 +80,13 @@
 													
 														  <form method="POST"   id="user_register_form">
 														  
-														  
+														 
+														  <div class="form-group">
+														    <label>New Parent ID/Code </label>
+															<input class="form-control py-4" value="<?php echo$result=$Loader->ParentNoGenerator(); ?>"   type="text" name="parent_id" id="parent_id" class="form-control" readonly /> 
+														   </div>
+															  
+															  
 															<div class="form-group">
 															<label>School Code</label>
 															<input type="text" name="sch_code"   id="sch_code" class="form-control"  />
@@ -116,11 +122,7 @@
 
  
 
-															<div class="form-group">			
-															<label>Account Registrar  </label>
-															<input type="text" name="admin_code" value="<?php echo $admincode; ?>"  id="admin_code" class="form-control py-4" Readonly />
-															</div>
-
+			 
 
 
 															<div class="form-group">	 
@@ -132,7 +134,7 @@
 																   
 																	
 																	<input type="hidden" name="page"   value='admin_signup_page' />
-																	<input type="hidden" name="action" value="parrent_signup_action" />
+																	<input type="hidden" name="action" value="parent_signup_action" />
 
 																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Signup Parent">
 																</div>

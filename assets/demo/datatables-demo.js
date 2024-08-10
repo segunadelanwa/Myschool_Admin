@@ -1,28 +1,86 @@
 // Call the dataTables jQuery plugin
+ 
+
 $(document).ready(function() {
-  $('#dataTable').DataTable();
+  $('#dataTable_1').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ]
+  });
 });
 
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  $('#dataTable_2').DataTable();
+  $('#dataTable_2').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ]
+  });
 });
 
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  $('#dataTable3').DataTable();
+  $('#dataTable_3').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ]
+  });
 });
 
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  $('#dataTable4').DataTable();
+  $('#dataTable_4').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ]
+  });
 });
 
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  $('#dataTable5').DataTable();
+  $('#dataTable_5').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ]
+  });
+});
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable_6').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ]
+  });
+
+  
+});
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable_7').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+         'print'
+    ]
+  });
+
+  
+});
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+  $('#dataTable_8').DataTable({
+    dom: 'Bfrtip',
+ 
+  });
+
+  
 });

@@ -1,18 +1,23 @@
-
+               <?php
+				include("index_header.php");
+				?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
 	
 		<?php
+		 
 		require("../header.php");
 		?>
 			
     </head>
-	
-		<?php
-		require("index_header.php");
-		?>
+ <script>
+ function GoBackHandler(){
+ history.go(-1)
+ }	
 
+
+</script> 
 				
     <body class="sb-nav-fixed">
 
@@ -59,7 +64,7 @@
 						Student Signup
 						</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item" onclick="GoBackHandler();">Back</li>
                             <li class="breadcrumb-item active"> Student Registeration</li>
                         </ol>
                   
@@ -79,19 +84,41 @@
 													<div class="table-responsive">
 													
 														  <form method="POST"   id="user_register_form">
-
+															  
+															  <div class="form-group">	
+															  <label>Student ID </label>
+															  <input class="form-control py-4" value="<?php echo$result=$Loader->StudentNoGenerator(); ?>"   type="text" name="student_code" id="student_code" class="form-control" readonly />
+  
+															  </div>
+															  <div class="form-group">	
+															  <label>Default Password </label>
+															  <input class="form-control py-4" value="000000"   type="text" name="password" id="password" class="form-control" readonly />
+  
+															  </div>
 															<div class="form-group">	
 															<label>School Code </label>
                                                             <input class="form-control py-4" placeholder="School Code"   type="text" name="school_code" id="school_code" class="form-control" required />
 
 															</div>
 
+
+
+
 															<div class="form-group">	
 															<label>Parent Code </label>
                                                             <input class="form-control py-4" placeholder="parent Code"   type="text" name="parent_code" id="parent_code" class="form-control" required />
 
 															</div>
+
+
+
+															<div class="form-group">	
+															<label>Class Teacher</label>
+                                                            <input class="form-control py-4" placeholder="teacher Code"   type="text" name="teacher_code" id="teacher_code" class="form-control" required />
+
+															</div>
 															
+						 
 															
 															<div class="form-group">	
 															<label>Student Photo   </label>
@@ -102,7 +129,7 @@
 															
 															<div class="form-group">	
 															<label>School Student No </label>
-                                                            <input class="form-control py-4" placeholder="School Code"   type="text" name="schl_stu_no" id="schl_stu_no" class="form-control" data-parsley-checkemail data-parsley-checkemail-message='<span style="color:red;">Student code already taken</span>' required />
+                                                            <input class="form-control py-4" placeholder="School Code"   type="text" name="schl_stu_no" id="schl_stu_no" class="form-control" data-parsley-checkemail data-parsley-checkemail-message='<span style="color:red;">Student code already taken</span>'  />
 
 															</div>
 															
@@ -137,42 +164,42 @@
 
 															</div>
 																														
-															<div class="form-group">	
-															<label>Class Rep</label>
-                                                            <input class="form-control py-4" placeholder="class rep"   type="text" name="class_rep" id="class_rep" class="form-control" required />
-
+															<div class="form-group">			
+ 															<label>Class Rep  </label>
+															<select   name="class_rep"  id="class_rep" class="form-control "   required>
+															<option  value="">  Select Option   </option>
+															<option value="regular">Regular Student  </option>
+															<option  value="captain">Class Captain  </option>  
+															</select> 
 															</div>
 															
 															
 															
-												 
-
+				 
 
 															<div class="form-group">			
- 															<label>Student Teacher   </label>
-															<input type="text" name="student_teacher" placeholder="teacher"  id="student_teacher" class="form-control py-4"   required />
+ 															<label>Current Term  </label>
+															<select   name="cur_term"  id="cur_term" class="form-control "   required>
+															<option  value=""> Select Option </option>
+															<option value="1st">First Term  </option>
+															<option  value="2nd">Second Term  </option>  
+															<option  value="3rd">Third Term  </option>  
+															</select> 
 															</div>
 
 
 															<div class="form-group">			
- 															<label>Student Payment Status  </label>
+ 															<label>School Fee Status  </label>
 															<select   name="payment_status"  id="payment_status" class="form-control "   required>
-															<option  value=""> SELECT OPTION  </option>
-															<option value="Active"> Student Payment Confirmed  </option>
-															<option  value="Inactive"> Student Payment Unconfirmed   </option> 
-															
+															<option  value="">  Select Option   </option>
+															<option value="paid">Fully paid  </option>
+															<option  value="unpaid">Unpaid/part paid  </option>  
 															</select> 
 															</div>
 
 
 														
-
  
-
-															<div class="form-group">			
-															<label>Account Registrar  </label>
-															<input type="text" name="admincode" value="<?php echo $admincode; ?>"  id="admincode" class="form-control py-4" Readonly />
-															</div>
 
 															<div class="form-group">	 
 															<input type="hidden" name="tier1" value="tier1"  id="tier1" class="form-control" required />
@@ -182,7 +209,7 @@
 																	
 																	<input type="hidden" name="page"   value='admin_signup_page' />
 																	<input type="hidden" name="action" value="parent_student_action" />
-																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Signup Student">
+																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Setup Student">
 																	
 																	
 																</div>
@@ -253,7 +280,7 @@
 							elementmodal.classList.remove('loaderDisplayblock');
 							elementmodal.classList.add('loaderDisplayNone');	
 							   alert(data.feedback);
-							  window.location="index.php";
+							   window.location="index.php";
 							
 					 
 						  }
@@ -280,66 +307,7 @@
 });
 
 
-/*
-$(document).ready(function(){
-
-  
-  $('#user_profile_todo').parsley();
  
- 
- $('#user_profile_todo').on('submit', function(event){
-	        
-	alert("Clicked");	  
-		  
-    event.preventDefault();
-
-    $('#phone_no').attr('required', 'required');
-
-    $('#gender').attr('required', 'required');
-
-    $('#department').attr('required', 'required');
-
-      $.ajax({
-        url:"../pageajax.php", 
-        method:"POST",
-        data:new FormData(this),
-        dataType:"json",
-        contentType:false,
-        cache:false,
-        processData:false,
-        beforeSend:function()
-        {
-			
-		   // btn.innerHTML = '<div class="loader-bg">  <div class="loader-bar">  </div>  </div>';
-          $('#admin_signup').attr('disabled', 'disabled');
-		  $('#admin_signup').addClass('btn-info');
-          $('#admin_signup').val('Please wait...');
-		  
-        },
-        success:function(data)
-        {
-          if(data.success)
-          {
-			     alert(data.feedback);
-				location.href='index.php'; 
-          }
-          else
-          {
-              alert(data.feedback);
-		 
-          }
-
-
-        }
-      })
-    
-
-  });
-
-
- 
-});
-*/
 
 </script>
 

@@ -29,7 +29,13 @@ display:none
 
 </style>
 
+ <script>
+ function GoBackHandler(){
+ history.go(-1)
+ }	
 
+
+</script>
 	
 <script type="text/javascript">
 
@@ -91,7 +97,7 @@ function calender(calend) {
 					          <i class="fas fa-briefcase"></i>Subject Setup
 						</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item" onclick="GoBackHandler();">Back</li>
                             <li class="breadcrumb-item active">Student Subject Setup</li>
                         </ol>
                   
@@ -173,7 +179,7 @@ function calender(calend) {
         </div>
     
     
-        <script src="js/scripts.js"></script>
+         
   <script>
 
 

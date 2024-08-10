@@ -37,7 +37,13 @@ display:none
 </style>
 
 
-	
+<script>
+ function GoBackHandler(){
+ history.go(-1)
+ }	
+
+
+</script> 	
  
 
   <body class="sb-nav-fixed">
@@ -71,7 +77,7 @@ display:none
 					          <i class="fas fa-book"></i> Registered Subjects   
 						</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                            <li class="breadcrumb-item"onclick="GoBackHandler();">Back</li>
                             <li class="breadcrumb-item">
 							 
 							<?php
@@ -173,25 +179,25 @@ display:none
 
 			 
 				 
-				
-						$.ajax({
-							url:"../pageajax.php",
-							method:"POST", 
-							data:{
-								stu_online_id:b,      
-								subject_id:a,   
-								page:'subjectSetup',
-								action:'removeSubjectID'
-								}, 
-							success:function(data)
-							{
-							          alert(data);
-									  location.href='student_subject_check.php?student_id='+b;
+alert('Up')				
+						// $.ajax({
+						// 	url:"../pageajax.php",
+						// 	method:"POST", 
+						// 	data:{
+						// 		stu_online_id:b,      
+						// 		subject_id:a,   
+						// 		page:'subjectSetup',
+						// 		action:'removeSubjectID'
+						// 		}, 
+						// 	success:function(data)
+						// 	{
+						// 	          alert(data);
+						// 			  location.href='student_subject_check.php?student_id='+b;
 												 
 								 
 							 
-							}
-						});	
+						// 	}
+						// });	
 			 
 			 
 

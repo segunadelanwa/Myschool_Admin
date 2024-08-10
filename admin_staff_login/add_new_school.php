@@ -69,14 +69,19 @@
 										<div class="card mb-4">
 												<div class="card-header">
 													<i class="fas fa-user"></i>
-												  Fill all fields correctly
+												  SCHOOL INFO
 												</div>
 												<div class="card-body">
 													<div class="table-responsive">
 														  <form method="POST"   id="user_register_form">
 
 
-														  
+														  <div class="form-group">
+														      <label>New School ID/Code </label>
+															  <input class="form-control py-4" value="<?php echo$result=$Loader->SchoolNoGenerator(); ?>"   type="text" name="school_id" id="school_id" class="form-control" readonly /> 
+															  </div>
+
+
 															<div class="form-group">			
 															<label>Account Officer Code</label>
 															<input type="text" name="registrar" value="<?php echo $admincode; ?>"  id="registrar" class="form-control py-4" Readonly />
@@ -85,7 +90,7 @@
 
 														  
 															<div class="form-group">	
-															<label>Marketer Code  </label>
+															<label>Field Admin Code  </label>
                                                             <input class="form-control py-4" placeholder="Marketer code"   type="text" name="marketer_code" id="marketer_code" class="form-control"  required />
 
 															</div>
@@ -117,6 +122,11 @@
                                                             <input class="form-control py-4" placeholder="School Name"   type="email" name="school_email" id="school_email" class="form-control"  required/>
 															</div>
 
+															<div class="form-group">	
+															<label>School Website  (optional) </label>
+                                                            <input class="form-control py-4" placeholder="School Name"   type="text" name="website" id="website" class="form-control"   />
+															</div>
+
 															<div class="form-group">
 															<label>School Default Password</label>
 															<input type="text" name="school_password" value="000000"  id="school_password" class="form-control" required Readonly/>
@@ -142,10 +152,13 @@
 															<input type="text" name="school_motor" placeholder="Account name"  id="school_motor" class="form-control py-4"  required />
 															</div>
 
-
+																<div class="card-header mt-5 mb-3">
+																<i class="fas fa-tag"></i>
+																APPLICATION SETTINGS
+																</div>
 
 															<div class="form-group">			
-															<label>School BacKground Color  </label>
+															<label>School Background Color  </label>
 															<input type="text" name="school_bgcolor" placeholder="School BacKground Color"  id="school_bgcolor" class="form-control py-4"  required />
 															</div>
 															
@@ -162,13 +175,18 @@
 															</div>
 															
 															
+															<div class="card-header mt-5 mb-3">
+																<i class="fas fa-tag"></i>
+																SCHOOL BANK DETAILS
+														    </div>		
+															
 															
 															<div class="form-group">			
 															<label>School Bank Name  </label>
 															<input type="text" name="bank_name" placeholder="School Bank Name"  id="bank_name" class="form-control py-4"  required />
 															</div>
 															
-															
+
 
 															<div class="form-group">			
 															<label>Account Name  </label>
@@ -182,7 +200,10 @@
 
 												 
 															 
-												 
+															<div class="card-header mt-5 mb-3">
+																<i class="fas fa-tag"></i>
+																SCHOOL PROPRIETOR DETAILS
+														    </div>													 
 												 
 															<div class="form-group">			
 															<label>School Propritor/proprietress Name</label>
@@ -202,7 +223,12 @@
 															<input type="text" name="schl_propritor_msg" placeholder="School Propritor Message"  id="schl_propritor_msg" class="form-control py-4"  required />
 															</div>
 
-												 										 
+															<div class="card-header mt-5 mb-3">
+																<i class="fas fa-tag"></i>
+																SCHOOL HEAD TEACHER DETAILS
+														    </div>	
+															
+															
 															<div class="form-group">			
 															<label>School Head Teachers Name</label>
 															<input type="text" name="schl_head_name" placeholder="School Head Name"  id="schl_head_name" class="form-control py-4"  required />
@@ -222,8 +248,53 @@
 															</div>
 
 												
+															<div class="card-header mt-5 mb-3">
+																<i class="fas fa-tag"></i>
+																SCHOOL ACTIVITIES DETAILS
+														    </div>	
+
+															<div class="form-group">			
+																<label>Exam Score</label>
+																<input type="number" name="exam_score" placeholder="0"  id="exam_score" class="form-control py-4"  required />
+																</div>
 
 
+																<div class="form-group">			
+																<label>Test Score</label>
+																<input type="number" name="test_score" placeholder="0"  id="test_score" class="form-control py-4"  required />
+																</div>
+
+													
+																<div class="form-group">			
+																<label>Exam Time</label>
+																<input type="number" name="exam_time" placeholder="0"  id="exam_time" class="form-control py-4"  required />
+																</div>
+
+													
+																	
+																<div class="form-group">			
+																<label>Test Time</label>
+																<input type="number" name="test_time" placeholder="0"  id="test_time" class="form-control py-4"  required />
+																</div>
+
+													
+													
+																<div class="form-group ">
+																<label> Current Term</label>
+																<select   id="current_term"  name="current_term"   class="form-control" >
+																	<option value="" selected="selected">-- Select current term--</option>   
+																	<option value="First Term">First Term</option>   
+																	<option value="Second Term">Second Term</option>   
+																	<option value="Third Term">Third Term</option>     
+																</select>
+															</div>
+													
+													
+													
+																<div class="form-group">			
+																<label>Session</label>
+																<input type="text" name="session" placeholder="session"  id="session" class="form-control py-4"  required />
+																</div>
 
 
 															<div class="form-group">	 
