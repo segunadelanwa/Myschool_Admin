@@ -84,3 +84,12 @@ $(document).ready(function() {
 
   
 });
+$(document).ready(function() {
+  $('#dataTable_9').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+         'print'
+    ]
+  });
+  
+});

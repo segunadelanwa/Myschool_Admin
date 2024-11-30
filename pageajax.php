@@ -1,3 +1,4 @@
+
 <?php
 require("topUrl.php");
  
@@ -252,121 +253,323 @@ if(isset($_POST['page'])){
 					$total_row = $loader->AllFieldAdminExist($fieldAdminCode);
  
 							
-			if($total_row == 0 )
-			{
-					if($acct_level === 'tier1' )
-					{
-							 
-							   $query_wallet =("INSERT INTO 0_marketer_reg VALUE (
-								'',
-								'".mysqli_real_escape_string($homedb, $passkey)."',	 									 
-								'".mysqli_real_escape_string($homedb, $admincode)."',	 									 
-								'".mysqli_real_escape_string($homedb, $fieldAdminCode)."',	 									 
-								'".mysqli_real_escape_string($homedb, $field_operator_photo)."',	 									 
-								'".mysqli_real_escape_string($homedb, $username)."', 									 
-								'".mysqli_real_escape_string($homedb, $user_password)."',
-								'".mysqli_real_escape_string($homedb, $fullname)."',
-								'".mysqli_real_escape_string($homedb, $phone)."',
-								'".mysqli_real_escape_string($homedb, $address)."',  
-								'".mysqli_real_escape_string($homedb, '0')."',
-								'".mysqli_real_escape_string($homedb, '0')."',     
-								'".mysqli_real_escape_string($homedb, '0000-00-00')."',     
-								'".mysqli_real_escape_string($homedb, $acct_number)."',   
-								'".mysqli_real_escape_string($homedb, $acct_name)."',   
-								'".mysqli_real_escape_string($homedb, $bank_name)."',   
-								'".mysqli_real_escape_string($homedb, $date_init)."'
-								)");
-								if(mysqli_query($homedb,$query_wallet))
-								{
-												
-					 
-					 
-					
-								    $subject = ' Field Admin Registeration';
+				if($total_row == 0 )
+				{
+						if($acct_level === 'tier1' )
+						{
 								
-								     $body = "
-										<div style='width:100%;height:5px;background: #c908bd'></div><br> 
-										<div style='font-size:14px;color:black;font-family:lucida sans;'>
-										
-											 <center >
-												 <img src=\'cid:logo\'  style='text-align:center;height:150px;'/> <br> 
-												 <h1>HEPZIHUB NIG LTD </h1>
-												 <h1>Field Admin Account  Registeration </h1>
-											 </center><br>
+								$query_wallet =("INSERT INTO 0_marketer_reg VALUE (
+									'',
+									'".mysqli_real_escape_string($homedb, $passkey)."',	 									 
+									'".mysqli_real_escape_string($homedb, $admincode)."',	 									 
+									'".mysqli_real_escape_string($homedb, $fieldAdminCode)."',	 									 
+									'".mysqli_real_escape_string($homedb, $field_operator_photo)."',	 									 
+									'".mysqli_real_escape_string($homedb, $username)."', 									 
+									'".mysqli_real_escape_string($homedb, $user_password)."',
+									'".mysqli_real_escape_string($homedb, $fullname)."',
+									'".mysqli_real_escape_string($homedb, $phone)."',
+									'".mysqli_real_escape_string($homedb, $address)."',  
+									'".mysqli_real_escape_string($homedb, '0')."',
+									'".mysqli_real_escape_string($homedb, '0')."',     
+									'".mysqli_real_escape_string($homedb, '0000-00-00')."',     
+									'".mysqli_real_escape_string($homedb, $acct_number)."',   
+									'".mysqli_real_escape_string($homedb, $acct_name)."',   
+									'".mysqli_real_escape_string($homedb, $bank_name)."',   
+									'".mysqli_real_escape_string($homedb, $date_init)."'
+									)");
+									if(mysqli_query($homedb,$query_wallet))
+									{
+													
+						
+						
+						
+										$subject = ' Field Admin Registeration';
+									
+										$body = "
+											<div style='width:100%;height:5px;background: #c908bd'></div><br> 
+											<div style='font-size:14px;color:black;font-family:lucida sans;'>
+											
+												<center >
+													<img src=\'cid:logo\'  style='text-align:center;height:150px;'/> <br> 
+													<h1>HEPZIHUB NIG LTD </h1>
+													<h1>Field Admin Account  Registeration </h1>
+												</center><br>
 
-														 
-										   <p>
-										   Hi $fullname your registeration account has been setup. Please find below your login details
-										   </p>
-										   
+															
 											<p>
-												 Username: $username  <br />
-												 Password: $raw_password  <br />
-												 
+											Hi $fullname your registeration account has been setup. Please find below your login details
 											</p>
 											
-											
-											<span style='font-size:15px;text-align:center;'> Field Admin Account Setup <span><br>
-											<div style='width:100%;height:5px;background: blue'></div>  
-											
-											
-											</div><br><br>
-										 </div>			
-										 ";
-					
-						              // $loader->send_email($_POST['user_email_address'], $subject, $body);
-						               $loader->FieldAdminNoGeneratorUpdate();
-		 
-
-										$output = array(
-											'success'		=>	'success',
-											'feedback'		=>	'Field admin account setup successfully!!. Check your email for login details'
-										);
-
+												<p>
+													Username: $username  <br />
+													Default Password: $raw_password  <br />
+													
+												</p>
+												
+												
+												<span style='font-size:15px;text-align:center;'> Field Admin Account Setup <span><br>
+												<div style='width:100%;height:5px;background: blue'></div>  
+												
+												
+												</div><br><br>
+											</div>			
+											";
 						
+										@@$loader->send_email($_POST['user_email_address'], $subject, $body);
+											$loader->FieldAdminNoGeneratorUpdate();
+			
 
+											$output = array(
+												'success'		=>	'success',
+												'feedback'		=>	'Field admin account setup successfully!!. Check your email for login details'
+											);
+
+							
+
+								}
+								else
+								{
+									
+										$output = array(
+											'success'		=>	'failed',
+											'feedback'		=>	"Newtwork error"
+										);
+								}
+
+
+								
+						}
+						else
+						{
+							
+								$output = array(
+									'success'		=>	'failed',
+									'feedback'		=>	"Sorry $acc_fullname, your are not authorized to setup an account "
+								);
+						}
+				}
+				else
+				{
+					
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'		=>	"$fieldAdminCode account already setup"
+						);
+				} 
+				
+				echo json_encode($output);
+			 			 
+			 
+		}
+ 		
+
+		if($_POST['action'] == 'check_team_lead')
+		{
+			$loader->query = "
+			SELECT * FROM 0_team_lead 
+			WHERE username = '".trim($_POST["email"])."'
+			";
+
+			$total_row = $loader->total_row();
+
+			if($total_row == 0)
+			{
+				$output = array(
+					'success'		=>	true
+				);
+				echo json_encode($output);
+			}
+		}
+
+
+		if($_POST['action'] == 'team_lead_signup_action')
+	    {
+			 
+			
+             $date_init=date('Y-m-d');
+ 
+  
+					
+					 
+		 
+					$team_name       =  trim($_POST['team_name']);
+					$fullname        =  trim($_POST['fullname']);
+					$phone           =  trim($_POST['phone']);
+					$address         =  trim($_POST['address']);
+					$fieldAdminCode  =  trim($_POST['fieldAdminCode']);
+					$acct_number     =  trim($_POST['acct_number']);
+					$acct_name       =  trim($_POST['acct_name']);
+					$bank_name       =  trim($_POST['bank_name']);
+					$user_email      =  trim($_POST['user_email_address']);
+					$raw_password    =  trim($_POST['password']);
+					$passkey         =   MD5("$raw_password$user_email");
+					$user_password   =	password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+
+					$total_row = $loader->AllFieldAdminExist($fieldAdminCode);
+ 
+							
+					if($total_row == 0 )
+					{
+							if($acct_level === 'tier1' )
+							{
+								    $loader->filedata     = $_FILES['field_operator_photo'];
+									$field_operator_photo = $loader->UploadPhoto('team_lead');  
+
+
+									$query_wallet =("INSERT INTO 0_team_lead  VALUE (
+										'',
+										'".mysqli_real_escape_string($homedb, $passkey)."',	 									 
+										'".mysqli_real_escape_string($homedb, $admincode)."',	 									 
+										'".mysqli_real_escape_string($homedb, $fieldAdminCode)."',	 									 
+										'".mysqli_real_escape_string($homedb, $field_operator_photo)."',	 									 
+										'".mysqli_real_escape_string($homedb, $user_email)."', 									 
+										'".mysqli_real_escape_string($homedb, $user_password)."',
+										'".mysqli_real_escape_string($homedb, $fullname)."',
+										'".mysqli_real_escape_string($homedb, $phone)."',
+										'".mysqli_real_escape_string($homedb, $address)."',  
+										'".mysqli_real_escape_string($homedb, '0')."',
+										'".mysqli_real_escape_string($homedb, '0')."',     
+										'".mysqli_real_escape_string($homedb, '0000-00-00')."',     
+										'".mysqli_real_escape_string($homedb, $acct_number)."',   
+										'".mysqli_real_escape_string($homedb, $acct_name)."',   
+										'".mysqli_real_escape_string($homedb, $bank_name)."',   
+										'".mysqli_real_escape_string($homedb, $date_init)."',
+										'".mysqli_real_escape_string($homedb, $team_name)."',
+										'".mysqli_real_escape_string($homedb, $date_init)."',
+										'".mysqli_real_escape_string($homedb, '0000-00-00')."',
+										'".mysqli_real_escape_string($homedb, '')."'
+										)");
+										if(mysqli_query($homedb,$query_wallet))
+										{
+														
+							
+							
+							
+											$subject = 'Team Lead Recruit';
+										
+											$body = "
+												<div style='width:100%;height:5px;background: orange'></div><br> 
+												<div style='font-size:14px;color:black;font-family:lucida sans;'>
+												
+													<center >
+															<h1>
+															<img src='cid:logo'  style='text-align:center;height:50px;'/> <br/> 
+															HEBZIHUB NIG LTD
+															</h1>
+															<small>(RC: 7892845)</small><br/><br/>
+
+
+															 <img src='cid:logo2' style='width:100%' />
+													</center>
+                                                        
+													    <p>
+													       <h3 style='text-decoration:underline;color:orange'>Team Lead Operational Dashboard Setup </h3>
+															Hi $fullname you have been recruited for the role of Team Lead from Hebzihub Nigeria Limited. 
+															Your Team Lead operational account has been setup, you can recruit field admin to your team to start full operations
+															from your domain. Please review your objectives as a Team Lead.
+														</p>
+
+
+														<p>
+													          <h3 style='text-decoration:underline'>Team Lead Objectives</h3> 
+                                                            * Build your team by recruiting Field Admin to work with you at your work speed<br/>
+															* Onboard new school and give follow up on each onboarded schools <br/>
+															* Train your Field Admins before heading out for schools onboarding <br/>
+															* As a Team Lead you will monitor your onboarded schools termly payment subscription on our software deployment<br/>
+															* As a Team Lead you will be able to attend to all ticket/enquiries raised for resolutions from your onboarded schools team<br/>
+															* Pay your Field Admin as soon Hebzihub Nig Ltd pays your team remunerations<br/><br/>
+														</p>
+												
+														<p>
+														 <img src='cid:logo3' style='width:100%' /><br/><br/>
+															<b style='text-decoration:underline'>Operational Login Details </b><br/>
+															Username: $user_email  <br />
+															Default Password: $raw_password  <br />
+
+														</p>
+
+														<p>
+															<a href='https://adminportal.com.ng/login/team-lead/' >  Kindly click here </a> and login to your Team Lead dashboard  or 
+															if  link is disabled  on your device copy this link https://adminportal.com.ng/login/team-lead  and past to your browser . 
+														</p> <br />
+
+
+
+													        
+														<p>
+															<b style='text-decoration:underline'>Team Lead Operational URLS </b><br/>
+															<a href='https://adminportal.com.ng/login/team-lead/'><b>Team Lead</b>: https://adminportal.com.ng/login/team-lead/ </a><br /> <br />
+															<a href='https://adminportal.com.ng/login/field-admin'><b>Field Admin</b>: https://adminportal.com.ng/login/field-admin </a> <br /> <br /> 
+	
+														</p>											
+												
+												
+												
+												
+												
+												            <br /><br /><br /><br />
+															<div>HUMAN RESOURCES (HR) </div>   
+															<div><b>$acc_fullname</b></div>   
+															<div><b>($admincode)</b></div>   
+															     
+															
+															
+															</div><br><br>
+
+
+
+													 													
+													</div><br><br>
+												</div>			
+												";
+							
+											    $loader->send_email($user_email, $subject, $body);
+												$loader->TeamLeadNoGeneratorUpdate();
+				
+
+												$output = array(
+													'success'		=>	'success',
+													'feedback'		=>	'Team lead  account setup successfully!!. Check your email for login details'
+												);
+
+								
+
+									}
+									else
+									{
+										
+											$output = array(
+												'success'		=>	'failed',
+												'feedback'		=>	"Newtwork error"
+											);
+									}
+
+
+									
 							}
 							else
 							{
 								
 									$output = array(
 										'success'		=>	'failed',
-										'feedback'		=>	"Newtwork error"
+										'feedback'		=>	"Sorry $acc_fullname, your are not authorized to setup an account "
 									);
 							}
-
-
-							
 					}
 					else
 					{
 						
 							$output = array(
 								'success'		=>	'failed',
-								'feedback'		=>	"Sorry $acc_fullname, your are not authorized to setup an account "
+								'feedback'		=>	"$fieldAdminCode account already setup"
 							);
-					}
-			}
-			else
-			{
-				
-					$output = array(
-						'success'		=>	'failed',
-						'feedback'		=>	"$fieldAdminCode account already setup"
-					);
-			}
-
-
-				
-	 
-			 
-			 echo json_encode($output);
-			 
-			 
+					} 
+					
+					echo json_encode($output);
+			 			 
 			 
 		}
- 		
-		 
+
 		if($_POST['action'] == 'check_school')
 		{
 			$loader->query = "
@@ -394,7 +597,8 @@ if(isset($_POST['page'])){
 	    {
 			 
 		 
-             $date_init=date('Y-m-d');
+			$date_init=date('Y-m-d');
+			$date_sub = strtotime('+1 year', strtotime($date_init));
  
 				  
 				 
@@ -492,47 +696,74 @@ if(isset($_POST['page'])){
 										'".mysqli_real_escape_string($homedb, '')."',
 										'".mysqli_real_escape_string($homedb, '')."',
 										'".mysqli_real_escape_string($homedb, $current_term)."',
-										'".mysqli_real_escape_string($homedb, $session)."' 
+										'".mysqli_real_escape_string($homedb, $session)."', 
+										'".mysqli_real_escape_string($homedb, 'inactive')."', 
+										'".mysqli_real_escape_string($homedb, 'unpaid')."',
+										'".mysqli_real_escape_string($homedb, '')."',
+										'".mysqli_real_escape_string($homedb, $passkey)."'
 										)");
 										if(mysqli_query($homedb,$query_wallet))
 										{
-														
+														// api_for_question Fixed is for subscriber 
 							
-							
-							
-											$subject = 'SCHOOL ACCOUNT SETUP';
-										
-											$body = "
-												<div style='width:100%;height:5px;background: #c908bd'></div><br> 
-												<div style='font-size:14px;color:black;font-family:lucida sans;'>
-												
-													<center >
-														<img src=\'cid:logo\'  style='text-align:center;height:150px;'/> <br> 
-														<h1> SCHOOL ACCOUNT SETUP</h1>
-														
-													</center><br>
+											   $query_wallet =("INSERT INTO api_for_question VALUE ( 
+												'',    
+												'".mysqli_real_escape_string($homedb, $passkey)."',   
+												'".mysqli_real_escape_string($homedb, $schoolCode)."',   
+												'".mysqli_real_escape_string($homedb, $date_sub)."',    
+												'".mysqli_real_escape_string($homedb, 'fixed')."',   
+												'".mysqli_real_escape_string($homedb, $date_init)."' 
+												)");
+												mysqli_query($homedb,$query_wallet);
 
-																
-												<p>
-												Hi $school_name your school registeration account has been setup. Please find below your login details
-												</p>
-												
-													<p>
-														Username: $school_email  <br />
-														Password: $raw_password  <br />
-														
-													</p>
-													
-													
-													<span style='font-size:15px;text-align:center;'> School Account Setup <span><br>
-													<div style='width:100%;height:5px;background: blue'></div>  
-													
-													
-													</div><br><br>
-												</div>			
-												";
 							
-											// $loader->send_email($_POST['user_email_address'], $subject, $body);
+ 		
+												$body = "
+												<div style='width:100%;height:5px;background: #c908bd'></div><br> 
+													<div style='font-size:14px;color:black;font-family:lucida sans;'>
+													
+															<center >
+																<img src=\'cid:logo\'  style='text-align:center;height:150px;'/> <br> 
+																<h1> HEBZIHUB NIG LTD</h1>
+																
+															</center><br>
+	
+																	
+														<p>
+														Hi $schl_propritor_name, your school $school_name  portals management & CBT integration system software
+														registeration was successful and your school account has been setup for operations.
+														</p><br/>
+														
+														<p>
+														Please, find below your school login credentials and should incase you forgot your account password for security and future purpose, send a mail to support@hebzihubnigltd.com.ng
+														with this your registered email.
+														</p>
+	
+	
+														<p>
+														<a href='https://adminportal.com.ng/login/school-portal/'>
+														Kindly click here to access  school admin login portal dashboard. Thanks 
+														</a>
+														</p>
+													
+														<p>
+															Username: $school_email  <br />
+															Password: $raw_password  <br />
+															
+														</p>
+														
+														
+														<div> Account Setup Team </div>   
+														<div><b>$acc_fullname ($admincode)</b></div>   
+														<div><b>$phone</b></div> 
+														<div> https://hebzihubnigltd.com.ng </div>  
+														
+														
+														</div><br><br>
+													</div>			
+													";
+							
+										         $loader->send_email($_POST['user_email_address'], $subject, $body);
 				
 											$loader->SchoolNoGeneratorUpdate();
 
@@ -854,6 +1085,7 @@ if(isset($_POST['page'])){
 					$student_class     =  trim($_POST['student_class']);
 					$class_rep         =  trim($_POST['class_rep']); 
 					$payment_status    =  trim($_POST['payment_status']);
+					$school_type       =  trim($_POST['$school_type']);
 
  
 				$ConfirmStudentExist = $loader->ConfirmStudentExist($student_code);
@@ -1029,7 +1261,8 @@ if(isset($_POST['page'])){
 																		'',       
 																		'',       
 																		'',       
-																		''
+																		'',
+																		'".mysqli_real_escape_string($homedb, $school_type)."'
 																		)");
 																		mysqli_query($homedb,$query_wallet);
 
@@ -1091,10 +1324,77 @@ if(isset($_POST['page'])){
 																		'',       
 																		'',       
 																		'',       
-																		''
+																		'',
+																		'".mysqli_real_escape_string($homedb, $school_type)."'
 																		)");
 																		mysqli_query($homedb,$query_wallet);
 
+
+
+                                                                        $query_wallet =("INSERT INTO student_weekly_assesment VALUE (
+																		'', 									 
+																		'".mysqli_real_escape_string($homedb, $date_term)."',
+																		'".mysqli_real_escape_string($homedb, 'active')."',		 									 
+																		'".mysqli_real_escape_string($homedb, $cur_term)."',		 									 
+																		'".mysqli_real_escape_string($homedb, $parent_code)."', 									 
+																		'".mysqli_real_escape_string($homedb, $school_code)."', 									 
+																		'".mysqli_real_escape_string($homedb, $student_code)."',  
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',      
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',       
+																		'',
+																		'".mysqli_real_escape_string($homedb, $school_type)."'
+																		)");
+																		mysqli_query($homedb,$query_wallet);
+
+
+																		
 
                                                                 $loader->StudentNoGeneratorUpdate();
 
@@ -1699,6 +1999,12 @@ if(isset($_POST['page'])){
 												mysqli_query($homedb,$query_wallet);
 
 
+												$query_wallet ="UPDATE `student_weekly_assesment` SET   
+												`$sub_id`     = 'null' 		 
+												WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' "; 
+												mysqli_query($homedb,$query_wallet);
+
+												
 										    	echo$feedback		=	"$sub_title has been added to student subject list";
 											 
 
@@ -3853,6 +4159,59 @@ if(isset($_POST['page'])){
 			 }
 
 			}
+			else if($name == 'TeamLead'){
+				$loader->query = "SELECT * FROM `0_team_lead` WHERE  `0_team_lead`.`team_lead_id` ='$delete_id' ";  
+				$result_row = $loader->total_row();
+				$result_user_wallet = $loader->query_result();
+				foreach($result_user_wallet as $row){
+
+					$fullname     =  $row['fullname'];       
+					$fd_address    =  $row['address'];            
+					$fd_phone      =  $row['phone'];      
+					$fd_email     =  $row['username'];      
+				
+				  }	
+				
+		 
+			 if($result_row == 1){
+				
+						   echo $success =' 
+					 
+								<div style="text-align:center;font-wweight:bold;font-size:20px">
+							 
+								
+								  
+									<div>Team Lead Name: '.$fullname.'</div>
+									<div>Team Lead Phone: '.$fd_phone.'</div>
+									<div>Team Lead Address:  '.$fd_address.'</div> 
+									<div>Team Lead Email :  '.$fd_email.'</div> 
+
+								
+								<h2 style="text-decoration:underline;margin-bottom:20px;color:red">ARE YOU SURE YOU WANT TO  DELETE THIS ACCOUNT?</h2>
+								<p style="color:red">Please do note that <span style="color:black">'.$fullname.' </span>account will be deleted once the Delete Now button is clicked
+								along side with all students account connected
+								and this proccess can not be reversed, however all informations of <span style="color:black">'.$fullname.' </span> will be deleted from our database
+								</p><br/>
+
+
+
+								<form method="POST"   action="#">
+								<div class="form-group">
+								  <input type="text" class="form-control" name="passcode" id="passcode"  placeholder="Enter your password to delete ">
+								 </div> 
+							  </form>
+								';
+								 
+								echo"<div class='btn btn-danger'  onclick='deletAccount(\"$name\",\"$delete_id\",\"$tokenpasskey\",\"$username\")'> Delete Now</div>
+								
+								</div>";
+
+
+			 }else{
+
+				echo $output = " Invalid delete ID";
+			 }	
+			}
 	
 					
 	 
@@ -4057,34 +4416,34 @@ if(isset($_POST['page'])){
 							{ 
 
 											$loader->query = "DELETE FROM `1_school_reg` WHERE `1_school_reg`.`school_code` = '$delete_id' ";
-											$loader->execute_query();
-
-
-											$loader->query = "DELETE FROM `2_teacher_non` WHERE `2_teacher_non`.`school_code` = '$delete_id' ";
-											$loader->execute_query();
-
+											@$loader->execute_query();
+ 
 											$loader->query = "DELETE FROM `2_teacher_reg` WHERE `2_teacher_reg`.`school_code` = '$delete_id' ";
-											$loader->execute_query();
+											@$loader->execute_query();
 
 
 											$loader->query = "DELETE FROM `3_parent_reg` WHERE `3_parent_reg`.`sch_code` = '$delete_id' ";
-											$loader->execute_query();
+											@$loader->execute_query();
 
 
 											$loader->query = "DELETE FROM `student_exam_result` WHERE `student_exam_result`.`school_code` = '$delete_id' ";
-											$loader->execute_query();
+											@$loader->execute_query();
 
 											$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`school_code` = '$delete_id' ";
-											$loader->execute_query();
+											@$loader->execute_query();
 
 
 											$loader->query = "DELETE FROM `trans_history` WHERE `trans_history`.`school_code` = '$delete_id' ";
-											$loader->execute_query();
+											@$loader->execute_query();
+
+
+											$loader->query = "DELETE FROM `api_for_question` WHERE `api_for_question`.`school_code` = '$delete_id' ";
+											@$loader->execute_query();
 
 											array_map('unlink', glob("myschoolapp_api/school/$school_code/*.*"));
 											rmdir("myschoolapp_api/school/$school_code");
 											 
-								
+								 
 								echo $success ="<div> School account activities has been deleted with all subsidiaries accounts from database</div><br/>";
 
 								echo"<a href='index.php'  class='btn btn-danger'> Continue </a>";
@@ -4159,7 +4518,37 @@ if(isset($_POST['page'])){
 
  
 		    }	
- 
+			else  if($category == 'TeamLead')
+			{
+
+
+				$loader->query = "SELECT * FROM  `0_team_lead` WHERE `0_team_lead`.`team_lead_id`  ='$delete_id' ";  
+				$result_row = $loader->total_row(); 
+				$result_user_wallet = $loader->query_result();
+				foreach($result_user_wallet as $row){
+
+					$fullname     =  $row['fullname'];             
+					$photo      =  $row['photo'];          
+				
+				  }	
+							if($result_row == 1)
+							{
+
+								 
+
+								$loader->query = "DELETE FROM `0_team_lead` WHERE `0_team_lead`.`team_lead_id` = '$delete_id' ";
+								$loader->execute_query();
+
+
+								unlink("myschoolapp_api/team_lead/$photo");
+								
+								echo $success ="Account has been deleted with all connected accounts from database<br/>";
+
+								echo"<a href='index.php'  class='btn btn-danger'> Continue </a>";
+									
+
+							}
+			} 
 		}
 
 	}	
@@ -4168,6 +4557,81 @@ if(isset($_POST['page'])){
 	if($_POST['page'] == 'updateUserData')
 	{
 
+
+
+		if($_POST['action'] == 'team_lead')
+		{
+			 
+  
+		 
+
+
+					$team_lead_id   =  trim($_POST['team_lead_id']);
+					$fullname        =  trim($_POST['fullname']);
+					$phone           =  trim($_POST['phone']);
+					$address         =  trim($_POST['address']);
+					$acct_number     =  trim($_POST['acct_number']);
+					$user_email      =  trim($_POST['user_email_address']);
+					$acct_name       =  trim($_POST['acct_name']);
+					$bank_name       =  trim($_POST['bank_name']); 
+					
+					
+					$loader->query ="SELECT * FROM 0_team_lead WHERE team_lead_id = '$team_lead_id'";  
+					$output = $loader->query_result();
+					foreach($output as $row){
+					$photo = $row['photo'];
+					}
+						$loader->filedata= $_FILES['field_operator_photo'];
+						$field_photo     = $loader->UploadPhoto('team_lead'); 
+
+					if(!empty($field_photo)){
+
+						@@unlink("$Teamlead/$photo");
+
+						$query_wallet ="UPDATE `0_team_lead` SET    
+						`photo`       =  '$field_photo',
+						`fullname`    =  '$fullname',
+						`phone`       =  '$phone',
+						`address`     =  '$address',
+						`acct_number` =  '$acct_number',
+						`acct_name`   =  '$acct_name',
+						`bank_name`   =  '$bank_name'
+						WHERE `0_team_lead`.`team_lead_id` = '$team_lead_id' "; 
+
+
+					}
+					else
+					{
+						$query_wallet ="UPDATE `0_team_lead` SET 
+						`fullname`    =  '$fullname',
+						`phone`       =  '$phone',
+						`address`     =  '$address',
+						`acct_number` =  '$acct_number',
+						`acct_name`   =  '$acct_name',
+						`bank_name`   =  '$bank_name'
+						WHERE `0_team_lead`.`team_lead_id` = '$team_lead_id' "; 
+					}
+
+ 
+					if(mysqli_query($homedb,$query_wallet))
+					{
+
+							$data= array(
+								'success'		=>	'success',
+								'feedback'		=>	'Team Lead data updated successfully!! '
+							);
+
+				}
+				else
+				{
+							$data= array(
+								'success'		=>	'success',
+								'feedback'		=>	'Team Lead data updated failed!! '
+							);			
+				}
+
+		   echo json_encode($data);
+		}
 
 
 		if($_POST['action'] == 'field_admin')
@@ -4224,23 +4688,24 @@ if(isset($_POST['page'])){
 					}
 
  
-			if(mysqli_query($homedb,$query_wallet))
-			{
+					if(mysqli_query($homedb,$query_wallet))
+					{
 
-					$data= array(
-						'success'		=>	'success',
-						'feedback'		=>	'Field admin data updated successfully!! '
-					);
+							$data= array(
+								'success'		=>	'success',
+								'feedback'		=>	'Field admin data updated successfully!! '
+							);
 
-		   }
-		   else
-		   {
-					$data= array(
-						'success'		=>	'success',
-						'feedback'		=>	'Field admin data updated failed!! '
-					);			
-		   }
-			
+				}
+				else
+				{
+							$data= array(
+								'success'		=>	'success',
+								'feedback'		=>	'Field admin data updated failed!! '
+							);			
+				}
+
+		   echo json_encode($data);
 		}
 
 		if($_POST['action'] == 'parent')
@@ -4278,6 +4743,7 @@ if(isset($_POST['page'])){
 									'feedback'		=>	'Parent data updated failed!!'
 								);			
 						}
+            echo json_encode($data);
 
 		}
 
@@ -4353,7 +4819,7 @@ if(isset($_POST['page'])){
 					);			
 					}
 
-
+			echo json_encode($data);
 
 		}
 
@@ -4428,7 +4894,7 @@ if(isset($_POST['page'])){
 
 					$data= array(
 						'success'		=>	'success',
-						'feedback'		=>	'Field admin data updated successfully!! '
+						'feedback'		=>	'Teacher  data updated successfully!! '
 					);
 
 					}
@@ -4436,12 +4902,12 @@ if(isset($_POST['page'])){
 					{
 					$data= array(
 						'success'		=>	'success',
-						'feedback'		=>	'Field admin data updated failed!! '
+						'feedback'		=>	'Teacher  data updated failed!! '
 					);			
 					}
 
 
-
+			echo json_encode($data);
 
 		}
 
@@ -4571,9 +5037,11 @@ if(isset($_POST['page'])){
 						'feedback'		=>	'school account updated failed!! '
 					);			
 		   }
+
+		   echo json_encode($data);
 		}
 
-		echo json_encode($data);
+		
 	}
 
 
@@ -4604,10 +5072,7 @@ if(isset($_POST['page'])){
 			  $quest_link_img =	 "./question_img";
 			  @$loader->filedata  = $_FILES['question_img'];
 			  $quesimg      = $loader->UploadPhoto($quest_link_img);  
-			  if(!empty($queimg)){
-				$question_img = $quesimg;
-			  } 
-
+		 
  
 	 
 
@@ -4615,10 +5080,10 @@ if(isset($_POST['page'])){
 					$query = "INSERT INTO `51_question_option`  
 					(question_id,option_title)  
 					VALUES
-					 ('".$new_id."','".$_POST['option_a']."'),
-					 ('".$new_id."','".$_POST['option_b']."'),
-					 ('".$new_id."','".$_POST['option_c']."'),
-					 ('".$new_id."','".$_POST['option_d']."')  
+					 ('".$new_id."','(A) ".$_POST['option_a']."'),
+					 ('".$new_id."','(B) ".$_POST['option_b']."'),
+					 ('".$new_id."','(C) ".$_POST['option_c']."'),
+					 ('".$new_id."','(D) ".$_POST['option_d']."')  
 					 ";  
 					mysqli_query($homedb, $query);
 			
@@ -4627,11 +5092,11 @@ if(isset($_POST['page'])){
 					'".mysqli_real_escape_string($homedb, $new_id)."', 
 					'".mysqli_real_escape_string($homedb, $_POST['subject'])."',
 					'".mysqli_real_escape_string($homedb, $_POST['access_code'])."',
-					'".mysqli_real_escape_string($homedb, $question_img)."', 
+					'".mysqli_real_escape_string($homedb, $quesimg)."', 
 					'".mysqli_real_escape_string($homedb, $_POST['question'])."',
 					'".mysqli_real_escape_string($homedb, $correct_answer)."',
 					'".mysqli_real_escape_string($homedb, $_POST['class'])."',
-					'".mysqli_real_escape_string($homedb, $_POST['type'])."',
+					'".mysqli_real_escape_string($homedb, 'general')."',
 					'".mysqli_real_escape_string($homedb, $_POST['school_code'])."',
 					'".mysqli_real_escape_string($homedb, $username)."',
 					'".mysqli_real_escape_string($homedb, $date)."'
@@ -4680,37 +5145,41 @@ if(isset($_POST['page'])){
 	 
 		  if($_POST['action'] == 'question')
 		   {
-			$question_img = '';
+			$quesimg = '';
 			$date = date("Y-m-d");
  
 
  
 			  
  
-			  $quest_link_img =	 "./question_img";
+			  $quest_link_img    ="./question_img";
 			  $loader->filedata  = $_FILES['question_img'];
-			  $quesimg      = $loader->UploadPhoto($quest_link_img);  
-			  if(!empty($queimg)){
-				$question_img = $quesimg;
-			  } 
+			  $quesimg           = $loader->UploadPhoto($quest_link_img);  
 
- 
-			  $optID_0  = $_POST['optID_0'];
-              $optTXT_0 = $_POST['optTXT_0'];
-			  $optID_1  = $_POST['optID_1'];
-              $optTXT_1 = $_POST['optTXT_1'];
-			  $optID_2  = $_POST['optID_2'];
-              $optTXT_2 = $_POST['optTXT_2'];
-			  $optID_3  = $_POST['optID_3'];
-              $optTXT_3 = $_POST['optTXT_3'];
-			  $subject  = $_POST['subject'];
-			  $access_code  = $_POST['access_code'];
-			  $question     = $_POST['question'];
-			  $answer       = $_POST['answer'];
-			  $class        = $_POST['class'];
-			  $type         = $_POST['type'];
-			  $question_id  = $_POST['question_id'];
 
+			  $img_hidden   = htmlentities($_POST['question_img_hidden']);
+			  $optID_0      = htmlentities($_POST['optID_0']);
+              $optTXT_0     = htmlentities($_POST['optTXT_0']);
+			  $optID_1      = htmlentities($_POST['optID_1']);
+              $optTXT_1     = htmlentities($_POST['optTXT_1']);
+			  $optID_2      = htmlentities($_POST['optID_2']);
+              $optTXT_2     = htmlentities($_POST['optTXT_2']);
+			  $optID_3      = htmlentities($_POST['optID_3']);
+              $optTXT_3     = htmlentities($_POST['optTXT_3']);
+			  $subject      = htmlentities($_POST['subject']);
+			  $access_code  = htmlentities($_POST['access_code']);
+			  $question     = htmlentities($_POST['question']);
+			  $answer       = htmlentities($_POST['answer']);
+			  $class        = htmlentities($_POST['class']);
+			  $type         = htmlentities($_POST['type']);
+			  $question_id  = htmlentities($_POST['question_id']);
+
+			  $loader->query ="SELECT * FROM 50_question_table WHERE id = '$question_id'";  
+			  $output = $loader->query_result();
+			  foreach($output as $row){
+				  $ques_image     = $row['question_image']; 
+			  }
+  
 			 
 			         $loader->query ="UPDATE `51_question_option` SET 
 					 `option_title` = '$optTXT_0'
@@ -4736,19 +5205,38 @@ if(isset($_POST['page'])){
                      $loader->execute_query();
 
 
+ 
+					if(empty($quesimg)){
+                        //No new image clicked
 
+						$queryletter =("UPDATE  `50_question_table` SET 
+						`cbt_subject`    = '$subject',
+						`subject_id`     = '$access_code', 
+						`question_title` = '$question',
+						`answer_option`  = '$answer',
+						`student_class`  = '$class', 
+						`cbt_status`     = '$type'
+						WHERE `50_question_table`.`id` = '$question_id'");
+						
+					}else {
+                         //New image clicked
 
-					 //mysqli_query($homedb, $query);
+                            @@unlink("myschoolapp_api/question_img/$ques_image");
 
-					$queryletter =("UPDATE  `50_question_table` SET 
-					`cbt_subject`    = '$subject',
-					`subject_id`     = '$access_code',
-					`question_image` = '$question_img', 
-					`question_title` = '$question',
-					`answer_option`  = '$answer',
-					`student_class`  = '$class', 
-					`cbt_status`     = '$type'
-					WHERE `50_question_table`.`id` = '$question_id'");
+							$queryletter =("UPDATE  `50_question_table` SET 
+							`cbt_subject`    = '$subject',
+							`subject_id`     = '$access_code', 
+							`question_image` = '$quesimg',
+							`question_title` = '$question',
+							`answer_option`  = '$answer',
+							`student_class`  = '$class', 
+							`cbt_status`     = '$type'
+							WHERE `50_question_table`.`id` = '$question_id'");
+
+					}
+
+					   
+
 					if(mysqli_query($homedb, $queryletter)){ 
 						
 						
@@ -4771,8 +5259,8 @@ if(isset($_POST['page'])){
 
 
 					$data= array(
-						'success'		=>	'success',
-						'feedback'		=>	'question uploaded successfully'
+						'success'  =>	'success',
+						'feedback' =>	"question modified uploaded successfully"
 					);
 				
 			echo json_encode($data);
@@ -4793,13 +5281,10 @@ if(isset($_POST['page'])){
 		if($_POST['action'] == 'printQuestion')
 		{
 
-			
-					$class_id      = $_POST['class_id'];
-					$type          = $_POST['type'];
-					$teacher_code  = $_POST['teacher_code'];
+			 
 					$subject_id    = $_POST['subject_id']; 
 
-					$loader->query = "SELECT * FROM `50_question_table` WHERE  teacher_code='$teacher_code' AND cbt_subject = '$subject_id' AND cbt_status = '$type' AND student_class = '$class_id' AND cbt_status != 'general'"; 
+					$loader->query = "SELECT * FROM `50_question_table`  WHERE subject_id = '$subject_id' "; 
 					$total_row = $loader->total_row(); 
 					$result = $loader->query_result(); 
 					foreach($result as $rows)
@@ -4895,7 +5380,7 @@ if(isset($_POST['page'])){
 															}
 															else
 															{
-																$QuesImg ='<img src="../'.$MainquesImg .'/'.$active['question_image'].'"  style="width:200px;height:150px;border-radius:1500px"';
+																$QuesImg ='<img src="../'.$MainquesImg .'/'.$active['question_image'].'"  style="height:100%;border-radius:1500px"';
 																$optionLabelAdjest = '	
 																<div style="margin-top:170px;text-align:center;border-radius:500px;border:1px solid #777777"> 
 																A 
@@ -4917,7 +5402,7 @@ if(isset($_POST['page'])){
 														<td>
 														<b>Que '.$d.' </b>
 
-														'.$optionLabelAdjest.'
+														 
 														</td>
 													
 														
@@ -4982,7 +5467,39 @@ if(isset($_POST['page'])){
     }
 
 
+	if($_POST['page'] == 'FetchNumberOfQuestion')
+	{
+		   
+		if($_POST['action'] == 'FetchNumberOfQuestion')
+		{
+			
+		   
+			  
+			 $subject_id   = $_POST['sub_id_id'];  
+			$loader->query ="SELECT * FROM `50_question_table` WHERE `subject_id` = '$subject_id'  "; 
+			$total_row = $loader->total_row();   
+            
+			if($total_row > 0){
+				$output = array(
+					'success'		=>	'success',
+					'feedback'		=>	"$total_row"
+				);				
+			}else{
+				$output = array(
+					'success'		=>	'failed',
+					'feedback'		=>	"Newtwork error"
+				);
+			}
 
+								   
+ 
+				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+		
 	if($_POST["page"] === 'addNewSubject')
 	{
 	 
@@ -5521,6 +6038,178 @@ if(isset($_POST['page'])){
     }
 
 
+	if($_POST["page"] === 'schoolPaymentApproval')
+	{
+
+
+		if($_POST['action'] == 'schoolPaymentApproval')
+		{
+
+
+				$m=mb_strimwidth(date('m'), 1, 1); 
+				$d=date('d');
+				$auth_code = mb_strimwidth(time(), 7, 3); 
+				$new_payment_id="SPID$d$m$auth_code";
+
+
+
+			$date_init     = date('d-m-Y');
+			$sch_code      = trim($_POST['school_code']);
+			$amount_raw    = trim($_POST['amount_paid']);
+			$amount_paid   = trim(number_format($_POST['amount_paid'], 2));
+			$cate_sele     = trim($_POST['categories_selection']);
+			  
+  
+
+			$loader->query = "SELECT * FROM `settings` ";   
+			$result = $loader->query_result(); 
+			foreach($result as $rofee)
+			{				    
+			    $cbt_fee  =  $rofee['cbt_fee']; 
+			}
+
+			$loader->query = "SELECT * FROM `1_school_reg` WHERE  `school_code` = '$sch_code'";   
+			$school_row_chek = $loader->total_row(); 
+			$result = $loader->query_result(); 
+			foreach($result as $rows)
+			{				    
+			    $school_payment  =  $rows['school_payment'];
+			    $school_payment_id  =  $rows['school_payment_id'];
+			}
+
+
+	 
+
+			$activeStudent = $loader->ActiveStudent($sch_code);
+
+			if($school_row_chek >= 1 )
+			{
+				$loader->query = "SELECT * FROM `school_payment_history` WHERE  `payment_id` = '$school_payment_id'";  
+				$total_row2 = $loader->total_row(); 
+				$result = $loader->query_result(); 
+				foreach($result as $row)
+				{				    
+					$school_code_Rst  =  $row['school_code'];
+					$date_rst         =  $row['date'];
+					$amount_paid      =  $row['amount_paid'];
+					$admin_user       =  $row['admin_user'];
+				}
+
+
+
+				if($school_payment == 'unpaid' && $total_row2 == 0  )
+				{
+						
+	
+	
+										$queryletter =("UPDATE `1_school_reg` SET  
+										`school_payment`    = 'paid', 
+										`school_payment_id` = '$new_payment_id' 
+										WHERE `1_school_reg`.`school_code` = '$sch_code'");
+									if(mysqli_query($homedb, $queryletter))
+									{
+
+
+
+											$query_wallet =("INSERT INTO school_payment_history VALUE (
+											'', 									  
+											'".mysqli_real_escape_string($homedb, $new_payment_id)."',
+											'".mysqli_real_escape_string($homedb, $sch_code)."',
+											'".mysqli_real_escape_string($homedb, $amount_raw)."',  
+											'".mysqli_real_escape_string($homedb, $activeStudent)."',
+											'".mysqli_real_escape_string($homedb, $cbt_fee)."',     
+											'".mysqli_real_escape_string($homedb, $admincode)."',   
+											'".mysqli_real_escape_string($homedb, $date_init)."'
+											)");
+											mysqli_query($homedb,$query_wallet);
+
+
+
+											echo $data ='
+												<div class="col-xl- col-md-6">
+												<div class="alert alert-success alert-dismissible fade show" role="alert">
+												<strong><i class="fa fa-credit-card alert_head get_st"></i><br>SUCCESS!!</strong><br />
+
+												School payment total amount of '.$amount_paid.' has been approved by'.$acc_fullname.'
+												
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+												</button>
+												</div>  
+												</div> 
+												';
+										}
+										else
+										{
+												echo $data ='
+														<div class="col-xl- col-md-6">
+														<div class="alert alert-danger alert-dismissible fade show" role="alert">
+														<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+															
+														Network error. Please try again
+
+														<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+														</div>  
+														</div> 
+												';									
+										}
+							
+							
+						
+					
+
+								
+					
+			
+				}
+				else
+				{
+					
+
+					echo $data ='
+					<div class="col-xl- col-md-6">
+					<div class="alert alert-info alert-dismissible fade show" role="alert">
+					<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Already Approved Payment Notification</strong><br /><br />
+					<div style="text-decoration:underline">Payment Details</div><br>
+					<p>School Code   : '.$sch_code.'</p> 
+					<p>Amount Paid   :N'.$amount_paid.'</p> 
+					<p>Approve By    : '.$admin_user.'</p> 
+					<p>Date Approved : '.$date_rst.'</p> 
+
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>  
+					</div> 
+					';
+				}
+			}
+			else
+			{
+				
+
+				echo $data ='
+				<div class="col-xl- col-md-6">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Invalid Notification</strong><br /><br />
+				<div style="text-decoration:underline">Wrong data passed</div><br>
+
+				
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>  
+				</div> 
+				';
+			}
+		 
+	 
+        
+        }
+    }
 	if($_POST["page"] === 'updateStuTeacher')
 	{
 
@@ -6438,6 +7127,143 @@ if(isset($_POST['page'])){
 							}  
 
 
+						} 
+						else if($approve_status === 'Team_Lead')
+						{
+						    $resetPwd = mb_strimwidth(time(), 3, 6); 
+
+								$loader->query = "SELECT * FROM `0_team_lead` WHERE  team_lead_id = '$account_code'   ";  
+								$total_row = $loader->total_row();
+								$result = $loader->query_result(); 
+								foreach($result as $rows)
+								{ 	 	 	
+									$team_lead_id  =  $rows['team_lead_id'];	   	
+									$user      =  $rows['username'];	   	
+									$fullname  =  $rows['fullname'];	   	
+								}
+
+
+
+							if($total_row  >= 1)
+							{
+
+								if($acct_level === 'tier1' )
+								{
+
+									$token      =  MD5("$resetPwd$user");	
+									$password   =  password_hash($resetPwd, PASSWORD_DEFAULT);
+
+
+										$queryletter =("UPDATE `0_team_lead` SET   
+										`token`    = '$token',
+										`password` = '$password'
+										WHERE `0_team_lead`.`username` = '$user'");
+
+										if(mysqli_query($homedb, $queryletter))
+										{
+
+											echo $data ='
+											<div class="col-xl- col-md-6">
+											<div class="alert alert-success alert-dismissible fade show" role="alert">
+											<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+												
+											'.$fullname.' password has been reset to '.$resetPwd.' Your login details has been sent 
+											to '.$user.'
+					
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+											</div>  
+											</div> 
+											';
+
+
+											$subject = ' Field Admin Password reset';
+								
+											$body = "
+											   <div style='width:100%;height:5px;background: #c908bd'></div><br> 
+											   <div style='font-size:14px;color:black;font-family:lucida sans;'>
+											   
+													<center >
+														 <h1>PASSWORD RESET</h1>
+														 <h2>Team Lead  Account  </h2>
+													</center><br>
+	   
+																
+												  <p>
+												  Hi $fullname, kindly note that your Team Lead account dashboard  password has been reset.
+												  You will find below your new login details to access your Team Lead account dashboard  
+												  </p>
+												  
+												   <p>
+														Username: $user  <br />
+														Password: $resetPwd  <br />
+														
+												   </p>
+												   
+												     
+												   
+												   
+												   </div><br><br>
+												</div>			
+												";
+						   
+											 @@$loader->send_email($user, $subject, $body);
+
+										}
+										else
+										{
+											echo $data ='
+											<div class="col-xl- col-md-6">
+											<div class="alert alert-danger alert-dismissible fade show" role="alert">
+											<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+												
+											Network err.
+					
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+											</div>  
+											</div> 
+											';
+										}
+								} 
+								else   
+								{
+										   echo $data ='   
+												 <div class="col-xl- col-md-12">
+														<div class="alert alert-danger alert-dismissible fade show" role="alert">
+														<strong style="text-align:center"> Notification! </strong><br />
+
+														 An error has occured or invalid input. Please try again. 
+
+														 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+														</div>  
+														</div> 
+													 '; 
+		 
+								} 	
+							} 
+							else   
+							{
+										echo $data ='   
+												<div class="col-xl- col-md-12">
+													<div class="alert alert-danger alert-dismissible fade show" role="alert">
+													<strong style="text-align:center"> Notification! </strong><br />
+
+														An error has occured or invalid input. Please try again. 
+
+														<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+													</button>
+													</div>  
+													</div> 
+													'; 
+		
+							}  
+
 						}
 
 		 
@@ -6446,6 +7272,134 @@ if(isset($_POST['page'])){
 		}
 	}
 
+
+
+	if($_POST['page'] == 'getReplyData')
+	{
+		   
+		if($_POST['action'] == 'getReplyData')
+		{ 
+			 
+			$date = date('H:i:s');
+			$current_date  = date('Y-m-d');	 
+			$current_year  = date("Y");
+			$current_month = date("m");
+			$current_day   = date("d"); 
+			$format_date   = "$current_day/$current_month/$current_year($date)";
+			
+			$textData  =  htmlentities($_POST['textData']); 
+			$idData    =  htmlentities($_POST['idData']); 
+				  
+												   
+			$loader->query = "SELECT * FROM `ticket` WHERE  `id` = '$idData'";  
+			$result = $loader->query_result(); 
+			foreach($result as $rows)
+			{ 	 	 	
+				$sender_name         =  $rows['sender_name'];  
+				$school_code         =  $rows['school_code'];  
+				$ticket_id           =  $rows['ticket_id']; 
+				$sender_email        =  $rows['email'];  
+				$ticket_subject      =  $rows['subject'];  	   	
+				$team_lead           =  $rows['team_lead'];  	   	
+				$unit               =  $rows['unit'];  	   	
+			}
+
+								 
+
+		if($unit == 'agent')	
+		{								
+											   
+					$query =("INSERT INTO `ticket` VALUE (
+					'',
+					'".mysqli_real_escape_string($homedb, $ticket_id)."',	 									 
+					'".mysqli_real_escape_string($homedb, $school_code)."',	 									 
+					'".mysqli_real_escape_string($homedb, $sender_name)."',	 									 
+					'".mysqli_real_escape_string($homedb, $sender_email)."', 									 
+					'".mysqli_real_escape_string($homedb, 'open')."',
+					'".mysqli_real_escape_string($homedb, 'agent')."',  
+					'".mysqli_real_escape_string($homedb, $admincode)."',  
+					'".mysqli_real_escape_string($homedb, $acc_fullname)."',
+					'".mysqli_real_escape_string($homedb, $ticket_subject)."',
+					'".mysqli_real_escape_string($homedb, $textData)."', 
+					'".mysqli_real_escape_string($homedb, $format_date)."',
+					'".mysqli_real_escape_string($homedb, $current_date)."',
+					'".mysqli_real_escape_string($homedb, '0')."'
+					)");  
+					if(mysqli_query($homedb,$query))
+					{ 
+						$output = array(
+							'success'   =>	'success'
+						); 
+					}
+					else
+					{ 
+						$output = array(
+							'success'		=>	'failed'
+						);
+					}
+
+		}
+		else
+		{ 
+			$output = array(
+				'failed'		=>	'failed',
+				'feedback'		=>	"You can not reply to this ticket. This ticket has been escalated to Technical Unit"
+			);
+		}
+				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+
+
+	if($_POST['page'] == 'TicketClosed')
+	{
+		   
+		if($_POST['action'] == 'TicketClosed')
+		{ 
+			  
+			$data  =  htmlentities($_POST['data']); 
+			$id    =  htmlentities($_POST['id']); 
+			
+	 
+			$loader->query = "SELECT * FROM `ticket` WHERE  `id` = '$id'";  
+			$result = $loader->query_result(); 
+			foreach($result as $rows)
+			{ 	 	 	 
+				$ticket_id        =  $rows['ticket_id'];   	   	
+				$sender_email     =  $rows['email'];   	   	
+				$unit_table       =  $rows['unit'];   	   	
+			}
+
+			
+
+	 
+
+
+					$query ="UPDATE `ticket` SET `status` = 'close' WHERE `ticket`.`ticket_id` = '$ticket_id'"; 
+					if(mysqli_query($homedb,$query))
+					{ 
+						$output = array(
+							'success'   =>	'success',
+							'feedback'   =>	'Ticket resolved and closed successfully'
+						); 
+					}
+					else
+					{ 
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'   =>	'An err occured while closing ticket. please try again'
+						);
+					}
+ 		
+				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
 
 
 

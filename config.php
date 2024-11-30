@@ -4,7 +4,7 @@ session_start();
 
  
 
-require"phpmailer/PHPMailerAutoload.php";
+
 $current_datetime = date("Y-m-d");
 $time = date("H:i:s", STRTOTIME(date('h:i:sa')));
 
@@ -24,6 +24,13 @@ class Loader{
 	var $data;
 	var $statement;
 	var $filedata;
+	var $teacher_per    = 30;
+	var $HeadTeach_per  = 4;
+	var $fieldAdmin_per = 4;
+	var $companyEarn_per= 38;
+	var $comLabMain_per = 4;
+	var $schoolEarn_per = 20;
+	var $agentEarn      = 20;
 	
 	
 	
@@ -32,8 +39,7 @@ class Loader{
 		
 		require("connect.php");
 		$this->connect = new PDO("mysql:host=$this->host; dbname=$this->database", "$this->username", "$this->password");
-       
-	 
+       	 
 	}
 
 	function execute_query()
@@ -61,7 +67,7 @@ class Loader{
   
 			function send_email($receiver_email, $subject, $body)
 			{
-				
+			require("phpmailer/PHPMailerAutoload.php");
 			$mail = new PHPMailer;
 
 					//$mail->IsSMTP();
@@ -76,25 +82,28 @@ class Loader{
 
 					//$mail->Password = '';
 
-					//$mail->SMTPSecure = '';
-            $mail->SMTPDebug = 0;  
-			$mail->setFrom('noreply@owambextra.com', 'GST MY SCHOOL APP');
+					//$mail->SMTPSecure = ''; 
+					$mail->SMTPDebug = 0;  
+					$mail->setFrom('noreply@hebzihubnigltd.com.ng', 'SCHOOL PORTALS MANAGEMENT & CBT INTEGRATION APPLICATION SOFTWARE');
 
-			$mail->FromName = 'GST MY SCHOOL APP';
-			
-			$mail->AddReplyTo = 'surpport@owambextra.com';
+					$mail->FromName = 'HEBZIHUB NIG LTD';
+					
+					$mail->AddReplyTo = 'support@hebzihubnigltd.com.ng';
 
-			$mail->AddAddress($receiver_email, '');
+					$mail->AddAddress('support@hebzihubnigltd.com.ng', '');
+					$mail->AddAddress($receiver_email, '');
 
-			$mail->IsHTML(true);
+					$mail->IsHTML(true);
 
-			$mail->Subject = $subject;
+					$mail->Subject = $subject;
 
-			$mail->Body = $body;
-			
-			$mail->AddEmbeddedImage('images/logo.png', 'logo', 'images/logo.png'); 
+					$mail->Body = $body;
+					
+					$mail->AddEmbeddedImage('gen_img/logo_b.png', 'logo', 'gen_img/logo_b.png'); 
+					$mail->AddEmbeddedImage('all_photo/team-lead.png', 'logo2', 'all_photo/team-lead.png'); 
+					$mail->AddEmbeddedImage('all_photo/login.png', 'logo3', 'all_photo/login.png'); 
 
-			$mail->Send();		
+					$mail->Send();		
 			}	
 			
 			
@@ -217,8 +226,7 @@ class Loader{
 
 				}
 			}
-
-
+ 
 			function AccessCodeVerify($access_code)
 			{
  
@@ -400,7 +408,33 @@ class Loader{
 				 
 				return $output;
 			}	
+			function FetchBank()
+			{
+				 
+				$this->query ="SELECT * FROM `bank_code`";
+				$output = $this->query_result();
+		  
+				 
+				return $output;
+			}	
 
+			function FetchBankName($bank_code)
+			{
+				 
+				$this->query ="SELECT * FROM `bank_code` WHERE `bank_code` = '$bank_code' ";
+				$total_row = $this->total_row();
+				$result = $this->query_result();
+				foreach($result as $row){ 
+					$output  =  $row['bank_name'];
+				}
+		        if($total_row == 1){
+					return $output;
+				}else{
+					return $output = 'Error';
+				}
+				 
+				
+			}
 			function FecthSingleSubject($subject)
 			{
 				 
@@ -423,6 +457,16 @@ class Loader{
 				 
 				return $output;
 			}
+			function DisplayTeamLeadRow()
+			{
+				 
+				 
+				$this->query = "SELECT * FROM `0_team_lead` ";
+		 
+				$output = $this->total_row();
+				 
+				return $output;
+			}
 
  
 
@@ -436,7 +480,17 @@ class Loader{
 				 
 				return $output;
 			}		
+ 		
 			
+			function AllTeamLead()
+			{
+				 
+				$this->query ="SELECT * FROM `0_team_lead`";
+				$output = $this->query_result();
+		  
+				 
+				return $output;
+			}
 			function AllFieldAdmin()
 			{
 				 
@@ -506,6 +560,15 @@ class Loader{
 				 
 				return $output;
 			}
+			function TeamLeadOnboardedSchools($code)
+			{
+				 
+				$this->query ="SELECT * FROM `1_school_reg` WHERE `1_school_reg`.`team_lead` = '$code'";
+				$output = $this->query_result();
+		  
+				 
+				return $output;
+			}
 
 
 			function ActiveSchoolStudentEarn($school_code,$marketer_code)
@@ -535,10 +598,9 @@ class Loader{
 			{
 				 
 				$this->query ="SELECT * FROM  `1_school_reg` WHERE fadmin_code ='$code'";
-				$output = $this->total_row();
-		  
-				 
+				$output = $this->total_row(); 
 				return $output;
+
 			}
 			
 			function AdminSettings()
@@ -576,7 +638,7 @@ class Loader{
 			function TotalNumOfSchlTeachers($school_code)
 			{
 				 
-				$this->query ="SELECT * FROM  2_teacher_reg  WHERE school_code ='$school_code' ";
+				$this->query ="SELECT * FROM  2_teacher_reg  WHERE school_code ='$school_code' AND teacher_rank='teacher'";
 				$output = $this->total_row();
 		  
 				 
@@ -593,12 +655,36 @@ class Loader{
 				return $output;
 			}
 			
+
+			function SchoolRevenuePayment($schoolCode)
+			{
+				//Confirm if school remit Application payment from parent
+				$this->query ="SELECT * FROM  `1_school_reg` WHERE `1_school_reg`.`school_payment` = 'paid' ";
+				$total_row = $this->total_row();
+
+
+				if($total_row > 0){
+
+				//number of active or paid student  * CBT TERM FEE
+				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
+				// SCHOOL TAKES 20%
+                $output =  $result / 100 * $this->schoolEarn_per;
+
+
+						return $output;
+				}else{
+					return $output= 0;
+				}
+
+			}
+
+
 			function SchoolEarn($schoolCode)
 			{
 				//number of active or paid student  * CBT TERM FEE
 				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
 				// SCHOOL TAKES 20%
-                $output =  $result / 100 * 20;
+                $output =  $result / 100 * $this->schoolEarn_per;
 
 				return $output;
 			}
@@ -607,7 +693,7 @@ class Loader{
 				//number of active or paid student  * CBT TERM FEE
 				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
 				//All SCHOOL TEACHERS TAKE 30%
-                $output =  $result / 100 * 30; 
+                $output =  $result / 100 * $this->teacher_per; 
 
 
 				return $output;
@@ -618,7 +704,7 @@ class Loader{
 				//number of active or paid student  * CBT TERM FEE
 				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
 				//All SCHOOL TEACHERS TAKE 30%
-                $out =  $result / 100 * 30;
+                $out =  $result / 100 * $this->teacher_per;
                 // ALL SCHOOL TEACHER EARN IS DIVIED BY NUMBER OF TEACHERS
 				$teah = $this->TotalNumOfSchlTeachers($schoolCode);
                 $output = $out / $teah;
@@ -627,7 +713,29 @@ class Loader{
 				return $output;
 			}
 
+			function EachTeacherEarnPayment($teacher_code , $schoolCode)
+			{
+				//Confirm if school remit Application payment from parent
+				$this->query ="SELECT * FROM  `2_teacher_reg` INNER JOIN `1_school_reg` ON `1_school_reg`.`school_code` =  `2_teacher_reg`.`school_code`  WHERE `2_teacher_reg`.`teacher_code`='$teacher_code' AND  `1_school_reg`.`school_payment` = 'paid'  ";
+				$total_row = $this->total_row();
 
+
+				if($total_row > 0){
+						//number of active or paid student  * CBT TERM FEE
+						$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
+						//All SCHOOL TEACHERS TAKE 30%
+						$out =  $result / 100 * $this->teacher_per;
+						// ALL SCHOOL TEACHER EARN IS DIVIED BY NUMBER OF TEACHERS
+						$teah = $this->TotalNumOfSchlTeachers($schoolCode);
+						$output = $out / $teah;
+
+
+						return $output;
+				}else{
+					return $output= 0;
+				}
+
+			}
 			function HeadTeacherEarn($schoolCode)
 			{
 				//number of active or paid student  * CBT TERM FEE
@@ -636,19 +744,37 @@ class Loader{
                 $output =  $result / 100 * 4;  
 				return $output;
 			}
+			function HeadTeacherEarnPayment($teacher_code , $schoolCode)
+			{
+				//Confirm if school remit Application payment from parent
+				$this->query ="SELECT * FROM  `2_teacher_reg` INNER JOIN `1_school_reg` ON `1_school_reg`.`school_code` =  `2_teacher_reg`.`school_code`  WHERE `2_teacher_reg`.`teacher_code`='$teacher_code' AND  `1_school_reg`.`school_payment` = 'paid'  ";
+				$total_row = $this->total_row();
+
+
+				if($total_row > 0){
+					//Confirm number of active student in the school
+					$result = $this->ActiveStudent($schoolCode)* $this->AdminSettings();
+					//HEAD TEACHERS TAKE 4%
+					$output =  $result / 100 * $this->HeadTeach_per;  
+					return $output;
+				}else{
+					return $output= 0;
+				}
+
+			}
 			function FieldAdminEarn($schoolCode)
 			{
 				//number of active or paid student  * CBT TERM FEE
 				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings(); 
 				//HEAD TEACHERS TAKE 4%
-                $output =  $result / 100 * 4;  
+                $output =  $result / 100 * $this->fieldAdmin_per;  
 				return $output;
 			}
 			function FieldAdminNetEarn($marketer_code)
 			{ 
-				$this->query ="SELECT * FROM  `4_student_reg` WHERE fadmin_code='$marketer_code' AND sub_status='active'  ";
+				$this->query ="SELECT * FROM  `4_student_reg` INNER JOIN `1_school_reg` ON `1_school_reg`.`fadmin_code` =  `4_student_reg`.`fadmin_code`  WHERE `4_student_reg`.`fadmin_code`='$marketer_code' AND `4_student_reg`.`sub_status`='active' AND `1_school_reg`.`school_payment` = 'paid'  ";
 				$result = $this->total_row()* $this->AdminSettings();
-                $output =  $result / 100 * 4;  
+                $output =  $result / 100 * $this->fieldAdmin_per;  
 				return $output;
 			}
  
@@ -657,7 +783,7 @@ class Loader{
 				//number of active or paid student  * CBT TERM FEE
 				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
 				//HEAD TEACHERS TAKE 4%
-                $output =  $result / 100 * 38;  
+                $output =  $result / 100 * $this->companyEarn_per;  
 				return $output;
 			}
 			function ComLabMaint($schoolCode)
@@ -665,7 +791,7 @@ class Loader{
 				//number of active or paid student  * CBT TERM FEE
 				$result = $this->ActiveStudent($schoolCode) * $this->AdminSettings();
 				//HEAD TEACHERS TAKE 4%
-                $output =  $result / 100 * 4;  
+                $output =  $result / 100 * $this->comLabMain_per;  
 				return $output;
 			}
 
@@ -834,6 +960,60 @@ class Loader{
 
 				return $output;
 			}
+
+			function TeamLeadNoGenerator()
+			{
+			 
+					$this->query = "SELECT * FROM settings  "; 
+					$result = $this->query_result();
+					foreach($result as $row){ 
+						$field_admin  =  $row['team_lead'];
+					}
+	
+					$result = $field_admin + 1;
+					if(strlen($result) == 1){
+						$output = "TL000$result";
+	
+					}else if(strlen($result) == 2){
+						$output = "TL00$result"; 
+	
+					}else if(strlen($result) == 3){
+						$output = "TL0$result";
+	
+					}else if(strlen($result) == 4){
+						$output = "TL$result";
+					}
+	
+					return $output;
+			 
+				 
+			}
+
+			
+			function AgentAdminNoGenerator()
+			{
+				$this->query = "SELECT * FROM settings  "; 
+				$result = $this->query_result();
+				foreach($result as $row){ 
+					$agent_admin  =  $row['agent_admin'];
+				}
+
+				$result = $agent_admin + 1;
+				if(strlen($result) == 1){
+					$output = "AGT000$result";
+
+				}else if(strlen($result) == 2){
+					$output = "AGT00$result"; 
+
+				}else if(strlen($result) == 3){
+					$output = "AGT0$result";
+
+				}else if(strlen($result) == 4){
+					$output = "AGT$result";
+				}
+
+				return $output;
+			}
 			function SchoolNoGenerator()
 			{
 				$this->query = "SELECT * FROM settings  "; 
@@ -940,6 +1120,24 @@ class Loader{
 				$this->execute_query();
 				 
 			}
+			function TeamLeadNoGeneratorUpdate()
+			{
+				$this->query = "SELECT * FROM settings  "; 
+				$result = $this->query_result();
+				foreach($result as $row){ 
+					$team_lead  =  $row['team_lead'];
+				}
+
+				$result = $team_lead + 1;
+
+				$this->query ="UPDATE `settings` SET  
+				  `team_lead`  = '$result'
+				 WHERE `settings`.`id` = '1' ";
+				$this->execute_query();
+				 
+			}
+
+
 			function SchoolNoGeneratorUpdate()
 			{
 				$this->query = "SELECT * FROM settings  "; 
@@ -1163,7 +1361,7 @@ class Loader{
                                     'schl_head_msg'       =>  $row['schl_head_msg'],
                                     'date_reg'            =>  $row['date_reg'],
                                                                         
-      //////////////////////////////////PARENT BLOCK /////////////////////////////
+           //////////////////////////////////PARENT BLOCK /////////////////////////////
       
                                     'admin_code'         =>$admin_code,
                                     'sch_code'           =>$sch_code,
@@ -1173,7 +1371,7 @@ class Loader{
                                     'address'            =>$address,
                                     'email'              =>$email,  
 
-      //////////////////////////////////STUDENT BLOCK /////////////////////////////                                                    
+             //////////////////////////////////STUDENT BLOCK /////////////////////////////                                                    
                                                     
                                     'admincode'           =>  $admincode,
                                     'photo'               =>  $photo,
@@ -1195,6 +1393,87 @@ class Loader{
 	  return $data;
 	 }
  
+
+
+	 function FetchPaymentRefererence()
+	 {
+		 $result="";
+		 
+		 $curMonth = date("M");
+		 $curYear  = date("Y");
+
+		 $firstTerm  = ["Sep", "Oct", "Nov", "Dec"]; 
+		 $secondTerm = ["Jan", "Feb", "Mar", "Apr"]; 
+		 $thirdTerm  = ["May", "Jun", "Jul", "Aug"]; 
+
+		 
+		 if(in_array($curMonth, $firstTerm)){
+			 
+		   $result = "$curMonth $curYear First Term ";
+		 
+		 }else if(in_array($curMonth, $secondTerm)){
+		  
+		   $result = "$curMonth $curYear Second Term ";
+		  
+		 }elseif(in_array($curMonth, $thirdTerm)){
+		 
+		  $result =  "$curMonth $curYear Third Term ";
+		 
+		 } 
+ 
+	         return $result;
+		 
+	 
+	 }
+	 
+	 
+ 	
+	 function ClosedTicket($team_lead)
+	 {//SELECT DISTINCT country
+
+		 $this->query = "SELECT * FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'close'";
+  
+		 $result = $this->total_row();
+	  
+		 return $result;
+	 }
+	 function OpenTicket($team_lead)
+	 {//SELECT DISTINCT country
+
+		 $this->query = "SELECT * FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open'";
+  
+		 $result = $this->total_row();
+	  
+		 return $result;
+	 }
+
+	 function FetchTicket()
+	 {//SELECT DISTINCT country
+
+		 $this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE  `status` = 'open' GROUP BY ticket_id ORDER BY `id` DESC";
+  
+		 $result = $this->query_result();
+	  
+		 return $result;
+	 }
+	 function FetchClosedTicket($team_lead)
+	 {//SELECT DISTINCT country
+
+		 $this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'close' GROUP BY ticket_id ORDER BY `id` DESC";
+  
+		 $result = $this->query_result();
+	  
+		 return $result;
+	 }
+	 function FetchTicketByID($id)
+	 {
+		 $this->query = "SELECT * FROM `ticket` WHERE `ticket_id` = '$id' ORDER BY `id` DESC";
+  
+		 $result = $this->query_result();
+	  
+		 return $result;
+	 }
+		 
  }
 ?>
  

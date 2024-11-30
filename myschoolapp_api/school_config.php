@@ -451,6 +451,26 @@ class Loader{
 				 
 				return $output;
 			}
+			function FetchStudentName($student_code)
+			{
+				 
+				$this->query ="SELECT * FROM  `4_student_reg` WHERE online_stu_id ='$student_code'   ";
+				$result_user = $this->query_result();
+				$total_row = $this->total_row();
+
+				if($total_row  > 0)
+				{
+					foreach($result_user as $row){ 
+					  $output    =  $row['student_name']; 
+					}
+
+				}else{
+                    $output    =  '';
+				}
+	
+				 
+				return $output;
+			}
 
 
 			function DisplayAllStudentRow()
@@ -561,6 +581,9 @@ class Loader{
                         $student_teacher           = $row['fullname'];   
                              
 				}
+
+
+
 				
 	    
 				
@@ -628,7 +651,11 @@ class Loader{
                                     'student_teacher'     =>  $student_teacher,
                                     'sub_status'          =>  $sub_status,
                                     'token'               =>  $token,                                                     
-                                    'date'                =>  $date,                                                     
+                                    'date'                =>  $date,     
+
+ 
+									
+									
 							);
 									
 		         }
@@ -642,7 +669,7 @@ class Loader{
  
 						
 		 
-                ///////////////////////////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////
                              
 	 
 				$this->query = "SELECT * FROM `4_student_reg` WHERE parent_code ='$parentCode'";
@@ -680,8 +707,16 @@ class Loader{
                         $parentToken          = $row['token'];  
                              
 				}
-				
-	    
+				/////////////////////////////////////SETTING //////////////////////////////////////
+				$this->query = "SELECT * FROM `settings` WHERE `id` ='1'";
+				$settings_list = $this->query_result();
+				foreach($settings_list as $row){
+				    
+                        $old_version  = $row['old_version'];   
+                        $new_version  = $row['new_version'];   
+                        $ap_store_url = $row['ap_store_url'];   
+                             
+				}
 				
 				///////////////////////////////////////////////////////////////////////////
                 $this->query = " SELECT * FROM 1_school_reg  WHERE school_code = '$schoolCode'"; 
@@ -727,7 +762,7 @@ class Loader{
                                     'test_time'           =>  $row['test_time'],
                                     'school_website'      =>  $row['school_website'],
                                                                         
-      //////////////////////////////////PARENT BLOCK /////////////////////////////
+           //////////////////////////////////PARENT BLOCK /////////////////////////////
       
                                     'admin_code'         =>  $admin_code,
                                     'sch_code'           =>  $sch_code,
@@ -738,7 +773,7 @@ class Loader{
                                     'email'              =>  $email,  
                                     'token'              =>  $parentToken,  
 
-      //////////////////////////////////STUDENT BLOCK /////////////////////////////                                                    
+             //////////////////////////////////STUDENT BLOCK /////////////////////////////                                                    
                                                     
                                  
                                     'photo'               =>  $photo,
@@ -750,13 +785,24 @@ class Loader{
                                     'class_rep'           =>  $class_rep,
                                     'student_teacher'     =>  '',
                                     'sub_status'          =>  $sub_status,
-                                    'date'                =>  $date,                                                     
+                                    'date'                =>  $date,  
+	        ////////////////////////////////// SETTINGS BLOCK /////////////////////////////                                                    
+											
+							
+									'old_version'         =>  $old_version,                                                     
+									'new_version'         =>  $new_version,                                                    
+									'ap_store_url'        =>  $ap_store_url,                                                    
 							);
 									
 		         }
  
-	  return $data;
-	 }
+	      return $data;
+	    }
+
+
+ 
+
+ 
  
  }
 ?>
