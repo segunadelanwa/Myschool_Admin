@@ -135,6 +135,7 @@
 			   <footer class="py-4 bg-light mt-auto">
                    <?php 
 				   require("../footer.php"); 
+				   require("../footer2.php"); 
 				   ?>
                 </footer>
 				

@@ -6,18 +6,18 @@
     <head>
 	
 		<?php
+		include("../header.php");
+		require("../topUrl.php");
+
 
 		include("../e_result_server.php");
 		$ResultServer = new ResultServer();
 
-		include("../header.php");
-		require("../topUrl.php");
+
 		$year = date("Y");
 		$month = date("M");
-				if(isset($_GET["student_id"]))
-				{
-
-		           $student_id ='';
+				if(isset($_GET["student_id"])){
+		$student_id ='';
                    $studID = $_GET["student_id"];
 				   
 					if(!empty($studID))
@@ -45,15 +45,15 @@ function GoBackHandler(){
 
  </script>
 	
-	
 <style>
-	.loaderDisplayNone {
-	display:none;
-	} 
+.loaderDisplayNone {
+display:none;
+}
+
 </style>
 
 
-  <body class="sb-nav-fixed">
+  <body lass="sb-nav-fixed">
 
  	
 
@@ -61,15 +61,14 @@ function GoBackHandler(){
 	
 	
        
-		
-  <div id="layoutSidenav">
+  <div d="layoutSidenav">
 		
        
-		<div id="layoutSidenav_content">
+		<div d="layoutSidenav_content">
 		 
 				
 					 
-					 <div class="row mb-4 " id="formBox">
+					 <div class="row mb-4" id="formBox">
 						 <div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div> 
 						 <div   class="btn btn-success" onclick="PrintDiv();">Click here to download result</div>
 					  </div>
@@ -79,21 +78,24 @@ function GoBackHandler(){
 						<div class="col-md-12">  
 				  
 							 
-							 <div lass="table-responsive p-5">
+							 <div lass="table-responsive">
 									
 
 
 
-											<div id="otpupdatebox" style="background-color:white; padding:10px;">
+											<div   >
 													<?php
-															if(isset($_GET["student_id"]))
+														if(isset($_GET["student_id"]))
 														{
 															
-															$online_stu_id = trim($_GET["student_id"]);
+															//REGISTERED SUBJECTS
+															
+															$online_stu_id = trim($_GET["student_id"]) ;
+														 
 
 															echo $ResultServer->EserverResultFetch($online_stu_id);
-															
-															
+																			
+ 
 														}
 														else
 														{
@@ -116,7 +118,7 @@ function GoBackHandler(){
 															
 															
 														}
-																	
+														
 																	
 														
 													 
@@ -147,16 +149,15 @@ function GoBackHandler(){
 
 <script>
      
-	 function PrintDiv() {  
+function PrintDiv() {  
+var formBox = document.getElementById('formBox'); 
+formBox.classList.add('loaderDisplayNone');
+window.print();
+// console.log(formBox)
+}
 
-		var formBox = document.getElementById('formBox'); 
-		formBox.classList.add('loaderDisplayNone');
-		window.print();
 
-     }
-
-
-</script>
+ </script>
 
 
  

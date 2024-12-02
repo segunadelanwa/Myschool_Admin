@@ -30,9 +30,7 @@
 				}
 
 		?>
-			<title> 
-		<?php echo$stu_name = $_GET["name"]; ?> Result
-	</title>	
+			<title style="text-transform:uppercase;"> <?php echo $school_name; ?>  Student ID card </title>	
     </head>
 	
  
@@ -184,14 +182,18 @@ require("sidebar.php");
 	        </div>
  
        	
-            </div>
-			
-        </div>
+
     
     
      
-   
- 
+		       <footer  >
+                   <?php  
+				   require("../footer2.php"); 
+				   ?>
+                </footer>
+             </div>
+			
+        </div>
     </body>
 </html>
 

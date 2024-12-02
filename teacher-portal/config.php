@@ -823,7 +823,7 @@ class Loader{
 			function FetchTicket($school_code,$username)
 			{//SELECT DISTINCT country
 
-				$this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject` FROM `ticket`  WHERE `school_code` = '$school_code' AND `email` = '$username' GROUP BY ticket_id ORDER BY `id` DESC";
+				$this->query = "SELECT `status`,`ticket_id`,`unit`,`answered_date`,`subject` FROM `ticket`  WHERE `school_code` = '$school_code' AND `email` = '$username' GROUP BY ticket_id ORDER BY `id` DESC";
 		 
 				$result = $this->query_result();
 			 

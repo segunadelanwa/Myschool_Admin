@@ -48,7 +48,7 @@ display:none
 
   <body class="sb-nav-fixed">
 
-  <div>
+<div>
 <?php
 require("dashboard_head.php");
 ?>
@@ -156,6 +156,7 @@ require("dashboard_head.php");
 			   <footer class="py-4 bg-light mt-auto">
                    <?php 
 				   require("../footer.php"); 
+				   require("../footer2.php"); 
 				   ?>
                 </footer>
 				

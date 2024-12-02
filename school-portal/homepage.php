@@ -415,10 +415,10 @@
                                                           <b class="btn btn-dark myFont mb-2"> Edit Student </b>
                                                         </a><br/>
                                                         <a href="student_subject_setup.php?student_id='.$active['online_stu_id'].'"> 
-                                                          <b class="btn btn-primary myFont mb-2">Add Subjects </b>
+                                                          <b class="btn btn-primary myFont mb-2">Register Subjects </b>
                                                         </a><br/>
                                                         <a href="student_subject_check.php?student_id='.$active['online_stu_id'].'"> 
-                                                          <b class="btn btn-success myFont mb-2"> Student Subjects </b>
+                                                          <b class="btn btn-success myFont mb-2">Subject Registered</b>
                                                         </a><br/>
                                                         <a href="student_result.php?student_id='.$active['online_stu_id'].'&name='.$active['student_name'].'"> 
                                                           <b class="btn btn-info myFont mb-2"> Student Result </b>

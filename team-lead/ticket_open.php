@@ -161,6 +161,7 @@
                                         </div>
 
                                      <span data-toggle="modal" data-target="#reply'.$id.'"  class="btn btn-primary">Reply Ticket</span> 
+                                      <span  data-toggle="modal" data-target="#close'.$id.'" class="btn btn-dark">Close Ticket</span>
                                       <span  data-toggle="modal" data-target="#rate'.$id.'" class="btn btn-info">Escalate Ticket</span>  <span class="btn btn-white">Resolution Rated: '.$rateStar.'</span>
                                   </div>';
 
@@ -236,6 +237,41 @@
                                   </div> 
                             </div>
                             ';
+
+                            echo'
+                            <div class="col-md-4 modal-grids  ">
+                                    <div class="modal fade" id="close'.$id.'" tabindex="-1" role="dialog" aria-labelledby="close'.$id.'Label">
+
+                                      <a href="#"  > <div class="btn btn-success" data-toggle="modal" data-target="#disapproveMaintenance">CLOSE TICKET</div></a>
+
+                                      <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                          <div class="modal-header">
+                                                           Technical  Officer: '.$fullname.'
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                                          </div>
+
+                                                          <div class="modal-body"> 
+                                                              <div class="form-group">	
+                                                              <label>TICKET RESOLVED</label> 
+                                                              <select   name="data'.$id.'"  id="data'.$id.'" class="form-control "    >
+                                                                  <option  value="0">Select option </option> 
+                                                                  <option  value="close">Ticket Resolved</option>   
+                                                              </select> 
+                                                              </div> 
+                                                            </div> 
+                                                    ';
+                                                        echo" <input type='button' class='btn btn-primary' onclick='getCloseTicket($id)' value='Close Ticket'>";
+                                                    echo'
+                                                
+                                            </div>  
+                                      </div> 
+                                  </div> 
+                            </div>
+                            ';
+
+
 
                                     }
 
@@ -358,6 +394,52 @@ function getReplyData(val) {
           alert('Score field must not be empty');
     }
  
+
+}
+
+
+function getCloseTicket(val) {
+
+var	data = document.getElementById("data"+val).value;  
+
+
+//  console.log(data); 
+//  console.log(val); 
+
+
+  if(data == 'close')
+  {
+    
+        $.ajax({
+            url:"../pageajax.php",
+            method:"POST",
+            dataType:"json",
+            data:{ 
+              data:data,   
+              id:val,    
+              page:'TicketClosed',
+              action:'TicketClosed'
+              }, 
+            success:function(data)
+            {
+            
+                if(data.success == 'success'){
+                  alert(data.feedback);
+                  window.location.reload(); 
+                }
+                else
+                { 
+                  alert(data.feedback); 
+                }
+            }
+          });	
+
+  }
+  else
+  {
+      alert('Unit selection field can not be empty');
+  }
+
 
 }
 

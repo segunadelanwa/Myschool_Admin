@@ -57,7 +57,7 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4 transform-capitalize"> 
-					          <i class="fas fa-briefcase"></i>Ticket   Backlog
+					          <i class="fas fa-briefcase"></i> Open Ticket Backlog
 						</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item" onclick="GoBackHandler()"> Back</li>
@@ -73,7 +73,7 @@
 									 
 												<div class="card-header">
 													<i class="fas fa-briefcase"></i>
-                                               Ticket   Backlog
+                                                Ticket  Backlog
 												</div>
 												
 												<div class="card-body">
@@ -122,7 +122,12 @@
 													  }else{
 														$inArray = "Customer Service Desk";
 													  }
-												
+													  if($active['status'] == 'open'){
+														$status = "<div class='btn btn-danger mb-1'>Ticket Open  </div> ";
+													}else if($active['status'] == 'close'){
+													  $status = "<div class='btn btn-success mb-1'>Ticket Closed  </div> ";
+													}
+
 													  $school_name = $Loader->SchoolName($active['school_code']);
                                                       echo'
 													  <tr role="row" class="odd">
@@ -136,7 +141,7 @@
 
 														<td>  '.$school_name.' <hr/>'.$active['subject'].' </td>
 														<td> '.$inArray.'</td>
-														<td>  <div class="btn btn-danger mb-1">Open  </div>  </td>  
+														<td> '. $status.' </td>  
 														<td>'.$active['answered_date'].' </td>   
                                                       </tr> 
                                                       ';

@@ -315,7 +315,7 @@ if(isset($_POST['page'])){
 											</div>			
 											";
 						
-										@@$loader->send_email($_POST['user_email_address'], $subject, $body);
+										$loader->send_email($_POST['user_email_address'], $subject, $body);
 											$loader->FieldAdminNoGeneratorUpdate();
 			
 
@@ -4240,15 +4240,16 @@ if(isset($_POST['page'])){
 					$result_row = $loader->total_row();
 					$result_query = $loader->query_result();
 					foreach($result_query as $row){ 
-						$photo   =  $row['photo'];   
-						$student_name   =  $row['student_name'];   
-					     }	
+						$photo        =  $row['photo'];   
+						$school_code  =  $row['school_code'];   
+						$student_name =  $row['student_name'];   
+					 }	
 					
 				
 								if($result_row == 1)
 								{
-
-									unlink("$student_photo/$photo");
+//uoouiuiuo
+									unlink("$SchoolIMG/$school_code/$photo");
 
 									$loader->query = "DELETE FROM `4_student_reg` WHERE `4_student_reg`.`online_stu_id` = '$delete_id' ";
 									$loader->execute_query();
@@ -4287,7 +4288,7 @@ if(isset($_POST['page'])){
 				foreach($result_query as $row){ 
 				$photo        =  $row['photo'];     
 				$school_code  =  $row['school_code']; 
-				@@unlink("$SchoolIMG/$school_code/$photo");
+				unlink("$SchoolIMG/$school_code/$photo");
 				}	
 	 
 							if($result_row == 1)
@@ -4540,7 +4541,7 @@ if(isset($_POST['page'])){
 								$loader->execute_query();
 
 
-								unlink("myschoolapp_api/team_lead/$photo");
+								unlink("$Teamlead/$photo");
 								
 								echo $success ="Account has been deleted with all connected accounts from database<br/>";
 
@@ -4586,7 +4587,7 @@ if(isset($_POST['page'])){
 
 					if(!empty($field_photo)){
 
-						@@unlink("$Teamlead/$photo");
+						unlink("$Teamlead/$photo");
 
 						$query_wallet ="UPDATE `0_team_lead` SET    
 						`photo`       =  '$field_photo',
@@ -4661,7 +4662,7 @@ if(isset($_POST['page'])){
 
 					if(!empty($field_photo)){
 
-						@@unlink("$FielAdmin/$photo");
+						unlink("$FielAdmin/$photo");
 
 						$query_wallet ="UPDATE `0_marketer_reg` SET    
 						`photo`       =  '$field_photo',
@@ -4776,7 +4777,7 @@ if(isset($_POST['page'])){
 
 					if(!empty($field_photo)){
 
-						@@unlink("$SchoolIMG/$school_code/$photo");
+						unlink("$SchoolIMG/$school_code/$photo");
 
 						$query_wallet ="UPDATE `4_student_reg` SET   
 						`photo`            =  '$field_photo',
@@ -4854,7 +4855,7 @@ if(isset($_POST['page'])){
 
 					if(!empty($field_photo)){
 
-						@@unlink("$SchoolIMG/$school_code/$photo");
+						unlink("$SchoolIMG/$school_code/$photo");
 
 						$query_wallet ="UPDATE `2_teacher_reg` SET   
 						`photo`           =  '$field_photo',
@@ -4955,7 +4956,7 @@ if(isset($_POST['page'])){
 					$school_photo      = $loader->UploadPhoto($location);  
 					if(!empty($school_photo)){
 					 		
-						 @@unlink("$SchoolIMG/$school_code/$school_photo_raw");
+						 unlink("$SchoolIMG/$school_code/$school_photo_raw");
 
 						$query_wallet ="UPDATE `1_school_reg` SET  
 						`school_photo` =  '$school_photo'
@@ -4967,7 +4968,7 @@ if(isset($_POST['page'])){
 					$school_logo      = $loader->UploadPhoto($location);  
 					if(!empty($school_logo)){
 					 		
-						 @@unlink("$SchoolIMG/$school_code/$school_logo_raw");
+						 unlink("$SchoolIMG/$school_code/$school_logo_raw");
 
 						$query_wallet ="UPDATE `1_school_reg` SET  
 						`school_logo` =  '$school_logo'
@@ -4977,7 +4978,7 @@ if(isset($_POST['page'])){
 						$loader->filedata       = $_FILES['schl_propritor_photo'];
 						$schl_propritor_photo   = $loader->UploadPhoto($location); 
 					if(!empty($schl_propritor_photo)){
-						 @@unlink("$SchoolIMG/$school_code/$raw_propritor_photo");
+						 unlink("$SchoolIMG/$school_code/$raw_propritor_photo");
 						
 						$query_wallet ="UPDATE `1_school_reg` SET  
 						`schl_propritor_photo` =  '$schl_propritor_photo'
@@ -4987,7 +4988,7 @@ if(isset($_POST['page'])){
 						$loader->filedata  = $_FILES['schl_head_photo'];
 						$schl_head_photo   = $loader->UploadPhoto($location); 	
 					if(!empty($schl_head_photo)){
-						 @@unlink("$SchoolIMG/$school_code/$raw_head_photo");
+						 unlink("$SchoolIMG/$school_code/$raw_head_photo");
 						 
 						$query_wallet ="UPDATE `1_school_reg` SET  
 						`schl_head_photo` =  '$schl_head_photo'
@@ -5221,7 +5222,7 @@ if(isset($_POST['page'])){
 					}else {
                          //New image clicked
 
-                            @@unlink("myschoolapp_api/question_img/$ques_image");
+                            unlink("myschoolapp_api/question_img/$ques_image");
 
 							$queryletter =("UPDATE  `50_question_table` SET 
 							`cbt_subject`    = '$subject',
@@ -6460,7 +6461,7 @@ if(isset($_POST['page'])){
 												</div>			
 												";
 						   
-											 @@$loader->send_email($user, $subject, $body);
+											 $loader->send_email($user, $subject, $body);
 
 
 
@@ -6700,7 +6701,7 @@ if(isset($_POST['page'])){
 												</div>			
 												";
 						   
-											 @@$loader->send_email($school_email, $subject, $body);
+											 $loader->send_email($school_email, $subject, $body);
 
 										}
 										else
@@ -6838,7 +6839,7 @@ if(isset($_POST['page'])){
 												</div>			
 												";
 						   
-											 @@$loader->send_email($user, $subject, $body);
+											 $loader->send_email($user, $subject, $body);
 
 										}
 										else
@@ -6975,7 +6976,7 @@ if(isset($_POST['page'])){
 												</div>			
 												";
 						   
-											 @@$loader->send_email($user, $subject, $body);
+											 $loader->send_email($user, $subject, $body);
 
 										}
 										else
@@ -7208,7 +7209,7 @@ if(isset($_POST['page'])){
 												</div>			
 												";
 						   
-											 @@$loader->send_email($user, $subject, $body);
+											 $loader->send_email($user, $subject, $body);
 
 										}
 										else

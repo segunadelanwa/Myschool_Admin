@@ -1398,7 +1398,7 @@ if(isset($_POST['page'])){
 							$result_query = $loader->query_result();
 							foreach($result_query as $row){ 
 							$photo      =  $row['photo'];   
-							@@unlink("../$SchoolIMG/$sch_code/$photo");
+							unlink("../$SchoolIMG/$sch_code/$photo");
 							}	
 				
 
@@ -1652,7 +1652,7 @@ if(isset($_POST['page'])){
 
 					if(!empty($field_photo)){
 
-						@@unlink("../$SchoolIMG/$school_code/$photo");
+						unlink("../$SchoolIMG/$school_code/$photo");
 
 						$query_wallet ="UPDATE `4_student_reg` SET   
 						`photo`            =  '$field_photo',
@@ -1749,7 +1749,7 @@ if(isset($_POST['page'])){
 									if(!empty($field_photo))
 									{
 
-										@@unlink("../$SchoolIMG/$school_code/$photo");
+										unlink("../$SchoolIMG/$school_code/$photo");
 
 										$query_wallet ="UPDATE `2_teacher_reg` SET   
 										`photo`           =  '$field_photo',
@@ -1812,7 +1812,7 @@ if(isset($_POST['page'])){
 								if(!empty($field_photo))
 								{
 
-									@@unlink("../$SchoolIMG/$school_code/$photo");
+									unlink("../$SchoolIMG/$school_code/$photo");
 
 									$query_wallet ="UPDATE `2_teacher_reg` SET   
 									`photo`           =  '$field_photo',
@@ -1930,7 +1930,7 @@ if(isset($_POST['page'])){
 					$school_photo      = $loader->UploadPhoto($location);  
 					if(!empty($school_photo)){
 					 		
-						 @@unlink("../$SchoolIMG/$sch_code/$school_photo_raw");
+						 unlink("../$SchoolIMG/$sch_code/$school_photo_raw");
 
 						$query_wallet ="UPDATE `1_school_reg` SET  
 						`school_photo` =  '$school_photo'
@@ -1943,7 +1943,7 @@ if(isset($_POST['page'])){
 								$school_logo      = $loader->UploadPhoto($location);  
 								if(!empty($school_logo)){
 										
-									@@unlink("../$SchoolIMG/$school_code/$school_logo_raw");
+									unlink("../$SchoolIMG/$school_code/$school_logo_raw");
 
 									$query_wallet ="UPDATE `1_school_reg` SET  
 									`school_logo` =  '$school_logo'
@@ -1953,7 +1953,7 @@ if(isset($_POST['page'])){
 									$loader->filedata       = $_FILES['schl_propritor_photo'];
 									$schl_propritor_photo   = $loader->UploadPhoto($location); 
 								if(!empty($schl_propritor_photo)){
-									@@unlink("../$SchoolIMG/$school_code/$raw_propritor_photo");
+									unlink("../$SchoolIMG/$school_code/$raw_propritor_photo");
 									
 									$query_wallet ="UPDATE `1_school_reg` SET  
 									`schl_propritor_photo` =  '$schl_propritor_photo'
@@ -1963,7 +1963,7 @@ if(isset($_POST['page'])){
 									$loader->filedata  = $_FILES['schl_head_photo'];
 									$schl_head_photo   = $loader->UploadPhoto($location); 	
 								if(!empty($schl_head_photo)){
-									@@unlink("../$SchoolIMG/$school_code/$raw_head_photo");
+									unlink("../$SchoolIMG/$school_code/$raw_head_photo");
 									
 									$query_wallet ="UPDATE `1_school_reg` SET  
 									`schl_head_photo` =  '$schl_head_photo'
@@ -5231,7 +5231,7 @@ if(isset($_POST['page'])){
 												";
 
 							 
-											@@$loader->send_email_ticket($school_email, $subject, $body,);
+											$loader->send_email_ticket($school_email, $subject, $body);
 							
 										 
 
@@ -5320,6 +5320,11 @@ if(isset($_POST['page'])){
 							)");  
 							if(mysqli_query($homedb,$query))
 							{ 
+
+								$query ="UPDATE `ticket` SET `status` = 'open' WHERE `ticket`.`ticket_id` = '$ticket_id'"; 
+								mysqli_query($homedb,$query);
+
+								
 								$output = array(
 									'success'   =>	'success'
 								); 
@@ -5450,9 +5455,9 @@ if(isset($_POST['page'])){
 					 
 							$subject_id    = $_POST['subject_id']; 
 		
-							@@$loader->query = "SELECT * FROM `50_question_table`  WHERE subject_id = '$subject_id' AND school_code ='$school_code'"; 
+							$loader->query = "SELECT * FROM `50_question_table`  WHERE subject_id = '$subject_id' AND school_code ='$school_code'"; 
 							$total_row = $loader->total_row(); 
-							@@$result = $loader->query_result(); 
+							$result = $loader->query_result(); 
 							foreach($result as $rows)
 							{
 								$schoolName    =  $loader-> SchoolName($rows['school_code']);

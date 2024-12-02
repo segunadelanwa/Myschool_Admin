@@ -82,7 +82,7 @@ class Loader{
 					
 					$mail->Send();		
 			}	
-			function send_email_ticket($receiver_email, $subject, $body, )
+			function send_email_ticket($receiver_email, $subject, $body)
 			{
 				
 		      	$mail = new PHPMailer;
@@ -764,7 +764,7 @@ class Loader{
 			function FetchTicket($school_code)
 			{//SELECT DISTINCT country
 
-				$this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject` FROM `ticket`  WHERE `school_code` = '$school_code' GROUP BY ticket_id ORDER BY `id` DESC";
+				$this->query = "SELECT `status`,`ticket_id`,`unit`,`answered_date`,`subject` FROM `ticket`  WHERE `school_code` = '$school_code' GROUP BY ticket_id ORDER BY `id` DESC";
 		 
 				$result = $this->query_result();
 			 

@@ -412,8 +412,8 @@ class ResultServer{
 					<div style="display:flex;justify-content:space-around;text-align:left;">   
 							<div style="width:20%;"> <img src="../myschoolapp_api/school/'.$school_code.'/'.$school_logo.'"  style="height: 120px;width:120px;border-radius:10px" /> </div> 
 							
-							<div style="width:60%;"> 
-							<div style="font-size: 30px;font-weight:bold">'.$schoolName.'</div>
+							<div style="width:60%;text-align:center"> 
+							<div style="font-size: 30px;font-weight:bold;">'.$schoolName.'</div>
 							<p>'.$school_address.'<br>
 							<span style="margin-right:20px">Tel:'.$school_phone.' </span>  <span>Motor: '.$school_motor.'</span> <br>
 							<span style="margin-right:20px">Email:'.$school_email.' </span>  <span>Website:'.$school_website.' </span>
@@ -455,8 +455,9 @@ class ResultServer{
 							</div>
 				</div>		
 							<div style="text-align:center;font-wweight:bold;font-size:20px"> 
-							<h2 style=" margin:20px;color:black"> 
-								STUDENT E-REPORT SHEET </h2>
+							<h4 style="color:black"> 
+								STUDENT E-REPORT SHEET 
+							</h4>
 							</div>
 
 
@@ -465,7 +466,7 @@ class ResultServer{
 							<div style="width:55%;"> Subjects </div>
 							<div style="width:10%;text-align:center"> CA </div>
 							<div style="width:10%;text-align:center"> Exam  </div>
-							<div style="width:10%;text-align:center"> Aggregate </div>
+							<div style="width:10%;text-align:center"> Agg </div>
 							<div style="width:10%;text-align:center;">Grade </div>
 							</div> ';
 
@@ -2713,78 +2714,78 @@ class ResultServer{
 									  
 
 												<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn mb-3">   
-													<div style="width:20%;font-size:14px"> Range Of Score </div>
-													<div style="width:10%;font-size:14px"> Grade </div>
-													<div style="width:20%;font-size:14px"> Remark  </div>
+													<div style="width:20%;font-size:12px"> Range Of Score </div>
+													<div style="width:10%;font-size:12px"> Grade </div>
+													<div style="width:20%;font-size:12px"> Remark  </div>
 												
-													<div style="width:20%;font-size:14px"> Range Of Score </div>
-													<div style="width:10%;font-size:14px"> Grade </div>
-													<div style="width:20%;font-size:14px"> Remark  </div>
+													<div style="width:20%;font-size:12px"> Range Of Score </div>
+													<div style="width:10%;font-size:12px"> Grade </div>
+													<div style="width:20%;font-size:12px"> Remark  </div>
 												</div>
 							<div class="p-3">
 												
 												<div class="mb-4" style="width:100%">
 
 														<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															<div style="width:20%;font-size:14px">75% - 100% </div>
-															<div style="width:10%;font-size:14px"> A1 </div>
-															<div style="width:20%;font-size:14px"> Excellent </div>
+															<div style="width:20%;font-size:12px">75% - 100% </div>
+															<div style="width:10%;font-size:12px"> A1 </div>
+															<div style="width:20%;font-size:12px"> Excellent </div>
 														
-															<div style="width:20%;font-size:14px">70% - 74% </div>
-															<div style="width:10%;font-size:14px"> B2 </div>
-															<div style="width:20%;font-size:14px"> very Good </div>
+															<div style="width:20%;font-size:12px">70% - 74% </div>
+															<div style="width:10%;font-size:12px"> B2 </div>
+															<div style="width:20%;font-size:12px"> very Good </div>
 														</div>
 												</div>
 											
 												<div class="mb-4" style="width:100%">
 
 														<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															<div style="width:20%;font-size:14px">65% - 69% </div>
-															<div style="width:10%;font-size:14px"> B3 </div>
-															<div style="width:20%;font-size:14px">Good </div>
+															<div style="width:20%;font-size:12px">65% - 69% </div>
+															<div style="width:10%;font-size:12px"> B3 </div>
+															<div style="width:20%;font-size:12px">Good </div>
 														
-															<div style="width:20%;font-size:14px">60% - 64% </div>
-															<div style="width:10%;font-size:14px"> C4 </div>
-															<div style="width:20%;font-size:14px"> Credit </div>
+															<div style="width:20%;font-size:12px">60% - 64% </div>
+															<div style="width:10%;font-size:12px"> C4 </div>
+															<div style="width:20%;font-size:12px"> Credit </div>
 														</div>
 												</div>
 												
 												<div class="mb-4" style="width:100%">
 
 														<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															<div style="width:20%;font-size:14px">55% - 59% </div>
-															<div style="width:10%;font-size:14px"> C5 </div>
-															<div style="width:20%;font-size:14px"> Good </div>
+															<div style="width:20%;font-size:12px">55% - 59% </div>
+															<div style="width:10%;font-size:12px"> C5 </div>
+															<div style="width:20%;font-size:12px"> Good </div>
 														
-															<div style="width:20%;font-size:14px">50% - 54% </div>
-															<div style="width:10%;font-size:14px"> C6 </div>
-															<div style="width:20%;font-size:14px"> Credit </div>
+															<div style="width:20%;font-size:12px">50% - 54% </div>
+															<div style="width:10%;font-size:12px"> C6 </div>
+															<div style="width:20%;font-size:12px"> Credit </div>
 														</div>
 												</div>
 												
 												<div class="mb-4" style="width:100%">
 
 														<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															<div style="width:20%;font-size:14px">45% - 49% </div>
-															<div style="width:10%;font-size:14px"> D7 </div>
-															<div style="width:20%;font-size:14px"> Fair </div>
+															<div style="width:20%;font-size:12px">45% - 49% </div>
+															<div style="width:10%;font-size:12px"> D7 </div>
+															<div style="width:20%;font-size:12px"> Fair </div>
 														
-															<div style="width:20%;font-size:14px">40% - 45% </div>
-															<div style="width:10%;font-size:14px"> E8 </div>
-															<div style="width:20%;font-size:14px"> Pass </div>
+															<div style="width:20%;font-size:12px">40% - 45% </div>
+															<div style="width:10%;font-size:12px"> E8 </div>
+															<div style="width:20%;font-size:12px"> Pass </div>
 														</div>
 												</div>
 												
 												<div class="mb-4" style="width:100%">
 
 														<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															<div style="width:20%;font-size:14px">0% - 39% </div>
-															<div style="width:10%;font-size:14px"> F9 </div>
-															<div style="width:20%;font-size:14px"> Fail </div>
+															<div style="width:20%;font-size:12px">0% - 39% </div>
+															<div style="width:10%;font-size:12px"> F9 </div>
+															<div style="width:20%;font-size:12px"> Fail </div>
 
-															<div style="width:20%;font-size:14px"></div>
-															<div style="width:10%;font-size:14px"></div>
-															<div style="width:20%;font-size:14px"></div>
+															<div style="width:20%;font-size:12px"></div>
+															<div style="width:10%;font-size:12px"></div>
+															<div style="width:20%;font-size:12px"></div>
 														
 														</div>
 												</div>
@@ -5367,6 +5368,7 @@ class ResultServer{
 
 	
 			echo  $output ='   
+			<a href="index.php" style="text-decoration:none;color:black;">
  				<div    style="width:700px;height: 639px !important;">
 					<div  style="background-color:'.$school_bgcolor.';padding:5px;border-radius:10px;">
 					 
@@ -5378,7 +5380,7 @@ class ResultServer{
 														
 														<div  style="display:flex">
 
-															<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="height:100px;border-radius:10px" />  
+															<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:80px;height:80px;border-radius:10px" />  
 
 
 															<div  style="width:100%;float:rigth""> 
@@ -5420,14 +5422,16 @@ class ResultServer{
 							  </div>
  
 					</div>  
-			</div> 
+			    </div> 
+			</a>
 			'; 
 
  
 			
 	
 	}
-	function EserverStudentIDCard_2($student_code)
+ 
+ 	function EserverStudentIDCard_2($student_code)
 	{
 
 		$current_datetime = date("d-m-Y"); 
@@ -5447,7 +5451,7 @@ class ResultServer{
 			$student_class =  $rows['student_class']; 	
 			$student_name  =  $rows['student_name']; 	
 			$schl_stu_no   =  $rows['schl_stu_no']; 	
-			$parent_code   =  $rows['parent_code']; 
+			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
 			$date          =  $rows['date']; 	
 		}
@@ -5480,7 +5484,8 @@ class ResultServer{
 			$dataPayDate    = "$sub_pay_date";
 
 	
-			echo  $output ='   
+			echo  $output ='  
+			<a href="index.php" style="text-decoration:none;color:black;"> 
  				<div    style="width:700px;height: 639px !important;">
 					<div  style="background-color:'.$school_bgcolor.';padding:5px;border-radius:10px;">
 					 
@@ -5488,14 +5493,11 @@ class ResultServer{
 					         <div   style="background-color:#fff;" > 
 						         <div  style="background-image: url("../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'"); background-repeat: repeat; background-size: 100vw 100vh; height:200px" > 
 
-								 <div style="background-color:#f2f2f2;position:absolute;left:400px;top:150px;z-index:0;border-radius:900px;width:250px;height:250px;">
-								 <img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'"  style="width:150px;height:150px;margin:50px 50px" />
-							  </div>
 												<div style="background-color:'.$school_bgcolor.';color:'.$text_code.';  padding:10px 30px;">
 														
 														<div  style="display:flex">
 
-															<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:80px;border-radius:10px" />  
+															<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:80px;height:80px;border-radius:10px" />  
 
 
 															<div  style="width:100%;float:rigth""> 
@@ -5508,15 +5510,17 @@ class ResultServer{
 
 												</div>
 
-										        <div  style="text-align:center;font-size:25px;font-weight:bold;margin-bottom:20px;z-index:1;">  STUDENT IDENTITY CARD </div>
+										        <div  style="text-align:center;font-size:20px;font-weight:bold;margin-bottom:20px;z-index:10">  STUDENT IDENTITY CARD </div>
 
+                                                 <div style="background-color:#f2f2f2;position:absolute;left:450px;top:150px;z-index:1;border-radius:900px;width:200px;height:200px;">
+													<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'"  style="width:100px;height:100px;margin:50px 50px" />
+												 </div>
 
-												<div  style="display:flex;padding-bottom:30px">  
+												<div  style="display:flex;;padding-bottom:20px">  
 
-														<img src="../myschoolapp_api/school/'.$sch_code.'/'.$photo.'"   style="width:200px;height:200px;margin:0 10px;border-radius:1000px;border-width 2px solid:'.$school_bgcolor.';"  />
+														<img src="../myschoolapp_api/school/'.$sch_code.'/'.$photo.'"   style="width:180px;height:200px;margin:0 50px;border-radius:1000px;border-width 2px solid:'.$school_bgcolor.';"  />
 
-
-														<div style="width:70%;z-index:5;opacity:1;padding-right:10px"> 
+														<div style="width:75%;z-index:5;opacity:1;padding-right:10px"> 
 
 
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Name:  </b> '.$student_name.'</div>
@@ -5532,14 +5536,16 @@ class ResultServer{
 							  </div>
  
 					</div>  
-			</div> 
+			   </div> 
+			</a>
 			'; 
 
  
 			
 	
 	}
-	function EserverStudentIDCard_3($student_code)
+
+ 	function EserverStudentIDCard_3($student_code)
 	{
 
 		$current_datetime = date("d-m-Y"); 
@@ -5593,21 +5599,19 @@ class ResultServer{
 
 	
 			echo  $output ='   
-				<div    style="width:700px;height: 639px !important;">
+			<a href="index.php" style="text-decoration:none;color:black;">
+ 				<div    style="width:700px;height: 639px !important;">
 					<div  style="background-color:'.$school_bgcolor.';padding:5px;border-radius:10px;">
 					 
 
 					         <div   style="background-color:#fff;" > 
 						         <div  style="background-image: url("../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'"); background-repeat: repeat; background-size: 100vw 100vh; height:200px" > 
 
-								 <div style="background-color:#f2f2f2;position:absolute;left:400px;top:150px;z-index:0;border-radius:900px;width:250px;height:250px;">
-								 <img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'"  style="width:150px;height:150px;margin:50px 50px" />
-							  </div>
 												<div style="background-color:'.$school_bgcolor.';color:'.$text_code.';  padding:10px 30px;">
 														
 														<div  style="display:flex">
 
-															<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:80px;border-radius:10px" />  
+															<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:80px;height:80px;border-radius:10px" />  
 
 
 															<div  style="width:100%;float:rigth""> 
@@ -5620,15 +5624,17 @@ class ResultServer{
 
 												</div>
 
-										        <div  style="text-align:center;font-size:25px;font-weight:bold;margin-bottom:20px;z-index:1;">  STUDENT IDENTITY CARD </div>
+										        <div  style="text-align:center;font-size:20px;font-weight:bold;margin-bottom:20px;z-index:10">  STUDENT IDENTITY CARD </div>
 
+                                                 <div style="background-color:#f2f2f2;position:absolute;left:450px;top:150px;z-index:1;border-radius:900px;width:200px;height:200px;">
+													<img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'"  style="width:100px;height:100px;margin:50px 50px" />
+												 </div>
 
-												<div  style="display:flex;padding-bottom:30px">  
+												<div  style="display:flex;;padding-bottom:20px">  
 
-														<img src="../myschoolapp_api/school/'.$sch_code.'/'.$photo.'"   style="width:200px;height:200px;margin:0 10px;border-radius:10px;border-width 2px solid:'.$school_bgcolor.';"  />
+														<img src="../myschoolapp_api/school/'.$sch_code.'/'.$photo.'"   style="width:180px;height:200px;margin:0 50px;border-radius:10px;border-width 2px solid:'.$school_bgcolor.';"  />
 
-
-														<div style="width:70%;z-index:5;opacity:1;padding-right:10px"> 
+														<div style="width:75%;z-index:5;opacity:1;padding-right:10px"> 
 
 
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Name:  </b> '.$student_name.'</div>
@@ -5644,13 +5650,16 @@ class ResultServer{
 							  </div>
  
 					</div>  
-			</div>  
+			    </div> 
+			</a>
 			'; 
 
  
 			
 	
 	}
+	
+ 
 	function EserverStudentIDCard_4($student_code)
 	{
 
@@ -5705,6 +5714,7 @@ class ResultServer{
 
 	
 			echo  $output ='   
+			<a href="index.php" style="text-decoration:none;color:black;">
 				<div    style="width:700px;height: 639px !important;border-radius:10px;">
 					<div  style="background-color:'.$school_bgcolor.';padding:5px;width:500px;height: 600px !important;border-radius:10px;">
 								<div  style="text-align:center;color:'.$text_code.';margin-top:20px">
@@ -5728,13 +5738,15 @@ class ResultServer{
 					        <img src="../all_photo/bar.png"   style="width:300px;height:50px;margin-left:100px;margin-top:10px"  /><br/>
                            <center style="text-align:center"> '.$school_address.' </center>
 					</div>  
-			</div>  
+			    </div>  
+			</a>
 			'; 
 
  
 			
 	
 	}
+
 	function EserverStudentIDCard_5($student_code)
 	{
 
@@ -5789,6 +5801,7 @@ class ResultServer{
 
 	
 			echo  $output ='   
+			<a href="index.php" style="text-decoration:none;color:black;">
 				<div    style="width:700px;height: 639px !important;border-radius:10px;">
 					<div  style="background-color:#fff;padding:5px;width:500px;height: 600px !important;border-radius:10px;">
 								<div  style="text-align:center;color:'.$school_bgcolor.';margin-top:20px">
@@ -5812,7 +5825,8 @@ class ResultServer{
 					        <img src="../all_photo/bar.png"   style="width:300px;height:50px;margin-left:100px;margin-top:10px"  /><br/>
                            <center style="text-align:center;color:'.$text_code.'"> '.$school_address.' </center>
 					</div>  
-			</div>  
+			    </div>  
+			</a>  
 			'; 
 
  
@@ -5872,7 +5886,8 @@ class ResultServer{
 			$dataPayDate    = "$sub_pay_date";
 
 	
-			echo  $output ='   
+			echo  $output =' 
+			<a href="index.php" style="text-decoration:none;color:black;">   
 				<div    style="width:700px;height: 639px !important;border-radius:10px;">
 					<div  style="background-color:#fff;padding:5px;width:500px;height: 600px !important;border-radius:10px;">
 								<div  style="text-align:center;color:'.$school_bgcolor.';margin-top:20px">
@@ -5896,13 +5911,16 @@ class ResultServer{
 					        <img src="../all_photo/bar.png"   style="width:300px;height:50px;margin-left:100px;margin-top:10px"  /><br/>
                            <center style="text-align:center;color:'.$text_code.'"> '.$school_address.' </center>
 					</div>  
-			</div>  
+			   </div>  
+			</a>  
 			'; 
 
  
 			
 	
 	}
+
+
 	function EserverStudentIDCard_7($student_code)
 	{
 
@@ -5956,7 +5974,8 @@ class ResultServer{
 			$dataPayDate    = "$sub_pay_date";
 
 	
-			echo  $output ='   
+			echo  $output ='  
+			<a href="index.php" style="text-decoration:none;color:black;"> 
  				<div    style="width:700px;height: 639px !important;">
 					<div  style="background-color:'.$school_bgcolor.';padding:5px;border-radius:10px;">
 					 
@@ -6014,6 +6033,7 @@ class ResultServer{
 						</div>  
 		        	</div> 
 		        </div> 
+			</a>
 			'; 
 
  

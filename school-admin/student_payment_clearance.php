@@ -99,110 +99,89 @@
 	
  
 
-  <body class="sb-nav-fixed">
-
- 	
-
-	
-	
-	
-       
-		
-<div id="layoutSidenav">
+    <body class="sb-nav-fixed">   
+            <div id="layoutSidenav_content">
 
 
-<div id="layoutSidenav_content">
+                
+                    <div class="row mb-4 mt-4 ml-4">
+                    <div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div>
 
+                    <div   class="btn btn-success" onclick="PrintDiv();">Click here to download payment clearance </div>
+                
+                    </div>
 
-    
-        <div class="row mb-4 ">
-        <div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div>
-
-        <div   class="btn btn-success" onclick="PrintDiv();">Click here to download payment clearance </div>
-       
-        </div>
-
-    
-
-        <div class="col-md-12">  
-    
-            
-            <div lass="table-responsive p-5">
                 
 
+                    <div class="col-md-12">  
+                
+                    
+
+                            <div  style="width:794px;height:723px">
+
+                                    <?php
+
+                                    if($dataExist == 'success')
+                                    {
+                                            if($payment == 'active')
+                                            {
+                                                echo $ResultServer->EserverPaymentClearanceSuccess($student_id);
+
+                                            
+                                            }
+                                            else if($payment == 'passive')
+                                            {                            
+                                                echo $ResultServer->EserverPaymentClearanceFailed($student_id);   
+                                                                        
+                                            }
+                                    }
+                                    else if($dataExist == 'failed')
+                                    {
+                                    
+                                    
+                                        echo $failed ='
+                                        <div class="col-xl- col-md-6">
+                                        <div class="alert alert-white alert-dismissible fade show" role="alert">
+                                        <strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+                                        
+                                        Invalid URL, please check the URL link and try again.Thanks
+                                        
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>  
+                                        </div>';
+                                    
+                                    
+                                    
+                                    
+                                    }
+                                        
+                                    ?>
+                                                                    
+
+                                </div>
 
 
-                 <div style="background-color:white; padding:10px;">
 
-                        <?php
 
-                        if($dataExist == 'success')
-                        {
-                                if($payment == 'active')
-                                {
-                                    echo $ResultServer->EserverPaymentClearanceSuccess($student_id);
+                        </div>
+            
 
-                                
-                                }
-                                else if($payment == 'passive')
-                                {                            
-                                    echo $ResultServer->EserverPaymentClearanceFailed($student_id);   
-                                                             
-                                }
-                        }
-                        else if($dataExist == 'failed')
-                        {
-                        
-                        
-                            echo $failed ='
-                            <div class="col-xl- col-md-6">
-                            <div class="alert alert-white alert-dismissible fade show" role="alert">
-                            <strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
-                            
-                            Invalid URL, please check the URL link and try again.Thanks
-                            
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>  
-                            </div>';
-                        
-                        
-                        
-                        
-                        }
-                            
-                        ?>
-                                                          
 
                     </div>
 
-
-
-
-            </div>
-                    
-                
-        </div>
-
-
-</div>
-
-</div>
-    
-    
-     
-   
- 
+            </div> 
     </body>
 </html>
 
 
 <script>
      
-function PrintDiv() {     
-	window.print();
- }
+function PrintDiv() {   
+window.print(); 
+}
+
  </script>
 
 

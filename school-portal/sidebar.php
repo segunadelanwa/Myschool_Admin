@@ -58,8 +58,7 @@
                                 <div class="sb-sidenav-collapse-arrow"><i style="color:<?php echo$text_code;?>" class="fas fa-angle-down"></i></div>
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapsePaymentLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"> 
-                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="payment_history.php?payee_id=<?php echo"$school_code&name=$school_name" ?>">Payment History </a> 
+                                <nav class="sb-sidenav-menu-nested nav">  
                                     <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="payment_sub.php">CBT App Payment </a> 
                                    
                                 </nav>

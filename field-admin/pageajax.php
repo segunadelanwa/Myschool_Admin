@@ -689,6 +689,57 @@ if(isset($_POST['page'])){
 	}	
 
 
+	if($_POST['page'] == 'TicketClosed')
+	{
+		   
+		if($_POST['action'] == 'TicketClosed')
+		{ 
+			  
+			$data  =  htmlentities($_POST['data']); 
+			$id    =  htmlentities($_POST['id']); 
+			
+	 
+			$loader->query = "SELECT * FROM `ticket` WHERE  `id` = '$id'";  
+			$result = $loader->query_result(); 
+			foreach($result as $rows)
+			{ 	 	 	 
+				$ticket_id        =  $rows['ticket_id'];   	   	
+				$sender_email     =  $rows['email'];   	   	
+				$unit_table       =  $rows['unit'];   	   	
+			}
+
+			
+
+	 
+
+
+					$query ="UPDATE `ticket` SET `status` = 'close' WHERE `ticket`.`ticket_id` = '$ticket_id'"; 
+					if(mysqli_query($homedb,$query))
+					{ 
+						$output = array(
+							'success'   =>	'success',
+							'feedback'   =>	'Ticket resolved and closed successfully'
+						); 
+					}
+					else
+					{ 
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'   =>	'An err occured while closing ticket. please try again'
+						);
+					}
+ 		
+				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+
+
+
+	
+
 }
  
 

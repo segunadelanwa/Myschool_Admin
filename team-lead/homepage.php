@@ -94,7 +94,7 @@
                             <div class="col-xl-3 col-md-3"  >
                                 <div class="card bg-success text-white mb-4">
 								
-                                    <div class="card-body"><center><h2 ><?php echo $loader-> ClosedTicket($admincode)  	?> </h2></center> CLOSED TICKET</div> 
+                                    <div class="card-body"><center><h2 ><?php echo $loader-> ClosedTicket($marketer_code)  	?> </h2></center> CLOSED TICKET</div> 
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="ticket_closed.php">View ticket</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -106,7 +106,7 @@
                             <div class="col-xl-3 col-md-3"  >
                                 <div class="card bg-danger text-white mb-4">
 								
-                                    <div class="card-body"><center><h2 ><?php echo $loader-> OpenTicket($admincode)   	?> </h2></center> OPEN TICKET</div> 
+                                    <div class="card-body"><center><h2 ><?php echo $loader-> OpenTicket($marketer_code)   	?> </h2></center> OPEN TICKET</div> 
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="ticket_review.php">View Backlog</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

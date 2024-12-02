@@ -391,7 +391,7 @@ class Loader{
 			function FetchTicket($team_lead)
 			{//SELECT DISTINCT country
 
-				$this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open' GROUP BY ticket_id ORDER BY `id` DESC";
+				$this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject`,`school_code`,`status` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open' GROUP BY ticket_id ORDER BY `id` DESC";
 		 
 				$result = $this->query_result();
 			 

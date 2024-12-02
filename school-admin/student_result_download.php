@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,7 +28,6 @@
  
         $Loader = new Loader();
         $ResultServer = new ResultServer();
-
  
 	 
 		require("../topUrl.php");
@@ -100,40 +98,24 @@
 	
 	
  
-
-  <body class="sb-nav-fixed">
-
- 	
-
-	
-	
-	
-       
-		
-        <div id="layoutSidenav">
+    <body class="sb-nav-fixed">   
+            <div id="layoutSidenav_content">
 		
        
-		   <div id="layoutSidenav_content">
+		            <div id="layoutSidenav_content">
 		    
                    
                         
-                        <div class="row mb-4 ">
-                            <div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div>
-                   
-                            <div   class="btn btn-success" onclick="PrintDiv();">Click here to download result</div>
-	                     </div>
-                  
+								<div class="row mb-4 mt-4 ml-4">
+									<div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div>
+
+									<div   class="btn btn-success" onclick="PrintDiv();">Click here to download payment clearance </div>
+
+								</div>
 					 
   
-						   <div class="col-md-12">  
-					 
-								
-								<div lass="table-responsive p-5">
-									
-
-
-
-											<div id="otpupdatebox" style="background-color:white; padding:10px;">
+						       <div class="col-md-12">   
+											<div   style="width:950px;height:1123px">
 												<?php
                                                     if($approve == 'success'){
 														echo $ResultServer->EserverResultFetch($student_id);
@@ -182,35 +164,29 @@
 													}
 													
 												?>
-											</div>
-
-
-
-
+											</div> 
 								</div>
 										
 								 
-	                       </div>
+	                </div>
  
        	
             </div>
-			
-        </div>
-    
-    
-     
-   
- 
+  
     </body>
 </html>
 
 
 <script>
      
-function PrintDiv() {     
-	window.print();
+	 function PrintDiv() {  
+ 
+	window.print(); 
  }
+
+
  </script>
+
 
 
  

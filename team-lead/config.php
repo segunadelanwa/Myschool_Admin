@@ -458,9 +458,9 @@ class Loader{
 			
 			function ClosedTicket($team_lead)
 			{//SELECT DISTINCT country
+ 
+				$this->query = "SELECT `status`,`ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'close' GROUP BY ticket_id ";
 
-				$this->query = "SELECT * FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'close'";
-		 
 				$result = $this->total_row();
 			 
 				return $result;
@@ -468,7 +468,7 @@ class Loader{
 			function OpenTicket($team_lead)
 			{//SELECT DISTINCT country
 
-				$this->query = "SELECT * FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open'";
+				$this->query = "SELECT `status`,`ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open' GROUP BY ticket_id";
 		 
 				$result = $this->total_row();
 			 
@@ -478,14 +478,14 @@ class Loader{
 			function FetchTicket($team_lead)
 			{//SELECT DISTINCT country
 
-				$this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open' GROUP BY ticket_id ORDER BY `id` DESC";
+				$this->query = "SELECT `status`,`ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'open' GROUP BY ticket_id ORDER BY `id` DESC";
 		 
 				$result = $this->query_result();
 			 
 				return $result;
 			}
 			function FetchClosedTicket($team_lead)
-			{//SELECT DISTINCT country
+			{//SELECT DISTINCT country 
 
 				$this->query = "SELECT `ticket_id`,`unit`,`answered_date`,`subject`,`school_code` FROM `ticket`  WHERE `team_lead` = '$team_lead' AND `status` = 'close' GROUP BY ticket_id ORDER BY `id` DESC";
 		 

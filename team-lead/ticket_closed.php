@@ -57,7 +57,7 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4 transform-capitalize"> 
-					          <i class="fas fa-briefcase"></i>Ticket   Backlog
+					          <i class="fas fa-briefcase"></i>Closed Ticket
 						</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item" onclick="GoBackHandler()"> Back</li>

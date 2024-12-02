@@ -47,7 +47,7 @@
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseCreateTicket" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
-                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_review.php">Backlog Ticket </a>   
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_review.php">Open Ticket </a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_closed.php">Closed Ticket </a>   
                                    
                                 </nav>

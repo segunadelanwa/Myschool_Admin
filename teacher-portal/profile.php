@@ -173,6 +173,12 @@
                                                       </td> 
                                                   </tr>
                                                   <tr style="width:100%;">
+                                                      <td style="width:20%;">Teacher Username</td> 
+                                                      <td style="width:80%;">
+                                                        <h6><?php echo $username; ?></h6> 
+                                                      </td> 
+                                                  </tr>
+                                                  <tr style="width:100%;">
                                                       <td style="width:20%;">Teacher Address</td> 
                                                       <td style="width:80%;">
                                                         <h6><?php echo $address; ?></h6> 

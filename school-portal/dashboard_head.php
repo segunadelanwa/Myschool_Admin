@@ -23,9 +23,9 @@
                    <?php   echo' <img src="../'.$SchoolIMG.'/'.$school_code.'/'.$photo.'"  style="height:60px"/> '; ?>
 					</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="profile.php" style="color:<?php echo$text_code;?>">Profile</a> 
+                        <a class="dropdown-item" href="profile.php" style="color:#000">Profile</a> 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.php" style="color:<?php echo$text_code;?>">Logout</a>
+                        <a class="dropdown-item" href="logout.php" style="color:#000">Logout</a>
                     </div>
                 </li>
             </ul>

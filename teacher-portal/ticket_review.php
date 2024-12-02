@@ -10,7 +10,7 @@
 		?>
 		
 	<title> 
-	 SCHOOL NEWSLETTER
+	 TICKET REVIEW
 	</title>
 
     </head>
@@ -57,11 +57,11 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4 transform-capitalize"> 
-					          <i class="fas fa-briefcase"></i>Newsletter Post
+					          <i class="fas fa-briefcase"></i>Ticket Review
 						</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item" onclick="GoBackHandler()"> Back</li>
-                            <li class="breadcrumb-item active">  post</li>
+                            <li class="breadcrumb-item active">Ticket </li>
                         </ol>
                   
 					 
@@ -73,7 +73,7 @@
 									 
 												<div class="card-header">
 													<i class="fas fa-briefcase"></i>
-                                               Newsletter post
+													Ticket Review
 												</div>
 												
 												<div class="card-body">
@@ -120,6 +120,13 @@
                                                       }else if($active['unit'] == 'tech'){
                                                         $unit = "Technical Unit";
                                                       }
+
+
+													  if($active['status'] == 'open'){
+                                                          $status = "<div class='btn btn-danger mb-1'>Ticket Opened  </div> ";
+                                                      }else if($active['status'] == 'close'){
+                                                        $status = "<div class='btn btn-success mb-1'>Ticket Closed  </div> ";
+                                                      }
                                                       
                                                       echo'
 													  <tr role="row" class="odd">
@@ -133,7 +140,7 @@
 
 														<td> '.$active['subject'].'</td>
 														<td> '.$unit.' </td>
-														<td>  <div class="btn btn-success mb-1">Open  </div>  </td>  
+														<td>  '.$status.'  </td>  
 														<td>'.$active['answered_date'].' </td>   
                                                       </tr> 
                                                       ';

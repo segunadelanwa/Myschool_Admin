@@ -3850,6 +3850,11 @@ if(isset($_POST['page'])){
 			)");  
 			if(mysqli_query($homedb,$query))
 			{ 
+
+				$query ="UPDATE `ticket` SET `status` = 'open' WHERE `ticket`.`ticket_id` = '$ticket_id'"; 
+				mysqli_query($homedb,$query);
+
+
 				$output = array(
 					'success'   =>	'success'
 				); 
