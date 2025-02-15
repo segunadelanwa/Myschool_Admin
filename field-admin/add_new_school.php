@@ -122,10 +122,7 @@
                                                             <input class="form-control " placeholder="School Name"   type="email" name="school_email" id="school_email" class="form-control"  required/>
 															</div>
 
-															<!-- <div class="form-group">	
-															<label>School Website  (optional) </label>
-                                                            <input class="form-control " placeholder="School Name"   type="text" name="website" id="website" class="form-control"   />
-															</div> -->
+															 
 
 															<div class="form-group">
 															<label>School Default Password</label>
@@ -145,12 +142,7 @@
 															<input type="text" name="school_address" placeholder="School Address"  id="school_address" class="form-control "   required />
 															</div>
 
-
-<!-- 
-															<div class="form-group">			
-															<label>School Motor  </label>
-															<input type="text" name="school_motor" placeholder="Account name"  id="school_motor" class="form-control "  required />
-															</div> -->
+ 
 
 																<div class="card-header mt-5 mb-3">
 																<i class="fas fa-tag"></i>
@@ -169,145 +161,53 @@
 															<input type="color" name="text_code"  value="#ffffff"  id="text_code" class="form-control  "  required />
 															</div>															
 
-															<!-- <div class="form-group">			
-															<label>School Week </label>
-															<input type="text" name="school_week" placeholder="school week"  id="school_week" class="form-control "  required />
-															</div>
-															 -->
+															 
 															
-															<!-- <div class="card-header mt-5 mb-3">
+															 <div class="card-header mt-5 mb-3">
 																<i class="fas fa-tag"></i>
-																SCHOOL BANK DETAILS
+																SCHOOL TYPE
 														    </div>		
-															 -->
+															 
 														 
 															
-															<!-- <div class="form-group">	
+														     <div class="form-group">	
 																
-																<label>School Bank Name </label>
-																<select id="bank_name" name="bank_name" class="form-control" > 
+																<label>Select School </label>
+																<select id="school_type" name="school_type" class="form-control" > 
 
-																<?php		
-																$result = $Loader-> FetchBank();
-																foreach($result as $data)
-																{
-																$bank_name=$data['bank_name'];
-																$bank_code=$data['bank_code'];  
-																echo"<option  value='$bank_code'> $bank_name </option>";
-																}
-
-                                                                 ?>
+																 <option  value='primary'> Primary School </option>
+																 <option  value='secondary'>Secondary / High School </option>
+															 
 
 															    </select>	
 
 															</div>
 
-															<div class="form-group">			
-																<label>Account Name  </label>
-																<input type="text" name="account_name" placeholder="Account Name"  id="account_name" class="form-control "  required />
-																</div>															
-
-																<div class="form-group">			
-																<label>Account Number</label>
-																<input type="text" name="account_number" placeholder="Account Number"  id="account_number" class="form-control "  required />
-															</div> -->
-
+					 
 												 
 															 
-															<div class="card-header mt-5 mb-3">
-																<i class="fas fa-tag"></i>
-																SCHOOL OWNER DETAILS
-														    </div>													 
-												 
-															<div class="form-group">			
-															<label>School Propritor/proprietress Name</label>
-															<input type="text" name="schl_propritor_name" placeholder="School Propritor Name"  id="schl_propritor_name" class="form-control "  required />
-															</div>
-												 
-												 
-															<!-- <div class="form-group">			
-															<label>School Propritor/proprietress Photo</label>
-															<input type="file" name="schl_propritor_photo" placeholder="School Propritor Photo"  id="schl_propritor_photo" class="form-control "  required />
-															</div>
- 
-												 
-												 
-															<div class="form-group">			
-															<label>School Propritor/proprietress Message</label>
-															<input type="text" name="schl_propritor_msg" placeholder="School Propritor Message"  id="schl_propritor_msg" class="form-control "  required />
-															</div> -->
+														 
+									 
 
 															<div class="card-header mt-5 mb-3">
 																<i class="fas fa-tag"></i>
-																SCHOOL HEAD TEACHER DETAILS
+																SCHOOL ADMINISTRATOR
 														    </div>	
 															
 															
 															<div class="form-group">			
-															<label>School Head Teachers Name</label>
-															<input type="text" name="schl_head_name" placeholder="School Head Name"  id="schl_head_name" class="form-control "  required />
+															<label>Admin Fullname</label>
+															<input type="text" name="schl_head_name" placeholder="Admin Name"  id="schl_head_name" class="form-control "  required />
 															</div>
-												 
-												 
-															<!-- <div class="form-group">			
-															<label>School Head Teachers Photo</label>
-															<input type="file" name="schl_head_photo" placeholder="School Head Photo"  id="schl_head_photo" class="form-control "  required />
-															</div>
- 
-												 
-												 
+
 															<div class="form-group">			
-															<label>School Head Teachers Message</label>
-															<input type="text" name="schl_head_msg" placeholder="School Head Message"  id="schl_head_msg" class="form-control "  required />
-															</div> -->
-
-												
-															<!-- <div class="card-header mt-5 mb-3">
-																<i class="fas fa-tag"></i>
-																SCHOOL ACTIVITIES DETAILS
-														    </div>	 -->
-
-															<!-- <div class="form-group">			
-																<label>Exam Score Mark(e.g 5marks or 1mark on each question answered correctly)</label>
-																<input type="number" name="exam_score" placeholder="0"  id="exam_score" class="form-control "  required />
-																</div>
-
-
-																<div class="form-group">			
-																<label>Test Score Mark(e.g 5marks or 1mark on each question answered correctly)</label>
-																<input type="number" name="test_score" placeholder="0"  id="test_score" class="form-control "  required />
-																</div>
-
-													
-																<div class="form-group">			
-																<label>Exam Time (e.g 90 equal to 1:30min)</label>
-																<input type="number" name="exam_time" placeholder="0"  id="exam_time" class="form-control "  required />
-																</div>
-
-													
-																	
-																<div class="form-group">			
-																<label>Test Time (e.g 30 equal to 30min)</label>
-																<input type="number" name="test_time" placeholder="0"  id="test_time" class="form-control "  required />
-																</div>
-
-													
-													 
-																<div class="form-group ">
-																<label> Current Term</label>
-																<select   id="current_term"  name="current_term"   class="form-control" >
-																	<option value="" selected="selected">-- Select current term--</option>   
-																	<option value="First Term">First Term</option>   
-																	<option value="Second Term">Second Term</option>   
-																	<option value="Third Term">Third Term</option>     
-																</select>
+															<label>Admin Username</label>
+															<input type="email" name="adminhead_email" placeholder="Admin Email"  id="adminhead_email" class="form-control "  required />
 															</div>
-													
-													
-																<div class="form-group">			
-																<label>Session</label>
-																<input type="text" name="session" placeholder="session"  id="session" class="form-control "  required />
-																</div> -->
+												 
+												 
+															 
+														 
 
 
 															<div class="form-group">	 

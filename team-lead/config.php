@@ -439,16 +439,16 @@ class Loader{
 
 				$result = $field_admin + 1;
 				if(strlen($result) == 1){
-					$output = "FAD000$result";
+					$output = "FOO000$result";
 
 				}else if(strlen($result) == 2){
-					$output = "FAD00$result"; 
+					$output = "FOO00$result"; 
 
 				}else if(strlen($result) == 3){
-					$output = "FAD0$result";
+					$output = "FOO0$result";
 
 				}else if(strlen($result) == 4){
-					$output = "FAD$result";
+					$output = "FOO$result";
 				}
 
 				return $output;

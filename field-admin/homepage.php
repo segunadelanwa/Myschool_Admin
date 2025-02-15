@@ -67,7 +67,7 @@
               $historyCount =  $loader->PaymentHistoryCount($marketer_code)
 
             ?>
-						<h3>FIELD ADMIN</h3>  
+						<h3>FIELD OPERATIONS OFFICER</h3>  
 						</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">  HOME</li>
@@ -76,7 +76,7 @@
                             <div class="col-xl-4 col-md-4">
                                 <div class="card bg-primary text-white mb-4">
 								
-                                    <div class="card-body"><center><h2 ><?php echo $schoolGained; 	?> </h2></center>SCHOOL ONBOARD</div>
+                                    <div class="card-body"><center><h2 ><?php echo $schoolGained; 	?> </h2></center>SCHOOL ONBOARDED</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#school">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

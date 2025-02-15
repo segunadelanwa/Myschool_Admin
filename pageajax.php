@@ -4248,7 +4248,7 @@ if(isset($_POST['page'])){
 				
 								if($result_row == 1)
 								{
-//uoouiuiuo
+ 
 									unlink("$SchoolIMG/$school_code/$photo");
 
 									$loader->query = "DELETE FROM `4_student_reg` WHERE `4_student_reg`.`online_stu_id` = '$delete_id' ";
@@ -4265,6 +4265,10 @@ if(isset($_POST['page'])){
 
 
 									$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`student_code` = '$delete_id' ";
+									$loader->execute_query();
+
+
+									$loader->query = "DELETE FROM `student_weekly_assesment` WHERE `student_weekly_assesment`.`student_code` = '$delete_id' ";
 									$loader->execute_query();
 									
 									echo $success ="$student_name account has been deleted from database";
@@ -4313,6 +4317,11 @@ if(isset($_POST['page'])){
 
 
 								$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`parent_code` = '$delete_id' ";
+								$loader->execute_query();
+							
+
+
+								$loader->query = "DELETE FROM `student_weekly_assesment` WHERE `student_weekly_assesment`.`parent_code` = '$delete_id' ";
 								$loader->execute_query();
 
 
@@ -4417,29 +4426,48 @@ if(isset($_POST['page'])){
 							{ 
 
 											$loader->query = "DELETE FROM `1_school_reg` WHERE `1_school_reg`.`school_code` = '$delete_id' ";
-											@$loader->execute_query();
+										    $loader->execute_query();
  
 											$loader->query = "DELETE FROM `2_teacher_reg` WHERE `2_teacher_reg`.`school_code` = '$delete_id' ";
-											@$loader->execute_query();
-
+											$loader->execute_query();
 
 											$loader->query = "DELETE FROM `3_parent_reg` WHERE `3_parent_reg`.`sch_code` = '$delete_id' ";
-											@$loader->execute_query();
+											$loader->execute_query();
 
+											$loader->query = "DELETE FROM `4_student_reg` WHERE `4_student_reg`.`school_code` = '$delete_id' ";
+											$loader->execute_query();
 
-											$loader->query = "DELETE FROM `student_exam_result` WHERE `student_exam_result`.`school_code` = '$delete_id' ";
-											@$loader->execute_query();
-
-											$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`school_code` = '$delete_id' ";
-											@$loader->execute_query();
-
-
-											$loader->query = "DELETE FROM `trans_history` WHERE `trans_history`.`school_code` = '$delete_id' ";
-											@$loader->execute_query();
-
+											$loader->query = "DELETE FROM `41_student_subjects` WHERE `41_student_subjects`.`school_code` = '$delete_id' ";
+											$loader->execute_query(); 
 
 											$loader->query = "DELETE FROM `api_for_question` WHERE `api_for_question`.`school_code` = '$delete_id' ";
-											@$loader->execute_query();
+											$loader->execute_query(); 
+
+											$loader->query = "DELETE FROM `scheme_of_uploader` WHERE `scheme_of_uploader`.`school_code` = '$delete_id' ";
+											$loader->execute_query(); 
+
+											$loader->query = "DELETE FROM `school_newsletter` WHERE `school_newsletter`.`school_code` = '$delete_id' ";
+											$loader->execute_query(); 
+
+											$loader->query = "DELETE FROM `student_exam_result` WHERE `student_exam_result`.`school_code` = '$delete_id' ";
+											$loader->execute_query();
+
+											$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`school_code` = '$delete_id' ";
+											$loader->execute_query();
+
+											$loader->query = "DELETE FROM `student_weekly_assesment` WHERE `student_weekly_assesment`.`school_code` = '$delete_id' ";
+											$loader->execute_query();
+
+											$loader->query = "DELETE FROM `trans_history` WHERE `trans_history`.`school_code` = '$delete_id' ";
+											$loader->execute_query();
+
+
+
+
+
+											$loader->query = "DELETE FROM `ticket` WHERE `ticket`.`school_code` = '$delete_id' ";
+											$loader->execute_query(); 
+
 
 											array_map('unlink', glob("myschoolapp_api/school/$school_code/*.*"));
 											rmdir("myschoolapp_api/school/$school_code");

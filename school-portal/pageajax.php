@@ -11,65 +11,78 @@ include("../connect2.php");
  
  
 
-	if(!empty($_SESSION['token']) AND !empty($_SESSION['school_email']))
-	{
-	
-	$loader->query='SELECT * FROM 1_school_reg WHERE `1_school_reg`.`token` ="'.$_SESSION['token'].'" AND `1_school_reg`.`school_email`="'.$_SESSION['school_email'].'"';
-			
-			if($result = $loader->query_result()){ 
-				foreach($result as $row)
-				{
-					$token                =  $row['token'];		
-					$admincode            =  $row['admincode'];		
-					$fadmin_code          =  $row['fadmin_code'];	
-					$school_code          =  $row['school_code'];		
-					$school_name          =  $row['school_name'];		
-					$school_photo         =  $row['school_photo'];		
-					$photo                =  $row['school_logo'];	    	
-					$username             =  $row['school_email'];		
-					$school_website       =  $row['school_website'];		
-					$school_password      =  $row['school_password'];		
-					$school_phone         =  $row['school_phone'];		
-					$school_address       =  $row['school_address'];		
-					$school_motor         =  $row['school_motor'];		
-					$school_bgcolor       =  $row['school_bgcolor'];		
-					$text_code            =  $row['text_code'];	 
-					$school_week          =  $row['school_week'];	 	
-					$last_pay_date        =  $row['last_pay_date'];	 
-					$bank_name            =  $row['bank_name'];	 
-					$account_name         =  $row['account_name'];		
-					$account_number       =  $row['account_number'];		
-					$school_status        =  $row['school_status'];	
-					$schl_propritor_name  =  $row['schl_propritor_name'];		
-					$schl_propritor_photo =  $row['schl_propritor_photo'];		
-					$schl_propritor_msg   =  $row['schl_propritor_msg'];		
-					$schl_head_name       =  $row['schl_head_name'];		
-					$schl_head_photo      =  $row['schl_head_photo'];		
-					$schl_head_msg        =  $row['schl_head_msg'];		
-					$date_reg             =  $row['date_reg'];	
-					$exam_score           =  $row['exam_score'];		
-					$test_score           =  $row['test_score'];		
-					$exam_time            =  $row['exam_time'];		
-					$test_time            =  $row['test_time'];		
-					$revenue              =  $row['revenue'];	 
-					$term_earn            =  $row['term_earn'];	 	
-					$current_term         =  $row['current_term'];	 
-					$session              =  $row['session'];
-					$download_result      =  $row['download_result'];
-					$school_payment       =  $row['school_payment'];
-			 
-	
-				}
+if(isset($_SESSION['token']) AND !empty($_SESSION['username']))
+{
+  
+	$loader->query='SELECT * FROM `1_school_admins` WHERE `password`="'.$_SESSION['token'].'" AND `username`="'.$_SESSION['username'].'"';
 		
-		
-	
-				
-		
+	if($result = $loader->query_result()){ 
+			foreach($result as $row)
+			{
+
+				$admin_photo    = $row['photo']; 
+				$school_code	= $row['school_code'];
+				$admin_username	= $row['username'];  
+				$password	    = $row['password'];
+				$acc_fullname   = $row['fullname'];
+				$gender	        = $row['gender'];
+				$phone      	= $row['phone'];
+				$address	    = $row['address'];
+				$admin_depart   = $row['admin_depart'];
+				$registrar   	= $row['registrar'];
+				$admin_access   = $row['admin_access'];
+				$account_name	= $row['account_name'];
+				$account_number	= $row['account_number'];
+				$bank_name	    = $row['bank_name'];  
+				$reg_date       = $row['date']; 
+
+
 			}
-	
-	} 
  
 
+		    $loader->query='SELECT * FROM `1_school_reg` WHERE   `school_code`="'.$school_code.'"'; 
+			$result = $loader->query_result(); 
+			foreach($result as $row)
+			{
+					
+				 
+				$admincode            =  $row['admincode'];		
+				$fadmin_code          =  $row['fadmin_code'];  		
+				$school_name          =  $row['school_name'];		
+				$school_photo         =  $row['school_photo'];		
+				$school_logo          =  $row['school_logo'];	    	
+				$school_email         =  $row['school_email'];		
+				$school_website       =  $row['school_website']; 		
+				$school_phone         =  $row['school_phone'];		
+				$school_address       =  $row['school_address'];		
+				$school_motor         =  $row['school_motor'];		
+				$school_bgcolor       =  $row['school_bgcolor'];		
+				$text_code            =  $row['text_code'];	 
+				$school_week          =  $row['school_week'];	  
+				$bank_name            =  $row['bank_name'];	 
+				$account_name         =  $row['account_name'];		
+				$account_number       =  $row['account_number'];		
+				$school_status        =  $row['school_status'];	
+				$schl_propritor_name  =  $row['schl_propritor_name'];		
+				$schl_propritor_photo =  $row['schl_propritor_photo'];		
+				$schl_propritor_msg   =  $row['schl_propritor_msg'];		
+				$schl_head_name       =  $row['schl_head_name'];		
+				$schl_head_photo      =  $row['schl_head_photo'];		
+				$schl_head_msg        =  $row['schl_head_msg'];		
+				$date_reg             =  $row['date_reg'];	
+				$exam_score           =  $row['exam_score'];		
+				$test_score           =  $row['test_score'];		
+				$exam_time            =  $row['exam_time'];		
+				$test_time            =  $row['test_time'];	 	 	
+				$current_term         =  $row['current_term'];	 
+				$session              =  $row['session'];
+				$id_card_type         =  $row['id_card_type'];
+				$school_type          =  $row['school_type'];
+				$token                =  $row['cbt_training_api'];
+			}
+	 
+		}
+}
 
 	$current_date  = date('Y-m-d');	
 	$ip_address = $_SERVER['REMOTE_ADDR'];
@@ -87,31 +100,38 @@ if(isset($_POST['page'])){
 		if($_POST['action'] == 'login_check')
 		{
 
-			$token =  $_POST["user_password"];
+			$user_password =  $_POST["user_password"];
+			$user_email_address =  $_POST["user_email_address"];
              
-			$loader->query ="SELECT * FROM  `1_school_reg` WHERE token = '$token'"; 
+			$loader->query = "SELECT * FROM  `1_school_admins` WHERE `1_school_admins`.`username` = '$user_email_address' AND `1_school_admins`.`password` = '$user_password'"; 
 			$outputtotal_row = $loader->total_row();
 			$output = $loader->query_result();
-			foreach($output as $row){
-			$user = $row['school_email'];
+			foreach($output as $rows){
+			$school_code = $rows['school_code'];
 			}
 
 
+ 
 
 
-			$loader->data = array(
-				':user_email_address'	=>	$_POST['user_email_address']
-			);
 
-			$loader->query = "
-			SELECT * FROM 1_school_reg 
-			WHERE school_email = :user_email_address
-			";
-
-			$total_row = $loader->total_row();
 
 			if($outputtotal_row == 1)
 			{
+
+				$loader->data = array(
+					':schoolCode'	=>	$school_code
+				);
+	
+				$loader->query = "
+				SELECT * FROM 1_school_reg 
+				WHERE school_code = :schoolCode
+				";
+	
+				$total_row = $loader->total_row();
+
+
+
 
 			
 				if($total_row > 0)
@@ -123,8 +143,8 @@ if(isset($_POST['page'])){
 						
 						if($row['school_status'] ==  'active')
 						{
-								$_SESSION['school_email'] = $row['school_email'];
-								$_SESSION['token'] = $row['token'];
+								$_SESSION['username'] = $user_email_address;
+								$_SESSION['token'] = $user_password;
 
 								$output = array(
 									'success'	=>	true
@@ -149,7 +169,7 @@ if(isset($_POST['page'])){
 			else
 			{
 				$output = array(
-					'error'		=>	"Invalid data passed " 
+					'error'		=>	"Invalid data passed. Username does not exist  " 
 				);
 			}
 			echo json_encode($output);
@@ -158,7 +178,516 @@ if(isset($_POST['page'])){
 		
  	}
  
+	 if($_POST["page"] === 'admin_signup_page')
+	 {
+
+			if($_POST['action'] == 'check_email_admin')
+			{
+				$loader->query = "
+				SELECT * FROM 1_school_admins 
+				WHERE username = '".trim($_POST["email"])."'
+				";
+
+				$total_row = $loader->total_row();
+
+				if($total_row == 0)
+				{
+					$output = array(
+						'success'		=>	true
+					);
+					
+				}
+				echo json_encode($total_row);
+			}
  
+			if($_POST['action'] == 'admin_signup_action')
+			{
+				
+				$m=mb_strimwidth(date('m'), 1, 1); 
+				$d=date('d');
+				$auth_code = mb_strimwidth(time(), 7, 3); 
+				$admincode="ADM$d$m$auth_code";
+				$date_init=date('Y-m-d');
+
+
+
+			
+				$adminhead_email   =  trim($_POST['user_email_address']); 
+				$raw_password     =  trim($_POST['password']);
+				$passkey          =  MD5("$raw_password$adminhead_email");
+				$fullname         =  trim($_POST['fullname']);
+				$address          =  trim($_POST['address']);
+				$gender           =  trim($_POST['gender']);
+				$phone            =  trim($_POST['phone']);
+				$department       =  trim($_POST['admin_depart']);
+				$admin_level      =  trim($_POST['admin_level']);
+
+				$source = "school/$school_code";
+				$loader->filedata=$_FILES['photo'];
+				$schl_admin_photo      = $loader->UploadPhoto($source);
+								 
+						if($admin_access === 'proprietor'|| $admin_access === 'head')
+						{
+								
+								    $query_wallet =("INSERT INTO 1_school_admins VALUE (
+									'',
+									'".mysqli_real_escape_string($homedb, $schl_admin_photo)."',	 									 
+									'".mysqli_real_escape_string($homedb, $token)."',	 									 
+									'".mysqli_real_escape_string($homedb, $school_code)."',	 									 
+									'".mysqli_real_escape_string($homedb, $adminhead_email)."', 									 
+									'".mysqli_real_escape_string($homedb, $passkey)."',
+									'".mysqli_real_escape_string($homedb, $fullname)."',
+									'".mysqli_real_escape_string($homedb, $gender)."',
+									'".mysqli_real_escape_string($homedb,  $phone)."',
+									'".mysqli_real_escape_string($homedb, $address)."',   
+									'".mysqli_real_escape_string($homedb, $department)."',   
+									'".mysqli_real_escape_string($homedb, $admin_username)."',     
+									'".mysqli_real_escape_string($homedb, $admin_level)."',     
+									'".mysqli_real_escape_string($homedb, '')."',     
+									'".mysqli_real_escape_string($homedb, '')."',     
+									'".mysqli_real_escape_string($homedb, '')."',     
+									'".mysqli_real_escape_string($homedb, $date_init)."'
+									)");
+							 
+									if(mysqli_query($homedb,$query_wallet))
+									{
+													
+							$sch_logo="/$school_code/$school_logo";
+							$subject = 'SCHOOL ADMIN ACCOUNT SETUP';
+						
+							$body = "
+							<div style='width:100%;height:5px;background:$school_bgcolor'></div><br> 
+								<div style='font-size:18px;color:black;font-family:lucida sans;'>
+							 
+										 <center>
+											 
+											 <div style='text-decoration:uppercase;font-size:30px;font-weight:bold'>
+											 <img src='cid:logo'  style='text-align:center;height:150px;'/>  <br/>
+											 $school_name
+											 </div>
+
+											 <div>
+											 
+											 $school_address<br/>
+											 $school_website<br/>
+											 $school_motor</br/>
+											  
+											 </div>  
+										 </center>  
+
+										 
+										 <img src='cid:logo2'style='width:100%' /> <br/> <br/><br/>
+
+													 
+										 <p>
+										<h3 style='text-decoration:underline'>Admin Account Setup  </h3>
+										 Hi $fullname, welcome to  <b>$school_name</b> portals management and CBT integration application software.<br/> 
+										 Your admin account has been fully setup for administrative duty. Please find below your login details
+										 </p><br/>
+									 
+
+										 <p>
+										 <a href='https://adminportal.com.ng/login/school-portal/' >  Kindly click here </a> and login to school portal or 
+										 if  link is disabled  on your device copy this link https://adminportal.com.ng/login/school-portal  and past to your browser . 
+										 </p>
+												 
+
+
+										 <p>
+										 <img src='cid:logo3'  style='width:100%' /> <br> <br>
+										 <b style='text-decoration:underline'> Login Details </b><br/>
+											 Username: $adminhead_email  <br />
+											 Password: $raw_password  <br /> 
+
+										 </p> <br />  <br /> 
+										 
+										 <p>
+											 <b style='text-decoration:underline'> To Access School Portals URL </b><br/>
+											 <a href='https://adminportal.com.ng/login/school-portal/'><b>School Portal</b>: https://adminportal.com.ng/login/school-portal/ </a>(Web App)  <br /> <br />
+															  
+										 </p>
+
+
+
+
+										 
+										 <div>School Portal Registrar</div>   
+										 <div>
+										 <b>
+										 $acc_fullname<br/> 
+										 $admin_username
+										 </b>
+										 </div>    
+										  
+
+
+								 </div><br><br>
+							 </div>				
+								";
+						
+						
+									  
+								            $loader->send_email($adminhead_email, $subject, $body,$sch_logo,$adminhead_email,$school_name);
+
+											$output = array(
+												'success'		=>	'success',
+												'feedback'		=>	' Admin officer account setup successfully!!.Check your email for login details'
+											);
+
+							
+
+									}
+									else
+									{
+										
+											$output = array(
+												'success'		=>	'failed',
+												'feedback'		=>	"Newtwork error"
+											);
+									}
+						}
+						else
+						{
+							
+								$output = array(
+									'success'		=>	'failed',
+									'feedback'		=>	"Sorry $acc_fullname, your are not authorized to setup an account "
+								);
+						}
+
+
+					
+		
+				
+				echo json_encode($output);
+				
+				
+				
+			}
+	}
+ 
+	if($_POST["page"] === 'admin_edit_page')
+	{
+
+		if($_POST['action'] == 'admin_edit_action')
+		{
+			
+ 
+
+
+		
+			$photo      = $_FILES['photo']; 
+			$full_name   = trim($_POST['fullname']); 
+			$add_ress    = trim($_POST['address']);
+			$gen_der     = trim($_POST['gender']);
+			$ph_one      = trim($_POST['phone']);
+			$ad_depart  = trim($_POST['admin_depart']); 
+			$bank_name   = trim($_POST['bank_name']);
+			$acct_name   = trim($_POST['account_name']);
+			$acc_number = trim($_POST['account_number']);
+
+  							$location          = "school/$school_code";
+							$loader->filedata  = $_FILES['photo'];
+							$field_photo       = $loader->UploadPhoto($location);
+							 
+					if($field_photo != 'wrong')
+					{
+							
+						 
+ 
+
+
+						if(!empty($field_photo)){
+
+
+							@unlink("../$SchoolIMG/$school_code/$admin_photo");
+
+							$query_wallet ="UPDATE `1_school_admins` SET   
+							`photo`           =  '$field_photo',
+							`fullname`        =  '$full_name',
+							`gender`          =  '$gen_der',
+							`phone`           =  '$ph_one',
+							`address`         =  '$add_ress',
+							`admin_depart`    =  '$ad_depart',
+							`account_name`    =  '$acct_name',
+							`account_number`  =  '$acc_number',
+							`bank_name`       =  '$bank_name'
+							WHERE `1_school_admins`.`username` = '$admin_username' "; 
+
+
+						}
+						else
+						{
+							$query_wallet ="UPDATE `1_school_admins` SET    
+							`fullname`        =  '$full_name',
+							`gender`          =  '$gen_der',
+							`phone`           =  '$ph_one',
+							`address`         =  '$add_ress',
+							`admin_depart`    =  '$ad_depart',
+							`account_name`    =  '$acct_name',
+							`account_number`  =  '$acc_number',
+							`bank_name`       =  '$bank_name'
+							WHERE `1_school_admins`.`username` = '$admin_username' ";  
+						}
+
+						if(mysqli_query($homedb,$query_wallet))
+						{
+											
+					
+								$output = array(
+									'success'		=>	'success',
+									'feedback'		=>	' Admin  account updated successfully!!.Thanks'
+								);
+
+				
+
+						}
+						else
+						{
+							
+								$output = array(
+									'success'		=>	'failed',
+									'feedback'		=>	"Newtwork error"
+								);
+						}
+
+
+
+					}
+					else
+					{
+						
+							$output = array(
+								'success'		=>	'failed',
+								'feedback'		=>	"Files type must be jpeg, jpg or png"
+							);
+					}
+
+
+				
+	
+			
+			echo json_encode($output);
+			
+			
+			
+		}
+
+    }
+
+
+	if($_POST["page"] === 'admin_auth_page')
+	{
+
+		if($_POST['action'] == 'admin_auth_action')
+		{
+			
+ 
+			
+			
+		 
+							$admin_user    = trim($_POST['admin_user']);
+							$admin_role    = trim($_POST['admin_role']);
+
+  					 
+							$query_wallet ="UPDATE `1_school_admins` SET   
+							`admin_access`   =  '$admin_role'
+							WHERE `1_school_admins`.`username` = '$admin_user' ";  
+						 
+                if($admin_user != $admin_username)
+				{
+						if(mysqli_query($homedb,$query_wallet))
+						{
+											
+					
+								$output = array(
+									'success'		=>	'success',
+									'feedback'		=>	' Admin duty role updated successfully!!.Thanks'
+								);
+
+				
+
+						}
+						else
+						{
+							
+								$output = array(
+									'success'		=>	'failed',
+									'feedback'		=>	"Newtwork error"
+								);
+						}
+				}
+				else
+				{
+					
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'		=>	"Sorry!, you can not assign a new role to your self. Thanks"
+						);
+				}
+
+ 
+
+				
+	
+			
+			echo json_encode($output);
+			
+			
+			
+		}
+
+    }
+
+
+	if($_POST["page"] === 'onlinePaymentUpdate')
+	{
+
+
+		if($_POST['action'] == 'onlinePaymentUpdate')
+		{
+
+			
+			$payment_link   = $_POST['payment_link'];
+			$cat_sele       = $_POST['cat_sele'];
+			
+		 if($cat_sele == 'default'){
+			$update_link  = 'default';
+		 }else  if($cat_sele == 'empty'){
+			$update_link  = '';
+		 }else if($cat_sele == 'link'){
+			$update_link  = $payment_link;
+		 }
+			 
+ 
+						$query =("UPDATE `1_school_reg` SET  
+						`payment_link` = '$update_link'
+						WHERE `1_school_reg`.`school_code` = '$school_code'"); 
+						if(mysqli_query($homedb,$query))
+						{
+			
+								$data= array(
+									'success'		=>	'success',
+									'feedback'		=>	'Online payment  updated successfully'
+								);
+			
+						}
+						else
+						{
+								$data= array(
+									'success'		=>	'failed',
+									'feedback'		=>	'Network failed!! '
+								);			
+						}
+	 
+		 
+					   echo json_encode($data);
+        
+        }
+    }
+	if($_POST["page"] === 'lockStudentPortal')
+	{
+
+
+		if($_POST['action'] == 'lockStudentPortal')
+		{
+
+			
+			$stud_id   = $_POST['stud_id'];
+			$cat_sele  = $_POST['cat_sele'];
+			
+			$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`school_code` ='$school_code' AND `4_student_reg`.`online_stu_id`='$stud_id' ";  
+			$result_row = $loader->total_row();
+			 
+			if($result_row == 1)
+			{		
+				
+						$query =("UPDATE `4_student_reg` SET  
+						`portal_lock` = '$cat_sele'
+						WHERE `4_student_reg`.`school_code` = '$school_code'"); 
+						if(mysqli_query($homedb,$query))
+						{
+			
+								$data= array(
+									'success'		=>	'success',
+									'feedback'		=>	'Portal lock updated successfully'
+								);
+			
+						}
+						else
+						{
+								$data= array(
+									'success'		=>	'failed',
+									'feedback'		=>	'Network failed!! '
+								);			
+						}
+			}
+			else
+			{
+					$data= array(
+						'success'		=>	'failed',
+						'feedback'		=>	'Wrong data Passed. Please try again '
+					);			
+			}
+		 
+					   echo json_encode($data);
+        
+        }
+    }
+
+
+	if($_POST["page"] === 'validateIDcard')
+	{
+
+
+		if($_POST['action'] == 'validateIDcard')
+		{
+ 
+			$stud_id    = $_POST['stud_id'];
+			$valid_date = $_POST['valid_date'];
+			 
+ 
+			$loader->query = "SELECT * FROM `4_student_reg` WHERE `school_code` ='$school_code' AND `online_stu_id`='$stud_id' ";  
+			$result_row = $loader->total_row();
+
+					if($result_row == 1)
+					{
+
+			   
+									$query =("UPDATE `4_student_reg` SET  
+									`id_card_expires`            = '$valid_date'
+									WHERE `4_student_reg`.`online_stu_id` = '$stud_id'"); 
+									if(mysqli_query($homedb,$query))
+									{
+						
+											$data= array(
+												'success'		=>	'success',
+												'feedback'		=>	'Student ID Card validated successfully  '
+											);
+						
+								   }
+								   else
+								   {
+											$data= array(
+												'success'		=>	'success',
+												'feedback'		=>	'Student ID Card validation failed!! '
+											);			
+								   }
+					}
+					else
+					{
+								$data= array(
+									'success'		=>	'success',
+									'feedback'		=>	'Invalid Data Passed '
+								);			
+					}
+					   echo json_encode($data);
+        
+        }
+    
+	}
+
+
 	if($_POST["page"] === 'updateAcctPassword')
 	{
 
@@ -170,21 +699,20 @@ if(isset($_POST['page'])){
 			$pwd_1   = $_POST['pwd_1'];
 			$pwd_2   = $_POST['pwd_2'];
 			
-			$hash_pass  =	password_hash(trim($pwd_2), PASSWORD_DEFAULT);	
+			//$hash_pass  =	password_hash(trim($pwd_2), PASSWORD_DEFAULT);	
 
-			$token      =  MD5("$pwd_1$username");	
+			$token      =  MD5("$pwd_1$admin_username");	
 
 			 
-									$query =("UPDATE `1_school_reg` SET  
-									`token`            = '$token',
-									`school_password`  = '$hash_pass'
-									WHERE `1_school_reg`.`school_email` = '$username'"); 
+									$query =("UPDATE `1_school_admins` SET   
+									`password`  = '$token'
+									WHERE `1_school_admins`.`username` = '$admin_username'"); 
 									if(mysqli_query($homedb,$query))
 									{
 						
 											$data= array(
 												'success'		=>	'success',
-												'feedback'		=>	'Password data updated successfully, you will be auto loutout. Please log in with new password  '
+												'feedback'		=>	'Password data updated successfully, you will be auto logout. Please log in with new password  '
 											);
 						
 								   }
@@ -199,7 +727,8 @@ if(isset($_POST['page'])){
 					   echo json_encode($data);
         
         }
-    }
+    
+	}
 
 
 	if($_POST['action'] == 'check_teacher_account')
@@ -335,8 +864,7 @@ if(isset($_POST['page'])){
 				$acct_number          =  trim($_POST['acct_number']);
 				$acct_name            =  trim($_POST['acct_name']);
 				$bank_name            =  trim($_POST['bank_name']); 
-				$sch_code             =  trim($_POST['sch_code']);
-				$school_type          =  trim($_POST['school_type']);
+				$sch_code             =  trim($_POST['sch_code']); 
 
 				$passkey             =   MD5("$raw_password$user");	
 						
@@ -367,7 +895,7 @@ if(isset($_POST['page'])){
 						'".mysqli_real_escape_string($homedb, $acct_name)."',   
 						'".mysqli_real_escape_string($homedb, $acct_number)."',   
 						'".mysqli_real_escape_string($homedb, $bank_name)."',   
-						'".mysqli_real_escape_string($homedb, $username)."',   
+						'".mysqli_real_escape_string($homedb, $admin_username)."',   
 						'".mysqli_real_escape_string($homedb, $teacher_rank)."',   
 						'".mysqli_real_escape_string($homedb, $subject)."',   
 						'".mysqli_real_escape_string($homedb, $date_init)."',
@@ -378,7 +906,7 @@ if(isset($_POST['page'])){
 										
 			
 			
-							$sch_logo="/$school_code/$photo";
+							$sch_logo="/$school_code/$school_logo";
 							$subject = 'TEACHER PORTAL SETUP';
 						
 							$body = "
@@ -445,8 +973,8 @@ if(isset($_POST['page'])){
 							 </div>				
 								";
 			
-							 $loader->send_email($_POST['user_email_address'], $subject, $body,$sch_logo,$username,$school_name);
 							$loader->TeacherNoGeneratorUpdate();
+							 $loader->send_email($_POST['user_email_address'], $subject, $body,$sch_logo,$username,$school_name);
 
 								$output = array(
 									'success'		=>	'success',
@@ -486,7 +1014,7 @@ if(isset($_POST['page'])){
 									'".mysqli_real_escape_string($homedb, $acct_name)."',   
 									'".mysqli_real_escape_string($homedb, $acct_number)."',   
 									'".mysqli_real_escape_string($homedb, $bank_name)."',   
-									'".mysqli_real_escape_string($homedb, $username)."',   
+									'".mysqli_real_escape_string($homedb, $admin_username)."',   
 									'".mysqli_real_escape_string($homedb, $teacher_rank)."',   
 									'".mysqli_real_escape_string($homedb, $subject)."',   
 									'".mysqli_real_escape_string($homedb, $date_init)."',
@@ -498,7 +1026,7 @@ if(isset($_POST['page'])){
 						
 						
 						
-										$sch_logo="/$school_code/$photo";
+										$sch_logo="../myschoolapp_api/school/$school_code/$school_logo";
 										$subject = 'TEACHER PORTAL SETUP';
 									
 										$body = "
@@ -712,6 +1240,7 @@ if(isset($_POST['page'])){
 	 
 				$password          =  MD5($_POST['password']); 	
 				$admincode         =  $username;
+				$expiring_date     =  trim($_POST['expiring_date']);
 				$schl_stu_no       =  trim($_POST['schl_stu_no']);
 				$student_code      =  trim($_POST['student_code']);
 				$school_code       =  trim($_POST['school_code']);
@@ -723,8 +1252,7 @@ if(isset($_POST['page'])){
 				$cur_term          =  trim($_POST['cur_term']);
 				$student_class     =  trim($_POST['student_class']);
 				$class_rep         =  trim($_POST['class_rep']); 
-				$payment_status    =  trim($_POST['payment_status']);
-				$school_type       =  trim($_POST['school_type']);
+				$payment_status    =  trim($_POST['payment_status']); 
 
 
 			$ConfirmStudentExist = $loader->ConfirmStudentExist($student_code);
@@ -770,13 +1298,15 @@ if(isset($_POST['page'])){
 													'".mysqli_real_escape_string($homedb, $payment_status)."',      
 													'".mysqli_real_escape_string($homedb, '')."',      
 													'".mysqli_real_escape_string($homedb, 'inactive')."',      
-													'".mysqli_real_escape_string($homedb, 'passive')."',      
-													'".mysqli_real_escape_string($homedb, 'passive')."',      
+													'".mysqli_real_escape_string($homedb, 'active')."',      
+													'".mysqli_real_escape_string($homedb, 'active')."',      
 													'".mysqli_real_escape_string($homedb, $date_init)."',
 													'',
 													'".mysqli_real_escape_string($homedb, $fadmin_code)."',
 													'".mysqli_real_escape_string($homedb, $admincode)."',
-													''
+													'',
+													'".mysqli_real_escape_string($homedb, 'open')."',
+													'".mysqli_real_escape_string($homedb, $expiring_date)."'
 													)");
 													if(mysqli_query($homedb,$query_wallet))
 													{
@@ -1040,15 +1570,15 @@ if(isset($_POST['page'])){
 
 											
 
-												}
-												else
-												{
-													
-														$output = array(
-															'success'		=>	'failed',
-															'feedback'		=>	"Newtwork error"
-														);
-												}
+													}
+													else
+													{
+														
+															$output = array(
+																'success'		=>	'failed',
+																'feedback'		=>	"Newtwork error"
+															);
+													}
 									
 									}
 									else
@@ -1368,6 +1898,10 @@ if(isset($_POST['page'])){
 
 									$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`student_code` = '$delete_id' ";
 									$loader->execute_query();
+
+
+									$loader->query = "DELETE FROM `student_weekly_assesment ` WHERE `student_weekly_assesment `.`student_code` = '$delete_id' ";
+									$loader->execute_query();
 									
 									echo $success ="$student_name account has been deleted from database";
 								}
@@ -1423,6 +1957,10 @@ if(isset($_POST['page'])){
 
 
 								$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`parent_code` = '$delete_id' ";
+								$loader->execute_query();
+
+
+								$loader->query = "DELETE FROM `student_weekly_assesment ` WHERE `student_weekly_assesment `.`parent_code` = '$delete_id' ";
 								$loader->execute_query();
 								
 								echo $success ="$guidance_name account has been deleted with all connected accounts from database";
@@ -1563,6 +2101,8 @@ if(isset($_POST['page'])){
 
 				 echo json_encode($output);
 		    }	
+
+
 		}
 
 	}	
@@ -1629,7 +2169,7 @@ if(isset($_POST['page'])){
 					$student_code   =  trim($_POST['student_code']);
 					$school_id      =  trim($_POST['school_code']);
 					$parent_code    =  trim($_POST['parent_code']);
-					$teacher_code   =  trim($_POST['teacher_code']);
+					$teacher_cod   =  trim($_POST['teacher_code']);
 					$schl_stu_no    =  trim($_POST['schl_stu_no']);
 					$student_name   =  trim($_POST['student_name']);
 					$stu_gender     =  trim($_POST['stu_gender']);
@@ -1658,7 +2198,7 @@ if(isset($_POST['page'])){
 						`photo`            =  '$field_photo',
 						`student_name`     =  '$student_name',
 						`stu_gender`       =  '$stu_gender',
-						`teacher_code`     =  '$teacher_code',
+						`teacher_code`     =  '$teacher_cod',
 						`student_class`    =  '$student_class',
 						`class_rep`        =  '$class_rep',
 						`school_fee`       =  '$payment_status' 
@@ -1671,6 +2211,7 @@ if(isset($_POST['page'])){
 						$query_wallet ="UPDATE `4_student_reg` SET    
 						`student_name`     =  '$student_name',
 						`stu_gender`       =  '$stu_gender',
+						`teacher_code`     =  '$teacher_cod',
 						`student_class`    =  '$student_class',
 						`class_rep`        =  '$class_rep',
 						`school_fee`       =  '$payment_status' 
@@ -2202,20 +2743,23 @@ if(isset($_POST['page'])){
 							 
 										<div style="text-align:center;font-wweight:bold;font-size:20px">
 									   <div card-header>
-										  <h2 style="text-decoration:underline;">STUDENT INFOMATION </h2>
+										  <h2 style="text-decoration:underline;">STUDENT DATA </h2>
 										</div>
 										
 										  <a href="student_subject_check.php?student_id='.$online_stu_id.'">
 											<div class="form-group">	
-											<label>Student ID  <b> '.$online_stu_id.' </b> </label><br />
+											<label> <b> '.$online_stu_id.' </b> </label><br />
 											<img src="../'.$SchoolIMG.'/'.$school_code.'/'.$photo.'"  style="height: 200px;border-radius:900pcdcdx" />
 											</div>
 										 </a>
 										    <div>School Name: '.$schoolName.'</div>
                                             <div>Fullname:  '.$student_name.'</div> 
                                             <div>Current Class: '.$student_class.'</div>
-										
+										 <a href="student_subject_check.php?student_id='.$online_stu_id.'">
+											<div class="btn btn-success">View Registered Subjects</div>
+											</a>										
 										<h2 style="text-decoration:underline;margin-bottom:10px">Subject Registration </h2>
+
 										</div>
 
 
@@ -2477,12 +3021,12 @@ if(isset($_POST['page'])){
 	  
 												$query_wallet ="UPDATE `student_exam_result` SET   
 												`$sub_id`     = 'null' 		 
-												WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
+												WHERE `student_exam_result`.`student_code` = '$stu_online_id' AND `student_exam_result`.`status` = 'active'"; 
 												mysqli_query($homedb,$query_wallet);
 
                                                 $query_wallet ="UPDATE `student_test_result` SET   
 												`$sub_id`     = 'null' 		 
-												WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
+												WHERE `student_test_result`.`student_code` = '$stu_online_id' AND `student_test_result`.`status` = 'active'"; 
 												mysqli_query($homedb,$query_wallet);
 
 
@@ -2558,7 +3102,7 @@ if(isset($_POST['page'])){
 
 							$photo          =  $row['photo'];      
 							$parent_code    =  $row['parent_code'];   
-							$sch_code    =  $row['school_code'];   
+							$sch_code       =  $row['school_code'];   
 							$student_name   =  $row['student_name'];   
 							$schl_stu_no    =  $row['schl_stu_no'];   
 							$online_stu_id  =  $row['online_stu_id'];   
@@ -2594,15 +3138,14 @@ if(isset($_POST['page'])){
 											<img src="../'.$SchoolIMG.'/'.$sch_code.'/'.$photo.'"  style="height: 200px;border-radius:500px" />
 											</div>
 										
-                                            <div>School Name: '.$schoolName.'</div>
-                                            <div>Parent Name: '.$parent_name.'</div>
-                                            <div>Student Name:  '.$student_name.'</div>
+                                           
+											<div>Payment Status: '.$sub_status.'</div>
+                                            <div>Current Term: '.$current_term.'</div> 
                                             <div>Gender: '.$stu_gender.'</div>
                                             <div>Student NO: '.$schl_stu_no.'</div>
 											<div>Class: '.$student_class.'</div>
-											<div>Payment Status: '.$sub_status.'</div>
-											 <a href="update_student_data.php?student_id='.$online_stu_id.'">
-											<div class="btn btn-success"> Update Student Data</div>
+											 <a href="student_subject_setup.php?student_id='.$online_stu_id.'">
+											<div class="btn btn-success"> Add Subject</div>
 											</a>
 										
 										<h2 style="text-decoration:underline;margin-bottom:20px;color:red"> REGISTERED SUBJECTS  </h2>
@@ -3186,10 +3729,85 @@ if(isset($_POST['page'])){
 
 
 
+			if($_POST['action'] == 'checkPastResult')
+			{
+
+				$result_student = trim($_POST['result_student']) ;
+				$result_year    = trim($_POST['result_year']) ;
+				$result_term    = trim($_POST['result_term']) ;
+
+				$loader->query = "SELECT * FROM `student_exam_result`  WHERE `student_exam_result`.`student_code` = '$result_student' AND `student_exam_result`.`term`= '$result_term' AND  `student_exam_result`.`date` ='$result_year' "; 
+				$resultquery_exam = $loader->total_row(); 
+				$loader->query = "SELECT * FROM `student_test_result`  WHERE `student_test_result`.`student_code` = '$result_student' AND `student_test_result`.`term` = '$result_term' AND  `student_test_result`.`date` ='$result_year' "; 
+				$resultquery_test = $loader->total_row(); 
+
+            
+				include("../e_result_server.php");
+				$ResultServer = new ResultServer();
+
+				if($resultquery_exam == 1 && $resultquery_test == 1){
+
+					echo $ResultServer->EserverPastResultFetch($result_student,$result_term,$result_year);
+
+				}else{
+					echo $failed ='
+											<div class="col-xl- col-md-6">
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+								<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+											
+											Empty result fetch. Please double check your inputs  
+											
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+								</div>  
+								</div>
+								';
+				}
+
+			}
+
+
+			if($_POST['action'] == 'student_profile_data')
+			{
+
+				$student_id = trim($_POST['student_id']) ; 
+  
+ 
+				$loader->query ="SELECT * FROM `4_student_reg` WHERE online_stu_id = '$student_id'";
+				$resulttotal_row = $loader->total_row();
+            
+				include("../e_result_server.php");
+				$ResultServer = new ResultServer();
+
+				if($resulttotal_row == 1){
+
+					echo $ResultServer->StudentProfileDataFetch($student_id);
+
+				}else{
+					echo $failed ='
+											<div class="col-xl- col-md-6">
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+								<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+											
+											Empty result fetch. Please double check your inputs  
+											
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+								</div>  
+								</div>
+								';
+				}
+
+			}
+
+
 			if($_POST['action'] == 'checkResult')
 			{
 				
-			 
+				include("../e_result_server.php");
+				$ResultServer = new ResultServer();
 				
 				$online_stu_id = trim($_POST['stu_online_id']) ;
 			 
@@ -3218,1043 +3836,19 @@ if(isset($_POST['page'])){
 						}	
 
 
-						// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-						$loader->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
-						$result = $loader->query_result();  
-						foreach($result as $row) 
-						{
-								
+		 
 
-								
-							$stuExam_1 =  $row['sub_1'];
-							$stuExam_2 =  $row['sub_2'];
-							$stuExam_3 =  $row['sub_3']; 
-							$stuExam_4 =  $row['sub_4'];
-							$stuExam_5 =  $row['sub_5'];
-							$stuExam_6 =  $row['sub_6'];
-							$stuExam_7 =  $row['sub_7'];
-							$stuExam_8 =  $row['sub_8'];
-							$stuExam_9 =  $row['sub_9']; 
-							$stuExam_10 =  $row['sub_10'];  
-							$stuExam_11 =  $row['sub_11'];  
-							$stuExam_12 =  $row['sub_12'];  
-							$stuExam_13 =  $row['sub_13'];  
-							$stuExam_14 =  $row['sub_14'];  
-							$stuExam_15 =  $row['sub_15'];  
-							$stuExam_16 =  $row['sub_16'];  
-							$stuExam_17 =  $row['sub_17'];  
-							$stuExam_18 =  $row['sub_18'];  
-							$stuExam_19 =  $row['sub_19'];  
-							$stuExam_20 =  $row['sub_20'];  
-							$stuExam_21 =  $row['sub_21'];  
-							$stuExam_22 =  $row['sub_22'];  
-							$stuExam_23 =  $row['sub_23'];  
-							$stuExam_24 =  $row['sub_24'];  
-							$stuExam_25 =  $row['sub_25'];  
-							$stuExam_26 =  $row['sub_26'];  
-							$stuExam_27 =  $row['sub_27'];  
-							$stuExam_28 =  $row['sub_28'];  
-							$stuExam_29 =  $row['sub_29'];  
-							$stuExam_30 =  $row['sub_30'];  
-							$stuExam_31 =  $row['sub_31'];  
-							$stuExam_32 =  $row['sub_32'];  
-							$stuExam_33 =  $row['sub_33'];  
-							$stuExam_34 =  $row['sub_34'];  
-							$stuExam_35 =  $row['sub_35'];        
-							$stuExam_36 =  $row['sub_36'];        
-							$stuExam_37 =  $row['sub_37'];        
-							$stuExam_38 =  $row['sub_38'];        
-							$stuExam_39 =  $row['sub_39'];        
-							$stuExam_40 =  $row['sub_40'];        
-							$stuExam_41 =  $row['sub_41'];        
-							$stuExam_42 =  $row['sub_42'];        
-							$stuExam_43 =  $row['sub_43'];        
-							$stuExam_44 =  $row['sub_44'];        
-							$stuExam_45 =  $row['sub_45'];        
-							$stuExam_46 =  $row['sub_46'];        
-							$stuExam_47 =  $row['sub_47'];        
-							$stuExam_48 =  $row['sub_48'];        
-							$stuExam_49 =  $row['sub_49'];        
-							$stuExam_50 =  $row['sub_50'];      
-						}
- 
-
-
-                        $loader->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
-                        $result_que = $loader->query_result();  
-						foreach($result_que as $row_2) 
-						{ 
-							$stuTest_1 =  $row_2['sub_1'];
-							$stuTest_2 =  $row_2['sub_2'];
-							$stuTest_3 =  $row_2['sub_3']; 
-							$stuTest_4 =  $row_2['sub_4'];
-							$stuTest_5 =  $row_2['sub_5'];
-							$stuTest_6 =  $row_2['sub_6'];
-							$stuTest_7 =  $row_2['sub_7'];
-							$stuTest_8 =  $row_2['sub_8'];
-							$stuTest_9 =  $row_2['sub_9']; 
-							$stuTest_10 =  $row_2['sub_10'];  
-							$stuTest_11 =  $row_2['sub_11'];  
-							$stuTest_12 =  $row_2['sub_12'];  
-							$stuTest_13 =  $row_2['sub_13'];  
-							$stuTest_14 =  $row_2['sub_14'];  
-							$stuTest_15 =  $row_2['sub_15'];  
-							$stuTest_16 =  $row_2['sub_16'];  
-							$stuTest_17 =  $row_2['sub_17'];  
-							$stuTest_18 =  $row_2['sub_18'];  
-							$stuTest_19 =  $row_2['sub_19'];  
-							$stuTest_20 =  $row_2['sub_20'];  
-							$stuTest_21 =  $row_2['sub_21'];  
-							$stuTest_22 =  $row_2['sub_22'];  
-							$stuTest_23 =  $row_2['sub_23'];  
-							$stuTest_24 =  $row_2['sub_24'];  
-							$stuTest_25 =  $row_2['sub_25'];  
-							$stuTest_26 =  $row_2['sub_26'];  
-							$stuTest_27 =  $row_2['sub_27'];  
-							$stuTest_28 =  $row_2['sub_28'];  
-							$stuTest_29 =  $row_2['sub_29'];  
-							$stuTest_30 =  $row_2['sub_30'];  
-							$stuTest_31 =  $row_2['sub_31'];  
-							$stuTest_32 =  $row_2['sub_32'];  
-							$stuTest_33 =  $row_2['sub_33'];  
-							$stuTest_34 =  $row_2['sub_34'];  
-							$stuTest_35 =  $row_2['sub_35'];   
-							$stuTest_36 =  $row_2['sub_36'];   
-							$stuTest_37 =  $row_2['sub_37'];   
-							$stuTest_38 =  $row_2['sub_38'];   
-							$stuTest_39 =  $row_2['sub_39'];   
-							$stuTest_40 =  $row_2['sub_40'];   
-							$stuTest_41 =  $row_2['sub_41'];   
-							$stuTest_42 =  $row_2['sub_42'];   
-							$stuTest_43 =  $row_2['sub_43'];   
-							$stuTest_44 =  $row_2['sub_44'];   
-							$stuTest_45 =  $row_2['sub_45'];   
-							$stuTest_46 =  $row_2['sub_46'];   
-							$stuTest_47 =  $row_2['sub_47'];   
-							$stuTest_48 =  $row_2['sub_48'];   
-							$stuTest_49 =  $row_2['sub_49'];   
-							$stuTest_50 =  $row_2['sub_50'];   
-                                 
-
-                        }
-
-
-						$result_1  = intval($stuExam_1) + intval($stuTest_1); 
-						$result_2  = intval($stuExam_2) + intval($stuTest_2); 
-						$result_3  = intval($stuExam_3) + intval($stuTest_3);  
-						$result_4  = intval($stuExam_4) + intval($stuTest_4); 
-						$result_5  = intval($stuExam_5) + intval($stuTest_5); 
-						$result_6  = intval($stuExam_6) + intval($stuTest_6); 
-						$result_7  = intval($stuExam_7) + intval($stuTest_7); 
-						$result_8  = intval($stuExam_8) + intval($stuTest_8); 
-						$result_9  = intval($stuExam_9) + intval($stuTest_9);  
-						$result_10 = intval($stuExam_10) + intval($stuTest_10);  
-						$result_11 = intval($stuExam_11) + intval($stuTest_11);  
-						$result_12 = intval($stuExam_12) + intval($stuTest_12);  
-						$result_13 = intval($stuExam_13) + intval($stuTest_13);  
-						$result_14 = intval($stuExam_14) + intval($stuTest_14);  
-						$result_15 = intval($stuExam_15) + intval($stuTest_15);  
-						$result_16 = intval($stuExam_16) + intval($stuTest_16);  
-						$result_17 = intval($stuExam_17) + intval($stuTest_17);  
-						$result_18 = intval($stuExam_18) + intval($stuTest_18);  
-						$result_19 = intval($stuExam_19) + intval($stuTest_19);  
-						$result_20 = intval($stuExam_20) + intval($stuTest_20);  
-						$result_21 = intval($stuExam_21) + intval($stuTest_21);  
-						$result_22 = intval($stuExam_22) + intval($stuTest_22);  
-						$result_23 = intval($stuExam_23) + intval($stuTest_23);  
-						$result_24 = intval($stuExam_24) + intval($stuTest_24);  
-						$result_25 = intval($stuExam_25) + intval($stuTest_25);  
-						$result_26 = intval($stuExam_26) + intval($stuTest_26);  
-						$result_27 = intval($stuExam_27) + intval($stuTest_27);  
-						$result_28 = intval($stuExam_28) + intval($stuTest_28);  
-						$result_29 = intval($stuExam_29) + intval($stuTest_29);  
-						$result_30 = intval($stuExam_30) + intval($stuTest_30);  
-						$result_31 = intval($stuExam_31) + intval($stuTest_31);  
-						$result_32 = intval($stuExam_32) + intval($stuTest_32);  
-						$result_33 = intval($stuExam_33) + intval($stuTest_33);  
-						$result_34 = intval($stuExam_34) + intval($stuTest_34);  
-						$result_35 = intval($stuExam_35) + intval($stuTest_35); 
-						$result_36 = intval($stuExam_36) + intval($stuTest_36); 
-						$result_37 = intval($stuExam_37) + intval($stuTest_37); 
-						$result_38 = intval($stuExam_38) + intval($stuTest_38); 
-						$result_39 = intval($stuExam_39) + intval($stuTest_39); 
-						$result_40 = intval($stuExam_40) + intval($stuTest_40); 
-						$result_41 = intval($stuExam_41) + intval($stuTest_41); 
-						$result_42 = intval($stuExam_42) + intval($stuTest_42); 
-						$result_43 = intval($stuExam_43) + intval($stuTest_43); 
-						$result_44 = intval($stuExam_44) + intval($stuTest_44); 
-						$result_45 = intval($stuExam_45) + intval($stuTest_45); 
-						$result_46 = intval($stuExam_46) + intval($stuTest_46); 
-						$result_47 = intval($stuExam_47) + intval($stuTest_47); 
-						$result_48 = intval($stuExam_48) + intval($stuTest_48); 
-						$result_49 = intval($stuExam_49) + intval($stuTest_49); 
-						$result_50 = intval($stuExam_50) + intval($stuTest_50); 
-                     
+					 
 
             	
 						
 						if($result_row == 1 && $sch_code == $school_code)
 						{
-							//$i=0;
-							 $result = $loader->GetStudentSubject($online_stu_id);
+						  
+							//echo $ResultServer->EserverResultFetch($online_stu_id);
 
-							$schoolName = $loader-> SchoolName($sch_code);	
-							$parent_name = $loader-> ParentName($parent_code);
-
-					 
-						
-						     echo $success =' 
+ 
 							 
-										<div style="text-align:center;font-wweight:bold;font-size:20px">
-									   <div card-header>
-										  <h2 style="text-decoration:underline;color:green">'.$student_name.' </h2>
-										</div>
-										
-										 
-											<div class="form-group">	
-											<label style="color:red"> <b> '.$online_stu_id.' </b> </label><br />
-											<img src="../all_photo/'.$photo.'"  style="height: 200px;border-radius:500px" />
-											</div>
-										
-                                            <div>School Name: '.$schoolName.'</div>
-                                            <div>Parent Name: '.$parent_name.'</div>
-                                            <div>Student Name:  '.$student_name.'</div>
-                                            <div>Gender: '.$stu_gender.'</div>
-                                            <div>Student NO: '.$schl_stu_no.'</div>
-											<div>Class: '.$student_class.'</div>
-											<div>Payment Status: '.$sub_status.'</div>
-											 <a href="update_student_data.php?student_id='.$online_stu_id.'">
-											<div class="btn btn-success">Download Student Result</div>
-											</a>
-										
-										<h2 style="text-decoration:underline;margin-bottom:20px;color:green">RESULT </h2>
-										</div>
-
-
-
-										<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" class="btn btn-success mb-3">   
-										<div style="width:55%;font-weight:bold;"> Subjects </div>
-										<div style="width:10%;font-weight:bold;"> CA </div>
-										<div style="width:10%;font-weight:bold;"> Exam  </div>
-										<div style="width:10%;font-weight:bold;"> Aggregate </div>
-										<div style="width:10%;font-weight:bold;"> Grade </div>
-										</div>
-
-							 
-								  ';
-
-
-
-								  foreach($result as $row)
-								  {
-								  
-										$newOnlineId = $online_stu_id; // substr($online_stu_id, 3);   //I HAD TO REMOVE THE 3 FIRST LETTERS 
-
-										  
-
-
-		   
-
-
-					   
-
-										 if(!empty($row['sub_1'])){ 
-										 
-										  $grade = $loader->GradeCal($result_1);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_1']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_1." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_1." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_1." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-
-
-
-										 if(!empty($row['sub_2'])){ 
-										 
-										  $grade = $loader->GradeCal($result_2);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_2']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_2." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_2." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_2." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-
-										 if(!empty($row['sub_3'])){ 
-										 
-										  $grade = $loader->GradeCal($result_3);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_3']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_3." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_3." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_3." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-
-										 if(!empty($row['sub_4'])){ 
-										 
-										  $grade = $loader->GradeCal($result_4);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_4']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_4." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_4." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_4." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-
-										 if(!empty($row['sub_5'])){ 
-										 
-										  $grade = $loader->GradeCal($result_5);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_5']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_5." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_5." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_5." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-
-										 if(!empty($row['sub_6'])){ 
-										 
-										  $grade = $loader->GradeCal($result_6);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_6']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_6." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_6." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_6." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-
-										  
-										 if(!empty($row['sub_7'])){ 
-										 
-										  $grade = $loader->GradeCal($result_7);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_7']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_7." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_7." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_7." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-
-										 if(!empty($row['sub_8'])){ 
-										 
-										  $grade = $loader->GradeCal($result_8);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_8']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_8." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_8." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_8." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_9'])){ 
-										 
-										  $grade = $loader->GradeCal($result_9);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_9']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_9." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_9." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_9." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_10'])){ 
-										 
-										  $grade = $loader->GradeCal($result_10);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_10']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_10." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_10." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_10." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_11'])){ 
-										 
-										  $grade = $loader->GradeCal($result_11);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_11']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_11." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_11." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_11." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_12'])){ 
-										 
-										  $grade = $loader->GradeCal($result_12);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_12']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_12." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_12." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_12." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_13'])){ 
-										 
-										  $grade = $loader->GradeCal($result_13);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_13']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_13." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_13." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_13." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_14'])){ 
-										 
-										  $grade = $loader->GradeCal($result_14);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_14']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_14." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_14." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_14." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_15'])){ 
-										 
-										  $grade = $loader->GradeCal($result_15);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_15']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_15." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_15." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_15." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_16'])){ 
-										 
-										  $grade = $loader->GradeCal($result_16);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_16']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_16." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_16." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_16." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_17'])){ 
-										 
-										  $grade = $loader->GradeCal($result_17);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_17']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_17." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_17." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_17." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_18'])){ 
-										 
-										  $grade = $loader->GradeCal($result_18);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_18']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_18." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_18." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_18." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_19'])){ 
-										 
-										  $grade = $loader->GradeCal($result_19);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_19']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_19." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_19." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_19." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_20'])){ 
-										 
-										  $grade = $loader->GradeCal($result_20);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_20']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_20." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_20." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_20." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_21'])){ 
-										 
-										  $grade = $loader->GradeCal($result_21);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_21']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_21." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_21." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_21." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_22'])){ 
-										 
-										  $grade = $loader->GradeCal($result_22);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_22']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_22." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_22." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_22." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_23'])){ 
-										 
-										  $grade = $loader->GradeCal($result_23);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_23']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_23." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_23." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_23." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_24'])){ 
-										 
-										  $grade = $loader->GradeCal($result_24);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_24']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_24." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_24." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_24." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_25'])){ 
-										 
-										  $grade = $loader->GradeCal($result_25);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_25']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_25." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_25." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_25." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_26'])){ 
-										 
-										  $grade = $loader->GradeCal($result_26);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_26']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_26." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_26." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_26." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_27'])){ 
-										 
-										  $grade = $loader->GradeCal($result_27);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_27']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_27." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_27." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_27." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_28'])){ 
-										 
-										  $grade = $loader->GradeCal($result_28);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_28']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_28." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_28." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_28." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										  
-										 if(!empty($row['sub_29'])){ 
-										 
-										  $grade = $loader->GradeCal($result_29);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_29']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_29." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_29." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_29." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_30'])){ 
-										 
-										  $grade = $loader->GradeCal($result_30);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_30']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_30." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_30." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_30." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_31'])){ 
-										 
-										  $grade = $loader->GradeCal($result_31);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_31']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_31." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_31." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_31." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_32'])){ 
-										 
-										  $grade = $loader->GradeCal($result_32);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_32']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_32." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_32." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_32." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_33'])){ 
-										 
-										  $grade = $loader->GradeCal($result_33);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_33']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_33." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_33." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_33." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_34'])){ 
-										 
-										  $grade = $loader->GradeCal($result_34);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_34']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_34." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_34." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_34." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";											  
-										 }
-										 if(!empty($row['sub_35'])){ 
-										 
-										  $grade = $loader->GradeCal($result_35);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_35']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_35." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_35." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_35." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_36'])){ 
-										 
-										  $grade = $loader->GradeCal($result_36);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_36']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_36." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_36." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_36." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_37'])){ 
-										 
-										  $grade = $loader->GradeCal($result_37);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_37']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_37." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_37." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_37." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_38'])){ 
-										 
-										  $grade = $loader->GradeCal($result_38);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_38']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_38." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_38." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_38." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_39'])){ 
-										 
-										  $grade = $loader->GradeCal($result_39);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_39']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_39." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_39." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_39." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_40'])){ 
-										 
-										  $grade = $loader->GradeCal($result_40);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_40']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_40." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_40." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_40." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_41'])){ 
-										 
-										  $grade = $loader->GradeCal($result_41);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_41']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_41." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_41." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_41." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_42'])){ 
-										 
-										  $grade = $loader->GradeCal($result_42);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_42']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_42." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_42." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_42." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_43'])){ 
-										 
-										  $grade = $loader->GradeCal($result_43);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_43']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_43." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_43." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_43." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_44'])){ 
-										 
-										  $grade = $loader->GradeCal($result_44);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_44']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_44." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_44." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_44." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_45'])){ 
-										 
-										  $grade = $loader->GradeCal($result_45);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_45']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_45." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_45." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_45." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_46'])){ 
-										 
-										  $grade = $loader->GradeCal($result_46);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_46']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_46." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_46." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_46." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_47'])){ 
-										 
-										  $grade = $loader->GradeCal($result_47);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_47']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_47." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_47." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_47." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_48'])){ 
-										 
-										  $grade = $loader->GradeCal($result_48);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_48']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_48." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_48." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_48." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_49'])){ 
-										 
-										  $grade = $loader->GradeCal($result_49);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_49']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_49." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_49." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_49." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-										 if(!empty($row['sub_50'])){ 
-										 
-										  $grade = $loader->GradeCal($result_50);
-											echo$data="
-										  <div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
-										  <div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_50']."  </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuTest_50." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$stuExam_50." </div>
-										  <div style='width:10%'  class='btn btn-danger'> ".$result_50." </div>
-										  <div style='width:10%'  class='btn btn-info'> ".$grade." </div>
-										  </div>
-										  <hr>											  
-											   ";										  
-										 }
-
-										
-									  echo $data ='  
-									  <div class="card p-3" tyle="display:flex;width:100%">
-
-												  <div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" class="btn btn-dark mb-3">   
-													  <div style="width:20%;font-size:14px"> Range Of Score </div>
-													  <div style="width:10%;font-size:14px"> Grade </div>
-													  <div style="width:20%;font-size:14px"> Remark  </div>
-												  
-													  <div style="width:20%;font-size:14px"> Range Of Score </div>
-													  <div style="width:10%;font-size:14px"> Grade </div>
-													  <div style="width:20%;font-size:14px"> Remark  </div>
-												  </div>
-
-												  
-												  <div class="mb-4" style="width:100%">
-
-														  <div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															  <div style="width:20%;font-size:14px">85% - 100% </div>
-															  <div style="width:10%;font-size:14px"> A1+ </div>
-															  <div style="width:20%;font-size:14px"> Outstanding </div>
-														  
-															  <div style="width:20%;font-size:14px">80% - 84% </div>
-															  <div style="width:10%;font-size:14px"> A1 </div>
-															  <div style="width:20%;font-size:14px"> Excellent </div>
-														  </div>
-												  </div>
-											  
-												  <div class="mb-4" style="width:100%">
-
-														  <div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															  <div style="width:20%;font-size:14px">75% - 79% </div>
-															  <div style="width:10%;font-size:14px"> B2+ </div>
-															  <div style="width:20%;font-size:14px"> Ver Good </div>
-														  
-															  <div style="width:20%;font-size:14px">65% - 69% </div>
-															  <div style="width:10%;font-size:14px"> C4 </div>
-															  <div style="width:20%;font-size:14px"> Credit </div>
-														  </div>
-												  </div>
-												  
-												  <div class="mb-4" style="width:100%">
-
-														  <div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															  <div style="width:20%;font-size:14px">60% - 64% </div>
-															  <div style="width:10%;font-size:14px"> C5 </div>
-															  <div style="width:20%;font-size:14px"> Ver Good </div>
-														  
-															  <div style="width:20%;font-size:14px">55% - 59% </div>
-															  <div style="width:10%;font-size:14px"> C6 </div>
-															  <div style="width:20%;font-size:14px"> Credit </div>
-														  </div>
-												  </div>
-												  
-												  <div class="mb-4" style="width:100%">
-
-														  <div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															  <div style="width:20%;font-size:14px">50% - 54% </div>
-															  <div style="width:10%;font-size:14px"> D7 </div>
-															  <div style="width:20%;font-size:14px"> Fair </div>
-														  
-															  <div style="width:20%;font-size:14px">45% - 49% </div>
-															  <div style="width:10%;font-size:14px"> E8 </div>
-															  <div style="width:20%;font-size:14px"> Pass </div>
-														  </div>
-												  </div>
-												  
-												  <div class="mb-4" style="width:100%">
-
-														  <div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
-															  <div style="width:20%;font-size:14px">0% - 44% </div>
-															  <div style="width:10%;font-size:14px"> F9 </div>
-															  <div style="width:20%;font-size:14px"> Fail </div>
-
-															  <div style="width:20%;font-size:14px"></div>
-															  <div style="width:10%;font-size:14px"></div>
-															  <div style="width:20%;font-size:14px"></div>
-														  
-														  </div>
-												  </div>
-									  </div>
-									  ';
-							  
-										
-								  }	
 						}
 						else
 						{
@@ -4310,17 +3904,23 @@ if(isset($_POST['page'])){
 				{		
 									$query_wallet ="UPDATE `41_student_subjects` SET   
 									`$sub_id`     = '' 		 
-									WHERE `41_student_subjects`.`student_code` = '$stu_online_id' "; 
+									WHERE `41_student_subjects`.`student_code` = '$stu_online_id'  AND `41_student_subjects`.`status`='active'"; 
 									if(mysqli_query($homedb,$query_wallet))
 									{
 										$query_wallet ="UPDATE `student_exam_result` SET   
 										`$sub_id`     = '' 		 
-										WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
+										WHERE `student_exam_result`.`student_code` = '$stu_online_id'AND `student_exam_result`.`status`='active' "; 
 										mysqli_query($homedb,$query_wallet);
 
 										$query_wallet ="UPDATE `student_test_result` SET   
 										`$sub_id`     = '' 		 
-										WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
+										WHERE `student_test_result`.`student_code` = '$stu_online_id' AND `student_test_result`.`status`='active'"; 
+										mysqli_query($homedb,$query_wallet);
+
+
+                                       $query_wallet ="UPDATE `student_weekly_assesment` SET   
+										`$sub_id`     = '' 		 
+										WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' AND `student_weekly_assesment`.`status`='active'"; 
 										mysqli_query($homedb,$query_wallet);
 
 										echo$feedback		=	"$sub_title removed from  student subject list";
@@ -4698,7 +4298,8 @@ if(isset($_POST['page'])){
 					 
                    
  
-		
+					if($admin_access === 'proprietor'|| $admin_access === 'head')
+					{
 		 
 								if($approve_status === 'teacher' )
 								{
@@ -4940,9 +4541,15 @@ if(isset($_POST['page'])){
 
 								}
 		
-				 
+					}
+					else
+					{
+						
+							echo $output =	"<div class='text-danger'> Sorry $acc_fullname, your are not authorized to reset an account </div>";
+							 
+					}				 
 			 
-				
+					 
 				}
 			}
 
@@ -5109,9 +4716,9 @@ if(isset($_POST['page'])){
 									   $query_wallet =("INSERT INTO `school_newsletter` VALUE (
 										   '',
 										   '".mysqli_real_escape_string($homedb, $school_code)."',	 									 
-										   '".mysqli_real_escape_string($homedb, $school_code)."', 									 
-										   '".mysqli_real_escape_string($homedb, $schl_head_name)."',
-										   '".mysqli_real_escape_string($homedb, $photo)."',  
+										   '".mysqli_real_escape_string($homedb, $username)."', 									 
+										   '".mysqli_real_escape_string($homedb, $acc_fullname)."',
+										   '".mysqli_real_escape_string($homedb, $school_logo)."',  
 										   '".mysqli_real_escape_string($homedb, $school_name)."',
 										   '".mysqli_real_escape_string($homedb, $school_address)."',
 										   '".mysqli_real_escape_string($homedb, $news_title)."', 
@@ -5678,6 +5285,207 @@ if(isset($_POST['page'])){
 				}
 			}	
 		
+
+
+			if($_POST['page'] == 'enrollStudentNewTerm')
+			{
+				if($_POST['action'] == 'enrollStudentNewTerm')
+				{
+						$date_term  = date('Y');	
+
+						$admincode    = $_POST['admincode'];
+						$parent_code  = $_POST['parent_code'];
+						$school_code  = $_POST['school_code'];
+						$student_code = $_POST['student_code'];
+						$school_type  = $_POST['school_type'];
+						
+						$loader->query ="SELECT * FROM `4_student_reg` WHERE `test_status` = 'active' AND `exam_status` = 'active' AND `online_stu_id` = '$student_code'"; 
+						$result_total_row = $loader->total_row();
+
+						$loader->query ="SELECT * FROM `student_exam_result` WHERE `student_exam_result`.`status` = 'active' AND `student_exam_result`.`student_code` = '$student_code' "; 
+						$result_exam_row = $loader->total_row(); 
+
+						$loader->query ="SELECT * FROM `student_test_result` WHERE `student_test_result`.`status` = 'active' AND `student_test_result`.`student_code` = '$student_code' "; 
+						$result_test_row = $loader->total_row(); 
+
+						if($result_total_row == 0 && $result_test_row == 0 && $result_exam_row == 0)
+						{
+
+					
+				 
+					 		
+								$query_wallet =("INSERT INTO student_exam_result VALUE (
+								'', 									 
+								'".mysqli_real_escape_string($homedb, $date_term)."',
+								'".mysqli_real_escape_string($homedb, 'active')."',		 									 
+								'".mysqli_real_escape_string($homedb, $current_term)."',		 									 
+								'".mysqli_real_escape_string($homedb, $parent_code)."', 									 
+								'".mysqli_real_escape_string($homedb, $school_code)."', 									 
+								'".mysqli_real_escape_string($homedb, $student_code)."',   
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',      
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',       
+								'',
+								'".mysqli_real_escape_string($homedb, $school_type)."'
+								)");
+								if(mysqli_query($homedb,$query_wallet))
+								{
+
+
+													$query_wallet =("INSERT INTO student_test_result VALUE (
+													'', 									 
+													'".mysqli_real_escape_string($homedb, $date_term)."',
+													'".mysqli_real_escape_string($homedb, 'active')."',		 									 
+													'".mysqli_real_escape_string($homedb, $current_term)."',		 									 
+													'".mysqli_real_escape_string($homedb, $parent_code)."', 									 
+													'".mysqli_real_escape_string($homedb, $school_code)."', 									 
+													'".mysqli_real_escape_string($homedb, $student_code)."',  
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',      
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',       
+													'',
+													'".mysqli_real_escape_string($homedb, $school_type)."'
+													)");
+													mysqli_query($homedb,$query_wallet);
+
+												
+
+
+											
+													$query =("UPDATE `4_student_reg` SET  
+													`test_status` = 'active',
+													`exam_status` = 'active'
+													WHERE `4_student_reg`.`online_stu_id` = '$student_code'"); 
+													mysqli_query($homedb,$query);
+
+
+											$output = array(
+												'success'		=>	'success',
+												'feedback'		=>	"Student New Term Enrollment Setup successfully!!. "
+											);
+
+							
+
+								}
+								else
+								{
+									
+										$output = array(
+											'success'		=>	'failed',
+											'feedback'		=>	"Newtwork error"
+										);
+								}
+						}
+						else
+						{
+							
+								$output = array(
+									'success'		=>	'failed',
+									'feedback'		=>	"Student New Term Enrollment Setup Already"
+								);
+						}
+							echo json_encode($output);
+			 
+				
+						
+				}
+
+		    }
+		    
+
+
 
 }
 ?>

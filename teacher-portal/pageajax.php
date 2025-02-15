@@ -807,7 +807,7 @@ if(isset($_POST['page'])){
 					{
 						$query_wallet ="UPDATE `student_exam_result` SET
 						  `$sub_id`     = 'null' 		 
-						WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
+						WHERE `student_exam_result`.`student_code` = '$stu_online_id' AND  `student_exam_result`.`status` = 'active' "; 
 
 						if(mysqli_query($homedb,$query_wallet))
 						{ 
@@ -822,7 +822,7 @@ if(isset($_POST['page'])){
 					{
 						$query_wallet ="UPDATE `student_test_result` SET   
 						`$sub_id`     = 'null' 		 
-						WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
+						WHERE `student_test_result`.`student_code` = '$stu_online_id' AND  `student_test_result`.`status` = 'active'"; 
 
 						if(mysqli_query($homedb,$query_wallet))
 						{ 
@@ -838,7 +838,7 @@ if(isset($_POST['page'])){
 					{
 						$query_wallet ="UPDATE `student_weekly_assesment` SET   
 						`$sub_id`     = 'null' 		 
-						WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' "; 
+						WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' AND  `student_weekly_assesment`.`status` = 'active' "; 
 
 						if(mysqli_query($homedb,$query_wallet))
 						{ 
@@ -1001,12 +1001,12 @@ if(isset($_POST['page'])){
 	  
 												$query_wallet ="UPDATE `student_exam_result` SET   
 												`$sub_id`     = 'null' 		 
-												WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
+												WHERE `student_exam_result`.`student_code` = '$stu_online_id' AND `student_exam_result`.`status` = 'active' "; 
 												mysqli_query($homedb,$query_wallet);
 
                                                 $query_wallet ="UPDATE `student_test_result` SET   
 												`$sub_id`     = 'null' 		 
-												WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
+												WHERE `student_test_result`.`student_code` = '$stu_online_id' AND `student_test_result`.`status` = 'active'"; 
 												mysqli_query($homedb,$query_wallet);
 
 												$query_wallet ="UPDATE `student_weekly_assesment` SET   
@@ -1735,7 +1735,7 @@ if(isset($_POST['page'])){
 
 
 						// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-						$loader->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
+						$loader->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `student_exam_result`.`status`='active' "; 
 						$result = $loader->query_result();  
 						foreach($result as $row) 
 						{
@@ -1781,7 +1781,7 @@ if(isset($_POST['page'])){
  
 
 
-                        $loader->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
+                        $loader->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `student_test_result`.`status`='active'";
                         $result_que = $loader->query_result();  
 						foreach($result_que as $row_2) 
 						{ 
@@ -2753,66 +2753,72 @@ if(isset($_POST['page'])){
 						$sch_code       =  $row['school_code']; 
 					}
 
-				$loader->query = "SELECT * FROM `40_all_subject` WHERE `40_all_subject`.`id` ='$subject_id'"; 
-				$result_user_wallet = $loader->query_result();
-				foreach($result_user_wallet as $row){
+					$loader->query = "SELECT * FROM `40_all_subject` WHERE `40_all_subject`.`id` ='$subject_id'"; 
+					$result_user_wallet = $loader->query_result();
+					foreach($result_user_wallet as $row){
 
-				$sub_title   =  $row['sub_title'];     
-				$sub_id      =  $row['sub_id'];      
-				}
-		
+					$sub_title   =  $row['sub_title'];     
+					$sub_id      =  $row['sub_id'];      
+					}
+			
 		
 				
-				if($result_row == 1 && $sch_code == $school_code)
-				{		
-									$query_wallet ="UPDATE `41_student_subjects` SET   
-									`$sub_id`     = '' 		 
-									WHERE `41_student_subjects`.`student_code` = '$stu_online_id' "; 
-									if(mysqli_query($homedb,$query_wallet))
-									{
-										$query_wallet ="UPDATE `student_exam_result` SET   
-										`$sub_id`     = '' 		 
-										WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
-										mysqli_query($homedb,$query_wallet);
+						if($result_row == 1 && $sch_code == $school_code)
+						{		
+											$query_wallet ="UPDATE `41_student_subjects` SET   
+											`$sub_id`     = '' 		 
+											WHERE `41_student_subjects`.`student_code` = '$stu_online_id'"; 
+											if(mysqli_query($homedb,$query_wallet))
+											{
+												$query_wallet ="UPDATE `student_exam_result` SET   
+												`$sub_id`     = '' 		 
+												WHERE `student_exam_result`.`student_code` = '$stu_online_id'AND `student_exam_result`.`status` = 'active' "; 
+												mysqli_query($homedb,$query_wallet);
 
-										$query_wallet ="UPDATE `student_test_result` SET   
-										`$sub_id`     = '' 		 
-										WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
-										mysqli_query($homedb,$query_wallet);
+												$query_wallet ="UPDATE `student_test_result` SET   
+												`$sub_id`     = '' 		 
+												WHERE `student_test_result`.`student_code` = '$stu_online_id' AND `student_test_result`.`status` = 'active'"; 
+												mysqli_query($homedb,$query_wallet);
 
-										echo$feedback		=	"$sub_title removed from  student subject list";
-											
 
-									}
-									else
-									{ 
-											
-										echo $feedback		=	"Newtwork error";
-											
-									}
+												$query_wallet ="UPDATE `student_weekly_assesment` SET   
+												`$sub_id`     = '' 		 
+												WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' AND `student_weekly_assesment`.`status` = 'active'"; 
+												mysqli_query($homedb,$query_wallet);
 
-				}
-				else
-				{ 
+												echo$feedback		=	"$sub_title removed from  student subject list";
+													
+
+											}
+											else
+											{ 
+													
+												echo $feedback		=	"Newtwork error";
+													
+											}
+
+						}
+						else
+						{ 
+								
+							echo $feedback ='
+							<div class="col-xl- col-md-6">
+							<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+								
+							No student ID found.
+
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+							</div>  
+							</div> 
+							';
+								
+						}
 						
-					echo $feedback ='
-					<div class="col-xl- col-md-6">
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
-						
-					No student ID found.
 
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button>
-					</div>  
-					</div> 
-					';
-						
-				}
-				
-
-						
+								
 			
 												
 
@@ -3641,10 +3647,10 @@ if(isset($_POST['page'])){
 	}	
 
 
-	if($_POST['page'] == 'updateStudentScore')
+	if($_POST['page'] == 'updateStudentScoreMark')
 	{
 		   
-		if($_POST['action'] == 'updateStudentScore')
+		if($_POST['action'] == 'updateStudentScoreMark')
 		{
 	 
 			 
@@ -3654,17 +3660,13 @@ if(isset($_POST['page'])){
 			$type      =  htmlentities($_POST['type']); 
 			$subject   =  htmlentities($_POST['subject']); 
 				 
-			
-
-
-	
-							 
+ 				 
 							
 			if($type == 'examScore'){
 
 				$query =("UPDATE `student_exam_result` SET  
 				`$subject`  = '$score' 
-				WHERE `student_exam_result`.`student_code` = '$stuCode'"); 
+				WHERE `student_exam_result`.`student_code` = '$stuCode' AND `student_exam_result`.`status` ='active' "); 
 				if(mysqli_query($homedb,$query))
 				{
 					 					   
@@ -3686,7 +3688,7 @@ if(isset($_POST['page'])){
 
 				$query =("UPDATE `student_test_result` SET  
 				`$subject`  = '$score' 
-				WHERE `student_test_result`.`student_code` = '$stuCode'"); 
+				WHERE `student_test_result`.`student_code` = '$stuCode' AND `student_test_result`.`status` ='active' "); 
 				if(mysqli_query($homedb,$query))
 				{
 					 					   
@@ -3709,6 +3711,91 @@ if(isset($_POST['page'])){
 
 	    
 				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+
+ 
+	if($_POST['page'] == 'restoreScoreAssessment')
+	{
+		   
+		if($_POST['action'] == 'restoreScoreAssessment')
+		{
+	 
+			 
+			$schCode   =  htmlentities($_POST['schCode']); 
+			$stuCode   =  htmlentities($_POST['stuCode']); 
+			$score     =  htmlentities($_POST['score']); 
+			$type      =  htmlentities($_POST['type']); 
+			$subject   =  htmlentities($_POST['subject']); 
+				 
+ 				 
+							
+	 
+				$query =("UPDATE `student_weekly_assesment` SET  
+				`$subject`  = 'null' 
+				WHERE `student_weekly_assesment`.`student_code` = '$stuCode' AND `student_weekly_assesment`.`status` ='active' "); 
+				if(mysqli_query($homedb,$query))
+				{
+					 					   
+						$output = array(
+							'success'   =>	'success' 
+						);
+	
+				}
+				else
+				{ 
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'		=>	"Newtwork error"
+						);
+				}
+
+ 	    
+			 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+
+
+	if($_POST['page'] == 'resetWeeklyAssessment')
+	{
+		   
+		if($_POST['action'] == 'resetWeeklyAssessment')
+		{
+	 
+			 
+			$schCode   =  htmlentities($_POST['schCode']);  
+			$subject   =  htmlentities($_POST['subject']); 
+				 
+ 				 
+							
+	 
+				$query =("UPDATE `student_weekly_assesment` SET  
+				`$subject`  = 'null' 
+				WHERE  `student_weekly_assesment`.`school_code` = '$schCode' AND  `student_weekly_assesment`.`status` ='active' "); 
+				if(mysqli_query($homedb,$query))
+				{
+					 					   
+						$output = array(
+							'success'   =>	'success' 
+						);
+	
+				}
+				else
+				{ 
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'		=>	"Newtwork error"
+						);
+				}
+
+ 	    
+			 echo json_encode($output);
 				 
 	   
 			 

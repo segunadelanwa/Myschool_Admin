@@ -20,10 +20,11 @@
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <?php   echo' <img src="../'.$SchoolIMG.'/'.$school_code.'/'.$photo.'"  style="height:60px"/> '; ?>
+                   <?php   echo' <img src="../'.$SchoolIMG.'/'.$school_code.'/'.$school_logo.'"  style="height:60px"/> '; ?>
 					</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="profile.php" style="color:#000">Profile</a> 
+                        <a class="dropdown-item" href="edit_admin_profile.php" style="color:#000">Edit Profile</a> 
+                        <a class="dropdown-item" href="profile.php" style="color:#000">View Profile</a> 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php" style="color:#000">Logout</a>
                     </div>

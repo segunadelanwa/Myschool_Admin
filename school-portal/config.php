@@ -65,7 +65,7 @@ class Loader{
 		      	$mail = new PHPMailer;
  
 					$mail->SMTPDebug = 0;  
-					$mail->setFrom('noreply@hebzihubnigltd.com.ng', 'SCHOOL TEACHER PORTAL SETUP'); 
+					$mail->setFrom('noreply@hebzihubnigltd.com.ng', "$school_name"); 
 					$mail->FromName = "$school_name"; 
 					$mail->AddReplyTo = "$username";  
 					$mail->AddAddress($receiver_email, '');
@@ -76,9 +76,10 @@ class Loader{
 
 					$mail->Body = $body;
 					
-					$mail->AddEmbeddedImage("../myschoolapp_api/school/$sch_logo", 'logo', "../myschoolapp_api/school/$sch_logo");  
+					$mail->AddEmbeddedImage("$sch_logo", 'logo', "$sch_logo");  
 					$mail->AddEmbeddedImage('../all_photo/ai_welcome.png', 'logo2', 'all_photo/ai_welcome.png'); 
 					$mail->AddEmbeddedImage('../all_photo/tea_p.png', 'logo3', 'all_photo/tea_p.png'); 
+					$mail->AddEmbeddedImage('../all_photo/admin.png', 'admin', 'all_photo/admin.png'); 
 					
 					$mail->Send();		
 			}	
@@ -133,6 +134,25 @@ class Loader{
 				$output = $this->query_result();
 		  
 				 
+				return $output;
+			}
+			function StartNewTerm($student_code)
+			{
+				 
+				$this->query ="SELECT * FROM `4_student_reg`WHERE `4_student_reg`.`online_stu_id` = '$student_code'";
+				 
+				$result = $this->query_result();
+				foreach($result as $row)
+				{
+				$test_status =	$row['test_status'];
+				$exam_status =	$row['exam_status'];
+				}
+
+				 if($test_status == 'active' && $exam_status == 'active'){
+                    $output = 'success';
+				 }else{
+					$output = 'inactive';
+				 }
 				return $output;
 			}
 
@@ -238,7 +258,8 @@ class Loader{
 				if(!empty($this->filedata['name']))
 				{
 					//$extension = pathinfo($this->filedata['name'], PATHINFO_EXTENSION);
-					
+					//	if($admin_access === 'proprietor'|| $admin_access === 'head')
+						
 					$new_name = uniqid() . '.' . 'jpg';
 
 					$_source_path = $this->filedata['tmp_name'];
@@ -246,7 +267,7 @@ class Loader{
 					$image_size   = filesize($_source_path);
 
 					$target_path = "../myschoolapp_api/$location/" . $new_name;
-					if($type=='image/jpeg' || $type == 'image/png'){
+					if($type=='image/jpeg' || $type == 'image/png' || $type == 'image/webp'){
 						                  //41943040 5mb 
 						if($image_size  < 125829120 )
 						{
@@ -271,7 +292,7 @@ class Loader{
 				  }
 				  else
 				  {
-					return $output = "badfileupload.jpg";
+					return $output = "wrong";
 				  }
 
 				}
@@ -286,6 +307,15 @@ class Loader{
 				 
 				return $output;
 			}
+			function AllRegisteredAdmin($school_code)
+			{
+				 
+				$this->query ="SELECT * FROM  `1_school_admins`  WHERE school_code ='$school_code'  ";
+				$output = $this->query_result();
+		  
+				 
+				return $output;
+			}
 
 			function TeacherNoGenerator()
 			{
@@ -295,19 +325,25 @@ class Loader{
 					$teacher_count  =  $row['teacher_count'];
 				}
 
-				$result = $teacher_count + 1;
-				if(strlen($result) == 1){
+
+				$dataInt = (int)$teacher_count;
+				$result = $dataInt + 1;
+
+				if($result  <= 9){
 					$output = "TEA000$result";
 
-				}else if(strlen($result) == 2){
+				}else if($result > 9 && $result < 100){
 					$output = "TEA00$result"; 
+				
+				 }else if($result > 99 && $result < 1000){
+				 	$output = "TEA0$result";
 
-				}else if(strlen($result) == 3){
-					$output = "TEA0$result";
+				 }else if($result > 999 ){
+				 	$output = "TEA$result";
+				 }
 
-				}else if(strlen($result) == 4){
-					$output = "TEA$result";
-				}
+
+ 
 
 				return $output;
 			}
@@ -320,6 +356,14 @@ class Loader{
 				$output = $this->query_result();
 		  
 				 
+				return $output;
+			}
+			function FecthClassTeacher($school_code)
+			{
+				 
+				$this->query ="SELECT * FROM `2_teacher_reg` WHERE `2_teacher_reg`.`school_code` = '$school_code' ";
+				$output = $this->query_result();
+		  				 
 				return $output;
 			}
 
@@ -370,19 +414,26 @@ class Loader{
 					$parent_count  =  $row['parent_count'];
 				}
 
-				$result = $parent_count + 1;
-				if(strlen($result) == 1){
+
+
+				$dataInt = (int)$parent_count;
+				$result = $dataInt + 1;
+
+				if($result  <= 9){
 					$output = "PAR000$result";
 
-				}else if(strlen($result) == 2){
+				}else if($result > 9 && $result < 100){
 					$output = "PAR00$result"; 
+				
+				 }else if($result > 99 && $result < 1000){
+				 	$output = "PAR0$result";
 
-				}else if(strlen($result) == 3){
-					$output = "PAR0$result";
+				 }else if($result > 999 ){
+				 	$output = "PAR$result";
+				 }
 
-				}else if(strlen($result) == 4){
-					$output = "PAR$result";
-				}
+
+ 
 
 				return $output;
 			}	
@@ -396,19 +447,25 @@ class Loader{
 					$stu_code_gen  =  $row['stu_code_gen'];
 				}
 
-				$result = $stu_code_gen + 1;
-				if(strlen($result) == 1){
+
+				$dataInt = (int)$stu_code_gen;
+				$result  = $dataInt + 1;
+
+				if($result  <= 9){
 					$output = "STUD000$result";
 
-				}else if(strlen($result) == 2){
+				}else if($result > 9 && $result < 100){
 					$output = "STUD00$result"; 
+				
+				 }else if($result > 99 && $result < 1000){
+				 	$output = "STUD0$result";
 
-				}else if(strlen($result) == 3){
-					$output = "STUD0$result";
+				 }else if($result > 999 ){
+				 	$output = "STUD$result";
+				 }
 
-				}else if(strlen($result) == 4){
-					$output = "STUD$result";
-				}
+				 
+ 
 
 				return $output;
 			}

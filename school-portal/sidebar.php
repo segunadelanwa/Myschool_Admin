@@ -5,9 +5,11 @@
                         <div class="nav"  >
 						
                             <div class="sb-sidenav-menu-heading">
+                               <a href="my_profile_data.php"> 
                                 <center>
-                                  <?php   echo' <img src="../'.$SchoolIMG.'/'.$school_code.'/'.$photo.'"  style="width:70px"/> '; ?>
+                                  <?php   echo' <img src="../'.$SchoolIMG.'/'.$school_code.'/'.$photo.'"  style="width:90px;border-radius:500px"/> '; ?>
                                </center>
+                              </a>
 							</div>
 							School Code/ID: <?php echo"$school_code"; ?>
                             <a class="nav-link" href="index.php" style="color:<?php echo$text_code;?>">
@@ -22,8 +24,9 @@
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav" > 
-                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="add_teacher.php" >Add Teacher </a> 
-                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="add_new_parent.php">Add Parent </a>  
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="add_admin_staff.php" >Setup Admin  </a> 
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="add_teacher.php" >Setup Teacher </a> 
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="add_new_parent.php">Setup Parent </a>  
                                    
                                 </nav>
                             </div>
@@ -35,6 +38,7 @@
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseEditLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="edit_admin_profile.php">My Profile Data</a> 
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="edit_data.php?data_id=<?php echo$school_code;?>&name=school">School Account</a> 
                                    
                                 </nav>
@@ -59,7 +63,8 @@
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapsePaymentLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">  
-                                    <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="payment_sub.php">CBT App Payment </a> 
+                                    <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="payment_sub.php">Activate student portal  </a> 
+                                    <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="update_payment_link.php">Set school fee Online Payment</a> 
                                    
                                 </nav>
                             </div>
@@ -74,6 +79,17 @@
                                 <nav class="sb-sidenav-menu-nested nav"> 
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="post_newsletter.php">Post Newsletter</a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="post_review.php">View Newsletter</a>      
+                                   
+                                </nav>
+                            </div>
+						  <a style="color:<?php echo$text_code;?>" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapselock_student_portal" aria-expanded="false" aria-controls="collapselock_student_portal">
+                                <div class="sb-nav-link-icon"><i style="color:<?php echo$text_code;?>" class="fa fa-lock"></i></div>
+                              Lock Portal
+                                <div class="sb-sidenav-collapse-arrow"><i style="color:<?php echo$text_code;?>" class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div style="color:<?php echo$text_code;?>" class="collapse" id="collapselock_student_portal" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="lock_student_portal.php">Portal Lock</a>      
                                    
                                 </nav>
                             </div>
@@ -100,6 +116,7 @@
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseResultLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="student_past_result.php">Download Past Result</a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="update_result_download.php">Enable E-Result Sheet for Download</a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="update_result_download.php">Disable E-Result Sheet for Download</a>      
                                    
@@ -114,7 +131,7 @@
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseCreateTicket" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
                                       
-                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_review.php"> Create Ticket</a>   
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_create.php"> Create Ticket</a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_review.php"> View Ticket</a>   
                                    
                                 </nav>
@@ -131,6 +148,7 @@
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseSettingsLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="select_id_template.php">Select ID Card Template </a>  
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="id_card_update.php">Validate ID Card </a>  
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="password_update.php">Change password </a>  
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="password_reset.php">Reset password </a> 
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="profile.php">Profile </a>  

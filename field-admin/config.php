@@ -59,7 +59,7 @@ class Loader{
 
  
   
-			function send_email($receiver_email, $subject, $body )
+			function send_email($receiver_email,$adminhead_email, $subject, $body )
 			{
 				$mail = new PHPMailer;
 
@@ -82,6 +82,7 @@ class Loader{
 					$mail->FromName = 'HEBZIHUB NIG LTD '; 
 					$mail->AddReplyTo = 'support@hebzihubnigltd.com.ng';  
 					$mail->AddAddress($receiver_email, '');
+					$mail->AddAddress($adminhead_email, '');
 
 					$mail->IsHTML(true);
 
@@ -322,20 +323,21 @@ class Loader{
 				foreach($result as $row){ 
 					$school_count  =  $row['school_count'];
 				}
+				$dataInt = (int)$school_count;
+				$result = $dataInt + 1;
 
-				$result = $school_count + 1;
-				if(strlen($result) == 1){
+				if($result  <= 9){
 					$output = "SCH000$result";
 
-				}else if(strlen($result) == 2){
+				}else if($result > 9 && $result < 100){
 					$output = "SCH00$result"; 
+				
+				 }else if($result > 99 && $result < 1000){
+				 	$output = "SCH0$result";
 
-				}else if(strlen($result) == 3){
-					$output = "SCH0$result";
-
-				}else if(strlen($result) == 4){
-					$output = "SCH$result";
-				}
+				 }else if($result > 999 ){
+				 	$output = "SCH$result";
+				 }
 
 				return $output;
 			}

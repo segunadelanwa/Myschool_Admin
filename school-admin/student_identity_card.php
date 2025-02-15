@@ -91,7 +91,7 @@
                     
         }
 		?>
-			<title>  	<?php echo $stu_name ?> Result 	</title>	
+			<title>  	<?php echo $stu_name ?> Student Identity Card 	</title>	
     </head>
 	
  

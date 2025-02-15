@@ -4,7 +4,7 @@ session_start();
 
  
 
-require"phpmailer/PHPMailerAutoload.php";
+require("../phpmailer/PHPMailerAutoload.php");
 $current_datetime = date("Y-m-d");
 $time = date("H:i:s", STRTOTIME(date('h:i:sa')));
 
@@ -32,7 +32,7 @@ class Loader{
 		
  
         ////  Database Connection
-	    require("school_con2.php");	
+	    require("../connect.php");	
 	  
 		$this->connect = new PDO("mysql:host=$this->host; dbname=$this->database", "$this->username", "$this->password");
        
@@ -62,7 +62,7 @@ class Loader{
 
  
   
-			function send_email($receiver_email, $subject, $body)
+			function send_email($receiver_email,$adminhead_email, $subject, $body)
 			{
 				
 			$mail = new PHPMailer;
@@ -80,14 +80,13 @@ class Loader{
 			//$mail->Password = '';
 
 			//$mail->SMTPSecure = '';
-            $mail->SMTPDebug = 0;  
-			$mail->setFrom('noreply@rsbdigitalshares.com.ng', 'GST MY SCHOOL APP');
+			$mail->SMTPDebug = 0;  
+			$mail->setFrom('noreply@hebzihubnigltd.com.ng', 'SCHOOL PORTALS MANAGEMENT & CBT INTEGRATION APPLICATION SOFTWARE');
 
-			$mail->FromName = 'GST MY SCHOOL APP';
-			
-			$mail->AddReplyTo = 'surpport@rsbdigitalshares.com.ng';
-
+			$mail->FromName = 'HEBZIHUB NIG LTD '; 
+			$mail->AddReplyTo = 'support@hebzihubnigltd.com.ng';  
 			$mail->AddAddress($receiver_email, '');
+			$mail->AddAddress($adminhead_email, '');
 
 			$mail->IsHTML(true);
 
@@ -95,9 +94,12 @@ class Loader{
 
 			$mail->Body = $body;
 			
-			$mail->AddEmbeddedImage('images/logo.png', 'logo', 'images/logo.png'); 
-
-			$mail->Send();		
+			$mail->AddEmbeddedImage('../gen_img/logo_b.png', 'logo', '../gen_img/logo_b.png');  
+			$mail->AddEmbeddedImage('../all_photo/congratulations.png', 'logo2', '../all_photo/congratulations.png'); 
+			$mail->AddEmbeddedImage('../all_photo/sch_p.png', 'logo3', '../all_photo/sch_p.png'); 
+		
+			
+			$mail->Send();				
 			}	
 			
 			
@@ -557,6 +559,7 @@ class Loader{
                         $sub_status          =  $row['sub_status'];
                         $date                =  $row['date']; 
                         $token               =  $row['token']; 
+                        $portal_lock         =  $row['portal_lock']; 
                              
 				}
 								
@@ -572,6 +575,7 @@ class Loader{
                         $guidance_name        = $row['guidance_name'];
                         $address              = $row['address'];
                         $email                = $row['email'];  
+                        $ptoken               = $row['token'];  
                              
 				}
 				$this->query = "SELECT * FROM `2_teacher_reg` WHERE `teacher_code` ='$teacher_code'";
@@ -637,6 +641,7 @@ class Loader{
                                     'guidance_name'      =>  $guidance_name,
                                     'address'            =>  $address,
                                     'email'              =>  $email,  
+                                    'ptoken'             =>  $ptoken,  
 
       //////////////////////////////////STUDENT BLOCK /////////////////////////////                                                    
                                                     
@@ -652,6 +657,7 @@ class Loader{
                                     'sub_status'          =>  $sub_status,
                                     'token'               =>  $token,                                                     
                                     'date'                =>  $date,     
+                                    'portal_lock'         =>  $portal_lock,     
 
  
 									
@@ -801,9 +807,70 @@ class Loader{
 
 
  
+		function UploadPhoto($location)
+		{
+			
+		 
+			
+			
+			if(!empty($this->filedata['name']))
+			{
+				//$extension = pathinfo($this->filedata['name'], PATHINFO_EXTENSION);
+				
+				$new_name = uniqid() . '.' . 'jpg';
 
+				$_source_path = $this->filedata['tmp_name'];
+				$type         = $this->filedata['type'];
+				$image_size   = @filesize($_source_path);
+
+				$target_path = "../myschoolapp_api/$location/" . $new_name;
+				if($type=='image/jpeg' || $type == 'image/png'){
+									  //41943040 5mb 
+					if($image_size  < 125829120 )
+					{
+
+							if(move_uploaded_file($_source_path, $target_path))
+							{
+									
+								return $new_name;
+								
+							}
+							else
+							{
+								
+								return 0;
+							}
+
+					}
+					else
+					{
+						return $output = "$image_size.jpg";
+					}
+			  }
+			  else
+			  {
+				return $output = "badfileupload.jpg";
+			  }
+
+			}
+		}
  
- 
+		function SchoolNoGeneratorUpdate()
+		{
+			$this->query = "SELECT * FROM settings  "; 
+			$result = $this->query_result();
+			foreach($result as $row){ 
+				$school_count  =  $row['school_count'];
+			}
+
+			$result = $school_count + 1;
+
+			$this->query ="UPDATE `settings` SET  
+			  `school_count`  = '$result'
+			 WHERE `settings`.`id` = '1' ";
+			$this->execute_query();
+			 
+		}
  }
 ?>
  

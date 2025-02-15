@@ -17,7 +17,7 @@
 		?>
 		
 	<title> 
-		STUDENT CBT APP PAYMENT APPROVE PAGE
+		STUDENT PORTAL ACTIVATION
 	</title>
 
     </head>
@@ -90,8 +90,8 @@
 		   
 		   
 	   		    <div id="otpupdatebox" style="background-color:white; padding:50px;margin-top:10px">
-					   <h3 style="text-align:center;">Approve CBT App Payment</h3>
-					   <div style="display:flex">
+					   <h3 style="text-align:center;">Student Portal Payment Activation</h3>
+					   <div style="display:flex;margin-top:50px">
 					   <div   onclick="GoBackHandler()" class="btn btn-primary mr-4">BACK </div>
 						<div onclick="PrintDiv();" class="btn btn-success mr-4">PRINT RECEIPT </div>
 						<div onclick="RefreshDiv();" class="btn btn-dark">REFRESH </div>
@@ -109,7 +109,7 @@
 						<option value="active">Approve payment </option>  
 						<option value="status">Check Payment </option>  
 					</select>
-				</div>
+				   </div>
 
           </div>
 					<div id="printBox">

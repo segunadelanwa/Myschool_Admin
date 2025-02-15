@@ -237,10 +237,7 @@
                                                 <th>School Name</th> 
                                                 <th>Teacher username</th> 
                                                 <th>Teacher Name</th>
-                                                <th>Gender </th>
-                                                <th>Phone</th>
-                                                <th>Salary</th>
-                                                <th>Term Earn</th>
+                                                <th>Gender </th> 
                                                 <th>Acct Details</th>
                                                 <th>Reg Date</th>
                                                 
@@ -282,10 +279,7 @@
                                                    Subject: <b> '.$subJect.'  </b> 
                                                   </td> 
                                                   <td>'.$active['fullname'].' </td> 
-                                                  <td>'.$active['gender'].' </td> 
-                                                  <td>'.$active['phone'].' </td> 
-                                                  <td>N'.number_format($active['salary'] ,2).' </td> 
-                                                  <td>N'.number_format($earn,2).' </td> 
+                                                  <td>'.$active['gender'].' </td>  
                                                   <td>'.$active['bank_name'].'<br/> '.$active['account_name'].'<br/>'.$active['account_number'].'<br/></td> 
                                                   <td>'.$active['reg_date'].' </td> 
                                                   

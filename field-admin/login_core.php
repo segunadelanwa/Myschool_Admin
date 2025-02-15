@@ -38,7 +38,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5 text-white">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5 bg-dark">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">FIELD ADMIN<br /> LOGIN</h3>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">FIELD OPERATIONS OFFICER <br /> LOGIN</h3>
                                 </div>
                                     <div class="card-body">
 									
@@ -93,11 +93,11 @@
                     </div>
                 </main>
             </div>
-            <div id="layoutAuthentication_footer">
+            <!-- <div id="layoutAuthentication_footer">
 					<?php
 					require('../footer.php');
 					?>
-            </div>
+            </div> -->
         </div>
  
     </body>

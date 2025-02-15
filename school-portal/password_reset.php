@@ -172,8 +172,6 @@ function calender(val) {
 				url:"pageajax.php",
 				method:"POST", 
 				data:{
-					     
-					  
 					account_code:class_id,      
 					approve_status:calend.value,   
 					page:'approveResetPassword',

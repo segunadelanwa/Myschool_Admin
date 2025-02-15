@@ -15,7 +15,7 @@ include("school_config.php");
 $api_object = new Loader();
  
 ////////////////////////////////////// Database Connection
-require("school_con1.php");	
+require("../connect2.php");	
 require("../topUrl.php");
 //$cashout_refrence_id  = uniqid();
 //$reg_start         = date('Y-m-d');
@@ -243,7 +243,8 @@ if($_GET["action"] == 'StudentLogin')
 				{
                     if($row['school_status'] ==  'active')
                     {
-							 
+                        if($row['portal_lock'] ==  'open')
+                        {
                                 if($password == $tokencode)
                                 {
                                     
@@ -258,6 +259,15 @@ if($_GET["action"] == 'StudentLogin')
                                             );
                                     
                                 }
+                        }
+                        else
+                        {
+                                    $data[] = array(
+                                    'success'  =>  'Portal locked',
+                                    'feedback'  =>  'Student portal locked. Please contact your school IT center. Thanks'
+                                    );
+                            
+                        }
 
 
                     }
@@ -266,7 +276,7 @@ if($_GET["action"] == 'StudentLogin')
                          
                             $data[] = array(
                                 'success'  =>  'Invalid password ',
-                                'feedback'  => "".$row['school_name']." account has been suspended. Please kindly contact school admin "
+                                'feedback'  => "".$row['school_name']." account has been suspended. Please kindly contact your school admin for more details "
                                 );
                         
                     }
@@ -279,7 +289,7 @@ if($_GET["action"] == 'StudentLogin')
 			{
 					$data[] = array(
 					'success'  =>  'Invalid Account ',
-					'feedback'  => 	"Invalid student login. Please contact your school IT center"
+					'feedback'  => 	"Invalid student login. Please confirm your student ID and try again"
 					);
 			}
 
@@ -361,7 +371,7 @@ if($_GET["action"] == 'fingerPrintLogin')
 			{
 					$data[] = array(
 					'success'  =>  'Invalid Account ',
-					'feedback'  => 	"Invalid student login. Please contact your school IT center"
+					'feedback'  => 	"Invalid student login. Please confirm your student ID and try again"
 					);
 			}
 
@@ -655,7 +665,7 @@ if($_GET["action"] == 'SchoolExamQuestion')
      $questionImg     = $questionImgGlobal;
 
     
-                $api_object->query = "SELECT * FROM student_exam_result WHERE student_code = '$student_code' AND $cbt_subject='null'  ";  
+                $api_object->query = "SELECT * FROM `student_exam_result` WHERE `student_code` = '$student_code' AND `$cbt_subject`='null' AND `status` = 'active' ";  
                 $total_row = $api_object->total_row(); 
                 $fullname = $api_object->FetchStudentName($student_code);
                 
@@ -761,7 +771,7 @@ if($_GET["action"] == 'WeeklyAssessment')
      $questionImg     = $questionImgGlobal;
                
                
-                $api_object->query = "SELECT * FROM student_weekly_assesment  WHERE student_code = '$student_code' AND $cbt_subject='null' ";   
+                $api_object->query = "SELECT * FROM student_weekly_assesment  WHERE student_code = '$student_code' AND $cbt_subject='null' AND `status` = 'active' ";   
                 $total_row = $api_object->total_row(); 
 
                 $fullname = $api_object->FetchStudentName($student_code);
@@ -861,7 +871,7 @@ if($_GET["action"] == 'FetchMidTermTest')
      $questionImg     = $questionImgGlobal;
                
                
-                $api_object->query = "SELECT * FROM student_test_result WHERE student_code = '$student_code' AND $cbt_subject='null' ";   
+                $api_object->query = "SELECT * FROM student_test_result WHERE student_code = '$student_code' AND $cbt_subject='null' AND `status` = 'active'";   
                 $total_row = $api_object->total_row(); 
 
                 $fullname = $api_object->FetchStudentName($student_code);
@@ -1137,7 +1147,7 @@ if($_GET["action"] == 'UpdateStudentResult')
                 
                 
                         /// This section check if Exam has been done and previously updated
-                        $api_object->query = "SELECT * FROM student_exam_result WHERE student_code = '$student_code' AND $subject_id='null' ";  
+                        $api_object->query = "SELECT * FROM student_exam_result WHERE student_code = '$student_code' AND $subject_id='null' AND `status` = 'active'";  
                         $total_row = $api_object->total_row();  
                         if($total_row >= 1)
                         {
@@ -1145,7 +1155,7 @@ if($_GET["action"] == 'UpdateStudentResult')
 
                                 	$query_update ="UPDATE `student_exam_result` SET   
             						`$subject_id`  = '$result_score'		 
-            						WHERE `student_exam_result`.`student_code` = '$student_code' "; 
+            						WHERE `student_exam_result`.`student_code` = '$student_code' AND  `student_exam_result`.`status` ='active'"; 
 						
 						
                                     if(mysqli_query($homedb,$query_update))
@@ -1187,14 +1197,14 @@ if($_GET["action"] == 'UpdateStudentResult')
                 
                 
                          /// This section check if Exam has been done and previously updated
-                        $api_object->query = "SELECT * FROM `student_test_result` WHERE student_code = '$student_code' AND $subject_id='null' ";  
+                        $api_object->query = "SELECT * FROM `student_test_result` WHERE student_code = '$student_code' AND $subject_id='null' AND `status` = 'active' ";  
                         $total_row = $api_object->total_row();  
                         if($total_row >= 1)
                         {
                             
                                 	$query_update ="UPDATE `student_test_result` SET   
             						`$subject_id`  = '$result_score'		 
-            						WHERE `student_test_result`.`student_code` = '$student_code' ";  
+            						WHERE `student_test_result`.`student_code` = '$student_code' AND `student_test_result`.`status` ='active' ";  
 						           if(mysqli_query($homedb,$query_update))
                                    {
                                         $data[] = array(
@@ -1232,14 +1242,14 @@ if($_GET["action"] == 'UpdateStudentResult')
                 
                 
                          /// This section check if Exam has been done and previously updated
-                        $api_object->query = "SELECT * FROM `student_weekly_assesment` WHERE student_code = '$student_code' AND $subject_id='null' ";  
+                        $api_object->query = "SELECT * FROM `student_weekly_assesment` WHERE student_code = '$student_code' AND $subject_id='null'AND `status` = 'active' ";  
                         $total_row = $api_object->total_row();  
                         if($total_row >= 1)
                         {
                             
                                 	$query_update ="UPDATE `student_weekly_assesment` SET   
             						`$subject_id`  = '$result_score'		 
-            						WHERE `student_weekly_assesment`.`student_code` = '$student_code' ";  
+            						WHERE `student_weekly_assesment`.`student_code` = '$student_code' AND  `student_weekly_assesment`.`status` ='active'";  
 						           if(mysqli_query($homedb,$query_update))
                                    {
                                         $data[] = array(
@@ -1263,7 +1273,7 @@ if($_GET["action"] == 'UpdateStudentResult')
                             
                                      $data[] = array(
                                     'success'  =>  "updated",
-                                    'feedback' =>  "Mid-Term Test score already updated successfully",
+                                    'feedback' =>  "Weekly assessment score already updated successfully",
                                     );                           
 
                 
@@ -1613,7 +1623,8 @@ if($_GET["action"] == 'FetchExamResult')
   
   
                // $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-                $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '$student_code' AND school_code ='$school_code' AND status='active' "; 
+        //  SELECT * FROM `student_exam_result` WHERE `student_exam_result`.`student_code` = '$student_code' AND `student_exam_result`.`school_code` ='$school_code' AND `student_exam_result`.`status`='active' "; 
+                $api_object->query = "SELECT * FROM `student_exam_result` WHERE `student_exam_result`.`student_code` = 'STUD0001' AND `student_exam_result`.`school_code` ='SCH0001' AND `student_exam_result`.`status`='active' "; 
                 $result = $api_object->query_result();
                 $total_row = $api_object->total_row();
             if($total_row > 0){
@@ -1762,6 +1773,328 @@ if($_GET["action"] == 'FetchExamResult')
 
 
  
+if($_GET['action'] == 'school_signup_action')
+{
+    $schoolCode          =  trim($_POST['school_id']); 
+    $adminhead_email     =  trim($_POST['adminhead_email']);
+    $marketer_code       =  trim($_POST['marketer_code']); 
+    $school_name         =  trim($_POST['school_name']);  
+    $raw_password        =  trim($_POST['school_password']);    
+    $school_phone        =  trim($_POST['school_phone']);
+    $school_address      =  trim($_POST['school_address']); 
+    $school_bgcolor      =  trim($_POST['school_bgcolor']);
+    $text_code           =  trim($_POST['text_code']);      
+    $schl_head_name      =  trim($_POST['schl_head_name']);
+
+    $school_type         =  trim($_POST['school_type']); 
+    $token_api           =  MD5("$school_name");	
+    $passkey             =  MD5("$raw_password$adminhead_email");	
+
+    $auth_code = mb_strimwidth(time(), 3, 6); 
+    $raw_password="kM$auth_code";
+
+
+    $school_email      =  trim($_POST['school_email']);
+    $api_object->query = "SELECT * FROM `1_school_reg` WHERE  `1_school_reg`.`school_email` ='$school_email' ";  
+    $total_row_row     = $api_object->total_row();
+
+   
+    $api_object->query = "SELECT * FROM `1_school_reg` WHERE  `1_school_reg`.`school_code` ='$schoolCode' ";  
+    $schoolCode_row_check     = $api_object->total_row();
+
+
+    $api_object->query = "SELECT * FROM `1_school_admins` WHERE  `1_school_admins`.`username` ='$adminhead_email' ";  
+    $adminhead_email_row_check     = $api_object->total_row();
+
+
+ 
+     $date_init=date('Y-m-d');
+     $date_sub = strtotime('+1 year', strtotime($date_init));
+     $testing_expires = strtotime('+4 month', strtotime($date_init));
+          
+         
+        
+
+        $source = "school/$schoolCode";
+        $folder = "../myschoolapp_api/school/$schoolCode";
+                
+    if($adminhead_email_row_check == 0)
+    {
+            if($schoolCode_row_check == 0)
+            {
+                    if($total_row_row == 0)
+                    {
+                            if(!file_exists("$folder"))
+                            {
+                            
+                            
+                                    if( mkdir("$folder", 0777, true) )
+                                    {
+                                    
+                 
+                                        if(!empty($marketer_code))
+                                        { 
+
+                                            $api_object->query = "SELECT * FROM `0_marketer_reg` WHERE  `0_marketer_reg`.`marketer_code` ='$marketer_code' "; 
+                                            $result = $api_object->query_result(); 
+                                            foreach($result as $row) {
+
+                                                $admincode     = $row['admincode'];
+                                                $mak_code = $row['marketer_code'];
+                                                
+                                            }
+
+                                                $teamlead = $admincode;
+                                                $foo      = $mak_code;
+
+                                        }else{
+
+                                                $teamlead = 'TL0001';
+                                                $foo      = 'FAD0001';
+
+                                        }
+
+                                        
+                                        $api_object->filedata=$_FILES['school_photo'];
+                                        $school_photo               = $api_object->UploadPhoto($source);
+                                        $api_object->filedata=$_FILES['school_logo'];
+                                        $school_logo               = $api_object->UploadPhoto($source);  
+
+
+                                                    
+                                                    $query_wallet =("INSERT INTO 1_school_reg VALUE ( 
+                                                                '',        
+                                                                '".mysqli_real_escape_string($homedb, $teamlead)."',   
+                                                                '".mysqli_real_escape_string($homedb, $foo)."',    
+                                                                '".mysqli_real_escape_string($homedb, $schoolCode)."',   
+                                                                '".mysqli_real_escape_string($homedb, $school_name)."',   
+                                                                '".mysqli_real_escape_string($homedb, $school_photo)."',   
+                                                                '".mysqli_real_escape_string($homedb, $school_logo)."',   
+                                                                '".mysqli_real_escape_string($homedb, $school_email)."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',       
+                                                                '".mysqli_real_escape_string($homedb, $school_phone)."',   
+                                                                '".mysqli_real_escape_string($homedb, $school_address)."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, $school_bgcolor)."',   
+                                                                '".mysqli_real_escape_string($homedb, $text_code)."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',      
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, 'active')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, '')."',      
+                                                                '".mysqli_real_escape_string($homedb, $date_init)."', 
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, 'inactive')."',
+                                                                '".mysqli_real_escape_string($homedb, 'unpaid')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, $token_api)."',
+                                                                '".mysqli_real_escape_string($homedb, '0')."',
+                                                                '".mysqli_real_escape_string($homedb, 'default')."',
+                                                                '".mysqli_real_escape_string($homedb, $school_type)."',
+                                                                '".mysqli_real_escape_string($homedb, 'active')."',
+                                                                '".mysqli_real_escape_string($homedb, $testing_expires)."'
+                                                        )");
+                                                        if(mysqli_query($homedb,$query_wallet))
+                                                        {
+                                                                $query_wallet =("INSERT INTO 1_school_admins VALUE (
+                                                                '',
+                                                                '".mysqli_real_escape_string($homedb, '')."',	 									 
+                                                                '".mysqli_real_escape_string($homedb, $token_api)."',	 									 
+                                                                '".mysqli_real_escape_string($homedb, $schoolCode)."',	 									 
+                                                                '".mysqli_real_escape_string($homedb, $adminhead_email)."', 									 
+                                                                '".mysqli_real_escape_string($homedb, $passkey)."',
+                                                                '".mysqli_real_escape_string($homedb, $schl_head_name)."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',
+                                                                '".mysqli_real_escape_string($homedb, '')."',   
+                                                                '".mysqli_real_escape_string($homedb, 'Admin')."',   
+                                                                '".mysqli_real_escape_string($homedb, $foo)."',     
+                                                                '".mysqli_real_escape_string($homedb, 'head')."',     
+                                                                '".mysqli_real_escape_string($homedb, '')."',     
+                                                                '".mysqli_real_escape_string($homedb, '')."',     
+                                                                '".mysqli_real_escape_string($homedb, '')."',     
+                                                                '".mysqli_real_escape_string($homedb, $date_init)."'
+                                                                )");
+                                                                mysqli_query($homedb,$query_wallet);       
+                                            
+                                                                $query_wallet =("INSERT INTO api_for_question VALUE ( 
+                                                                '',    
+                                                                '".mysqli_real_escape_string($homedb, $token_api)."',   
+                                                                '".mysqli_real_escape_string($homedb, $schoolCode)."',   
+                                                                '".mysqli_real_escape_string($homedb, $date_sub)."',    
+                                                                '".mysqli_real_escape_string($homedb, 'fixed')."',   
+                                                                '".mysqli_real_escape_string($homedb, $date_init)."' 
+                                                                )");
+                                                                mysqli_query($homedb,$query_wallet);
+
+
+                                            
+                                                            $subject = 'SCHOOL PORTALS MANAGEMENT & CBT INTEGRATION APPLICATION SOFTWARE';
+                                                        
+                                                            $body = "
+                                                            <div style='width:100%;height:5px;background: #000000'></div><br> 
+                                                                <div style='font-size:14px;color:black;font-family:lucida sans;'>
+                                                                
+                                                                    <center >
+                                                                            
+                                                                            <h1>
+                                                                            <img src='cid:logo'  style='text-align:center;height:50px;'/> <br/> 
+                                                                            HEBZIHUB NIG LTD
+                                                                            </h1>
+                                                                            <small>(RC: 7892845)</small><br/><br/>
+
+
+                                                                            <img src='cid:logo2' style='width:100%' />
+                                                                    </center>
+
+                                                                                
+                                                                    <p>
+                                                                    Hi $schl_head_name, your school $school_name portal first phase setup was successful and your school portal 
+                                                                    has been setup for operations.<br/>
+                                                                    To complete the final setup of school portals management & CBT integration application software,
+                                                                    you need to login with your school admin login credential below
+                                                                    
+                                                                    </p><br/>
+                                                                    
+                                                                    <p>
+                                                                    Please, find below your school login credentials and should incase you forgot your portal password for security 
+                                                                    and future purpose, send a mail 
+                                                                    to support@hebzihubnigltd.com.ng with this your registered email for fast response.
+                                                                    </p><br/>
+
+
+                                                                    <p>
+                                                                        <a href='https://adminportal.com.ng/login/school-portal/' >  Kindly click here </a> and login to school admin portal dashboard  or 
+                                                                        if  link is disabled  on your device copy this link https://adminportal.com.ng/login/school-portal  and past on your browser URL. 
+                                                                    </p>
+                                                                
+                                                                    <p>
+                                                                    <img src='cid:logo3' style='width:100%' /><br/>
+
+                                                                    <b style='text-decoration:underline'>School Admin Portal Login Details </b><br/>
+                                                                        Username: $adminhead_email  <br />
+                                                                        Password: $raw_password  <br />
+                                                                        
+                                                                    </p><br/>
+                                                                    
+
+                                                                    <p>
+                                                                        <b style='text-decoration:underline'> To Access Other Sofware Portals URLS </b><br/>
+                                                                        <a href='https://adminportal.com.ng/login/school-portal/'><b>School Portal</b>: https://adminportal.com.ng/login/school-portal/ </a>(Web App)  <br /> <br />
+                                                                        <a href='https://adminportal.com.ng/login/teacher-portal'><b>Teacher Portal</b>: https://adminportal.com.ng/login/teacher-portal </a> (Web App)<br /> <br />
+                                                                        <a href='https://cbt-portal.com.ng'><b>Student Portal</b>: https://cbt-portal.com.ng </a> (Web App)<br /> <br />
+                                                                        <a href='https://parent-portal.com.ng'><b>Parent Portal</b>: https://parent-portal.com.ng </a> (Web App) <br /> <br />
+
+
+                                                                       	<p>Download parent mobile app for your school (Android)</p>
+                                                                        <a href='https://hebzihubnigltd.com.ng/download-parent-mobile-app/'>Click here to Download </a> <br/>
+                                                                        Or Goto the link below to download Mobile App <br/>
+                                                                        <p>https://hebzihubnigltd.com.ng/download-parent-mobile-app/ </p> 
+                                                                        
+                                    
+                                                                    </p>
+
+
+
+                                                                    
+                                                                    <br /><br /><br /><br />
+                                                                    <div> Account Setup Team </div>   
+                                                                    <div><b>Adelanwa Seun (Marketing Officer)</b></div>   
+                                                                    
+                                                                    
+                                                                    </div><br><br>
+                                                                </div>			
+                                                                ";
+
+                                            
+                                                            $api_object->SchoolNoGeneratorUpdate();
+                                                            $api_object->send_email($school_email,$adminhead_email, $subject, $body,$schl_head_name);
+
+                                
+
+
+                                                                $data = array(
+                                                                    'success'		=>	'success',
+                                                                    'feedback'		=>	"School account setup successfully!!. School operation login credentials sent to $school_email"
+                                                                );
+
+                                                
+
+                                                        }
+                                                        else
+                                                        {
+                                                            
+                                                                $data = array(
+                                                                    'success'		=>	'failed',
+                                                                    'feedback'		=>	"Newtwork error"
+                                                                );
+                                                        }
+                                    
+
+                                        
+                                    }
+                                    else
+                                    {
+                                        
+                                            $data = array(
+                                                'success'		=>	'failed',
+                                                'feedback'		=>	"Newtwork error"
+                                            );
+                                    }
+                                    
+                            
+                                
+                            
+                            }
+                            else
+                            {
+                                
+                                    $data = array(
+                                        'success'		=>	'failed',
+                                        'feedback'		=>	"Newtwork error. file folder exist"
+                                    );
+                            }
+                    }
+                    else
+                    {
+                        
+                            $data = array(
+                                'success'		=>	'failed',
+                                'feedback'		=>	"School account with $school_email already exist"
+                            );
+                    }
+            }
+            else
+            {
+                
+                    $data = array(
+                        'success'		=>	'failed',
+                        'feedback'		=>	"School account with $schoolCode already exist, please refresh your page"
+                    );
+            }
+    }
+    else
+    {
+        
+            $data = array(
+                'success'		=>	'failed',
+                'feedback'		=>	"School admin account with $adminhead_email already exist"
+            );
+    }
+
+ 
+}
  
  echo json_encode($data);
  

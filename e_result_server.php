@@ -179,7 +179,9 @@ class ResultServer{
 		$result = $this->query_result();
 	 
 		return $result;
-	}	 
+	}
+	
+	
 	 function EserverResultFetch($online_stu_id)
 	{
 
@@ -222,7 +224,7 @@ class ResultServer{
 
 
 						// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-						$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
+						$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `status`= 'active' "; 
 						$result = $this->query_result();  
 						foreach($result as $row) 
 						{
@@ -285,7 +287,7 @@ class ResultServer{
 
 
 
-						$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
+						$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `status`= 'active'";
 						$result_que = $this->query_result();  
 						foreach($result_que as $row_2) 
 						{ 
@@ -344,56 +346,56 @@ class ResultServer{
 						}
 
 
-						$result_1  = intval($stuExam_1) + intval($stuTest_1); 
-						$result_2  = intval($stuExam_2) + intval($stuTest_2); 
-						$result_3  = intval($stuExam_3) + intval($stuTest_3);  
-						$result_4  = intval($stuExam_4) + intval($stuTest_4); 
-						$result_5  = intval($stuExam_5) + intval($stuTest_5); 
-						$result_6  = intval($stuExam_6) + intval($stuTest_6); 
-						$result_7  = intval($stuExam_7) + intval($stuTest_7); 
-						$result_8  = intval($stuExam_8) + intval($stuTest_8); 
-						$result_9  = intval($stuExam_9) + intval($stuTest_9);  
-						$result_10 = intval($stuExam_10) + intval($stuTest_10);  
-						$result_11 = intval($stuExam_11) + intval($stuTest_11);  
-						$result_12 = intval($stuExam_12) + intval($stuTest_12);  
-						$result_13 = intval($stuExam_13) + intval($stuTest_13);  
-						$result_14 = intval($stuExam_14) + intval($stuTest_14);  
-						$result_15 = intval($stuExam_15) + intval($stuTest_15);  
-						$result_16 = intval($stuExam_16) + intval($stuTest_16);  
-						$result_17 = intval($stuExam_17) + intval($stuTest_17);  
-						$result_18 = intval($stuExam_18) + intval($stuTest_18);  
-						$result_19 = intval($stuExam_19) + intval($stuTest_19);  
-						$result_20 = intval($stuExam_20) + intval($stuTest_20);  
-						$result_21 = intval($stuExam_21) + intval($stuTest_21);  
-						$result_22 = intval($stuExam_22) + intval($stuTest_22);  
-						$result_23 = intval($stuExam_23) + intval($stuTest_23);  
-						$result_24 = intval($stuExam_24) + intval($stuTest_24);  
-						$result_25 = intval($stuExam_25) + intval($stuTest_25);  
-						$result_26 = intval($stuExam_26) + intval($stuTest_26);  
-						$result_27 = intval($stuExam_27) + intval($stuTest_27);  
-						$result_28 = intval($stuExam_28) + intval($stuTest_28);  
-						$result_29 = intval($stuExam_29) + intval($stuTest_29);  
-						$result_30 = intval($stuExam_30) + intval($stuTest_30);  
-						$result_31 = intval($stuExam_31) + intval($stuTest_31);  
-						$result_32 = intval($stuExam_32) + intval($stuTest_32);  
-						$result_33 = intval($stuExam_33) + intval($stuTest_33);  
-						$result_34 = intval($stuExam_34) + intval($stuTest_34);  
-						$result_35 = intval($stuExam_35) + intval($stuTest_35); 
-						$result_36 = intval($stuExam_36) + intval($stuTest_36); 
-						$result_37 = intval($stuExam_37) + intval($stuTest_37); 
-						$result_38 = intval($stuExam_38) + intval($stuTest_38); 
-						$result_39 = intval($stuExam_39) + intval($stuTest_39); 
-						$result_40 = intval($stuExam_40) + intval($stuTest_40); 
-						$result_41 = intval($stuExam_41) + intval($stuTest_41); 
-						$result_42 = intval($stuExam_42) + intval($stuTest_42); 
-						$result_43 = intval($stuExam_43) + intval($stuTest_43); 
-						$result_44 = intval($stuExam_44) + intval($stuTest_44); 
-						$result_45 = intval($stuExam_45) + intval($stuTest_45); 
-						$result_46 = intval($stuExam_46) + intval($stuTest_46); 
-						$result_47 = intval($stuExam_47) + intval($stuTest_47); 
-						$result_48 = intval($stuExam_48) + intval($stuTest_48); 
-						$result_49 = intval($stuExam_49) + intval($stuTest_49); 
-						$result_50 = intval($stuExam_50) + intval($stuTest_50); 
+								$result_1  = intval($stuExam_1) + intval($stuTest_1); 
+								$result_2  = intval($stuExam_2) + intval($stuTest_2); 
+								$result_3  = intval($stuExam_3) + intval($stuTest_3);  
+								$result_4  = intval($stuExam_4) + intval($stuTest_4); 
+								$result_5  = intval($stuExam_5) + intval($stuTest_5); 
+								$result_6  = intval($stuExam_6) + intval($stuTest_6); 
+								$result_7  = intval($stuExam_7) + intval($stuTest_7); 
+								$result_8  = intval($stuExam_8) + intval($stuTest_8); 
+								$result_9  = intval($stuExam_9) + intval($stuTest_9);  
+								$result_10 = intval($stuExam_10) + intval($stuTest_10);  
+								$result_11 = intval($stuExam_11) + intval($stuTest_11);  
+								$result_12 = intval($stuExam_12) + intval($stuTest_12);  
+								$result_13 = intval($stuExam_13) + intval($stuTest_13);  
+								$result_14 = intval($stuExam_14) + intval($stuTest_14);  
+								$result_15 = intval($stuExam_15) + intval($stuTest_15);  
+								$result_16 = intval($stuExam_16) + intval($stuTest_16);  
+								$result_17 = intval($stuExam_17) + intval($stuTest_17);  
+								$result_18 = intval($stuExam_18) + intval($stuTest_18);  
+								$result_19 = intval($stuExam_19) + intval($stuTest_19);  
+								$result_20 = intval($stuExam_20) + intval($stuTest_20);  
+								$result_21 = intval($stuExam_21) + intval($stuTest_21);  
+								$result_22 = intval($stuExam_22) + intval($stuTest_22);  
+								$result_23 = intval($stuExam_23) + intval($stuTest_23);  
+								$result_24 = intval($stuExam_24) + intval($stuTest_24);  
+								$result_25 = intval($stuExam_25) + intval($stuTest_25);  
+								$result_26 = intval($stuExam_26) + intval($stuTest_26);  
+								$result_27 = intval($stuExam_27) + intval($stuTest_27);  
+								$result_28 = intval($stuExam_28) + intval($stuTest_28);  
+								$result_29 = intval($stuExam_29) + intval($stuTest_29);  
+								$result_30 = intval($stuExam_30) + intval($stuTest_30);  
+								$result_31 = intval($stuExam_31) + intval($stuTest_31);  
+								$result_32 = intval($stuExam_32) + intval($stuTest_32);  
+								$result_33 = intval($stuExam_33) + intval($stuTest_33);  
+								$result_34 = intval($stuExam_34) + intval($stuTest_34);  
+								$result_35 = intval($stuExam_35) + intval($stuTest_35); 
+								$result_36 = intval($stuExam_36) + intval($stuTest_36); 
+								$result_37 = intval($stuExam_37) + intval($stuTest_37); 
+								$result_38 = intval($stuExam_38) + intval($stuTest_38); 
+								$result_39 = intval($stuExam_39) + intval($stuTest_39); 
+								$result_40 = intval($stuExam_40) + intval($stuTest_40); 
+								$result_41 = intval($stuExam_41) + intval($stuTest_41); 
+								$result_42 = intval($stuExam_42) + intval($stuTest_42); 
+								$result_43 = intval($stuExam_43) + intval($stuTest_43); 
+								$result_44 = intval($stuExam_44) + intval($stuTest_44); 
+								$result_45 = intval($stuExam_45) + intval($stuTest_45); 
+								$result_46 = intval($stuExam_46) + intval($stuTest_46); 
+								$result_47 = intval($stuExam_47) + intval($stuTest_47); 
+								$result_48 = intval($stuExam_48) + intval($stuTest_48); 
+								$result_49 = intval($stuExam_49) + intval($stuTest_49); 
+								$result_50 = intval($stuExam_50) + intval($stuTest_50); 
 						
 
 	
@@ -1301,6 +1303,1385 @@ class ResultServer{
 							';
 
 	}
+
+	function FecthSingleSubject($subject)
+	{
+		 
+		$this->query ="SELECT * FROM 40_all_subject  WHERE sub_id ='$subject'";
+		$output = $this->query_result();
+		foreach($output as $row){ 
+			$output =  $row['sub_title'];
+		} 
+	 
+		return $output;
+	}
+	
+	
+	 function EserverPastResultFetch($online_stu_id, $term, $year)
+	{
+
+						$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
+						$result_row = $this->total_row();
+						$result_user_wallet = $this->query_result();
+						foreach($result_user_wallet as $row){
+
+							$photo          =  $row['photo'];      
+							$parent_code    =  $row['parent_code'];   
+							$school_code    =  $row['school_code'];   
+							$student_name   =  $row['student_name'];   
+							$schl_stu_no    =  $row['schl_stu_no'];   
+							$online_stu_id  =  $row['online_stu_id'];   
+							$student_class  =  $row['student_class'];   
+							$sub_status     =  $row['sub_status'];   
+							$stu_gender     =  $row['stu_gender'];   
+							$date           =  $row['date'];   
+							$teacher_comment=  $row['teacher_term_comment'];   
+						
+						}	
+
+						$this->query = "SELECT * FROM `1_school_reg` WHERE  `1_school_reg`.`school_code` ='$school_code' ";  
+						$result_user_wallet = $this->query_result();
+						foreach($result_user_wallet as $row){
+
+							$school_logo    =  $row['school_logo'];     
+							$school_photo   =  $row['school_photo'];     
+							$school_address =  $row['school_address'];     
+							$school_motor   =  $row['school_motor'];     
+							$school_phone   =  $row['school_phone'];     
+							$school_email   =  $row['school_email'];     
+							$school_website =  $row['school_website'];     
+							$current_term   =  $row['current_term'];     
+							$school_bgcolor =  $row['school_bgcolor'];     
+							$text_color     =  $row['text_code'];     
+							$session        =  $row['session'];     
+						
+						}	
+
+
+						// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
+						$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `term`= '$term' AND  `date`='$year' "; 
+						$result = $this->query_result();  
+						foreach($result as $row) 
+						{
+								
+
+								
+									$term =  $row['term'];
+									$date_session =  $row['date'];
+									$stuExam_1 =  $row['sub_1'];
+									$stuExam_2 =  $row['sub_2'];
+									$stuExam_3 =  $row['sub_3']; 
+									$stuExam_4 =  $row['sub_4'];
+									$stuExam_5 =  $row['sub_5'];
+									$stuExam_6 =  $row['sub_6'];
+									$stuExam_7 =  $row['sub_7'];
+									$stuExam_8 =  $row['sub_8'];
+									$stuExam_9 =  $row['sub_9']; 
+									$stuExam_10 =  $row['sub_10'];  
+									$stuExam_11 =  $row['sub_11'];  
+									$stuExam_12 =  $row['sub_12'];  
+									$stuExam_13 =  $row['sub_13'];  
+									$stuExam_14 =  $row['sub_14'];  
+									$stuExam_15 =  $row['sub_15'];  
+									$stuExam_16 =  $row['sub_16'];  
+									$stuExam_17 =  $row['sub_17'];  
+									$stuExam_18 =  $row['sub_18'];  
+									$stuExam_19 =  $row['sub_19'];  
+									$stuExam_20 =  $row['sub_20'];  
+									$stuExam_21 =  $row['sub_21'];  
+									$stuExam_22 =  $row['sub_22'];  
+									$stuExam_23 =  $row['sub_23'];  
+									$stuExam_24 =  $row['sub_24'];  
+									$stuExam_25 =  $row['sub_25'];  
+									$stuExam_26 =  $row['sub_26'];  
+									$stuExam_27 =  $row['sub_27'];  
+									$stuExam_28 =  $row['sub_28'];  
+									$stuExam_29 =  $row['sub_29'];  
+									$stuExam_30 =  $row['sub_30'];  
+									$stuExam_31 =  $row['sub_31'];  
+									$stuExam_32 =  $row['sub_32'];  
+									$stuExam_33 =  $row['sub_33'];  
+									$stuExam_34 =  $row['sub_34'];  
+									$stuExam_35 =  $row['sub_35'];        
+									$stuExam_36 =  $row['sub_36'];        
+									$stuExam_37 =  $row['sub_37'];        
+									$stuExam_38 =  $row['sub_38'];        
+									$stuExam_39 =  $row['sub_39'];        
+									$stuExam_40 =  $row['sub_40'];        
+									$stuExam_41 =  $row['sub_41'];        
+									$stuExam_42 =  $row['sub_42'];        
+									$stuExam_43 =  $row['sub_43'];        
+									$stuExam_44 =  $row['sub_44'];        
+									$stuExam_45 =  $row['sub_45'];        
+									$stuExam_46 =  $row['sub_46'];        
+									$stuExam_47 =  $row['sub_47'];        
+									$stuExam_48 =  $row['sub_48'];        
+									$stuExam_49 =  $row['sub_49'];        
+									$stuExam_50 =  $row['sub_50'];        
+						}
+
+
+
+						$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `term`= '$term' AND  `date`='$year'";
+						$result_que = $this->query_result();  
+						foreach($result_que as $row_2) 
+						{ 
+							$stuTest_1 =  $row_2['sub_1'];
+							$stuTest_2 =  $row_2['sub_2'];
+							$stuTest_3 =  $row_2['sub_3']; 
+							$stuTest_4 =  $row_2['sub_4'];
+							$stuTest_5 =  $row_2['sub_5'];
+							$stuTest_6 =  $row_2['sub_6'];
+							$stuTest_7 =  $row_2['sub_7'];
+							$stuTest_8 =  $row_2['sub_8'];
+							$stuTest_9 =  $row_2['sub_9']; 
+							$stuTest_10 =  $row_2['sub_10'];  
+							$stuTest_11 =  $row_2['sub_11'];  
+							$stuTest_12 =  $row_2['sub_12'];  
+							$stuTest_13 =  $row_2['sub_13'];  
+							$stuTest_14 =  $row_2['sub_14'];  
+							$stuTest_15 =  $row_2['sub_15'];  
+							$stuTest_16 =  $row_2['sub_16'];  
+							$stuTest_17 =  $row_2['sub_17'];  
+							$stuTest_18 =  $row_2['sub_18'];  
+							$stuTest_19 =  $row_2['sub_19'];  
+							$stuTest_20 =  $row_2['sub_20'];  
+							$stuTest_21 =  $row_2['sub_21'];  
+							$stuTest_22 =  $row_2['sub_22'];  
+							$stuTest_23 =  $row_2['sub_23'];  
+							$stuTest_24 =  $row_2['sub_24'];  
+							$stuTest_25 =  $row_2['sub_25'];  
+							$stuTest_26 =  $row_2['sub_26'];  
+							$stuTest_27 =  $row_2['sub_27'];  
+							$stuTest_28 =  $row_2['sub_28'];  
+							$stuTest_29 =  $row_2['sub_29'];  
+							$stuTest_30 =  $row_2['sub_30'];  
+							$stuTest_31 =  $row_2['sub_31'];  
+							$stuTest_32 =  $row_2['sub_32'];  
+							$stuTest_33 =  $row_2['sub_33'];  
+							$stuTest_34 =  $row_2['sub_34'];  
+							$stuTest_35 =  $row_2['sub_35'];   
+							$stuTest_36 =  $row_2['sub_36'];   
+							$stuTest_37 =  $row_2['sub_37'];   
+							$stuTest_38 =  $row_2['sub_38'];   
+							$stuTest_39 =  $row_2['sub_39'];   
+							$stuTest_40 =  $row_2['sub_40'];   
+							$stuTest_41 =  $row_2['sub_41'];   
+							$stuTest_42 =  $row_2['sub_42'];   
+							$stuTest_43 =  $row_2['sub_43'];   
+							$stuTest_44 =  $row_2['sub_44'];   
+							$stuTest_45 =  $row_2['sub_45'];   
+							$stuTest_46 =  $row_2['sub_46'];   
+							$stuTest_47 =  $row_2['sub_47'];   
+							$stuTest_48 =  $row_2['sub_48'];   
+							$stuTest_49 =  $row_2['sub_49'];   
+							$stuTest_50 =  $row_2['sub_50'];   
+									
+
+						}
+
+
+						$result_1  = intval($stuExam_1) + intval($stuTest_1); 
+						$result_2  = intval($stuExam_2) + intval($stuTest_2); 
+						$result_3  = intval($stuExam_3) + intval($stuTest_3);  
+						$result_4  = intval($stuExam_4) + intval($stuTest_4); 
+						$result_5  = intval($stuExam_5) + intval($stuTest_5); 
+						$result_6  = intval($stuExam_6) + intval($stuTest_6); 
+						$result_7  = intval($stuExam_7) + intval($stuTest_7); 
+						$result_8  = intval($stuExam_8) + intval($stuTest_8); 
+						$result_9  = intval($stuExam_9) + intval($stuTest_9);  
+						$result_10 = intval($stuExam_10) + intval($stuTest_10);  
+						$result_11 = intval($stuExam_11) + intval($stuTest_11);  
+						$result_12 = intval($stuExam_12) + intval($stuTest_12);  
+						$result_13 = intval($stuExam_13) + intval($stuTest_13);  
+						$result_14 = intval($stuExam_14) + intval($stuTest_14);  
+						$result_15 = intval($stuExam_15) + intval($stuTest_15);  
+						$result_16 = intval($stuExam_16) + intval($stuTest_16);  
+						$result_17 = intval($stuExam_17) + intval($stuTest_17);  
+						$result_18 = intval($stuExam_18) + intval($stuTest_18);  
+						$result_19 = intval($stuExam_19) + intval($stuTest_19);  
+						$result_20 = intval($stuExam_20) + intval($stuTest_20);  
+						$result_21 = intval($stuExam_21) + intval($stuTest_21);  
+						$result_22 = intval($stuExam_22) + intval($stuTest_22);  
+						$result_23 = intval($stuExam_23) + intval($stuTest_23);  
+						$result_24 = intval($stuExam_24) + intval($stuTest_24);  
+						$result_25 = intval($stuExam_25) + intval($stuTest_25);  
+						$result_26 = intval($stuExam_26) + intval($stuTest_26);  
+						$result_27 = intval($stuExam_27) + intval($stuTest_27);  
+						$result_28 = intval($stuExam_28) + intval($stuTest_28);  
+						$result_29 = intval($stuExam_29) + intval($stuTest_29);  
+						$result_30 = intval($stuExam_30) + intval($stuTest_30);  
+						$result_31 = intval($stuExam_31) + intval($stuTest_31);  
+						$result_32 = intval($stuExam_32) + intval($stuTest_32);  
+						$result_33 = intval($stuExam_33) + intval($stuTest_33);  
+						$result_34 = intval($stuExam_34) + intval($stuTest_34);  
+						$result_35 = intval($stuExam_35) + intval($stuTest_35); 
+						$result_36 = intval($stuExam_36) + intval($stuTest_36); 
+						$result_37 = intval($stuExam_37) + intval($stuTest_37); 
+						$result_38 = intval($stuExam_38) + intval($stuTest_38); 
+						$result_39 = intval($stuExam_39) + intval($stuTest_39); 
+						$result_40 = intval($stuExam_40) + intval($stuTest_40); 
+						$result_41 = intval($stuExam_41) + intval($stuTest_41); 
+						$result_42 = intval($stuExam_42) + intval($stuTest_42); 
+						$result_43 = intval($stuExam_43) + intval($stuTest_43); 
+						$result_44 = intval($stuExam_44) + intval($stuTest_44); 
+						$result_45 = intval($stuExam_45) + intval($stuTest_45); 
+						$result_46 = intval($stuExam_46) + intval($stuTest_46); 
+						$result_47 = intval($stuExam_47) + intval($stuTest_47); 
+						$result_48 = intval($stuExam_48) + intval($stuTest_48); 
+						$result_49 = intval($stuExam_49) + intval($stuTest_49); 
+						$result_50 = intval($stuExam_50) + intval($stuTest_50); 
+						
+
+	
+			
+			//$i=0;
+					$result = $this->GetStudentSubject($online_stu_id);
+
+					$schoolName = $this-> SchoolName($school_code);	
+					$parent_name = $this-> ParentName($parent_code);
+
+				
+				
+				echo $success =' 
+
+				<div  class="p-3" style="background-color:'.$school_bgcolor.';color:'.$text_color.';">   
+					<div style="display:flex;justify-content:space-around;text-align:left;">   
+							<div style="width:20%;"> <img src="../myschoolapp_api/school/'.$school_code.'/'.$school_logo.'"  style="height: 120px;width:120px;border-radius:10px" /> </div> 
+							
+							<div style="width:60%;text-align:center"> 
+							<div style="font-size: 30px;font-weight:bold;">'.$schoolName.'</div>
+							<p>'.$school_address.'<br>
+							<span style="margin-right:20px">Tel:'.$school_phone.' </span>  <span>Motor: '.$school_motor.'</span> <br>
+							<span style="margin-right:20px">Email:'.$school_email.' </span>  <span>Website:'.$school_website.' </span>
+							</p>
+							</div> 
+							
+							<div style="width:20%;"><img src="../myschoolapp_api/school/'.$school_code.'/'.$photo.'"  style="height: 120px;width:120px;border-radius:10px" /> </div>
+							
+					</div>
+				</div>
+
+					
+				<div class="card p-3" style="border-width:2px;border-color:'.$school_bgcolor.';">
+
+							<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn ">   
+								<div style="width:7%;font-size:14px"> Student ID </div>
+								<div style="width:23%;font-size:14px"> Student Name</div>
+								<div style="width:10%;font-size:14px"> Class  </div>
+							
+								<div style="width:10%;font-size:14px"> Gender </div>
+								<div style="width:10%;font-size:14px"> Online ID </div>
+								<div style="width:10%;font-size:14px"> Term  </div>
+								<div style="width:20%;font-size:14px"> Session  </div>
+							</div>
+
+							
+							<div  style="width:100%;">
+
+									<div style="display:flex;font-size:20px;justify-content:space-around;text-align:left;" >   
+										<div style="width:7%;font-size:18px"> '.$schl_stu_no.' </div>
+										<div style="width:23%;font-size:18px;text-transform:capitalize"> '.$student_name.' </div>
+										<div style="width:10%;font-size:18px;text-transform:capitalize"> '.$student_class.'  </div>
+									
+										<div style="width:10%;font-size:18px">'.$stu_gender.' </div>
+										<div style="width:10%;font-size:18px">'.$online_stu_id.' </div>
+										<div style="width:10%;font-size:18px"> '.$current_term.' </div>
+										<div style="width:20%;font-size:18px"> '.$session.' </div>
+									</div>
+							</div>
+				</div>		
+							<div style="text-align:center;font-wweight:bold;font-size:20px"> 
+							<h4 style="color:black"> 
+								STUDENT E-REPORT SHEET 
+							</h4>
+							</div>
+
+
+				<div class="card mb-2" style="border-width:2px;border-color:'.$school_bgcolor.';">
+							<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn mb-3">   
+							<div style="width:55%;"> Subjects </div>
+							<div style="width:10%;text-align:center"> CA </div>
+							<div style="width:10%;text-align:center"> Exam  </div>
+							<div style="width:10%;text-align:center"> Agg </div>
+							<div style="width:10%;text-align:center;">Grade </div>
+							</div> ';
+
+
+
+						foreach($result as $row)
+						{
+						
+								$newOnlineId = $online_stu_id; 
+
+
+								if(!empty($stuTest_1) || !empty($stuExam_1)){ 
+								
+										$grade = $this->GradeCal($result_1);
+										$sub_1 = $this->FecthSingleSubject('sub_1');
+											echo$data="
+										<div style='display:flex;font-size:20px;justify-content:space-around;text-align:left;height:15px'>   
+										<div style='width:55%;text-transform:capitalize;'>  ".$sub_1."  </div>
+										<div style='width:10%'  class='btn btn-white'> ".$stuTest_1." </div>
+										<div style='width:10%'  class='btn btn-white'> ".$stuExam_1." </div>
+										<div style='width:10%'  class='btn btn-white'> ".$result_1." </div>
+										<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+										</div>
+										<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+												";										  
+								}
+
+
+
+								if(!empty($stuTest_2) || !empty($stuExam_2)){ 
+								
+									$grade = $this->GradeCal($result_2);
+									$sub_2 = $this->FecthSingleSubject('sub_2');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_2."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_2." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_2." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_2." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_3) || !empty($stuExam_3)){ 
+								
+									$grade = $this->GradeCal($result_3);
+									$sub_3 = $this->FecthSingleSubject('sub_3');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_3."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_3." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_3." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_3." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_4) || !empty($stuExam_4)){ 
+								
+									$grade = $this->GradeCal($result_4);
+									$sub_4 = $this->FecthSingleSubject('sub_4');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_4."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_4." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_4." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_4." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_5) || !empty($stuExam_5)){ 
+								
+									$grade = $this->GradeCal($result_5);
+									$sub_5 = $this->FecthSingleSubject('sub_5');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_5."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_5." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_5." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_5." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_6) || !empty($stuExam_6)){ 
+								
+									$grade = $this->GradeCal($result_6);
+									$sub_6 = $this->FecthSingleSubject('sub_6');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_6."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_6." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_6." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_6." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+								
+								if(!empty($stuTest_7) || !empty($stuExam_7)){ 
+								
+									$grade = $this->GradeCal($result_7);
+									$sub_7 = $this->FecthSingleSubject('sub_7');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_7."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_7." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_7." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_7." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_8) || !empty($stuExam_8)){ 
+								
+									$grade = $this->GradeCal($result_8);
+									$sub_8 = $this->FecthSingleSubject('sub_8');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_8."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_8." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_8." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_8." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_9) || !empty($stuExam_9)){ 
+								
+									$grade = $this->GradeCal($result_9);
+									$sub_9 = $this->FecthSingleSubject('sub_9');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_9."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_9." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_9." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_9." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_10) || !empty($stuExam_10)){ 
+								
+									$grade = $this->GradeCal($result_10);
+									$sub_10 = $this->FecthSingleSubject('sub_10');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_10."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_10." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_10." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_10." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_11) || !empty($stuExam_11)){ 
+								
+									$grade = $this->GradeCal($result_11);
+									$sub_11 = $this->FecthSingleSubject('sub_11');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_11."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_11." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_11." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_11." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_12) || !empty($stuExam_12)){ 
+								
+										$grade = $this->GradeCal($result_12);
+										$sub_12 = $this->FecthSingleSubject('sub_12');
+											echo$data="
+										<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+										<div style='width:55%;text-transform:capitalize;'>  ".$sub_12."  </div>
+										<div style='width:10%'  class='btn btn-white'> ".$stuTest_12." </div>
+										<div style='width:10%'  class='btn btn-white'> ".$stuExam_12." </div>
+										<div style='width:10%'  class='btn btn-white'> ".$result_12." </div>
+										<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+										</div>
+										<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+												";										  
+								}
+
+								if(!empty($stuTest_13) || !empty($stuExam_13)){ 
+								
+									$grade = $this->GradeCal($result_13);
+									$sub_13 = $this->FecthSingleSubject('sub_13');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>    
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_13."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_13." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_13." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_13." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_14) || !empty($stuExam_14)){ 
+								
+									$grade = $this->GradeCal($result_14);
+									$sub_14 = $this->FecthSingleSubject('sub_14');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_14."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_14." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_14." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_14." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_15) || !empty($stuExam_15)){ 
+								
+									$grade = $this->GradeCal($result_15);
+									$sub_15 = $this->FecthSingleSubject('sub_15');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_15."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_15." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_15." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_15." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_16) || !empty($stuExam_16)){ 
+								
+									$grade = $this->GradeCal($result_16);
+									$sub_16 = $this->FecthSingleSubject('sub_16');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_16."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_16." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_16." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_16." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_17) || !empty($stuExam_17)){ 
+								
+									$grade = $this->GradeCal($result_17);
+									$sub_17 = $this->FecthSingleSubject('sub_17');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_17."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_17." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_17." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_17." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_18) || !empty($stuExam_18)){ 
+								
+									$grade = $this->GradeCal($result_18);
+									$sub_18 = $this->FecthSingleSubject('sub_18');
+									echo$data="
+										<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+										<div style='width:55%;text-transform:capitalize;'>  ".$sub_18."  </div>
+										<div style='width:10%'  class='btn btn-white'> ".$stuTest_18." </div>
+										<div style='width:10%'  class='btn btn-white'> ".$stuExam_18." </div>
+										<div style='width:10%'  class='btn btn-white'> ".$result_18." </div>
+										<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+										</div>
+										<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+										";											  
+								}
+
+								if(!empty($stuTest_19) || !empty($stuExam_19)){ 
+								
+									$grade = $this->GradeCal($result_19);
+									$sub_19 = $this->FecthSingleSubject('sub_19');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_19."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_19." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_19." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_19." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_20) || !empty($stuExam_20)){ 
+								
+									$grade = $this->GradeCal($result_20);
+									$sub_20 = $this->FecthSingleSubject('sub_20');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_20."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_20." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_20." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_20." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+									";											  
+								}
+
+								if(!empty($stuTest_21) || !empty($stuExam_21)){ 
+								
+									$grade = $this->GradeCal($result_21);
+									$sub_21 = $this->FecthSingleSubject('sub_21');
+										echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_21."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_21." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_21." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_21." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_22) || !empty($stuExam_22)){ 
+								
+									$grade = $this->GradeCal($result_22);
+									$sub_22 = $this->FecthSingleSubject('sub_22');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_22."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_22." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_22." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_22." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_23) || !empty($stuExam_23)){ 
+								
+									$grade = $this->GradeCal($result_23);
+									$sub_23 = $this->FecthSingleSubject('sub_23');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_23."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_23." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_23." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_23." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_24) || !empty($stuExam_24)){ 
+								
+									$grade = $this->GradeCal($result_24);
+									$sub_24 = $this->FecthSingleSubject('sub_24');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_24."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_24." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_24." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_24." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_25) || !empty($stuExam_25)){ 
+								
+									$grade = $this->GradeCal($result_25);
+									$sub_25 = $this->FecthSingleSubject('sub_25');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_25."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_25." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_25." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_25." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_26) || !empty($stuExam_26)){ 
+								
+									$grade = $this->GradeCal($result_26);
+									$sub_26 = $this->FecthSingleSubject('sub_26');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_26."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_26." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_26." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_26." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_27) || !empty($stuExam_27)){ 
+								
+									$grade = $this->GradeCal($result_27);
+									$sub_27 = $this->FecthSingleSubject('sub_27');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_27."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_27." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_27." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_27." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_28) || !empty($stuExam_28)){ 
+								
+									$grade = $this->GradeCal($result_28);
+									$sub_28 = $this->FecthSingleSubject('sub_28');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_28."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_28." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_28." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_28." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+								
+								if(!empty($stuTest_29) || !empty($stuExam_29)){ 
+								
+									$grade = $this->GradeCal($result_29);
+									$sub_29 = $this->FecthSingleSubject('sub_29');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_29."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_29." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_29." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_29." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_30) || !empty($stuExam_30)){ 
+								
+									$grade = $this->GradeCal($result_30);
+									$sub_30 = $this->FecthSingleSubject('sub_30');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_30."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_30." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_30." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_30." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_31) || !empty($stuExam_31)){ 
+								
+									$grade = $this->GradeCal($result_31);
+									$sub_31 = $this->FecthSingleSubject('sub_31');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_31."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_31." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_31." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_31." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_32) || !empty($stuExam_32)){ 
+								
+									$grade = $this->GradeCal($result_32);
+									$sub_32 = $this->FecthSingleSubject('sub_32');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_32."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_32." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_32." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_32." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_33) || !empty($stuExam_33)){ 
+								
+									$grade = $this->GradeCal($result_33);
+									$sub_33 = $this->FecthSingleSubject('sub_33');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_33."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_33." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_33." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_33." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_34) || !empty($stuExam_34)){ 
+								
+									$grade = $this->GradeCal($result_34);
+									$sub_34 = $this->FecthSingleSubject('sub_34');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_34."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_34." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_34." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_34." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";											  
+								}
+
+								if(!empty($stuTest_35) || !empty($stuExam_35)){ 
+								
+									$grade = $this->GradeCal($result_35);
+									$sub_35 = $this->FecthSingleSubject('sub_35');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_35."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_35." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_35." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_35." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_36) || !empty($stuExam_36)){ 
+								
+									$grade = $this->GradeCal($result_36);
+									$sub_36 = $this->FecthSingleSubject('sub_36');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_36."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_36." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_36." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_36." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_37) || !empty($stuExam_37)){ 
+								
+									$grade = $this->GradeCal($result_37);
+									$sub_37 = $this->FecthSingleSubject('sub_37');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_37."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_37." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_37." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_37." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_38) || !empty($stuExam_38)){ 
+								
+									$grade = $this->GradeCal($result_38);
+									$sub_38 = $this->FecthSingleSubject('sub_38');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_38."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_38." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_38." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_38." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_39) || !empty($stuExam_39)){ 
+								
+									$grade = $this->GradeCal($result_39);
+									$sub_39 = $this->FecthSingleSubject('sub_39');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_39."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_39." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_39." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_39." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_40) || !empty($stuExam_40)){ 
+								
+									$grade = $this->GradeCal($result_40);
+									$sub_40 = $this->FecthSingleSubject('sub_40');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_40."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_40." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_40." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_40." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_41) || !empty($stuExam_41)){ 
+								
+									$grade = $this->GradeCal($result_41);
+									$sub_41 = $this->FecthSingleSubject('sub_41');
+
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_41."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_41." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_41." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_41." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_42) || !empty($stuExam_42)){ 
+								
+									$grade = $this->GradeCal($result_42);
+									$sub_42 = $this->FecthSingleSubject('sub_42');
+
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_42."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_42." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_42." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_42." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_43) || !empty($stuExam_43)){ 
+								
+									$grade = $this->GradeCal($result_43);
+									$sub_43 = $this->FecthSingleSubject('sub_43');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_43."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_43." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_43." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_43." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_44) || !empty($stuExam_44)){ 
+								
+									$grade = $this->GradeCal($result_44);
+									$sub_44 = $this->FecthSingleSubject('sub_44');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_44."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_44." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_44." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_44." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_45) || !empty($stuExam_45)){ 
+								
+									$grade = $this->GradeCal($result_45);
+									$sub_45 = $this->FecthSingleSubject('sub_45');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_45."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_45." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_45." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_45." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_46) || !empty($stuExam_46)){ 
+								
+									$grade = $this->GradeCal($result_46);
+									$sub_46 = $this->FecthSingleSubject('sub_46');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_46."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_46." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_46." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_46." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_47) || !empty($stuExam_47)){ 
+								
+									$grade = $this->GradeCal($result_47);
+									$sub_47 = $this->FecthSingleSubject('sub_47');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_47."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_47." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_47." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_47." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_48) || !empty($stuExam_48)){ 
+								
+									$grade = $this->GradeCal($result_48);
+									$sub_48 = $this->FecthSingleSubject('sub_48');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_48."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_48." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_48." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_48." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_49) || !empty($stuExam_49)){ 
+								
+									$grade = $this->GradeCal($result_49);
+									$sub_49 = $this->FecthSingleSubject('sub_49');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>   
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_49."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_49." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_49." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_49." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								if(!empty($stuTest_50) || !empty($stuExam_50)){ 
+								
+									$grade = $this->GradeCal($result_50);
+									$sub_50 = $this->FecthSingleSubject('sub_50');
+									echo$data="
+									<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left;height:15px'>  
+									<div style='width:55%;text-transform:capitalize;'>  ".$sub_50."  </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuTest_50." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$stuExam_50." </div>
+									<div style='width:10%'  class='btn btn-white'> ".$result_50." </div>
+									<div style='width:10%;font-size:18px'  class='btn' ><b> ".$grade." </b></div>
+									</div>
+									<hr style='border-width:5px;color:'.$school_bgcolor.';'>											  
+											";										  
+								}
+
+								
+
+					
+								
+						}	
+						
+				echo'</div>';	
+						echo $data ='  
+
+							<div class="card"  style="margin-bottom:5px;border-width:2px;border-color:'.$school_bgcolor.';">
+
+								<div style=" font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn mb-3">   
+								     Class Teacher\'s Comments
+								</div>
+
+											 <div   style="width:100%;">
+
+												<div style=" font-size: 16px;text-align:left;padding-left:25px;padding-bottom:5px" >  
+													 '.$teacher_comment.' 
+												</div>
+												 
+										</div>
+
+							</div>
+
+
+
+							<div class="card" tyle="display:flex;width:100%" style="border-width:2px;border-color:'.$school_bgcolor.';">
+								
+
+										<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn mb-3">   
+											<div style="width:20%;font-size:14px"> Range Of Score </div>
+											<div style="width:10%;font-size:14px"> Grade </div>
+											<div style="width:20%;font-size:14px"> Remark  </div>
+										
+											<div style="width:20%;font-size:14px"> Range Of Score </div>
+											<div style="width:10%;font-size:14px"> Grade </div>
+											<div style="width:20%;font-size:14px"> Remark  </div>
+										</div>
+					<div class="p-3">
+										
+										<div   style="width:100%;">
+
+												<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;" >   
+													<div style="width:20%;font-size:14px">75% - 100% </div>
+													<div style="width:10%;font-size:14px"> A1 </div>
+													<div style="width:20%;font-size:14px"> Excellent </div>
+												
+													<div style="width:20%;font-size:14px">70% - 74% </div>
+													<div style="width:10%;font-size:14px"> B2 </div>
+													<div style="width:20%;font-size:14px"> very Good </div>
+												</div><hr style="border-width:5px;color:'.$school_bgcolor.';"/>
+										</div>
+									
+										<div   style="width:100%">
+
+												<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
+													<div style="width:20%;font-size:14px">65% - 69% </div>
+													<div style="width:10%;font-size:14px"> B3 </div>
+													<div style="width:20%;font-size:14px">Good </div>
+												
+													<div style="width:20%;font-size:14px">60% - 64% </div>
+													<div style="width:10%;font-size:14px"> C4 </div>
+													<div style="width:20%;font-size:14px"> Credit </div>
+												</div><hr style="border-width:5px;color:'.$school_bgcolor.';"/>
+										</div>
+										
+										<div   style="width:100%">
+
+												<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
+													<div style="width:20%;font-size:14px">55% - 59% </div>
+													<div style="width:10%;font-size:14px"> C5 </div>
+													<div style="width:20%;font-size:14px"> Good </div>
+												
+													<div style="width:20%;font-size:14px">50% - 54% </div>
+													<div style="width:10%;font-size:14px"> C6 </div>
+													<div style="width:20%;font-size:14px"> Credit </div>
+												</div><hr style="border-width:5px;color:'.$school_bgcolor.';"/>
+										</div>
+										
+										<div   style="width:100%">
+
+												<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
+													<div style="width:20%;font-size:14px">45% - 49% </div>
+													<div style="width:10%;font-size:14px"> D7 </div>
+													<div style="width:20%;font-size:14px"> Fair </div>
+												
+													<div style="width:20%;font-size:14px">40% - 45% </div>
+													<div style="width:10%;font-size:14px"> E8 </div>
+													<div style="width:20%;font-size:14px"> Pass </div>
+												</div><hr style="border-width:5px;color:'.$school_bgcolor.';"/>
+										</div>
+										
+										<div class="mb-4" style="width:100%">
+
+												<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left" >   
+													<div style="width:20%;font-size:14px">0% - 39% </div>
+													<div style="width:10%;font-size:14px"> F9 </div>
+													<div style="width:20%;font-size:14px"> Fail </div>
+
+													<div style="width:20%;font-size:14px"></div>
+													<div style="width:10%;font-size:14px"></div>
+													<div style="width:20%;font-size:14px"></div>
+												
+												</div>
+										</div>
+								</div>
+							</div>
+							';
+
+	}
+	 function StudentProfileDataFetch($online_stu_id)
+	{
+
+						$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
+						$result_row = $this->total_row();
+						$result_user_wallet = $this->query_result();
+						foreach($result_user_wallet as $row){
+
+							$photo          =  $row['photo'];      
+							$parent_code    =  $row['parent_code'];   
+							$school_code    =  $row['school_code'];   
+							$student_name   =  $row['student_name'];   
+							$schl_stu_no    =  $row['schl_stu_no'];   
+							$online_stu_id  =  $row['online_stu_id'];   
+							$student_class  =  $row['student_class'];   
+							$sub_status     =  $row['sub_status'];   
+							$stu_gender     =  $row['stu_gender'];   
+							$date           =  $row['date'];   
+							$teacher_comment=  $row['teacher_term_comment'];   
+						
+						}	
+
+						$this->query = "SELECT * FROM `1_school_reg` WHERE  `1_school_reg`.`school_code` ='$school_code' ";  
+						$result_user_wallet = $this->query_result();
+						foreach($result_user_wallet as $row){
+
+							$school_logo    =  $row['school_logo'];     
+							$school_photo   =  $row['school_photo'];     
+							$school_address =  $row['school_address'];     
+							$school_motor   =  $row['school_motor'];     
+							$school_phone   =  $row['school_phone'];     
+							$school_email   =  $row['school_email'];     
+							$school_website =  $row['school_website'];     
+							$current_term   =  $row['current_term'];     
+							$school_bgcolor =  $row['school_bgcolor'];     
+							$text_color     =  $row['text_code'];     
+							$session        =  $row['session'];     
+						
+						}	
+
+
+			 
+ 
+ 
+
+	
+			
+			//$i=0;
+					$result = $this->GetStudentSubject($online_stu_id);
+
+					$schoolName = $this-> SchoolName($school_code);	
+					$parent_name = $this-> ParentName($parent_code);
+
+				
+				
+				echo $success =' 
+
+				<div  class="p-3" style="background-color:'.$school_bgcolor.';color:'.$text_color.';">   
+					<div style="display:flex;justify-content:space-around;text-align:left;">   
+							<div style="width:20%;"> <img src="../myschoolapp_api/school/'.$school_code.'/'.$school_logo.'"  style="height: 120px;width:120px;border-radius:10px" /> </div> 
+							
+							<div style="width:60%;text-align:center"> 
+							<div style="font-size: 30px;font-weight:bold;">'.$schoolName.'</div>
+							<p>'.$school_address.'<br>
+							<span style="margin-right:20px">Tel:'.$school_phone.' </span>  <span>Motor: '.$school_motor.'</span> <br>
+							<span style="margin-right:20px">Email:'.$school_email.' </span>  <span>Website:'.$school_website.' </span>
+							</p>
+							</div> 
+							
+							<div style="width:20%;"><img src="../myschoolapp_api/school/'.$school_code.'/'.$photo.'"  style="height: 120px;width:120px;border-radius:10px" /> </div>
+							
+					</div>
+				</div>
+
+					
+				<div class="card p-3" style="border-width:2px;border-color:'.$school_bgcolor.';">
+
+							<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn ">   
+								<div style="width:7%;font-size:14px"> Student ID </div>
+								<div style="width:23%;font-size:14px"> Student Name</div>
+								<div style="width:10%;font-size:14px"> Class  </div>
+							
+								<div style="width:10%;font-size:14px"> Gender </div>
+								<div style="width:10%;font-size:14px"> Online ID </div>
+								<div style="width:10%;font-size:14px"> Term  </div>
+								<div style="width:20%;font-size:14px"> Session  </div>
+							</div>
+
+							
+							<div  style="width:100%;">
+
+									<div style="display:flex;font-size:20px;justify-content:space-around;text-align:left;" >   
+										<div style="width:7%;font-size:18px"> '.$schl_stu_no.' </div>
+										<div style="width:23%;font-size:18px;text-transform:capitalize"> '.$student_name.' </div>
+										<div style="width:10%;font-size:18px;text-transform:capitalize"> '.$student_class.'  </div>
+									
+										<div style="width:10%;font-size:18px">'.$stu_gender.' </div>
+										<div style="width:10%;font-size:18px">'.$online_stu_id.' </div>
+										<div style="width:10%;font-size:18px"> '.$current_term.' </div>
+										<div style="width:20%;font-size:18px"> '.$session.' </div>
+									</div>
+							</div>
+				</div>		
+							 
+
+
+				<div class="card mb-2" style="border-width:2px;border-color:'.$school_bgcolor.';">
+							<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn mb-3">   
+							<div style="width:55%;"> Subjects </div>
+							<div style="width:10%;text-align:center"> CA </div>
+							<div style="width:10%;text-align:center"> Exam  </div>
+							<div style="width:10%;text-align:center"> Agg </div>
+							<div style="width:10%;text-align:center;">Grade </div>
+							</div> ';
+
+
+
+	 	
+						
+				echo'</div>';	
+						echo $data ='  
+
+		 
+
+
+
+							<div class="card" tyle="display:flex;width:100%" style="border-width:2px;border-color:'.$school_bgcolor.';">
+								
+
+										<div style="display:flex;font-size: 20px;justify-content:space-around;text-align:left;background-color:'.$school_bgcolor.';color:'.$text_color.'" class="btn mb-3">   
+											<div style="width:20%;font-size:14px"> Range Of Score </div>
+											<div style="width:10%;font-size:14px"> Grade </div>
+											<div style="width:20%;font-size:14px"> Remark  </div>
+										
+											<div style="width:20%;font-size:14px"> Range Of Score </div>
+											<div style="width:10%;font-size:14px"> Grade </div>
+											<div style="width:20%;font-size:14px"> Remark  </div>
+										</div>
+					        <div class="p-3">
+										
+					 
+			 
+										
+		 
+		 
+										
+							 
+								</div>
+							</div>
+							';
+
+	}
 			
 	function EserverPaymentClearanceSuccess($student_code)
 	{
@@ -1397,6 +2778,129 @@ class ResultServer{
 													<b style="text-transform:capitalize;padding-top:20px"> '.$student_class.' </b>  <hr/>
 													<b style="text-transform:capitalize;padding-top:20px;color:green"> FULLY PAID! </b>  <hr/>
 													<div  >  <img src="../all_photo/thumb_up.jpg" style="width:150px" />  <br/> '.$current_datetime.'. Thank you for your encouragement </div> 
+													</td>
+																								
+													</tr>
+																
+												</tbody>
+
+											</table>
+										</div>
+									</div>
+							</div>
+
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+							       </button>
+					</div>  
+			</div> 
+			'; 
+
+ 
+			
+	
+	}
+		 
+
+	function FetchBankName($bank_code)
+	{
+		 
+		$this->query ="SELECT * FROM `bank_code` WHERE `bank_code` = '$bank_code' ";
+		$total_row = $this->total_row();
+		$result = $this->query_result();
+		foreach($result as $row){ 
+			$output  =  $row['bank_name'];
+		}
+		if($total_row == 1){
+			return $output;
+		}else{
+			return $output = 'Error';
+		}
+		 
+		
+	}
+
+	function EserverSchoolPaymentLink($sch_code)
+	{
+
+		 
+
+		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
+		$resultquery = $this->query_result(); 
+		foreach($resultquery as $row)
+		{
+			$schoolName     =  $row['school_name'];
+			$school_logo    =  $row['school_logo'];
+			$school_address =  $row['school_address'];
+			$current_term   =  $row['current_term'];
+			$school_email   =  $row['school_email'];
+			$school_website =  $row['school_website'];
+			$school_phone   =  $row['school_phone'];
+			$school_bgcolor =  $row['school_bgcolor'];
+			$bank_code      =  $row['bank_name'];
+			$account_name   =  $row['account_name'];
+			$account_number =  $row['account_number'];
+			
+			
+		}
+  	
+		$bank_name = $this-> FetchBankName($bank_code);
+
+	
+			echo  $output ='   
+ 				<div class="col-xl- col-md-12">
+						<div class="alert alert-danger alert-dismissible fade show" role="alert" style="background-color:'.$school_bgcolor.';padding:30px">
+						
+
+
+					         <div class="card mb-4">
+	                                      <div style="text-align:center;font-weight:bold"> MAKE A PAYMENT  </div><br />
+						         <div class="card-body">
+								       <div class="table-responsive">
+								            <table class="table table-bordered"   width="100%" cellspacing="0">
+								
+							
+												<thead>
+												    	<tr>
+													
+														
+														
+														<th style="width:5%;"> 
+														 <img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:150px;margin-top:-150px" /> 
+														
+														<th>  
+														<div style="display:flex">
+														
+															<div  style="margin-left:20px">
+															
+															<h3 style="text-transform:capitalize;"> '.$schoolName.'   </h3> 
+															<h6 >Address: <span style="text-transform:lowercase;">'.$school_address.'  </span> </h6>
+															<h6 style="text-transform:lowercase;">School Email:'.$school_email.'</h6>
+															<h6 style="text-transform:lowercase;">School Website:'.$school_website.' Questions </h6>
+															<h6 style="text-transform:capitalize;">School Phone: '.$school_phone.'. </h6>
+															</div>
+														</div>	
+													
+														
+														</th>  
+														
+													</tr>
+												</thead>  
+												<tbody>  
+													<tr role="row" class="odd" style="width:100%;">
+													
+													<td style="width:20%;text-align:left;"> 
+														<b style="text-transform:capitalize;padding-top:20px">BANK  NAME:  </b> <hr/>
+														<b style="text-transform:capitalize;padding-top:20px">ACCOUNT NAME:  </b> <hr/>
+														<b style="text-transform:capitalize;padding-top:20px">ACCOUNT NUMBER: </b> 
+													</td> 
+													
+
+													<td style="width:80%;">
+													<b style="text-transform:capitalize;padding-top:20px"> '.$bank_name.' </b> <hr/>
+													<b style="text-transform:capitalize;padding-top:20px"> '.$account_name.' </b>  <hr/>
+													<b style="text-transform:capitalize;padding-top:20px"> '.$account_number.'  </b>  <hr/>
+													<div  >  <img src="../all_photo/thumb_up.jpg" style="width:150px" />Thank you for your encouragement </div> 
 													</td>
 																								
 													</tr>
@@ -1553,7 +3057,7 @@ class ResultServer{
 			
 							
 
-					$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
+					$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id'  ";  
 					$result_row = $this->total_row();
 					$result_user_wallet = $this->query_result();
 					foreach($result_user_wallet as $row){
@@ -1591,7 +3095,7 @@ class ResultServer{
 
 
 					// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
+					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `status`='active' "; 
 					$result = $this->query_result();  
 					foreach($result as $row) 
 					{
@@ -1654,7 +3158,7 @@ class ResultServer{
 
 
 
-					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
+					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `status`='active'";
 					$result_que = $this->query_result();  
 					foreach($result_que as $row_2) 
 					{ 
@@ -2868,7 +4372,7 @@ class ResultServer{
 
 
 					// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
+					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `status`='active' "; 
 					$result = $this->query_result();  
 					foreach($result as $row) 
 					{
@@ -2931,7 +4435,7 @@ class ResultServer{
 
 
 
-					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
+					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `status`='active'";
 					$result_que = $this->query_result();  
 					foreach($result_que as $row_2) 
 					{ 
@@ -4145,7 +5649,7 @@ class ResultServer{
 
 
 					// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-					$this->query = "SELECT * FROM student_weekly_assesment  WHERE student_code = '$online_stu_id'  "; 
+					$this->query = "SELECT * FROM student_weekly_assesment  WHERE student_code = '$online_stu_id' AND `status` ='active' "; 
 					$result = $this->query_result();  
 					foreach($result as $row) 
 					{
@@ -5337,6 +6841,7 @@ class ResultServer{
 			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
 			$date          =  $rows['date']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 		}
 
 		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
@@ -5414,7 +6919,7 @@ class ResultServer{
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Gender: </b> '.$stu_gender.'</div> 
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Class: </b> '.$student_class.'</div>  
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Address: </b> '.$address.'</div>  
-														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Registration Date: </b> '.$date.'</div>  
+														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Expires On: </b> '.$id_card_expires.'</div>  
 
 												       </div>																
 										</div>
@@ -5454,6 +6959,7 @@ class ResultServer{
 			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
 			$date          =  $rows['date']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 		}
 
 		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
@@ -5528,7 +7034,7 @@ class ResultServer{
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Gender: </b> '.$stu_gender.'</div> 
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Class: </b> '.$student_class.'</div>  
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Address: </b> '.$address.'</div>  
-														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Registration Date: </b> '.$date.'</div>  
+														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Expires On: </b> '.$id_card_expires.'</div>  
 
 												       </div>																
 										</div>
@@ -5567,6 +7073,7 @@ class ResultServer{
 			$schl_stu_no   =  $rows['schl_stu_no']; 	
 			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 			$date          =  $rows['date']; 	
 		}
 
@@ -5642,7 +7149,7 @@ class ResultServer{
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Gender: </b> '.$stu_gender.'</div> 
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Class: </b> '.$student_class.'</div>  
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Address: </b> '.$address.'</div>  
-														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Registration Date: </b> '.$date.'</div>  
+														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Expires On: </b> '.$id_card_expires.'</div>  
 
 												       </div>																
 										</div>
@@ -5683,6 +7190,7 @@ class ResultServer{
 			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
 			$date          =  $rows['date']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 		}
 
 		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
@@ -5727,7 +7235,9 @@ class ResultServer{
 							<h3 style="text-transform:capitalize;"> '.$student_name.'   </h3> 
 							<small style="text-transform:capitalize;">Student ID: '.$schl_stu_no.'  | Gender:  '.$stu_gender.'| Class: '.$student_class.' </small> 
 							</div>
-							<div  style="text-align:center;color:'.$text_code.';margin-top:20px">
+							<div  style="text-align:center;color:'.$text_code.';"> <small>Expires On:   '.$id_card_expires.' </small> </div>
+
+							<div  style="text-align:center;color:'.$text_code.';margin-top:-5px">
 							<h3 style="text-transform:capitalize;"> '.$schoolName.'   </h3>
 							<small>	 School Phone: '.$school_phone.'. | School Email:'.$school_email.'</small>
 							</div>
@@ -5770,6 +7280,7 @@ class ResultServer{
 			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
 			$date          =  $rows['date']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 		}
 
 		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
@@ -5814,7 +7325,10 @@ class ResultServer{
 							<h3 style="text-transform:capitalize;"> '.$student_name.'   </h3> 
 							<small style="text-transform:capitalize;">Student ID: '.$schl_stu_no.'  | Gender:  '.$stu_gender.'| Class: '.$student_class.' </small> 
 							</div>
-							<div  style="text-align:center;color:'.$school_bgcolor.';margin-top:20px">
+
+							<div  style="text-align:center;color:'.$school_bgcolor.';"> <small>Expires On:   '.$id_card_expires.' </small> </div>
+
+							<div  style="text-align:center;color:'.$school_bgcolor.';margin-top:-5px">
 							<h3 style="text-transform:capitalize;"> '.$schoolName.'   </h3>
 							<small>	 School Phone: '.$school_phone.'. | School Email:'.$school_email.'</small>
 							</div>
@@ -5855,6 +7369,7 @@ class ResultServer{
 			$schl_stu_no   =  $rows['schl_stu_no']; 	
 			$parent_code   =  $rows['parent_code']; 	
 			$stu_gender    =  $rows['stu_gender']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 			$date          =  $rows['date']; 	
 		}
 
@@ -5900,7 +7415,10 @@ class ResultServer{
 							<h3 style="text-transform:capitalize;"> '.$student_name.'   </h3> 
 							<small style="text-transform:capitalize;">Student ID: '.$schl_stu_no.'  | Gender:  '.$stu_gender.'| Class: '.$student_class.' </small> 
 							</div>
-							<div  style="text-align:center;color:'.$school_bgcolor.';margin-top:20px">
+
+							<div  style="text-align:center;color:'.$school_bgcolor.';"> <small>Expires On:   '.$id_card_expires.' </small> </div>
+
+							<div  style="text-align:center;color:'.$school_bgcolor.';margin-top:10px">
 							<h3 style="text-transform:capitalize;"> '.$schoolName.'   </h3>
 							<small>	 School Phone: '.$school_phone.'. | School Email:'.$school_email.'</small>
 							</div>
@@ -5944,6 +7462,7 @@ class ResultServer{
 			$parent_code   =  $rows['parent_code']; 
 			$stu_gender    =  $rows['stu_gender']; 	
 			$date          =  $rows['date']; 	
+			$id_card_expires =  $rows['id_card_expires']; 	
 		}
 
 		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
@@ -6024,6 +7543,7 @@ class ResultServer{
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Gender: </b> '.$stu_gender.'</div> 
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Class: </b> '.$student_class.'</div>  
 														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Student Address: </b> '.$address.'</div>  
+														<div style="border-bottom:2px solid #777777;padding-bottom:10px;"><b style="text-transform:capitalize;padding-top:20px">Expires On: </b> '.$id_card_expires.'</div>  
 														 
 														</div>
 												</div>																

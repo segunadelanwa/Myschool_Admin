@@ -56,92 +56,104 @@ display:none;
   <body lass="sb-nav-fixed">
 
  	
-
-	
-	
-	
+  <div>
+      <?php
+      require("dashboard_head.php");
+      ?>
+    </div> 
        
-  <div d="layoutSidenav">
 		
-       
-		<div d="layoutSidenav_content">
+        <div id="layoutSidenav">
+
+            <div id="layoutSidenav_nav">
 		 
-				
-					 
-					 <div class="row mb-4" id="formBox">
-						 <div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div> 
-						 <div   class="btn btn-success" onclick="PrintDiv();">Click here to download result</div>
-					  </div>
-			   
-				  
-
-						<div class="col-md-12">  
-				  
-							 
-							 <div lass="table-responsive">
-									
-
-
-
-											<div   >
-													<?php
-														if(isset($_GET["student_id"]))
-														{
-															
-															//REGISTERED SUBJECTS
-															
-															$online_stu_id = trim($_GET["student_id"]) ;
-														 
-
-															echo $ResultServer->EserverResultFetch($online_stu_id);
-																			
- 
-														}
-														else
-														{
-															
-															
-															echo $failed ='
-																		<div class="col-xl- col-md-6">
-															<div class="alert alert-white alert-dismissible fade show" role="alert">
-															<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
-																			
-																			Invalid Online Student ID  inserted. Please check table below to get  Online Student ID
-																			
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-															</button>
-															</div>  
-															</div>';
-																
-															
-															
-															
-														}
-														
-																	
-														
-													 
-
-													?>
-											</div>
-
-
-
-
-								</div>
-										
-								 
-	                       </div>
- 
-       	
-            </div>
+				<?php
+				require("sidebar.php");
 			
-        </div>
-    
-    
-     
-   
+				?>	
+			</div>	
+
+			<div id="layoutSidenav_content" style="margin:20px">			 
+						<div class="row mb-4" id="formBox">
+							<div   class="btn btn-primary mr-5" onclick="GoBackHandler()" >Back</div> 
+							<div   class="btn btn-success" onclick="PrintDiv();">Click here to download result</div>
+						</div>
+				
+					
+
+							<div class="col-md-12">  
+					
+								
+								<div lass="table-responsive">
+										
+
+
+
+												<div   style="width:950px;height:1123px" >
+														<?php
+															if(isset($_GET["student_id"]))
+															{
+																
+																//REGISTERED SUBJECTS
+																
+																$online_stu_id = trim($_GET["student_id"]) ;
+															
+
+																echo $ResultServer->EserverResultFetch($online_stu_id);
+																				
+	
+															}
+															else
+															{
+																
+																
+																echo $failed ='
+																			<div class="col-xl- col-md-6">
+																<div class="alert alert-white alert-dismissible fade show" role="alert">
+																<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+																				
+																				Invalid Online Student ID  inserted. Please check table below to get  Online Student ID
+																				
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+																</button>
+																</div>  
+																</div>';
+																	
+																
+																
+																
+															}
+															
+																		
+															
+														
+
+														?>
+												</div>
+
+
+
+
+									</div>
+											
+									
+							</div>
+	
+			
+				
+					
+					
+							</div>
+			</div>
+	    </div>
+        
+        <?php 
+        //BOTTOM JAVASCRIPT CODE 
+        require("../footer2.php"); 
+        ?>	   
+	
+    </body>
  
     </body>
 </html>
@@ -149,12 +161,16 @@ display:none;
 
 <script>
      
-function PrintDiv() {  
-var formBox = document.getElementById('formBox'); 
-formBox.classList.add('loaderDisplayNone');
-window.print();
-// console.log(formBox)
-}
+	 function PrintDiv() {  
+	var formBox = document.getElementById('formBox'); 
+	var layoutSidenav = document.getElementById('layoutSidenav'); 
+	var layoutSidenav_nav = document.getElementById('layoutSidenav_nav'); 
+	layoutSidenav.classList.add('loaderDisplayNone');
+	layoutSidenav_nav.classList.add('loaderDisplayNone');
+	formBox.classList.add('loaderDisplayNone');
+	window.print();
+	// console.log(formBox)
+ }
 
 
  </script>
