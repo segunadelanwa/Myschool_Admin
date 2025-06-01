@@ -4,7 +4,7 @@ require("../topUrl.php");
 
 
 include("config.php"); 
-$loader = new Loader();
+$Loader = new Loader();
  
 include("../connect2.php"); 
  
@@ -27,8 +27,8 @@ include("../connect2.php");
 	if(!empty($_SESSION['token']) AND !empty($_SESSION['username']))
 	{
 	
-		$loader->query='SELECT * FROM `2_teacher_reg` WHERE `token`="'.$_SESSION['token'].'" AND `username`="'.$_SESSION['username'].'"';		
-			if($result = $loader->query_result()){ 
+		$Loader->query='SELECT * FROM `2_teacher_reg` WHERE `token`="'.$_SESSION['token'].'" AND `username`="'.$_SESSION['username'].'"';		
+			if($result = $Loader->query_result()){ 
 				foreach($result as $row)
 				{
 					$photo	        = $row['photo'];
@@ -55,8 +55,8 @@ include("../connect2.php");
 				}
 		
 		
-				$loader->query='SELECT * FROM `1_school_reg` WHERE   `school_code`="'.$school_code.'"';
-				$result = $loader->query_result(); 
+				$Loader->query='SELECT * FROM `1_school_reg` WHERE   `school_code`="'.$school_code.'"';
+				$result = $Loader->query_result(); 
 				foreach($result as $rows)
 				{
 					$school_name       = $rows['school_name'];
@@ -90,9 +90,9 @@ if(isset($_POST['page'])){
 			$token =  trim($_POST["user_password"]);
 			$user_email_address =  trim($_POST["user_email_address"]);
              
-			$loader->query ="SELECT * FROM  `2_teacher_reg` WHERE token = '$token' AND username = '$user_email_address'"; 
-			$outputtotal_row = $loader->total_row();
-			$output = $loader->query_result();
+			$Loader->query ="SELECT * FROM  `2_teacher_reg` WHERE token = '$token' AND username = '$user_email_address'"; 
+			$outputtotal_row = $Loader->total_row();
+			$output = $Loader->query_result();
 			foreach($output as $row){
 			$sch_code = $row['school_code'];
 			$teacher_token = $row['token'];  
@@ -106,18 +106,18 @@ if(isset($_POST['page'])){
 			{
 
 
-				$loader->data = array(
+				$Loader->data = array(
 					':user_email_address' => $_POST['user_email_address'],
 					':school_code'        => $sch_code
 				);
 	
 
-				$loader->query = " SELECT * FROM `2_teacher_reg` INNER JOIN `1_school_reg` ON `2_teacher_reg`.`school_code` = `1_school_reg`.`school_code` WHERE `2_teacher_reg`.`username` = :user_email_address AND `2_teacher_reg`.`school_code` = :school_code";
-				$total_row = $loader->total_row();		
+				$Loader->query = " SELECT * FROM `2_teacher_reg` INNER JOIN `1_school_reg` ON `2_teacher_reg`.`school_code` = `1_school_reg`.`school_code` WHERE `2_teacher_reg`.`username` = :user_email_address AND `2_teacher_reg`.`school_code` = :school_code";
+				$total_row = $Loader->total_row();		
 
 				if($total_row > 0)
 				{
-					$result = $loader->query_result();
+					$result = $Loader->query_result();
 
 					foreach($result as $row)
 					{
@@ -161,30 +161,30 @@ if(isset($_POST['page'])){
 
 		// 	$token =  $_POST["user_password"];
              
-		// 	$loader->query ="SELECT * FROM  `2_teacher_reg` WHERE token = '$token'"; 
-		// 	$outputtotal_row = $loader->total_row();
+		// 	$Loader->query ="SELECT * FROM  `2_teacher_reg` WHERE token = '$token'"; 
+		// 	$outputtotal_row = $Loader->total_row();
 	 
 
 
 
 
-		// 	$loader->data = array(
+		// 	$Loader->data = array(
 		// 		':user_email_address'	=>	$_POST['user_email_address']
 		// 	);
 
-		// 	$loader->query = "
+		// 	$Loader->query = "
 		// 	SELECT * FROM 2_teacher_reg 
 		// 	WHERE username = :user_email_address
 		// 	";
 
-		// 	$total_row = $loader->total_row(); 
+		// 	$total_row = $Loader->total_row(); 
 		// 	if($outputtotal_row == 1)
 		// 	{
 
 			
 		// 		if($total_row > 0)
 		// 		{
-		// 			$result = $loader->query_result(); 
+		// 			$result = $Loader->query_result(); 
 		// 			foreach($result as $row)
 		// 			{
 		// 				$school_code = $row['school_code'];
@@ -192,8 +192,8 @@ if(isset($_POST['page'])){
 		// 				$tokenRaw    = $row['token'];
         //              }
 
-		// 			//  $loader->query ="SELECT * FROM `1_school_reg` WHERE `1_school_reg`.`school_code` ='$school_code'";
-		// 			//  $resData = $loader->query_result();   
+		// 			//  $Loader->query ="SELECT * FROM `1_school_reg` WHERE `1_school_reg`.`school_code` ='$school_code'";
+		// 			//  $resData = $Loader->query_result();   
 		// 			// foreach($resData as $rows)
 		// 			// { 
 		// 			// 	$school_status   = $rows['school_status']; 
@@ -288,12 +288,12 @@ if(isset($_POST['page'])){
 
 	if($_POST['action'] == 'check_teacher_account')
 	{
-		$loader->query = "
+		$Loader->query = "
 		SELECT * FROM 2_teacher_reg 
 		WHERE username = '".trim($_POST["email"])."'
 		";
 
-		$total_row = $loader->total_row();
+		$total_row = $Loader->total_row();
 
 		if($total_row == 0)
 		{
@@ -327,8 +327,8 @@ if(isset($_POST['page'])){
 					$bank_name             =  trim($_POST['bank_name']);   
 
 
-					$loader->query ="SELECT * FROM 2_teacher_reg WHERE teacher_code = '$teacher_code'";  
-					$output = $loader->query_result();
+					$Loader->query ="SELECT * FROM 2_teacher_reg WHERE teacher_code = '$teacher_code'";  
+					$output = $Loader->query_result();
 					foreach($output as $row){
 					$photo    = $row['photo'];
 					$sch_code = $row['school_code']; 
@@ -337,8 +337,8 @@ if(isset($_POST['page'])){
 					if($sch_code == $school_code)
 					{
 								$location          = "school/$school_code";
-								$loader->filedata  = $_FILES['field_operator_photo'];
-								$field_photo       = $loader->UploadPhoto($location); 
+								$Loader->filedata  = $_FILES['field_operator_photo'];
+								$field_photo       = $Loader->UploadPhoto($location); 
 
 							if(!empty($field_photo)){
 
@@ -419,8 +419,8 @@ if(isset($_POST['page'])){
 					$payment_status =  trim($_POST['payment_status']); 
 
 
-					$loader->query ="SELECT * FROM 4_student_reg WHERE online_stu_id = '$student_code'";  
-					$output = $loader->query_result();
+					$Loader->query ="SELECT * FROM 4_student_reg WHERE online_stu_id = '$student_code'";  
+					$output = $Loader->query_result();
 					foreach($output as $row){
 					$photo    = $row['photo'];
 					$sch_code = $row['school_code'];
@@ -428,8 +428,8 @@ if(isset($_POST['page'])){
             if($sch_code == $school_code)
 			{
 					    $location          = "school/$sch_code";
-						$loader->filedata  = $_FILES['student_photo'];
-						$field_photo       = $loader->UploadPhoto($location); 
+						$Loader->filedata  = $_FILES['student_photo'];
+						$field_photo       = $Loader->UploadPhoto($location); 
 
 					if(!empty($field_photo)){
 
@@ -497,8 +497,8 @@ if(isset($_POST['page'])){
 					$teacher_comment    =  trim($_POST['teacher_comment']); ; 
 
 
-					$loader->query ="SELECT * FROM 4_student_reg WHERE online_stu_id = '$student_code'";  
-					$output = $loader->query_result();
+					$Loader->query ="SELECT * FROM 4_student_reg WHERE online_stu_id = '$student_code'";  
+					$output = $Loader->query_result();
 					foreach($output as $row){ 
 					$sch_code = $row['school_code'];
 					}
@@ -558,9 +558,9 @@ if(isset($_POST['page'])){
 				
 							 
 
-						$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
-						$result_row = $loader->total_row();
-						$result_user_wallet = $loader->query_result();
+						$Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
+						$result_row = $Loader->total_row();
+						$result_user_wallet = $Loader->query_result();
 						foreach($result_user_wallet as $row){
 
 							$photo          =  $row['photo'];   
@@ -581,8 +581,8 @@ if(isset($_POST['page'])){
 						if($result_row == 1 && $sch_code == $school_code)
 						{
 							//$i=0;
-							 $result = $loader->GetAllSubjects();
-							$schoolName = $loader-> SchoolName($school_code);	
+							 $result = $Loader->GetAllSubjects();
+							$schoolName = $Loader-> SchoolName($school_code);	
 									  
  
 					 
@@ -678,9 +678,9 @@ if(isset($_POST['page'])){
 				
 					 
 
-						$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' AND teacher_code = '$teacher_code' AND school_code = '$school_code' ";  
-						$result_row = $loader->total_row();
-						$result_user_wallet = $loader->query_result();
+						$Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' AND teacher_code = '$teacher_code' AND school_code = '$school_code' ";  
+						$result_row = $Loader->total_row();
+						$result_user_wallet = $Loader->query_result();
 						foreach($result_user_wallet as $row){
 
 							$photo          =  $row['photo'];   
@@ -701,8 +701,8 @@ if(isset($_POST['page'])){
 						if($result_row == 1 && $school_code  == $sch_code)
 						{
 							//$i=0;
-							 $result = $loader->GetAllSubjects();
-							$schoolName = $loader-> SchoolName($school_code);	
+							 $result = $Loader->GetAllSubjects();
+							$schoolName = $Loader-> SchoolName($school_code);	
 									  
  
 					 
@@ -791,9 +791,9 @@ if(isset($_POST['page'])){
                       $stu_online_id = trim($_POST['stu_online_id']) ;
                       $sub_id        = trim($_POST['subject_id']) ;
 
-					  $loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' ";  
-					  $result_row = $loader->total_row();
-					  $result_user_wallet = $loader->query_result();
+					  $Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' ";  
+					  $result_row = $Loader->total_row();
+					  $result_user_wallet = $Loader->query_result();
 					  foreach($result_user_wallet as $row){
    
 						  $sch_code       =  $row['school_code'];     
@@ -807,7 +807,7 @@ if(isset($_POST['page'])){
 					{
 						$query_wallet ="UPDATE `student_exam_result` SET
 						  `$sub_id`     = 'null' 		 
-						WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
+						WHERE `student_exam_result`.`student_code` = '$stu_online_id' AND  `student_exam_result`.`status` = 'active' "; 
 
 						if(mysqli_query($homedb,$query_wallet))
 						{ 
@@ -822,7 +822,7 @@ if(isset($_POST['page'])){
 					{
 						$query_wallet ="UPDATE `student_test_result` SET   
 						`$sub_id`     = 'null' 		 
-						WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
+						WHERE `student_test_result`.`student_code` = '$stu_online_id' AND  `student_test_result`.`status` = 'active'"; 
 
 						if(mysqli_query($homedb,$query_wallet))
 						{ 
@@ -838,7 +838,7 @@ if(isset($_POST['page'])){
 					{
 						$query_wallet ="UPDATE `student_weekly_assesment` SET   
 						`$sub_id`     = 'null' 		 
-						WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' "; 
+						WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' AND  `student_weekly_assesment`.`status` = 'active' "; 
 
 						if(mysqli_query($homedb,$query_wallet))
 						{ 
@@ -891,8 +891,8 @@ if(isset($_POST['page'])){
                       $stu_online_id = trim($_POST['stu_online_id']) ;
                       $sub_id    = trim($_POST['subject_id']) ;
 
-					  $loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' ";   
-					  $result_user_wallet = $loader->query_result();
+					  $Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' ";   
+					  $result_user_wallet = $Loader->query_result();
 					  foreach($result_user_wallet as $row){
    
 						  $sch_code       =  $row['school_code'];     
@@ -972,8 +972,8 @@ if(isset($_POST['page'])){
                       $stu_online_id = trim($_POST['stu_online_id']) ;
                       $subject_id    = trim($_POST['subject_id']) ;
 
-					$loader->query = "SELECT * FROM `40_all_subject` WHERE `40_all_subject`.`id` ='$subject_id'"; 
-					$result_user_wallet = $loader->query_result();
+					$Loader->query = "SELECT * FROM `40_all_subject` WHERE `40_all_subject`.`id` ='$subject_id'"; 
+					$result_user_wallet = $Loader->query_result();
 					foreach($result_user_wallet as $row){
    
 					$sub_title   =  $row['sub_title'];      
@@ -982,8 +982,8 @@ if(isset($_POST['page'])){
 			
 
 
-					$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' ";   
-					$result_user_wallet = $loader->query_result();
+					$Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' ";   
+					$result_user_wallet = $Loader->query_result();
 					foreach($result_user_wallet as $row){
  
 						$sch_code       =  $row['school_code'];     
@@ -1001,12 +1001,12 @@ if(isset($_POST['page'])){
 	  
 												$query_wallet ="UPDATE `student_exam_result` SET   
 												`$sub_id`     = 'null' 		 
-												WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
+												WHERE `student_exam_result`.`student_code` = '$stu_online_id' AND `student_exam_result`.`status` = 'active' "; 
 												mysqli_query($homedb,$query_wallet);
 
                                                 $query_wallet ="UPDATE `student_test_result` SET   
 												`$sub_id`     = 'null' 		 
-												WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
+												WHERE `student_test_result`.`student_code` = '$stu_online_id' AND `student_test_result`.`status` = 'active'"; 
 												mysqli_query($homedb,$query_wallet);
 
 												$query_wallet ="UPDATE `student_weekly_assesment` SET   
@@ -1071,9 +1071,9 @@ if(isset($_POST['page'])){
 				
 							 
 
-						$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' AND teacher_code = '$teacher_code' AND school_code = '$school_code' ";  
-						$result_row = $loader->total_row();
-						$result_user_wallet = $loader->query_result();
+						$Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' AND teacher_code = '$teacher_code' AND school_code = '$school_code' ";  
+						$result_row = $Loader->total_row();
+						$result_user_wallet = $Loader->query_result();
 						foreach($result_user_wallet as $row){
 
 							$photo          =  $row['photo'];      
@@ -1094,10 +1094,10 @@ if(isset($_POST['page'])){
 						if($result_row == 1 && $sch_code == $school_code)
 						{
 									//$i=0;
-									$result = $loader->GetStudentSubject($online_stu_id);
+									$result = $Loader->GetStudentSubject($online_stu_id);
 
-									$schoolName = $loader-> SchoolName($sch_code);	
-									$parent_name = $loader-> ParentName($parent_code);
+									$schoolName = $Loader-> SchoolName($sch_code);	
+									$parent_name = $Loader-> ParentName($parent_code);
 
 							
 								
@@ -1716,9 +1716,9 @@ if(isset($_POST['page'])){
 				
 							 
 
-						$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
-						$result_row = $loader->total_row();
-						$result_user_wallet = $loader->query_result();
+						$Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
+						$result_row = $Loader->total_row();
+						$result_user_wallet = $Loader->query_result();
 						foreach($result_user_wallet as $row){
 
 							$photo          =  $row['photo'];      
@@ -1735,8 +1735,8 @@ if(isset($_POST['page'])){
 
 
 						// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-						$loader->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
-						$result = $loader->query_result();  
+						$Loader->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `student_exam_result`.`status`='active' "; 
+						$result = $Loader->query_result();  
 						foreach($result as $row) 
 						{
 								
@@ -1781,8 +1781,8 @@ if(isset($_POST['page'])){
  
 
 
-                        $loader->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
-                        $result_que = $loader->query_result();  
+                        $Loader->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `student_test_result`.`status`='active'";
+                        $result_que = $Loader->query_result();  
 						foreach($result_que as $row_2) 
 						{ 
 							$stuTest_1 =  $row_2['sub_1'];
@@ -1867,10 +1867,10 @@ if(isset($_POST['page'])){
 						if($result_row == 1 && $sch_code == $school_code)
 						{
 							//$i=0;
-							 $result = $loader->GetStudentSubject($online_stu_id);
+							 $result = $Loader->GetStudentSubject($online_stu_id);
 
-							$schoolName = $loader-> SchoolName($sch_code);	
-							$parent_name = $loader-> ParentName($parent_code);
+							$schoolName = $Loader-> SchoolName($sch_code);	
+							$parent_name = $Loader-> ParentName($parent_code);
 
 					 
 						
@@ -1931,7 +1931,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_1'])){ 
 										   
-											$grade = $loader->GradeCal($result_1);
+											$grade = $Loader->GradeCal($result_1);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_1']."  </div>
@@ -1948,7 +1948,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_2'])){ 
 										   
-											$grade = $loader->GradeCal($result_2);
+											$grade = $Loader->GradeCal($result_2);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_2']."  </div>
@@ -1963,7 +1963,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_3'])){ 
 										   
-											$grade = $loader->GradeCal($result_3);
+											$grade = $Loader->GradeCal($result_3);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_3']."  </div>
@@ -1978,7 +1978,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_4'])){ 
 										   
-											$grade = $loader->GradeCal($result_4);
+											$grade = $Loader->GradeCal($result_4);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_4']."  </div>
@@ -1993,7 +1993,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_5'])){ 
 										   
-											$grade = $loader->GradeCal($result_5);
+											$grade = $Loader->GradeCal($result_5);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_5']."  </div>
@@ -2008,7 +2008,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_6'])){ 
 										   
-											$grade = $loader->GradeCal($result_6);
+											$grade = $Loader->GradeCal($result_6);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_6']."  </div>
@@ -2024,7 +2024,7 @@ if(isset($_POST['page'])){
 											
 										   if(!empty($row['sub_7'])){ 
 										   
-											$grade = $loader->GradeCal($result_7);
+											$grade = $Loader->GradeCal($result_7);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_7']."  </div>
@@ -2039,7 +2039,7 @@ if(isset($_POST['page'])){
 
 										   if(!empty($row['sub_8'])){ 
 										   
-											$grade = $loader->GradeCal($result_8);
+											$grade = $Loader->GradeCal($result_8);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_8']."  </div>
@@ -2053,7 +2053,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_9'])){ 
 										   
-											$grade = $loader->GradeCal($result_9);
+											$grade = $Loader->GradeCal($result_9);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_9']."  </div>
@@ -2067,7 +2067,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_10'])){ 
 										   
-											$grade = $loader->GradeCal($result_10);
+											$grade = $Loader->GradeCal($result_10);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_10']."  </div>
@@ -2081,7 +2081,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_11'])){ 
 										   
-											$grade = $loader->GradeCal($result_11);
+											$grade = $Loader->GradeCal($result_11);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_11']."  </div>
@@ -2095,7 +2095,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_12'])){ 
 										   
-											$grade = $loader->GradeCal($result_12);
+											$grade = $Loader->GradeCal($result_12);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_12']."  </div>
@@ -2109,7 +2109,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_13'])){ 
 										   
-											$grade = $loader->GradeCal($result_13);
+											$grade = $Loader->GradeCal($result_13);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_13']."  </div>
@@ -2123,7 +2123,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_14'])){ 
 										   
-											$grade = $loader->GradeCal($result_14);
+											$grade = $Loader->GradeCal($result_14);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_14']."  </div>
@@ -2137,7 +2137,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_15'])){ 
 										   
-											$grade = $loader->GradeCal($result_15);
+											$grade = $Loader->GradeCal($result_15);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_15']."  </div>
@@ -2151,7 +2151,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_16'])){ 
 										   
-											$grade = $loader->GradeCal($result_16);
+											$grade = $Loader->GradeCal($result_16);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_16']."  </div>
@@ -2165,7 +2165,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_17'])){ 
 										   
-											$grade = $loader->GradeCal($result_17);
+											$grade = $Loader->GradeCal($result_17);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_17']."  </div>
@@ -2179,7 +2179,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_18'])){ 
 										   
-											$grade = $loader->GradeCal($result_18);
+											$grade = $Loader->GradeCal($result_18);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_18']."  </div>
@@ -2193,7 +2193,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_19'])){ 
 										   
-											$grade = $loader->GradeCal($result_19);
+											$grade = $Loader->GradeCal($result_19);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_19']."  </div>
@@ -2207,7 +2207,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_20'])){ 
 										   
-											$grade = $loader->GradeCal($result_20);
+											$grade = $Loader->GradeCal($result_20);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_20']."  </div>
@@ -2221,7 +2221,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_21'])){ 
 										   
-											$grade = $loader->GradeCal($result_21);
+											$grade = $Loader->GradeCal($result_21);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_21']."  </div>
@@ -2235,7 +2235,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_22'])){ 
 										   
-											$grade = $loader->GradeCal($result_22);
+											$grade = $Loader->GradeCal($result_22);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_22']."  </div>
@@ -2249,7 +2249,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_23'])){ 
 										   
-											$grade = $loader->GradeCal($result_23);
+											$grade = $Loader->GradeCal($result_23);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_23']."  </div>
@@ -2263,7 +2263,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_24'])){ 
 										   
-											$grade = $loader->GradeCal($result_24);
+											$grade = $Loader->GradeCal($result_24);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_24']."  </div>
@@ -2277,7 +2277,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_25'])){ 
 										   
-											$grade = $loader->GradeCal($result_25);
+											$grade = $Loader->GradeCal($result_25);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_25']."  </div>
@@ -2291,7 +2291,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_26'])){ 
 										   
-											$grade = $loader->GradeCal($result_26);
+											$grade = $Loader->GradeCal($result_26);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_26']."  </div>
@@ -2305,7 +2305,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_27'])){ 
 										   
-											$grade = $loader->GradeCal($result_27);
+											$grade = $Loader->GradeCal($result_27);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_27']."  </div>
@@ -2319,7 +2319,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_28'])){ 
 										   
-											$grade = $loader->GradeCal($result_28);
+											$grade = $Loader->GradeCal($result_28);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_28']."  </div>
@@ -2334,7 +2334,7 @@ if(isset($_POST['page'])){
 										    
 										   if(!empty($row['sub_29'])){ 
 										   
-											$grade = $loader->GradeCal($result_29);
+											$grade = $Loader->GradeCal($result_29);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_29']."  </div>
@@ -2348,7 +2348,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_30'])){ 
 										   
-											$grade = $loader->GradeCal($result_30);
+											$grade = $Loader->GradeCal($result_30);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_30']."  </div>
@@ -2362,7 +2362,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_31'])){ 
 										   
-											$grade = $loader->GradeCal($result_31);
+											$grade = $Loader->GradeCal($result_31);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_31']."  </div>
@@ -2376,7 +2376,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_32'])){ 
 										   
-											$grade = $loader->GradeCal($result_32);
+											$grade = $Loader->GradeCal($result_32);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_32']."  </div>
@@ -2390,7 +2390,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_33'])){ 
 										   
-											$grade = $loader->GradeCal($result_33);
+											$grade = $Loader->GradeCal($result_33);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_33']."  </div>
@@ -2404,7 +2404,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_34'])){ 
 										   
-											$grade = $loader->GradeCal($result_34);
+											$grade = $Loader->GradeCal($result_34);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_34']."  </div>
@@ -2418,7 +2418,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_35'])){ 
 										   
-											$grade = $loader->GradeCal($result_35);
+											$grade = $Loader->GradeCal($result_35);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_35']."  </div>
@@ -2432,7 +2432,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_36'])){ 
 										   
-											$grade = $loader->GradeCal($result_36);
+											$grade = $Loader->GradeCal($result_36);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_36']."  </div>
@@ -2446,7 +2446,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_37'])){ 
 										   
-											$grade = $loader->GradeCal($result_37);
+											$grade = $Loader->GradeCal($result_37);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_37']."  </div>
@@ -2460,7 +2460,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_39'])){ 
 										   
-											$grade = $loader->GradeCal($result_39);
+											$grade = $Loader->GradeCal($result_39);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_39']."  </div>
@@ -2474,7 +2474,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_40'])){ 
 										   
-											$grade = $loader->GradeCal($result_40);
+											$grade = $Loader->GradeCal($result_40);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_40']."  </div>
@@ -2488,7 +2488,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_41'])){ 
 										   
-											$grade = $loader->GradeCal($result_41);
+											$grade = $Loader->GradeCal($result_41);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_41']."  </div>
@@ -2502,7 +2502,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_42'])){ 
 										   
-											$grade = $loader->GradeCal($result_42);
+											$grade = $Loader->GradeCal($result_42);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_42']."  </div>
@@ -2516,7 +2516,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_43'])){ 
 										   
-											$grade = $loader->GradeCal($result_43);
+											$grade = $Loader->GradeCal($result_43);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_43']."  </div>
@@ -2530,7 +2530,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_44'])){ 
 										   
-											$grade = $loader->GradeCal($result_44);
+											$grade = $Loader->GradeCal($result_44);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_44']."  </div>
@@ -2544,7 +2544,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_45'])){ 
 										   
-											$grade = $loader->GradeCal($result_45);
+											$grade = $Loader->GradeCal($result_45);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_45']."  </div>
@@ -2558,7 +2558,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_46'])){ 
 										   
-											$grade = $loader->GradeCal($result_46);
+											$grade = $Loader->GradeCal($result_46);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_46']."  </div>
@@ -2572,7 +2572,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_47'])){ 
 										   
-											$grade = $loader->GradeCal($result_47);
+											$grade = $Loader->GradeCal($result_47);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_47']."  </div>
@@ -2586,7 +2586,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_48'])){ 
 										   
-											$grade = $loader->GradeCal($result_48);
+											$grade = $Loader->GradeCal($result_48);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_48']."  </div>
@@ -2600,7 +2600,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_49'])){ 
 										   
-											$grade = $loader->GradeCal($result_49);
+											$grade = $Loader->GradeCal($result_49);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_49']."  </div>
@@ -2614,7 +2614,7 @@ if(isset($_POST['page'])){
 										   }
 										   if(!empty($row['sub_50'])){ 
 										   
-											$grade = $loader->GradeCal($result_50);
+											$grade = $Loader->GradeCal($result_50);
 											  echo$data="
 											<div style='display:flex;font-size: 20px;justify-content:space-around;text-align:left'>   
 											<div style='width:55%'  style='text-transform:capitalize'>  ".$row['sub_50']."  </div>
@@ -2746,73 +2746,79 @@ if(isset($_POST['page'])){
 					$stu_online_id = trim($_POST['stu_online_id']) ;
 					$subject_id    = trim($_POST['subject_id']) ; 
 
-					$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' "; 
-					$result_row = $loader->total_row();  
-					$result_user_wallet = $loader->query_result();
+					$Loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$stu_online_id' "; 
+					$result_row = $Loader->total_row();  
+					$result_user_wallet = $Loader->query_result();
 					foreach($result_user_wallet as $row){   
 						$sch_code       =  $row['school_code']; 
 					}
 
-				$loader->query = "SELECT * FROM `40_all_subject` WHERE `40_all_subject`.`id` ='$subject_id'"; 
-				$result_user_wallet = $loader->query_result();
-				foreach($result_user_wallet as $row){
+					$Loader->query = "SELECT * FROM `40_all_subject` WHERE `40_all_subject`.`id` ='$subject_id'"; 
+					$result_user_wallet = $Loader->query_result();
+					foreach($result_user_wallet as $row){
 
-				$sub_title   =  $row['sub_title'];     
-				$sub_id      =  $row['sub_id'];      
-				}
-		
+					$sub_title   =  $row['sub_title'];     
+					$sub_id      =  $row['sub_id'];      
+					}
+			
 		
 				
-				if($result_row == 1 && $sch_code == $school_code)
-				{		
-									$query_wallet ="UPDATE `41_student_subjects` SET   
-									`$sub_id`     = '' 		 
-									WHERE `41_student_subjects`.`student_code` = '$stu_online_id' "; 
-									if(mysqli_query($homedb,$query_wallet))
-									{
-										$query_wallet ="UPDATE `student_exam_result` SET   
-										`$sub_id`     = '' 		 
-										WHERE `student_exam_result`.`student_code` = '$stu_online_id' "; 
-										mysqli_query($homedb,$query_wallet);
+						if($result_row == 1 && $sch_code == $school_code)
+						{		
+											$query_wallet ="UPDATE `41_student_subjects` SET   
+											`$sub_id`     = '' 		 
+											WHERE `41_student_subjects`.`student_code` = '$stu_online_id'"; 
+											if(mysqli_query($homedb,$query_wallet))
+											{
+												$query_wallet ="UPDATE `student_exam_result` SET   
+												`$sub_id`     = '' 		 
+												WHERE `student_exam_result`.`student_code` = '$stu_online_id'AND `student_exam_result`.`status` = 'active' "; 
+												mysqli_query($homedb,$query_wallet);
 
-										$query_wallet ="UPDATE `student_test_result` SET   
-										`$sub_id`     = '' 		 
-										WHERE `student_test_result`.`student_code` = '$stu_online_id' "; 
-										mysqli_query($homedb,$query_wallet);
+												$query_wallet ="UPDATE `student_test_result` SET   
+												`$sub_id`     = '' 		 
+												WHERE `student_test_result`.`student_code` = '$stu_online_id' AND `student_test_result`.`status` = 'active'"; 
+												mysqli_query($homedb,$query_wallet);
 
-										echo$feedback		=	"$sub_title removed from  student subject list";
-											
 
-									}
-									else
-									{ 
-											
-										echo $feedback		=	"Newtwork error";
-											
-									}
+												$query_wallet ="UPDATE `student_weekly_assesment` SET   
+												`$sub_id`     = '' 		 
+												WHERE `student_weekly_assesment`.`student_code` = '$stu_online_id' AND `student_weekly_assesment`.`status` = 'active'"; 
+												mysqli_query($homedb,$query_wallet);
 
-				}
-				else
-				{ 
+												echo$feedback		=	"$sub_title removed from  student subject list";
+													
+
+											}
+											else
+											{ 
+													
+												echo $feedback		=	"Newtwork error";
+													
+											}
+
+						}
+						else
+						{ 
+								
+							echo $feedback ='
+							<div class="col-xl- col-md-6">
+							<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
+								
+							No student ID found.
+
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+							</div>  
+							</div> 
+							';
+								
+						}
 						
-					echo $feedback ='
-					<div class="col-xl- col-md-6">
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					<strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
-						
-					No student ID found.
 
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button>
-					</div>  
-					</div> 
-					';
-						
-				}
-				
-
-						
+								
 			
 												
 
@@ -2824,7 +2830,16 @@ if(isset($_POST['page'])){
 
 	}
 			
+	if($_POST["page"] === 'printQuestion')
+	{
 
+
+		if($_POST['action'] == 'printQuestion')
+		{
+
+		}
+
+	}
 
 	if($_POST["page"] === 'printQuestion')
 	{
@@ -2840,19 +2855,19 @@ if(isset($_POST['page'])){
 					$T_username    = $_POST['username']; 
 					$subject_id    = $_POST['subject_id']; 
 
-					$loader->query = "SELECT * FROM `50_question_table` WHERE  teacher_code='$T_username' AND subject_id = '$subject_id'  AND school_code = '$school_code' "; 
-					$total_row = $loader->total_row(); 
-					$result = $loader->query_result(); 
+					$Loader->query = "SELECT * FROM `50_question_table` WHERE  teacher_code='$T_username' AND subject_id = '$subject_id'  AND school_code = '$school_code' "; 
+					$total_row = $Loader->total_row(); 
+					$result = $Loader->query_result(); 
 					foreach($result as $rows)
 					{
-						$schoolName    =  $loader-> SchoolName($school_code);
-						$subject       =  $loader-> FecthSingleSubject($rows['cbt_subject']);	 
+						$schoolName    =  $Loader-> SchoolName($school_code);
+						$subject       =  $Loader-> FecthSingleSubject($rows['cbt_subject']);	 
 						$cbt_status    =  $rows['cbt_status'];	
 						$student_class =  $rows['student_class'];	
 					}
 
-     					@$loader->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$school_code' ";  
-						$resultquery = $loader->query_result(); 
+     					@$Loader->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$school_code' ";  
+						$resultquery = $Loader->query_result(); 
 
 					foreach($resultquery as $row)
 					{
@@ -2862,6 +2877,11 @@ if(isset($_POST['page'])){
 						$session         =  $row['session'];
 					 
 					}
+     					@$Loader->query = "SELECT * FROM `50_question_theory` WHERE  subject_id ='$subject_id' ";  
+						$total_rowTheory = $Loader->total_row(); 
+						$resultquery = $Loader->query_result(); 
+
+
 
 
 
@@ -2900,7 +2920,7 @@ if(isset($_POST['page'])){
                                                               
 																<div  style="margin-left:20px">
 																
-																<h3 style="text-transform:capitalize;"> '.$schoolName.'   </h3>
+																<h5 style="text-transform:capitalize;font-weight:bold;"> '.$schoolName.'   </h5>
 																<h6 style="text-transform:capitalize;"> '.$school_address.'   </h6>
 																<h6 style="text-transform:capitalize;">'.$new_cbt_status.': '.$subject.' Questions </h6>
 																<h6 style="text-transform:capitalize;"> Class:  '.$student_class.'. Term: '.$current_term.'. Session:  '.$session.' </h6>
@@ -2924,8 +2944,8 @@ if(isset($_POST['page'])){
 														$d++;
 
 															$question_id   = $active['id'];
-															$loader->query = "SELECT * FROM `51_question_option` WHERE  question_id ='$question_id'"; 
-															$result        = $loader->query_result();
+															$Loader->query = "SELECT * FROM `51_question_option` WHERE  question_id ='$question_id'"; 
+															$result        = $Loader->query_result();
 
 														
 															if($active['question_image'] == '')
@@ -2948,7 +2968,7 @@ if(isset($_POST['page'])){
 															}
 															else
 															{
-																$QuesImg ='<img src="../'.$MainquesImg .'/'.$active['question_image'].'"  style="height:100%;border-radius:1500px"';
+																$QuesImg ='<img src="../'.$MainquesImg .'/'.$active['question_image'].'"  style="height:150px;border-radius:1500px"';
 																$optionLabelAdjest = '	
 																<div style="margin-top:190px;text-align:center;border-radius:500px;border:1px solid #777777"> 
 																A 
@@ -2968,7 +2988,7 @@ if(isset($_POST['page'])){
 														echo'<tr role="row" class="odd">
 														
 														<td>
-														<b>Question <br/> '.$d.' </b> 
+														<div>Question <br/> '.$d.' </div> 
 														</td>
 													
 														
@@ -2977,16 +2997,16 @@ if(isset($_POST['page'])){
 																	<span>
 																	'.$QuesImg.' 
 																	</span> <br/>
-																	<b>'.$active['question_title'].' </b>
+																	<b style="font-size:14px;margin-top:-10px">'.$active['question_title'].' </b>
 																	
 
-																	<div style="font-size:14px">
+																	<div style="font-size:14px;">
 																	';
 																	
 																	$i=0;
 																	foreach($result as $row)
 																	{ 
-																	echo $optionData[$i]  = '<div style="margin-top:25px;text-align:left; ">'.$row['option_title'].'</div>';
+																	echo $optionData[$i]  = '<div style="margin-top:2px;text-align:left; ">'.$row['option_title'].'</div>';
 																	$i++;
 																	} 
 																	echo'
@@ -3002,8 +3022,54 @@ if(isset($_POST['page'])){
 																
 													} 					
 											echo'</tbody>
-								</table>
-							</div>
+								</table>';
+							if($total_rowTheory >= 1){
+							 
+						
+	                        echo'<th>
+							     <h5 class="mb-5 mt-5 text-center" style="font-weight:bold;" > 
+							      <hr/>
+							     <span style="text-transform:capitalize;"> '.$schoolName.'   </span><br/>
+								 <span style="text-transform:capitalize;">'.$new_cbt_status.': '.$subject.'   </span><br/>
+							     THEORY QUESTION  
+								  <hr/>
+								  </th>
+								  </h5> 
+							';
+							}
+			 			foreach($resultquery as $row) 
+						{ 
+							if($row['question_image'] == '')
+							{
+								$dataImg ='';
+							}
+							else
+							{
+								$dataImg ='<img  src="../'.$MainquesImg .'/'.$row['question_image'].'"    class="img-fluid" alt="" />';
+                            }
+
+
+
+							if($total_rowTheory >= 1)
+							{					
+							echo' 
+							<div> 
+								<div>
+								'.$dataImg .'
+								<div> 
+									
+								<p style="font-size:16px;"  >
+								<textarea style="background-color:#fff;color:black"  rows="25%"    class="form-control" disabled>'.$row['question_title'].' </textarea>
+								</p>
+
+							</div>  								
+							';
+							}
+					    }
+
+
+
+							echo'</div>
 						</div>
 					</div>'; 
 
@@ -3030,7 +3096,7 @@ if(isset($_POST['page'])){
            }
     }
 
-	if($_POST["page"] === 'uploadQuestion')
+	if($_POST["page"] === 'uploadObective')
 	{
 	 
 		  if($_POST['action'] == 'question')
@@ -3055,8 +3121,8 @@ if(isset($_POST['page'])){
 				$correct_answer = $_POST['option_d'];
 			  }
 			  $quest_link_img =	 "./question_img";
-			  @$loader->filedata  = $_FILES['question_img'];
-			  $quesimg      = $loader->UploadPhoto($quest_link_img);  
+			  @$Loader->filedata  = $_FILES['question_img'];
+			  $quesimg      = $Loader->UploadPhoto($quest_link_img);  
 			 
  
 	           
@@ -3089,7 +3155,7 @@ if(isset($_POST['page'])){
 						
 
 						
-					if($loader->ExamAccessCode($_POST['access_code']) == 0){
+					if($Loader->ExamAccessCode($_POST['access_code']) == 0){
 
 
 							$queryletter =("INSERT INTO `exam_access_code` VALUES (
@@ -3119,6 +3185,58 @@ if(isset($_POST['page'])){
 
 	
 	}
+	
+	if($_POST["page"] === 'uploadTheory')
+	{
+	 
+		  if($_POST['action'] == 'question')
+		   {
+			$question_img = '';
+			$date = date("Y-m-d");
+		  
+			  $quest_link_img =	 "./question_img";
+			  @$Loader->filedata  = $_FILES['question_img'];
+			  $quesimg      = $Loader->UploadPhoto($quest_link_img);  
+			 
+  
+			//this is to know if exam access code is available to upload theory part of the question
+					if($Loader->ExamAccessCode($_POST['access_code']) >= 1){
+
+							$queryletter =("INSERT INTO `50_question_theory` VALUES (
+							'".mysqli_real_escape_string($homedb, '')."',  
+							'".mysqli_real_escape_string($homedb, $_POST['access_code'])."',
+							'".mysqli_real_escape_string($homedb, $quesimg)."', 
+							'".mysqli_real_escape_string($homedb, $_POST['question'])."',  
+							'".mysqli_real_escape_string($homedb, $date)."'
+							)");
+							if(mysqli_query($homedb, $queryletter)){ 
+								
+						
+
+							$data= array(
+								'success'		=>	'success',
+								'feedback'		=>	'question uploaded successfully'
+							);
+					}else{
+
+							$data= array(
+								'success'		=>	'error',
+								'feedback'		=>	'question access code is not valid'
+							);
+					}
+
+
+
+				
+			echo json_encode($data);
+	
+	        }
+
+ 
+	       }
+
+	
+	}
 
 	if($_POST["page"] === 'uploadSchemeOfWork')
 	{
@@ -3127,14 +3245,14 @@ if(isset($_POST['page'])){
 		   {
 			 
 			$date = date("Y-m-d");
-			$loader->query = "SELECT * FROM `scheme_of_uploader` WHERE  teacher_id='".$_POST['teacher_code']."' AND subject_id = '".$_POST['subject']."' AND class = '".$_POST['class']."' AND scheme_term = '".$_POST['term_selection']."' AND week = '".$_POST['week']."'"; 
-			$total_row = $loader->total_row(); 
+			$Loader->query = "SELECT * FROM `scheme_of_upLoader` WHERE  teacher_id='".$_POST['teacher_code']."' AND subject_id = '".$_POST['subject']."' AND class = '".$_POST['class']."' AND scheme_term = '".$_POST['term_selection']."' AND week = '".$_POST['week']."'"; 
+			$total_row = $Loader->total_row(); 
  
-			if($total_row = $loader->total_row() == 0)
+			if($total_row = $Loader->total_row() == 0)
 			{
 
 			
-				    $queryletter =("INSERT INTO `scheme_of_uploader` VALUES (
+				    $queryletter =("INSERT INTO `scheme_of_upLoader` VALUES (
 					'', 
 					'".mysqli_real_escape_string($homedb, $_POST['teacher_code'])."',
 					'".mysqli_real_escape_string($homedb, $_POST['school_code'])."',
@@ -3202,7 +3320,7 @@ if(isset($_POST['page'])){
 
 			
 			
-				    $queryletter ="UPDATE `scheme_of_uploader` SET  
+				    $queryletter ="UPDATE `scheme_of_upLoader` SET  
 					`teacher_id`   = '$teacher_code',
 					`school_code`    = '$school_code',  
 					`teacher_photo`          = '$photo',  
@@ -3212,7 +3330,7 @@ if(isset($_POST['page'])){
 					`topic`          = '$topic', 
 					`content`        = '$content',  
 					`scheme_term` = '$term_selection'
-					WHERE  `scheme_of_uploader`.`id` = '$sow_id' ";
+					WHERE  `scheme_of_upLoader`.`id` = '$sow_id' ";
 					if(mysqli_query($homedb, $queryletter))
 					{ 
 
@@ -3251,8 +3369,8 @@ if(isset($_POST['page'])){
 			  
  
 			  $quest_link_img    ="./question_img";
-			  $loader->filedata  = $_FILES['question_img'];
-			  $quesimg           = $loader->UploadPhoto($quest_link_img);  
+			  $Loader->filedata  = $_FILES['question_img'];
+			  $quesimg           = $Loader->UploadPhoto($quest_link_img);  
 
 
 			  $img_hidden   = htmlentities($_POST['question_img_hidden']);
@@ -3272,35 +3390,35 @@ if(isset($_POST['page'])){
 			  $type         = htmlentities($_POST['type']);
 			  $question_id  = htmlentities($_POST['question_id']);
 
-			  $loader->query ="SELECT * FROM 50_question_table WHERE id = '$question_id'";  
-			  $output = $loader->query_result();
+			  $Loader->query ="SELECT * FROM 50_question_table WHERE id = '$question_id'";  
+			  $output = $Loader->query_result();
 			  foreach($output as $row){
 				  $ques_image     = $row['question_image']; 
 			  }
   
 			 
-			         $loader->query ="UPDATE `51_question_option` SET 
+			         $Loader->query ="UPDATE `51_question_option` SET 
 					 `option_title` = '$optTXT_0'
 					 WHERE  `51_question_option`.`id` = '$optID_0' ";
-                     $loader->execute_query();
+                     $Loader->execute_query();
 
 
-                    $loader->query ="UPDATE `51_question_option` SET 
+                    $Loader->query ="UPDATE `51_question_option` SET 
 					 `option_title` = '$optTXT_1'
 					 WHERE  `51_question_option`.`id` = '$optID_1' ";
-                     $loader->execute_query();
+                     $Loader->execute_query();
 
 
-                     $loader->query ="UPDATE `51_question_option` SET 
+                     $Loader->query ="UPDATE `51_question_option` SET 
 					 `option_title` = '$optTXT_2'
 					 WHERE  `51_question_option`.`id` = '$optID_2' ";
-                     $loader->execute_query();
+                     $Loader->execute_query();
 
 
-                    $loader->query ="UPDATE `51_question_option` SET 
+                    $Loader->query ="UPDATE `51_question_option` SET 
 					 `option_title` = '$optTXT_3'
 					 WHERE  `51_question_option`.`id` = '$optID_3' ";
-                     $loader->execute_query();
+                     $Loader->execute_query();
 
 
  
@@ -3340,7 +3458,7 @@ if(isset($_POST['page'])){
 						
 
 						
-					if($loader->ExamAccessCode($_POST['access_code']) == 0){
+					if($Loader->ExamAccessCode($_POST['access_code']) == 0){
 
 
 							$queryletter =("INSERT INTO `exam_access_code` VALUES (
@@ -3390,8 +3508,8 @@ if(isset($_POST['page'])){
 			{
  
 
-				$loader->query = "SELECT * FROM `50_question_table` WHERE  `50_question_table`.`id` ='$delete_id' ";   
-				$question_table = $loader->query_result();
+				$Loader->query = "SELECT * FROM `50_question_table` WHERE  `50_question_table`.`id` ='$delete_id' ";   
+				$question_table = $Loader->query_result();
 				foreach($question_table as $row){
 
 					$cbt_subject    =  $row['cbt_subject'];         
@@ -3399,14 +3517,14 @@ if(isset($_POST['page'])){
 				
 				  }	
 
-				 $subject_name =  $loader->FecthSingleSubject($cbt_subject);
+				 $subject_name =  $Loader->FecthSingleSubject($cbt_subject);
 				  $query_wallet ="UPDATE `50_question_table` SET    
 				  `cbt_status`   =  'general'
 				  WHERE `50_question_table`.`subject_id` ='$subject_id' "; 
 				 if(mysqli_query($homedb,$query_wallet)){
 
-					$loader->query = "DELETE FROM `exam_access_code` WHERE `exam_access_code`.`access_code` = '$subject_id' ";
-					$loader->execute_query();
+					$Loader->query = "DELETE FROM `exam_access_code` WHERE `exam_access_code`.`access_code` = '$subject_id' ";
+					$Loader->execute_query();
 
 					echo $success ="All $subject_name questions dropped";
 				 }
@@ -3422,8 +3540,8 @@ if(isset($_POST['page'])){
 			{
  
 
-				$loader->query = "SELECT * FROM `50_question_table` WHERE  `50_question_table`.`id` ='$delete_id' ";   
-				$question_table = $loader->query_result();
+				$Loader->query = "SELECT * FROM `50_question_table` WHERE  `50_question_table`.`id` ='$delete_id' ";   
+				$question_table = $Loader->query_result();
 				foreach($question_table as $row){
 
 					$raw_teacher_code    =  $row['teacher_code'];         
@@ -3433,12 +3551,12 @@ if(isset($_POST['page'])){
 
 				 if($username === $raw_teacher_code || $school_code === $raw_school_code){
 
-							$loader->query = "DELETE FROM `50_question_table` WHERE `50_question_table`.`id` = '$delete_id' ";
-							$loader->execute_query();
+							$Loader->query = "DELETE FROM `50_question_table` WHERE `50_question_table`.`id` = '$delete_id' ";
+							$Loader->execute_query();
 
 
-							$loader->query = "DELETE FROM `51_question_option` WHERE `51_question_option`.`question_id` = '$delete_id' ";
-							$loader->execute_query();
+							$Loader->query = "DELETE FROM `51_question_option` WHERE `51_question_option`.`question_id` = '$delete_id' ";
+							$Loader->execute_query();
 
 
 
@@ -3455,8 +3573,8 @@ if(isset($_POST['page'])){
 			{
  
  
-				$loader->query = "DELETE FROM `scheme_of_uploader` WHERE `scheme_of_uploader`.`id` = '$delete_id' ";
-				if($loader->execute_query())
+				$Loader->query = "DELETE FROM `scheme_of_upLoader` WHERE `scheme_of_upLoader`.`id` = '$delete_id' ";
+				if($Loader->execute_query())
 				{
 					 
 					$output = array(
@@ -3552,8 +3670,8 @@ if(isset($_POST['page'])){
 		   
 			  
 			 $subject_id   = $_POST['sub_id_id'];  
-			$loader->query ="SELECT * FROM `50_question_table` WHERE `subject_id` = '$subject_id' AND `school_code` = '$school_code' "; 
-			$total_row = $loader->total_row();   
+			$Loader->query ="SELECT * FROM `50_question_table` WHERE `subject_id` = '$subject_id' AND `school_code` = '$school_code' AND teacher_code = '$username' "; 
+			$total_row = $Loader->total_row();   
             
 			if($total_row > 0){
 				$output = array(
@@ -3563,12 +3681,43 @@ if(isset($_POST['page'])){
 			}else{
 				$output = array(
 					'success'		=>	'failed',
-					'feedback'		=>	"Newtwork error"
+					'feedback'		=>	"Wrong access code detected or invalid user question upLoader "
 				);
 			}
 
 								   
  
+				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+	if($_POST['page'] == 'QuestionAccessByID')
+	{
+		   
+		if($_POST['action'] == 'QuestionAccessByID')
+		{
+			
+		   
+			  
+			 $subject_id   = $_POST['sub_id'];     
+            
+ 
+				$Loader->query ="SELECT * FROM `50_question_table` WHERE `50_question_table`.`subject_id` = '$subject_id'";
+				$output = $Loader->query_result();
+				foreach($output as $row)
+				{
+				$student_class =	$row['student_class'];
+				$cbt_subject   =	$row['cbt_subject'];
+				$cbt_status    =	$row['cbt_status'];
+				}
+				
+				 				 $sub_title = $Loader-> FecthSingleSubject($cbt_subject);   
+ 				$output = array(
+					'success'		=>	'success',
+					'feedback'		=>	"<div style='text-transform:uppercase;'><b>Class:</b> $student_class <br/> <b> Subject:</b>   $sub_title    <br/> <b>Question:</b>  $cbt_status  </div>"
+				);	
 				 echo json_encode($output);
 				 
 	   
@@ -3755,6 +3904,47 @@ if(isset($_POST['page'])){
 		}
 	}	
 
+
+	if($_POST['page'] == 'resetWeeklyAssessment')
+	{
+		   
+		if($_POST['action'] == 'resetWeeklyAssessment')
+		{
+	 
+			 
+			$schCode   =  htmlentities($_POST['schCode']);  
+			$subject   =  htmlentities($_POST['subject']); 
+				 
+ 				 
+							
+	 
+				$query =("UPDATE `student_weekly_assesment` SET  
+				`$subject`  = 'null' 
+				WHERE  `student_weekly_assesment`.`school_code` = '$schCode' AND  `student_weekly_assesment`.`status` ='active' "); 
+				if(mysqli_query($homedb,$query))
+				{
+					 					   
+						$output = array(
+							'success'   =>	'success' 
+						);
+	
+				}
+				else
+				{ 
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'		=>	"Newtwork error"
+						);
+				}
+
+ 	    
+			 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+
  
 
 
@@ -3784,7 +3974,7 @@ if(isset($_POST['page'])){
 	
 							 
 							
-			       $teamLead =$loader-> FecthTecketTeamLead($school_code);
+			       $teamLead =$Loader-> FecthTecketTeamLead($school_code);
 						   
 							   $query_wallet =("INSERT INTO `ticket` VALUE (
 								   '',
@@ -3857,8 +4047,8 @@ if(isset($_POST['page'])){
 			$idData    =  htmlentities($_POST['idData']); 
 				  
 												   
-			$loader->query = "SELECT * FROM `ticket` WHERE  `id` = '$idData'";  
-			$result = $loader->query_result(); 
+			$Loader->query = "SELECT * FROM `ticket` WHERE  `id` = '$idData'";  
+			$result = $Loader->query_result(); 
 			foreach($result as $rows)
 			{ 	 	 	
 				$school_code         =  $rows['school_code'];  

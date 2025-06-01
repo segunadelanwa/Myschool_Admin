@@ -90,7 +90,7 @@
 		   
 		   
 	   		    <div id="otpupdatebox" style="background-color:white; padding:50px;margin-top:10px">
-					   <h3 style="text-align:center;">Student Portal Payment Activation</h3>
+					   <h3 style="text-align:left;">Student Portal Activation</h3>
 					   <div style="display:flex;margin-top:50px">
 					   <div   onclick="GoBackHandler()" class="btn btn-primary mr-4">BACK </div>
 						<div onclick="PrintDiv();" class="btn btn-success mr-4">PRINT RECEIPT </div>

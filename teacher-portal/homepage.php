@@ -13,6 +13,33 @@
       font-size:12px
     
     }
+
+
+    
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 1060;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #000;
+}
     </style>
     <body class="sb-nav-fixed" >
        
@@ -67,7 +94,7 @@
                                     <h5><?php echo $school_address; 	?></h5>  
                                     <h5> HI, <?php echo $fullname; 	?></h5> 
                                     <h5 style="text-transform:capitalize">School Status: <?php echo $school_type ?></h5> 
-                                    <h5 style="text-transform:capitalize">Teacher Subject : <?php echo $loader->FecthSingleSubject($subject) ?></h5> 
+                                    <h5 style="text-transform:capitalize">Teacher Subject : <?php echo $Loader->FecthSingleSubject($subject) ?></h5> 
                                    
 
                               </div>
@@ -80,7 +107,7 @@
                                   <div class="col-xl-3 col-md-3">
                                       <div class="card bg-primary text-white mb-4">
                                       
-                                          <div class="card-body"><center><h2 ><?php echo $loader-> FetchStudentInClass($school_code,$teacher_code);	?> </h2></center>STUDENT IN CLASS</div>
+                                          <div class="card-body"><center><h2 ><?php echo $Loader-> FetchStudentInClass($school_code,$teacher_code);	?> </h2></center>STUDENT IN CLASS</div>
                                           <div class="card-footer d-flex align-items-center justify-content-between">
                                               <a class="small text-white stretched-link" href="#">Student In class </a>
                                               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -95,7 +122,7 @@
                                   <div class="col-xl-3 col-md-3"  >
                                       <div class="card bg-success text-white mb-4">
                       
-                                          <div class="card-body"><center><h2 ><?php  echo$loader->MyUploadedExam($school_code,$username);	?> </h2></center>MY UPLOADED EXAM</div> 
+                                          <div class="card-body"><center><h2 ><?php  echo$Loader->MyUploadedExam($school_code,$username);	?> </h2></center>MY UPLOADED EXAM</div> 
                                           <div class="card-footer d-flex align-items-center justify-content-between">
                                               <a class="small text-white stretched-link" href="#teacher">Examination</a>
                                               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -109,7 +136,7 @@
                                   <div class="col-xl-3 col-md-3"  >
                                       <div class="card bg-dark text-white mb-4">
                       
-                                          <div class="card-body"><center><h2 ><?php  echo$loader->MyUploadedTest($school_code,$username);	?> </h2></center> UPLOADED TEST</div> 
+                                          <div class="card-body"><center><h2 ><?php  echo$Loader->MyUploadedTest($school_code,$username);	?> </h2></center> UPLOADED TEST</div> 
                                           <div class="card-footer d-flex align-items-center justify-content-between">
                                               <a class="small text-white stretched-link" href="#history">Mid-Term Test</a>
                                               <div class="small text-white"> </div>
@@ -121,7 +148,7 @@
                                   <div class="col-xl-3 col-md-3"  >
                                       <div class="card bg-danger text-white mb-4">
                       
-                                          <div class="card-body"><center><h2 ><?php  echo$loader->MyUploadedAssessment($school_code,$username);	?> </h2></center> UPLOADED ASSESSMENT</div> 
+                                          <div class="card-body"><center><h2 ><?php  echo$Loader->MyUploadedAssessment($school_code,$username);	?> </h2></center> UPLOADED ASSESSMENT</div> 
                                           <div class="card-footer d-flex align-items-center justify-content-between">
                                               <a class="small text-white stretched-link" href="#history">Assessment</a>
                                               <div class="small text-white"> </div>
@@ -162,7 +189,7 @@
                         
                                 if($school_type == 'primary')
                                 {                                   
-                                         $result   = $loader->TeacherStudentList($teacher_code);	 
+                                         $result   = $Loader->TeacherStudentList($teacher_code);	 
                                          
                                          echo'	 
                                           <div class="card mb-4">
@@ -194,8 +221,8 @@
                                                                                   <tbody> ';
                                                                                   foreach($result as $active)
                                                                                   {
-                                                                                  $schoolName =  $loader-> SchoolName($active['school_code']);	
-                                                                                  $parent_code = $loader-> ParentName($active['parent_code']);	
+                                                                                  $schoolName =  $Loader-> SchoolName($active['school_code']);	
+                                                                                  $parent_code = $Loader-> ParentName($active['parent_code']);	
                                                                                   
                                                                                       
                                                                                       echo'<tr role="row" class="odd">
@@ -275,7 +302,7 @@
                                 else if($school_type == 'secondary')
                                 {
 
-                                  $result   = $loader->TeacherStudentList($teacher_code);	 
+                                  $result   = $Loader->TeacherStudentList($teacher_code);	 
                                          
                                   echo'	 
                                    <div class="card mb-4">
@@ -306,8 +333,8 @@
                                                                            <tbody> ';
                                                                            foreach($result as $active)
                                                                            {
-                                                                           $schoolName =  $loader-> SchoolName($active['school_code']);	
-                                                                           $parent_code = $loader-> ParentName($active['parent_code']);	
+                                                                           $schoolName =  $Loader-> SchoolName($active['school_code']);	
+                                                                           $parent_code = $Loader-> ParentName($active['parent_code']);	
                                                                            
                                                                                
                                                                                echo'<tr role="row" class="odd">
@@ -367,8 +394,8 @@
                                          
                                   </div>'; 
 
-                                  $result   = $loader->TeacherSubjectStudentExam($school_code, $subject);	 
-                                  $FectSubject   = $loader->FecthSingleSubject($subject);	 
+                                  $result   = $Loader->TeacherSubjectStudentExam($school_code, $subject);	 
+                                  $FectSubject   = $Loader->FecthSingleSubject($subject);	 
                                   
                                    echo'	 
                                    <div class="card mb-4">
@@ -396,9 +423,9 @@
                                                                                $stuCode =  $active['student_code'];
                                                                                $score =  $active["$subject"];
                                                                                
-                                                                               $schoolName =  $loader-> SchoolName($active['school_code']);	 
-                                                                               $StudentName = $loader-> StudentName($active['student_code']);	
-                                                                               $StudentPhoto = $loader-> StudentPhoto($active['student_code']);	
+                                                                               $schoolName =  $Loader-> SchoolName($active['school_code']);	 
+                                                                               $StudentName = $Loader-> StudentName($active['student_code']);	
+                                                                               $StudentPhoto = $Loader-> StudentPhoto($active['student_code']);	
                                                                                
                                                                                
                                                                                echo'<tr role="row" class="odd">
@@ -482,8 +509,8 @@
 
 
 
-                                  $result   = $loader->TeacherSubjectStudentTest($school_code, $subject);	 
-                                  $FectSubject   = $loader->FecthSingleSubject($subject);	 
+                                  $result   = $Loader->TeacherSubjectStudentTest($school_code, $subject);	 
+                                  $FectSubject   = $Loader->FecthSingleSubject($subject);	 
                                  
                                    echo'	 
                                    <div class="card mb-4">
@@ -494,7 +521,7 @@
 
                                            <div class="card-body">
                                                <div class="table-responsive">
-                                                           <table class="table table-bordered" id="dataTable_7" width="100%" cellspacing="0">
+                                                           <table class="table table-bordered" id="dataTable_1" width="100%" cellspacing="0">
                                                            
                                                        
                                                                                <thead>
@@ -513,9 +540,9 @@
                                                                              $score =  $active["$subject"];
 
 
-                                                                           $schoolName =  $loader-> SchoolName($active['school_code']);	 
-                                                                           $StudentName = $loader-> StudentName($active['student_code']);	
-                                                                           $StudentPhoto = $loader-> StudentPhoto($active['student_code']);	
+                                                                           $schoolName =  $Loader-> SchoolName($active['school_code']);	 
+                                                                           $StudentName = $Loader-> StudentName($active['student_code']);	
+                                                                           $StudentPhoto = $Loader-> StudentPhoto($active['student_code']);	
                                                                            
                                                                                
                                                                                echo'<tr role="row" class="odd">
@@ -595,24 +622,25 @@
 
 
 
-                                   $result   = $loader->TeacherSubjectStudentAssesment($school_code, $subject);	 
-                                  $FectSubject   = $loader->FecthSingleSubject($subject);	 
+                                   $result   = $Loader->TeacherSubjectStudentAssesment($school_code, $subject);	 
+                                  $FectSubject   = $Loader->FecthSingleSubject($subject);	 
                                  
                                    echo'	 
                                    <div class="card mb-4">
                                            <div class="card-header bg bg-dark text-white">
                                                <i class="fas fa-table mr-1"></i>
-                                           <h3>My '.$FectSubject.' Weekly Assessment  </h3>
-                                           </div>
+                                    ';
+                                    echo"  <h3>My $FectSubject Weekly Assessment  </h3>  <div onclick='resetWeeklyAssessment(\"$school_code\",\"$subject\")'  class='btn btn-danger'>Reset Subject Weekly Assessment</div>";
+                                    echo'       </div>
 
-                                           <div class="card-body">
+                                        <div class="card-body">
                                                <div class="table-responsive">
-                                                           <table class="table table-bordered" id="dataTable_7" width="100%" cellspacing="0">
+                                                           <table class="table table-bordered" id="dataTable_2" width="100%" cellspacing="0">
                                                            
                                                        
                                                                                <thead>
                                                                                <tr>
-                                                                                   <th>Operations </th> 
+                                                                                   
                                                                                    <th>Student Details </th>    
                                                                                    <th>Student Score</th>  
                                                                                </tr>
@@ -626,16 +654,13 @@
                                                                              $score =  $active["$subject"];
 
 
-                                                                           $schoolName =  $loader-> SchoolName($active['school_code']);	 
-                                                                           $StudentName = $loader-> StudentName($active['student_code']);	
-                                                                           $StudentPhoto = $loader-> StudentPhoto($active['student_code']);	
+                                                                           $schoolName =  $Loader-> SchoolName($active['school_code']);	 
+                                                                           $StudentName = $Loader-> StudentName($active['student_code']);	
+                                                                           $StudentPhoto = $Loader-> StudentPhoto($active['student_code']);	
                                                                            
                                                                                
                                                                                echo'<tr role="row" class="odd">
-                                                                                 <td>  
                                                                                  
-                                                                                     
-                                                                                 </td>
 
                                                                                  <td style="display:flex;"> 
                                                                                      <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$StudentPhoto.'"  style="text-align:center;width:100px;height:100px;border-radius:1500px"/> 
@@ -728,7 +753,7 @@
               ?>	   
 		
         </div> 
-
+ <script src="../js/scripts.js"></script>
 </body>
 </html>
 <script>
@@ -915,27 +940,18 @@ const	equipment_id = document.getElementById("equip_id").value;
 }
 
 
-function restoreScoreAssessment(a,b,c,d) {
+function resetWeeklyAssessment(a,b) {
 
-    var	score = document.getElementById("testScore"+b).value;  
- 
- 
- 
   
-    
-          
                   $.ajax({
                       url:"pageajax.php",
                       method:"POST",
                       dataType:"json",
                       data:{
-                        schCode:a,   
-                        stuCode:b,   
-                        subject:d,
-                        score:score,   
-                        type:'testScore',
-                        page:'restoreScoreAssessment',
-                        action:'restoreScoreAssessment'
+                        schCode:a,    
+                        subject:b,    
+                        page:'resetWeeklyAssessment',
+                        action:'resetWeeklyAssessment'
                         },
                       success:function(data)
                       {
@@ -952,10 +968,52 @@ function restoreScoreAssessment(a,b,c,d) {
                       }
                     });	
 
+ 
+      
+}
+
+
+// function restoreScoreAssessment(a,b,c,d) {
+
+//     var	score = document.getElementById("testScore"+b).value;  
+ 
+ 
+ 
+  
+    
+          
+//                   $.ajax({
+//                       url:"pageajax.php",
+//                       method:"POST",
+//                       dataType:"json",
+//                       data:{
+//                         schCode:a,   
+//                         stuCode:b,   
+//                         subject:d,
+//                         score:score,   
+//                         type:'testScore',
+//                         page:'restoreScoreAssessment',
+//                         action:'restoreScoreAssessment'
+//                         },
+//                       success:function(data)
+//                       {
+//                           if(data.success){
+//                             window.location.reload();
+      
+//                           }
+//                           else
+//                           {
+                            
+//                             alert(data.feedback);
+                            
+//                           }
+//                       }
+//                     });	
+
       
         
       
-}
+// }
 
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';

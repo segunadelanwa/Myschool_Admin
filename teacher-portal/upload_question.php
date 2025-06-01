@@ -32,7 +32,7 @@ display:none
 
  
 
-function calender(calend) {
+function tableSwitch(calend) {
      var calend        = document.getElementById(calend);
      const main_d_btn  = document.querySelector('.QuestionWithImage');
 	 const hours_d_btn = document.querySelector('.QuestionWithNoImage');
@@ -97,11 +97,12 @@ function calender(calend) {
          <main>
                     <div class="container-fluid">
                         <h1 class="mt-4">
-						Upload Question
+						Upload Objective Question
 						</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item" onclick="GoBackHandler()">Back</li>
-                            <li class="breadcrumb-item active"> Upload Question</li>
+							<li> / <a href="upload_theory.php" style="text-decoration:none;">Upload Theory Question </a>/ </li>
+                            <li class="breadcrumb-item active"> Upload Objective</li>
                         </ol>
                   
 					  
@@ -127,7 +128,7 @@ function calender(calend) {
 
                                                         <div class="form-group ">
 															<label for="name">Question Type</label>
-															<select class="form-control" id="categories_selection"  name="categories_selection" onchange="calender(this.id)" required>
+															<select class="form-control" id="categories_selection"  name="categories_selection" onchange="tableSwitch(this.id)" required>
 															<option value="">Select Question Option</option>
 															<option value="withImage"> Question with image</option>
 															<option value="withNoImage">Question with no image</option> 
@@ -136,16 +137,10 @@ function calender(calend) {
 
 
 														  <form method="POST"   id="user_register_form1" class="QuestionWithImage"  enctype='multipart/form-data'>
-
-
-														  <div class="form-group">
-														    <label>School Code </label>
+ 
                                                           
-                                                            <input type="text" name='school_code' id='school_code' value="<?php echo$school_code?>"  i class="form-control py-4"   readonly />
-														   </div>
-
-
-
+                                                            <input type="hidden" name='school_code' id='school_code' value="<?php echo$school_code?>"  i class="form-control py-4"   readonly />
+														 
 														  <div class="card-header">
 																<i class="fas fa-user"></i>
 															     question access code Settings
@@ -170,9 +165,47 @@ function calender(calend) {
 															     QUESTION SETTINGS
 																</div>
 
+																<?php
+															if($school_type == 'primary')
+															{
+																		echo'
+																																	
+																        <div class="form-group">	
+																	     <label>Student Class </label>
+																	     <select  name="class" id="class"  class="form-control "    >
+																	     <option  value="" selected="selected"> --Select class--</option> 
+																		<option value="primary1">Primary 1 </option> 
+																		<option value="primary2">Primary 2 </option> 
+																		<option value="primary3">Primary 3 </option> 
+																		<option value="primary4">Primary 4 </option> 
+																		<option value="primary5">Primary 5 </option> 
+																		<option value="primary6">Primary 6 </option>  
+																		</select>
+																		</div>
+																		';
+															}
+														    else if($school_type == 'secondary')
+															{
+																			echo'
+																																		
+																		<div class="form-group">	
+																		<label>Student Class </label>
+																		<select  name="class" id="class"  class="form-control "    >
+																		<option  value="" selected="selected"> --Select class--</option> 
+																			
+																			<option value="jss1">JSS 1 </option> 
+																			<option value="jss2">JSS 2 </option> 
+																			<option value="jss3">JSS 3 </option> 
+																			<option value="ss1">SS 1 </option> 
+																			<option value="ss2">SS 2 </option> 
+																			<option value="ss3">SS 3 </option>  
+																			</select>
+																			</div>
+																			';
+															}
+															?>
 
-
-                                                            <div class="form-group">	
+                                                               <!-- <div class="form-group">	
 																<label>Question Class </label>
 															    <select  name='class' id='class'  class="form-control "  required >
 																<option  value=""> select option </option>
@@ -190,7 +223,7 @@ function calender(calend) {
 																<option value="ss3">SS 3 </option> 
 																
 																</select>
-																</div>
+																</div> -->
 
 
                                                             <div class="form-group">	
@@ -284,7 +317,7 @@ function calender(calend) {
 												 
 																   
 																	
-																	<input type="hidden" name="page"   value='uploadQuestion' />
+																	<input type="hidden" name="page"   value='uploadObective' />
 																	<input type="hidden" name="action" value="question" />
 
 																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Upload Question">
@@ -294,13 +327,9 @@ function calender(calend) {
 
 														  <form method="POST"   id="user_register_form2"  class="QuestionWithNoImage" enctype='multipart/form-data'>
 
-														  <div class="form-group">
-														    <label>School Code </label>
-                                                          
-                                                            <input type="text" name='school_code' id='school_code' value="<?php echo$school_code; ?>"  i class="form-control py-4"   readonly />
-														   </div>
-
-														   
+														 
+                                                            <input type="hidden" name='school_code' id='school_code' value="<?php echo$school_code; ?>"  i class="form-control py-4"   readonly />
+														  
 														    <div class="card-header">
 																<i class="fas fa-user"></i>
 															     Question Access Code Settings
@@ -327,9 +356,47 @@ function calender(calend) {
 															     QUESTION SETTINGS
 																</div>
 
+																<?php
+															if($school_type == 'primary')
+															{
+																		echo'
+																																	
+																        <div class="form-group">	
+																	     <label>Student Class </label>
+																	     <select  name="class" id="class"  class="form-control "    >
+																	     <option  value="" selected="selected"> --Select class--</option> 
+																		<option value="primary1">Primary 1 </option> 
+																		<option value="primary2">Primary 2 </option> 
+																		<option value="primary3">Primary 3 </option> 
+																		<option value="primary4">Primary 4 </option> 
+																		<option value="primary5">Primary 5 </option> 
+																		<option value="primary6">Primary 6 </option>  
+																		</select>
+																		</div>
+																		';
+															}
+														    else if($school_type == 'secondary')
+															{
+																			echo'
+																																		
+																		<div class="form-group">	
+																		<label>Student Class </label>
+																		<select  name="class" id="class"  class="form-control "    >
+																		<option  value="" selected="selected"> --Select class--</option> 
+																			
+																			<option value="jss1">JSS 1 </option> 
+																			<option value="jss2">JSS 2 </option> 
+																			<option value="jss3">JSS 3 </option> 
+																			<option value="ss1">SS 1 </option> 
+																			<option value="ss2">SS 2 </option> 
+																			<option value="ss3">SS 3 </option>  
+																			</select>
+																			</div>
+																			';
+															}
+															?>
 
-
-                                                            <div class="form-group">	
+                                                            <!-- <div class="form-group">	
 																<label>Question Class </label>
 															    <select  name='class' id='class'  class="form-control "  required >
 																<option  value=""> select option </option>
@@ -347,7 +414,7 @@ function calender(calend) {
 																<option value="ss3">SS 3 </option> 
 																
 																</select>
-																</div>
+																</div> -->
 
 
                                                             <div class="form-group">	
@@ -375,13 +442,15 @@ function calender(calend) {
 																
 
 																<?php		
-																$result = $Loader-> FecthAllSubject();
-																foreach($result as $data)
-																{
-																$sub_title=$data['sub_title'];
-																$sub_id=$data['sub_id'];  
-																echo"<option  value='$sub_id'> $sub_title </option>";
-																}
+																 $sub_title = $Loader-> FecthSingleSubject($subject);
+                                                                //<option disabled="disabled" selected="selected">Select Subject</option>
+																// $result = $Loader-> FecthAllSubject();
+																// foreach($result as $data)
+																// {
+																// $sub_title=$data['sub_title'];
+																// $sub_id=$data['sub_id'];  
+																 echo"<option  value='$subject' selected='selected'> $sub_title </option>";
+																// }
 
                                                                  ?>
 																</select>	
@@ -435,7 +504,7 @@ function calender(calend) {
 												 
 																   
 																	
-																	<input type="hidden" name="page"   value='uploadQuestion' />
+																	<input type="hidden" name="page"   value='uploadObective' />
 																	<input type="hidden" name="action" value="question" />
 
 																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Upload Question">
@@ -450,10 +519,10 @@ function calender(calend) {
 															
 															2. Teacher must maintain the created question access code to upload specific Subject of any of Exam,Test and Weekly Assessment questions.<br/>
 															3. To add more questions or update any of Exam,Test and Weekly Assessment questions the same created question access code must be use.<br/>
-															4. The teacher students will use the same question access code to take any of Exam,Test and Weekly Assessment questions at student portal. <br><br>
+															4. Any student taken the subject will use the same question access code to take any of Exam,Test and Weekly Assessment questions at student portal. <br><br>
       
-															However, if you have uploaded specific Subject Questions and you need to add more questions to it,
-															all you need is to get the  uploaded question access code and use it to upload the new question you want to add  <br><br>
+															However, if you have uploaded a specific Subject Questions and there is a need to add more questions to it,
+															get the  uploaded question access code and use it to add new questions <br><br>
 
 															Always keep any of your Exam, Test and Weekly Assessment questions access code safe, else the Exam,Test and Weekly Assessment won't be accessible by your students 
 															</small>

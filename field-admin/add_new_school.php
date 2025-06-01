@@ -191,13 +191,18 @@
 
 															<div class="card-header mt-5 mb-3">
 																<i class="fas fa-tag"></i>
-																SCHOOL HEAD TEACHER DETAILS
+																SCHOOL ADMINISTRATOR
 														    </div>	
 															
 															
 															<div class="form-group">			
-															<label>School Head Teachers Name</label>
-															<input type="text" name="schl_head_name" placeholder="School Head Name"  id="schl_head_name" class="form-control "  required />
+															<label>Admin Fullname</label>
+															<input type="text" name="schl_head_name" placeholder="Admin Name"  id="schl_head_name" class="form-control "  required />
+															</div>
+
+															<div class="form-group">			
+															<label>Admin Username</label>
+															<input type="email" name="adminhead_email" placeholder="Admin Email"  id="adminhead_email" class="form-control "  required />
 															</div>
 												 
 												 

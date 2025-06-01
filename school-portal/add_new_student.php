@@ -171,39 +171,42 @@
 															
 															
 															<?php
-															if($school_type == 'primary'){
-																echo'
-																															<div class="form-group">	
-															<label>Student Class </label>
-															<select  name="student_class" id="student_class"  class="form-control "    >
-															<option  value="" selected="selected"> --Select class--</option> 
-																<option value="primary1">Primary 1 </option> 
-																<option value="primary2">Primary 2 </option> 
-																<option value="primary3">Primary 3 </option> 
-																<option value="primary4">Primary 4 </option> 
-																<option value="primary5">Primary 5 </option> 
-																<option value="primary6">Primary 6 </option>  
-																</select>
-																</div>
-																';
+															if($school_type == 'primary')
+															{
+																		echo'
+																																	
+																        <div class="form-group">	
+																	     <label>Student Class </label>
+																	     <select  name="student_class" id="student_class"  class="form-control "    >
+																	     <option  value="" selected="selected"> --Select class--</option> 
+																		<option value="primary1">Primary 1 </option> 
+																		<option value="primary2">Primary 2 </option> 
+																		<option value="primary3">Primary 3 </option> 
+																		<option value="primary4">Primary 4 </option> 
+																		<option value="primary5">Primary 5 </option> 
+																		<option value="primary6">Primary 6 </option>  
+																		</select>
+																		</div>
+																		';
 															}
 														    else if($school_type == 'secondary')
 															{
-																echo'
-																															<div class="form-group">	
-															<label>Student Class </label>
-															<select  name="student_class" id="student_class"  class="form-control "    >
-															<option  value="" selected="selected"> --Select class--</option> 
-																 
-																<option value="jss1">JSS 1 </option> 
-																<option value="jss2">JSS 2 </option> 
-																<option value="jss3">JSS 3 </option> 
-																<option value="ss1">SS 1 </option> 
-																<option value="ss2">SS 2 </option> 
-																<option value="ss3">SS 3 </option>  
-																</select>
-																</div>
-																';
+																			echo'
+																																		
+																		<div class="form-group">	
+																		<label>Student Class </label>
+																		<select  name="student_class" id="student_class"  class="form-control "    >
+																		<option  value="" selected="selected"> --Select class--</option> 
+																			
+																			<option value="jss1">JSS 1 </option> 
+																			<option value="jss2">JSS 2 </option> 
+																			<option value="jss3">JSS 3 </option> 
+																			<option value="ss1">SS 1 </option> 
+																			<option value="ss2">SS 2 </option> 
+																			<option value="ss3">SS 3 </option>  
+																			</select>
+																			</div>
+																			';
 															}
 															?>
 												 
@@ -242,6 +245,12 @@
 															</select> 
 															</div>
 
+
+															<div class="form-group">	
+															<label>Student ID Card Expires On </label>
+                                                            <input class="form-control " placeholder="Expiring Date"   type="date" name="expiring_date" id="expiring_date" class="form-control" required />
+
+															</div>
 
 														
  
@@ -308,7 +317,7 @@
         contentType:false,
         cache:false,
         processData:false,
-				beforeSend:function()
+		beforeSend:function()
 				{
 					
 				elementmodal.classList.remove('loaderDisplayNone');
@@ -319,18 +328,16 @@
 				{
 					 
 					  
-					     if(data.success == 'success')
+					  if(data.success == 'success')
 						  {
 							 
 							elementmodal.classList.remove('loaderDisplayblock');
 							elementmodal.classList.add('loaderDisplayNone');	
 							   alert(data.feedback);
-							   window.location="index.php";
+							  // window.location="../";
 							
 					 
-						  }
-						  else
-						  {
+						  }else{
 							   
 							elementmodal.classList.remove('loaderDisplayblock');
 							elementmodal.classList.add('loaderDisplayNone');	

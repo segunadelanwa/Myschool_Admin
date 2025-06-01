@@ -264,12 +264,12 @@
                                            <tr role="row" class="odd">
                                               
                                               <td style="text-align:center;"> 
-                                                <a href="edit_data.php?data_id='.$active['marketer_code'].'&name=field_admin">   <b class="btn btn-dark myFont mb-2"> Edit Field Admin </b>   </a> 
+                                                <a href="edit_data.php?data_id='.$active['marketer_code'].'&name=field_admin">   <b class="btn btn-dark myFont mb-2"> Edit Field Operations Officer </b>   </a> 
                                                 <a href="onboard_school.php?fadmin='.$active['marketer_code'].'&name=fieldAdmin">   <b class="btn btn-primary myFont mb-2">school Onboarded  </b>  </a>
                                                 <a href="delete_account.php?delete_id='.$active['marketer_code'].'&name=fieldAdmin">   <b class="btn btn-danger myFont mb-2">Delete Account </b>  </a>
                                              </td> 
                                               <td style="text-align:center;">  <img src="../'.$FielAdmin .'/'.$active['photo'].'"  style="height:60px"/> <br/>   <b>'.$active['fullname'].' </b>  </td> 
-                                              <td>'.$active['username'].' <br/> <hr/><b>Field Admin ID</b>: '.$active['marketer_code'].'</td>  
+                                              <td>'.$active['username'].' <br/> <hr/><b>Account ID</b>: '.$active['marketer_code'].'</td>  
                                               <td>'.$active['phone'].' </td> 
                                               <td>'.$active['address'].' </td>  
                                               

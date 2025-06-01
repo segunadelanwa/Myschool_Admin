@@ -14,23 +14,14 @@
 		$ResultServer = new ResultServer();
 		
             
-  
-
-            $Loader->query ="SELECT * FROM `3_parent_reg` WHERE parent_code = '$data_id'";
+   
+            $Loader->query ="SELECT * FROM `4_student_reg` WHERE school_code = '$school_code' GROUP BY school_code ";
             $result = $Loader->query_result();
+            $result_total_row = $Loader->total_row();
       
                 foreach($result as $row)
-                {
-
-                
-                $id             = $row['id'];  	 	
-                $admin_code     = $row['admin_code']; 		
-                $parent_code    = $row['parent_code']; 		
-                $sch_code       = $row['sch_code'];   		
-                $username       = $row['username'];  		
-                $fullname       = $row['guidance_name']; 	 
-                $address        = $row['address']; 	   	 
-                $email          = $row['email']; 	  
+                { 	 	
+                $student_id     = $row['online_stu_id']; 	 	  
                 }
         
       
@@ -99,6 +90,10 @@
 													<div class="table-responsive">
                                                           
                                                                 <?php
+                                                              
+                                                                if( $result_total_row >= 1){
+
+                                                                
                                                                         if($id_card_type == '0'){
                                                                             
 
@@ -107,39 +102,38 @@
                                                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                                                     <strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
 
-                                                                                    No ID CARD template selected yet. Please click here botton <br/><br/>
-
-                                                                                    <a href="select_id_template.php">
-                                                                                    <button type="button" class="btn btn-success"  >
-                                                                                    Select ID Card
-                                                                                    </button></a>
-                                                                                    
-                                                                                    <br/><br/>
+                                                                                    No ID card template selected yet. Please click botton to select <br/><br/> 
                                                                                 </div>  
                                                                             </div>';
 
 
                                                                     }else if($id_card_type == '1'){
-                                                                        echo $ResultServer->EserverStudentIDCard_1('STUD0001');
+                                                                        echo $ResultServer->EserverStudentIDCard_1($student_id);
 
                                                                     }else  if($id_card_type == '2'){
-                                                                        echo $ResultServer->EserverStudentIDCard_2('STUD0001');
+                                                                        echo $ResultServer->EserverStudentIDCard_2($student_id);
 
                                                                     }else  if($id_card_type == '3'){
-                                                                        echo $ResultServer->EserverStudentIDCard_3('STUD0001');
+                                                                        echo $ResultServer->EserverStudentIDCard_3($student_id);
 
                                                                     }else  if($id_card_type == '4'){
-                                                                        echo $ResultServer->EserverStudentIDCard_4('STUD0001');
+                                                                        echo $ResultServer->EserverStudentIDCard_4($student_id);
 
                                                                     }else  if($id_card_type == '5'){
-                                                                        echo $ResultServer->EserverStudentIDCard_5('STUD0001'); 
+                                                                        echo $ResultServer->EserverStudentIDCard_5($student_id); 
 
                                                                     }else  if($id_card_type == '6'){
-                                                                        echo $ResultServer->EserverStudentIDCard_6('STUD0001');
+                                                                        echo $ResultServer->EserverStudentIDCard_6($student_id);
 
                                                                     }else  if($id_card_type == '7'){
-                                                                        echo $ResultServer->EserverStudentIDCard_7('STUD0001');
+                                                                        echo $ResultServer->EserverStudentIDCard_7($student_id);
                                                                     }
+
+
+                                                                }
+                                                                else{
+
+                                                                }
                                                                 ?>
                                                             
                                                             <br/>

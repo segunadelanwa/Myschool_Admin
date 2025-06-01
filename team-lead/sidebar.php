@@ -24,7 +24,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">  
-                                    <a class="nav-link"  href="add_field_admin.php">Field Officer </a>  
+                                    <a class="nav-link"  href="add_field_admin.php">Onboard FOO </a>  
                                 </nav>
                             </div>
 						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProjectDocument" aria-expanded="false" aria-controls="collapseProjectDocument">

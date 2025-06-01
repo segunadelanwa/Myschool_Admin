@@ -646,7 +646,89 @@
                     
                        
 
+                        <div class="card mb-4" id="parent">
+                            <div class="card-header bg bg-primary text-white">
+                                <i class="fas fa-table mr-1"></i>
+                               <h3>Admins Account </h3>
+                            </div>
 
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable_7" width="100%" cellspacing="0">
+                                       
+                                   
+                                        <thead>
+                                            <tr>
+                                                <th>Photo </th>
+                                                <th>Fullname </th>
+                                                <th>Gender</th>
+                                                <th>Pone</th>
+                                                <th>Address</th> 
+                                                <th>Department </th>
+                                                <th>Bank Details</th>  
+											                          <th>Reg Date</th>
+                                                
+                                            </tr>
+                                        </thead> 
+                                        <tbody> 
+                                            <?php 
+                                          
+                                                $result = $loader-> AllRegisteredAdmin();	
+                                                
+                                                foreach($result as $active)
+                                                { 	 	
+                                            
+                                                  
+                                                  if($active['admin_access'] == 'proprietor')
+                                                  {
+                                                   $out_admin_access = 'Proprietorship';
+                                                  }else{
+                                                    $out_admin_access = $active['admin_access'];
+                                                  }
+                                                  
+                                                    echo'<tr role="row" class="odd">
+                                                          
+                                                    
+                       
+                                                      <td> <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['photo'].'"  style="height:60px"/> <br/>
+                                                      '.$active['username'].'<br/>
+                                                      
+                                                      </td> 
+                                                      <td>'.$active['fullname'].'</td> 
+                                                      <td>'.$active['gender'].' </td> 
+                                                      <td>'.$active['phone'].' </td> 
+                                                      <td>'.$active['address'].' </td>    
+                                                      <td>'.$active['admin_depart'].' <hr/>
+                                                      <span style="text-transform:uppercase">Role: '.$out_admin_access.'</span>
+                                                      </td>    
+                                                      <td>
+                                                      '.$active['bank_name'].' <br/>
+                                                      '.$active['account_name'].' <br/>
+                                                      '.$active['account_number'].' <br/>
+                                                      </td>    
+                                                      <td>'.$active['date'].'<br /> </td> 
+                                                      
+                                                      
+                                                        
+                                                      </td> 
+                                                      
+                                                    </tr>
+                                                    ';
+                                              
+
+
+                                                  
+                                                } 	 
+                                              ?>                     
+                                        
+                                        </tbody>
+                                   
+								                                    
+								                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    	
 		
 
 					

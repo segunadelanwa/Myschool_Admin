@@ -50,11 +50,11 @@
                     <div class="container-fluid">
                         <h3 class="mt-4">
 						
-						 Field Admin Account Signup
+						Field Operations Officer Account  
 						</h3>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active"> Field Admin  Registeration</li>
+                            <li class="breadcrumb-item active">Onboarding FOO</li>
                         </ol>
                   
 					  
@@ -81,7 +81,7 @@
 
 
 														      <div class="form-group">
-														      <label>New Field Admin ID </label>
+														      <label>New Field Operations Officer ID </label>
 															  <input class="form-control py-4" value="<?php echo$result=$Loader->FieldAdminNoGenerator(); ?>"   type="text" name="fieldAdminCode" id="fieldAdminCode" class="form-control" readonly /> 
 															  </div>
 
@@ -171,7 +171,7 @@
 																	<input type="hidden" name="page"   value='admin_signup_page' />
 																	<input type="hidden" name="action" value="marketer_signup_action" />
 
-																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Setup Field Admin">
+																	<input type="submit" name="admin_signup" id="admin_signup" class="btn btn-primary" value="Setup FOO">
 																</div>
 															</form>
 													</div>

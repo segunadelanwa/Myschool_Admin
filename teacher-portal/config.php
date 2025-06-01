@@ -134,6 +134,7 @@ class Loader{
 				}
 				
 			}
+	 
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
@@ -531,7 +532,7 @@ class Loader{
 			{
 				 
 				 
-				$this->query = "SELECT * FROM `4_student_reg` WHERE teacher_code='$teacher_code' AND school_code = '$school_code' AND `sub_status` ='active'";
+				$this->query = "SELECT * FROM `4_student_reg` WHERE teacher_code='$teacher_code' AND school_code = '$school_code' AND `test_status` ='active'";
 		 
 				$output = $this->total_row();
 				 
@@ -579,14 +580,14 @@ class Loader{
 
 			function FecthSingleSubject($subject)
 			{
-				 
+				 $outdata='';
 				$this->query ="SELECT * FROM 40_all_subject  WHERE sub_id ='$subject'";
 				$output = $this->query_result();
 				foreach($output as $row){ 
-					$output =  $row['sub_title'];
+					$outdata =  $row['sub_title'];
 				} 
 			 
-				return $output;
+				return $outdata;
 			}
 			function FecthTecketTeamLead($school_code)
 			{
@@ -647,7 +648,7 @@ class Loader{
 			{ 
 				//$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND  `$subject` !='' OR `school_code` = '$school_code' AND `$subject` ='null'";
 				
-				$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND `status` ='active' ";
+				$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `status` ='active' AND `$subject` !='' ";
 				
 		 
 				$result = $this->query_result();
@@ -660,7 +661,7 @@ class Loader{
 			{ 
 				//$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND  `$subject` !='' OR `school_code` = '$school_code' AND `$subject` ='null'";
 				
-				$this->query = "SELECT * FROM `student_weekly_assesment` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND `status` ='active' ";
+				$this->query = "SELECT * FROM `student_weekly_assesment` WHERE  `school_code` = '$school_code'  AND `$subject` !='' ";
 				
 		 
 				$result = $this->query_result();
@@ -672,8 +673,8 @@ class Loader{
 			function TeacherSubjectStudentExam($school_code, $subject)
 			{ 
 				 //$this->query = "SELECT * FROM `student_exam_result` WHERE  `school_code` = '$school_code' AND `school_type` ='secondary' AND  `$subject` !='' OR `school_code` = '$school_code' AND `$subject` ='null'";
-				 
-				 $this->query = "SELECT * FROM `student_exam_result` WHERE  `school_code` = '$school_code' AND `school_type` ='secondary' AND `status` ='active' ";
+			 
+				 $this->query = "SELECT * FROM `student_exam_result` WHERE  `school_code` = '$school_code' AND `status` ='active' AND `$subject` !='' ";
 		 
 				$result = $this->query_result();
 			 
@@ -820,6 +821,15 @@ class Loader{
 
 			}
 
+			function FetchQuestion($school_code,$username)
+			{//SELECT DISTINCT country
+
+				$this->query = "SELECT `cbt_subject`,`subject_id`,`cbt_status`,`student_class`,`date_uploaded` FROM `50_question_table`  WHERE `school_code` = '$school_code' AND `teacher_code` = '$username' GROUP BY subject_id ORDER BY `id` DESC";
+		 
+				$result = $this->query_result();
+			 
+				return $result;
+			}
 			function FetchTicket($school_code,$username)
 			{//SELECT DISTINCT country
 
@@ -836,6 +846,15 @@ class Loader{
 				$result = $this->query_result();
 			 
 				return $result;
+			}
+ 
+			function FetchNumberOfQuestion($subject_id,$school_code,$username)
+			{
+			   
+			$this->query ="SELECT * FROM `50_question_table` WHERE `subject_id` = '$subject_id' AND `school_code` = '$school_code' AND teacher_code = '$username' "; 
+			$total_row = $this->total_row();   
+			 
+				return $total_row;
 			}
  
  }

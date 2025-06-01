@@ -12,7 +12,7 @@
           
 			 
 						$teacher_code = $username;
-						$type         = $_GET["type"];
+						$subject_type        = $_GET["subject_id"];
 					 
 			             
 
@@ -109,9 +109,10 @@
 					 </div>						 
 
 					 <div style="display:flex;justify-content:space-between">
-						 <input type="submit"   id="categories_selection"  name="categories_selection" onclick="calender()" class="btn btn-success" value="Fetch Question"> 
-						 <div onclick="PrintDiv();" class="btn btn-info">PRINT QUESTION </div>
-						 <div onclick="RefreshDiv();" class="btn btn-dark">REFRESH </div>
+						 <input type="submit"   id="categories_selection"  name="categories_selection" onclick="fetchQuestions()" class="btn btn-success" value="Fetch Question"> 
+						 <div onclick="PrintDiv();" class="btn btn-info">Print Question </div>
+						 <div onclick="RefreshDiv();" class="btn btn-dark">Refresh </div>
+						 <a href="view_question.php" class="btn btn-success">Go Back </a>
 					 </div>
 
 				</div>
@@ -166,15 +167,62 @@
 
 
 
-function calender() {  
-	var elementmodal = document.getElementById('modal');
-	var subject_id     = document.getElementById('subject_id').value; 
+		function fetchQuestions() 
+		{  
+
+
+			var elementmodal = document.getElementById('modal');
+			var subject_id     = document.getElementById('subject_id').value; 
+
+			var username  = "<?php echo $username; ?>";
+			var school_code          = "<?php echo$school_code; ?>"; 
+			
+
+		
+					$.ajax({
+						url:"pageajax.php",
+						method:"POST", 
+						data:{
+									
+							school_code:school_code,   
+							username:username,   
+							subject_id:subject_id,   
+							page:'printQuestion',
+							action:'printQuestion'
+							}, 
+						beforeSend:function()
+						{
+							
+							elementmodal.classList.remove('loaderDisplayNone');
+							elementmodal.classList.add('loaderDisplayblock');
+						
+						},
+						success:function(data)
+						{ 
+							elementmodal.classList.remove('loaderDisplayblock');
+							elementmodal.classList.add('loaderDisplayNone');
+							$('#printBox').append(data);
+								
+						}
+					});	
+
+		}
+	
+ 
+		
+	 var subject_type          = "<?php echo$subject_type; ?>";
+		 
+
+ if(!subject_type == ''){
+
+  
+	var elementmodal = document.getElementById('modal'); 
 
 	var username  = "<?php echo $username; ?>";
 	var school_code          = "<?php echo$school_code; ?>";
-   // alert(calend.value);
 
-	
+
+   
             $.ajax({
 				url:"pageajax.php",
 				method:"POST", 
@@ -182,7 +230,7 @@ function calender() {
 					        
 					school_code:school_code,   
 					username:username,   
-					subject_id:subject_id,   
+					subject_id:subject_type,   
 					page:'printQuestion',
 					action:'printQuestion'
 					}, 
@@ -202,9 +250,9 @@ function calender() {
 				}
 			});	
  
- }
 
-
+		}
+ 
 
  function PrintDiv() {  
 	var formBox = document.getElementById('formBox'); 

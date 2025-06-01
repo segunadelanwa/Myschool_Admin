@@ -1473,7 +1473,21 @@ class Loader{
 	  
 		 return $result;
 	 }
-		 
+		
+	 
+
+	 function AllRegisteredAdmin()
+	 {
+		  
+		 $this->query ="SELECT * FROM  `1_school_admins`    ";
+		 $output = $this->query_result();
+   
+		  
+		 return $output;
+	 }
+
+
+
  }
 ?>
  

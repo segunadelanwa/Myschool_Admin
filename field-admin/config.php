@@ -59,7 +59,7 @@ class Loader{
 
  
   
-			function send_email($receiver_email, $subject, $body )
+			function send_email($receiver_email,$adminhead_email, $subject, $body )
 			{
 				$mail = new PHPMailer;
 
@@ -82,6 +82,7 @@ class Loader{
 					$mail->FromName = 'HEBZIHUB NIG LTD '; 
 					$mail->AddReplyTo = 'support@hebzihubnigltd.com.ng';  
 					$mail->AddAddress($receiver_email, '');
+					$mail->AddAddress($adminhead_email, '');
 
 					$mail->IsHTML(true);
 

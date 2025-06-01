@@ -79,6 +79,7 @@ class Loader{
 					$mail->AddEmbeddedImage("$sch_logo", 'logo', "$sch_logo");  
 					$mail->AddEmbeddedImage('../all_photo/ai_welcome.png', 'logo2', 'all_photo/ai_welcome.png'); 
 					$mail->AddEmbeddedImage('../all_photo/tea_p.png', 'logo3', 'all_photo/tea_p.png'); 
+					$mail->AddEmbeddedImage('../all_photo/admin.png', 'admin', 'all_photo/admin.png'); 
 					
 					$mail->Send();		
 			}	
@@ -257,7 +258,8 @@ class Loader{
 				if(!empty($this->filedata['name']))
 				{
 					//$extension = pathinfo($this->filedata['name'], PATHINFO_EXTENSION);
-					
+					//	if($admin_access === 'proprietor'|| $admin_access === 'head')
+						
 					$new_name = uniqid() . '.' . 'jpg';
 
 					$_source_path = $this->filedata['tmp_name'];
@@ -265,7 +267,7 @@ class Loader{
 					$image_size   = filesize($_source_path);
 
 					$target_path = "../myschoolapp_api/$location/" . $new_name;
-					if($type=='image/jpeg' || $type == 'image/png'){
+					if($type=='image/jpeg' || $type == 'image/png' || $type == 'image/webp'){
 						                  //41943040 5mb 
 						if($image_size  < 125829120 )
 						{
@@ -290,7 +292,7 @@ class Loader{
 				  }
 				  else
 				  {
-					return $output = "badfileupload.jpg";
+					return $output = "wrong";
 				  }
 
 				}
@@ -300,6 +302,15 @@ class Loader{
 			{
 				 
 				$this->query ="SELECT * FROM  `3_parent_reg`  WHERE sch_code ='$school_code'  ";
+				$output = $this->query_result();
+		  
+				 
+				return $output;
+			}
+			function AllRegisteredAdmin($school_code)
+			{
+				 
+				$this->query ="SELECT * FROM  `1_school_admins`  WHERE school_code ='$school_code'  ";
 				$output = $this->query_result();
 		  
 				 
@@ -441,16 +452,16 @@ class Loader{
 				$result  = $dataInt + 1;
 
 				if($result  <= 9){
-					$output = "STU000$result";
+					$output = "STUD000$result";
 
 				}else if($result > 9 && $result < 100){
-					$output = "STU00$result"; 
+					$output = "STUD00$result"; 
 				
 				 }else if($result > 99 && $result < 1000){
-				 	$output = "STU0$result";
+				 	$output = "STUD0$result";
 
 				 }else if($result > 999 ){
-				 	$output = "STU$result";
+				 	$output = "STUD$result";
 				 }
 
 				 

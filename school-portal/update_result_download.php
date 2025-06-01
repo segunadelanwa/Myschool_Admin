@@ -90,7 +90,7 @@
 		   
 		   
 	   		    <div id="otpupdatebox" style="background-color:white; padding:50px;margin-top:10px">
-					   <h3 style="text-align:center;">Student E-Result Sheet Release</h3>
+					   <h3 style="text-align:center;">Student E-Result Release</h3>
 					   <div style="display:flex">
 					   <div   onclick="GoBackHandler()" class="btn btn-primary mr-4">BACK </div> 
 						<div onclick="RefreshDiv();" class="btn btn-dark">REFRESH </div>
@@ -101,9 +101,15 @@
                    $result= $Loader->DownloadStudentResultStatus($school_code);
 
                    if( $result == 'inactive'){
-                        echo '<div class="col-md-6 btn-danger" style="text-align:center;font-size:20px;padding:20px">E-Result Sheet Not Approved For  Download   </div>';
+                        echo '<div class="col-md-6 btn-danger" style="text-align:center;font-size:20px;padding:20px">
+			                    <img src="image/disapprove.jpg"  style="width:90px;border-radius:500px"/> <br/>
+						        E-Result Sheet Not Approved For  Download 
+						  </div>';
                    }if( $result == 'active'){
-                        echo '<div class="col-md-6 btn-success" style="text-align:center;font-size:20px;padding:20px">E-Result Sheet Approved For  Download </div>';
+                        echo '<div class="col-md-6 btn-success" style="text-align:center;font-size:20px;padding:20px">
+						 <img src="image/approve.jpg"  style="width:90px;border-radius:500px"/> <br/>
+						E-Result Sheet Approved For  Download 
+						</div>';
                    }
                     ?>                        
 					
@@ -113,8 +119,8 @@
 					<div class="form-group col-md-6 mt-5">
 					<select   id="categories_selection"  name="categories_selection" onchange="calender(this.id)"  class="form-control" >
 						<option value="" selected="selected">--Select Command--</option>
-						<option value="active">Enable E-Result Sheet for Download </option>  
-						<option value="inactive">Disable E-Result Sheet for Download </option>  
+						<option value="active">Enable Student E-Result Download </option>  
+						<option value="inactive">Disable Student E-Result Download </option>  
 					</select>
 				</div>
 

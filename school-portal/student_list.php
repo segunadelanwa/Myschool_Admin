@@ -190,7 +190,7 @@ require("dashboard_head.php");
                                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                     <strong><i class="fa fa-credit-card alert_head get_st"></i><br>Notification!!</strong><br />
                                                      
-                                                    Invalid Payee ID  inserted. Please confirm your Payee ID and try again
+                                                    Empty Data fetch.
 
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>

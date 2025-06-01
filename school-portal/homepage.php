@@ -27,7 +27,7 @@
   left: 0;
   overflow: scroll;
   background-color: rgba(0, 0, 0, 0.5); /* Overlay */
-  z-index: 2000;
+  z-index: 5000;
 }
 
 /* Modal content */
@@ -39,7 +39,7 @@
   margin: 40px auto;
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 10px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -147,7 +147,7 @@
                                 if($exam_score == '0' || $test_score == '0' || $exam_time == '0' || $test_time == '0' )
                                   {
 
-                                  echo $data ='
+                                     echo $data ='
                                                       
                                       <div class="modal">
                                        
@@ -167,7 +167,7 @@
                                                       </div>	 
 
                                                       <div class="form-group">			
-                                                      <label>Exam Score Mark(e.g 5marks or 1mark on each question answered correctly)</label>
+                                                      <label>Exam  Score Mark(e.g 5marks or 1mark on each question answered correctly)</label>
                                                       <input type="number" name="exam_score" placeholder="0"  id="exam_score" class="form-control py-4"  required />
                                                       </div>
 
@@ -179,14 +179,14 @@
 
 
                                                       <div class="form-group">			
-                                                      <label>Exam Time (e.g 90 equal to 1:30min)</label>
+                                                      <label>Set Exam Duration (e.g 90 equal to 1:30min)</label>
                                                       <input type="number" name="exam_time" placeholder="0"  id="exam_time" class="form-control py-4"  required />
                                                       </div>
 
 
 
                                                       <div class="form-group">			
-                                                      <label>Test Time (e.g 30 equal to 30min)</label>
+                                                      <label>Set Test Duration (e.g 30 equal to 30min)</label>
                                                       <input type="number" name="test_time" placeholder="0"  id="test_time" class="form-control py-4"  required />
                                                       </div>
 
@@ -196,16 +196,16 @@
                                                       <label> Current Term</label>
                                                       <select   id="current_term"  name="current_term"   class="form-control" >
                                                       <option value="" selected="selected">-- Select current term--</option>   
-                                                      <option value="First Term">First Term</option>   
-                                                      <option value="Second Term">Second Term</option>   
-                                                      <option value="Third Term">Third Term</option>     
+                                                      <option value="1st">First Term</option>   
+                                                      <option value="2nd">Second Term</option>   
+                                                      <option value="3rd">Third Term</option>     
                                                       </select>
                                                       </div>
 
 
                                                       <div class="form-group">			
                                                       <label>Academy Session</label>
-                                                      <input type="text" name="session" placeholder="session"  id="session" class="form-control py-4"  required />
+                                                      <input type="text" name="session" placeholder="2024/2025"  id="session" class="form-control py-4"  required />
                                                       </div><hr/>
 
 
@@ -248,14 +248,14 @@
 
 
                                                       <div class="form-group">			
-                                                      <label>Head Teachers Photo</label>
+                                                      <label>Head Teacher Photo</label>
                                                       <input type="file" name="schl_head_photo" placeholder="School Head Photo"  id="schl_head_photo" class="form-control py-4"  required />
                                                       </div>
 
 
 
                                                       <div class="form-group">			
-                                                      <label>Head Teachers Greeting Message</label>
+                                                      <label>Head Teacher Greeting Message</label>
                                                       <input type="text" name="schl_head_msg" placeholder="School Head Message"  id="schl_head_msg" class="form-control py-4"  required />
                                                       </div>  
 
@@ -279,14 +279,14 @@
                                       </div>
 
                                     ';
-                                }
+                                  }
                                 
                               ?>
-                              <h3><?php echo $school_name; 	?></h3>  
+                              <h3><?php echo $school_name; 	?> (<?php echo $current_term; 	?> Term)</h3>  
                               <h5><?php echo $school_address; 	?></h5>  
                               <h5 >School Type <span style="text-transform:capitalize"><?php echo $school_type; 	?></span></h5>  
                               <h5>School Code: <?php echo $school_code; 	?></h5>  
-                              <h5> HI, <?php echo $schl_head_name; 	?></h5>  
+                              <h5> HI, <?php echo $fullname; 	?></h5>  
 						             </div>
 
 
@@ -453,14 +453,16 @@
                                                        <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['photo'].'"  style="width:100px;height:100px;border-radius:1500px"/>  <br/>
                                                       Student ID:<br/><b>'.$active['online_stu_id'].' </b> <br/>
                                                         <a href=" student_id_card.php?student_id='.$active['online_stu_id'].'&name=student"> 
-                                                          <b class="btn btn-dark myFont mb-2">View ID CARD </b>
-                                                        </a>
+                                                          <b class="btn btn-dark myFont mb-2">View ID Card </b>
+                                                        </a><br>
+
 
                                                      
                                                       </td>
                                                       
                                                       <td>
-                                                      '.$active['student_name'].'<br/> Class:'.$active['student_class'].' 
+                                                      '.$active['student_name'].' <hr>
+                                                       Class:'.$active['student_class'].'
                                                       </td> 
                                                       <td>'.$active['stu_gender'].' </td> 
                                                       <td>'.$teacher_name.' </td> 
@@ -653,6 +655,102 @@
                                 </div>
                             </div>
                         </div>
+					            
+                      
+                        <div class="card mb-4" id="parent">
+                            <div class="card-header bg bg-primary text-white">
+                                <i class="fas fa-table mr-1"></i>
+                               <h3>Admin Account </h3>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable_7" width="100%" cellspacing="0">
+                                       
+                                   
+                                        <thead>
+                                            <tr>
+                                                <th>Photo </th>
+                                                <th>Fullname </th>
+                                                <th>Gender</th>
+                                                <th>Pone</th>
+                                                <th>Address</th> 
+                                                <th>Department </th>
+                                                <th>Bank Details</th>  
+											                          <th>Reg Date</th>
+                                                
+                                            </tr>
+                                        </thead> 
+                                        <tbody> 
+                                            <?php 
+                                          
+                                                $result = $loader-> AllRegisteredAdmin($school_code);	
+                                                
+                                                foreach($result as $active)
+                                                { 	 	
+                                                  if($admin_access === 'proprietor'|| $admin_access === 'head')
+                                                  {
+                                                   $outputAuth = ' <a class="btn btn-danger" href="authorize_admin.php?data_id='.$active['username'].'&school_id='.$active['school_code'].'" >Authorize User</a>';
+                                                  }else{
+                                                    $outputAuth = '';
+                                                  }
+
+                                                  if(empty($active['photo'])){
+                                                  $outputImg = ' <img src="image/profile.jpg"  style="width:90px;border-radius:500px"/> ';
+                                                  }else{
+                                                  $outputImg = ' <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['photo'].'"  style="height:60px"/> '; 
+                                                  }
+                                                  
+                                                  
+                                                  if($active['admin_access'] == 'proprietor')
+                                                  {
+                                                   $out_admin_access = 'Proprietorship';
+                                                  }else{
+                                                    $out_admin_access = $active['admin_access'];
+                                                  }
+                                                  
+                                                    echo'<tr role="row" class="odd">
+                                                          
+                                                    
+                       
+                                                      <td>'.$outputImg.' <br/>
+                                                      '.$active['username'].'<br/>
+                                                      '.$outputAuth.'
+                                                      </td> 
+                                                      <td>'.$active['fullname'].'</td> 
+                                                      <td>'.$active['gender'].' </td> 
+                                                      <td>'.$active['phone'].' </td> 
+                                                      <td>'.$active['address'].' </td>    
+                                                      <td>'.$active['admin_depart'].' <hr/>
+                                                      <span style="text-transform:uppercase">Role: '.$out_admin_access.'</span>
+                                                      </td>    
+                                                      <td>
+                                                      '.$active['bank_name'].' <br/>
+                                                      '.$active['account_name'].' <br/>
+                                                      '.$active['account_number'].' <br/>
+                                                      </td>    
+                                                      <td>'.$active['date'].'<br /> </td> 
+                                                      
+                                                      
+                                                        
+                                                      </td> 
+                                                      
+                                                    </tr>
+                                                    ';
+                                              
+
+
+                                                  
+                                                } 	 
+                                              ?>                     
+                                        
+                                        </tbody>
+                                   
+								                                    
+								                    </table>
+                                </div>
+                            </div>
+                        </div>
                     	
 		
 
@@ -720,6 +818,7 @@ const	equipment_id = document.getElementById("equip_id").value;
 });
   
 
+var elementmodal = document.getElementById('modal_loader');
 
 function enrollStudentNewTerm(a,b,c,d,e){
 
@@ -731,25 +830,41 @@ function enrollStudentNewTerm(a,b,c,d,e){
                   data:{
                     admincode:a,   
                     parent_code:b,   
-                    school_code:d,
+                    school_code:c,
                     student_code:d,
                     school_type:e,    
                     page:'enrollStudentNewTerm',
                     action:'enrollStudentNewTerm'
                     },
-                  success:function(data)
-                  {
-                      if(data.success){
-                        window.location.reload();
-  
-                      }
-                      else
-                      {
-                        
-                        alert(data.feedback);
-                        
-                      }
-                  }
+                    beforeSend:function()
+                    {
+
+                      elementmodal.classList.remove('loaderDisplayNone');
+                      elementmodal.classList.add('loaderDisplayblock');
+
+                    },
+                    success:function(data)
+                    {
+                      
+                          
+                            if(data.success == 'success')
+                            {
+
+                                elementmodal.classList.remove('loaderDisplayblock');
+                                elementmodal.classList.add('loaderDisplayNone');	
+                                alert(data.feedback);
+                                window.location.reload();
+
+
+                            }else{
+
+                                elementmodal.classList.remove('loaderDisplayblock');
+                                elementmodal.classList.add('loaderDisplayNone');	
+                                alert(data.feedback);
+                          
+
+                            }
+                    }
 
 
                 });	
@@ -820,7 +935,7 @@ $('#user_register_form').on('submit', function(event){
 
   $('#department').attr('required', 'required');
 
-
+   
 
 
   if($('#user_register_form').parsley().validate())

@@ -6,41 +6,36 @@
     <head>
 	
 		<?php
-		include("../header.php"); 
-		include("../topUrl.php"); 
-	 
-          
-  
+		include("../header.php");    
 		?>
 		
 	<title> 
-		 Questions
+	 QUESTION REVIEW
 	</title>
 
     </head>
 	
-    <style>
-    .myFont{
-      font-size:12px
-    
-    }
-    </style>
-
-<script>
+	<script>
  function GoBackHandler(){
  history.go(-1)
- }
+ }	
+
  </script>
+
+
 	
  
+    <body class="sb-nav-fixed">
 
-  <body class="sb-nav-fixed">
 
- 	
+	<div id="modal" class="modal-backdrop loaderDisplayNone"  >  
+				<?php
+				require("../loader.php");
+				?> 
+		</div>
+	
 
-	
-	
-	
+
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 				<?php
 				require("dashboard_head.php");
@@ -61,13 +56,12 @@
 		   
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4"> 
-					          <i class="fas fa-book"></i>Teacher Questions  
+                        <h1 class="mt-4 transform-capitalize"> 
+					          <i class="fas fa-briefcase"></i>Question Review
 						</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"onclick="GoBackHandler()"> Back</li>
-                       
-                            <li class="breadcrumb-item active">Teacher Questions </li>
+                            <li class="breadcrumb-item" onclick="GoBackHandler()"> Back</li>
+                            <li class="breadcrumb-item active">Question </li>
                         </ol>
                   
 					 
@@ -79,156 +73,106 @@
 									 
 												<div class="card-header">
 													<i class="fas fa-briefcase"></i>
-                                                    Questions
+													Question Review
 												</div>
 												
 												<div class="card-body">
 													
-		 <div class="table-responsive">
+													<div class="table-responsive">
 														
-
  
-		   
-		   
-	   		    <div id="otpupdatebox" style="background-color:white; padding:50px;margin-top:10px">
+ 
 
-                    <?php 
-                  
-                        
-                                    
-                                   
+				   
+													</div>
+										
+										</div>
+										 
+					  
+	                       </div>
 
-                                    $Loader->query = "SELECT * FROM `50_question_table` WHERE  teacher_code='$username' AND cbt_status !='general'"; 
-                                    $total_row = $Loader->total_row(); 
-                                    $result = $Loader->query_result(); 
-                             
-                                    
-                                    echo'	 
-                                    <div class="card mb-4">
-                                                                <div class="card-header bg bg-success text-white">
-                                                                    <i class="fas fa-table mr-1"></i>
-                                                                <h3>Questions   </h3>
-                                                                </div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                        <table class="table table-bordered" id="dataTable_5" width="100%" cellspacing="0">
-                                                        
+						 <div class="card mb-4">
+                         
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable_7" width="100%" cellspacing="0">
+	          
+                                        <thead>
+                                            <tr> 
+                                                 
+                                                <th>Operation</th> 
+                                                <th>Question Access Code</th> 
+                                                <th>Question Class</th> 
+                                                <th>Question Subject</th> 
+                                                <th>Question Available</th> 
+                                                <th>Date</th>   
+                                                
+                                            </tr>
+                                        </thead> 
+                                        <tbody> 
+                                                    <?php 
+                                                  
+                                                  $result = $Loader-> FetchQuestion($school_code,$username);
+                                                 
+                                                  foreach($result as $active)
+                                                  {
+                                                     $subject_id =  $active['subject_id'];
+                                                       $sub_title = $Loader-> FecthSingleSubject($active['cbt_subject']);
+                                                       $quesNo = $Loader-> FetchNumberOfQuestion($active['subject_id'],$school_code,$username);
+                                                      echo'
+													  <tr role="row" class="odd">
+														<td>   
+														 
+															<a  href="edit_print_question.php?subject_id='.$active['subject_id'].'">
+															<div class="btn btn-success mb-1">Expand Question</div>
+															</a> <br/>';
+															echo"<a  href='#' onclick='deleteSubject(\"$subject_id\")' >";
+															 echo'<div class="btn btn-danger mb-1">Delete Question</div>
+															</a> 
+														
+														</td> 
+
+														<td> '.$active['subject_id'].'</td>  
+														<td>'.$active['student_class'].' </td>   
+														<td>'.$sub_title.' </td>   
+														<td>'.$quesNo.' Question(s)</td>   
+														<td>'.$active['date_uploaded'].' </td>   
+                                                      </tr> 
+                                                      ';
+                                                
+
+
                                                     
-                                                                            <thead>
-                                                                            <tr>
-                                                                                <th>Operation </th> 
-                                                                                <th>Image </th> 
-                                                                                <th>Subject Details </th> 
-                                                                                <th>Question</th>  
-                                                                                <th>Option</th>  
-                                                                                <th>Answer</th>  
-                                                                                
-                                                                            </tr>
-                                                                        </thead>  
-                                                                        <tbody> ';
-                                                                        foreach($result as $active)
-                                                                        {
-                                                                          $question_id = $active['id'];
-                                                                          $Loader->query = "SELECT * FROM `51_question_option` WHERE  question_id ='$question_id'  "; 
-                                                                          $result = $Loader->query_result();
-                                                                          $id = $active['id'];
-                                                                           
-
-                                                                          
-                                                                        $schoolName =  $Loader-> SchoolName($active['school_code']);	 
-                                                                        $subject =  $Loader-> FecthSingleSubject($active['cbt_subject']);	 
-
-                                                                              if($active['question_image'] == '')
-                                                                              {
-                                                                                $QuesImg ='';
-                                                                              }else
-                                                                              {
-                                                                              $QuesImg ='<img src="../'.$MainquesImg .'/'.$active['question_image'].'"  style="width:100px;height:100px;border-radius:1500px"';
-                                                                              }
-                                                                            
-                                                                            echo'<tr role="row" class="odd">
-                                                                                <td>  
-                                                                                  <a href="edit_question.php?question_id='.$active['id'].'&type=edit"> 
-                                                                                    <b class="btn btn-info myFont"> Edit  </b>
-                                                                                  </a> ';
-                                                                            echo"  
-                                                                                  <div onclick='deleteSubject(\"$id\")'> 
-                                                                                    <b class='btn btn-danger myFont'> Delete  </b>
-                                                                                  </div>
-                                                                                  <div onclick='dropAllSubject(\"$id\")'> 
-                                                                                    <b class='btn btn-success myFont'> Drop  all $subject questions with access code ".$active['subject_id']."</b>
-                                                                                  </div>
-                                                                                  
-                                                                                  "; 
-                                                                           echo'    
-                                                                                 </td>
-                                                                            <td>
-                                                                              '.$QuesImg.'
-                                                                            </td>
-                                                                              <td> 
-                                                                              '.$subject.' <hr/>
-                                                                              Access Code <b>'.$active['subject_id'].'</b><hr/> 
-                                                                              Question Type <b style="text-transform:capitalize;">'.$active['cbt_status'].'</b> <hr/>
-                                                                              Student Class <b style="text-transform:capitalize;">'.$active['student_class'].'</b> 
-                                                                              </td>  
-                                                                              
-                                                                              <td> 
-                                                                             '.$active['question_title'].' <br/> 
-                                                                              </td> 
-                                                                              <td style="font-size:11px"> 
-                                                                              ';
-                                                                              
-                                                                              $i=0;
-                                                                              foreach($result as $row)
-                                                                              {
-                                                                               echo $optionData[$i]  = $row['option_title'].'<hr/>';
-                                                                               
-                                                                               $i++;
-                                                                              } 
-                                                                             echo'
-                                                                              </td>  
-                                                                              <td> 
-                                                                             '.$active['answer_option'].'</b> <br/> 
-                                                                              </td>  
-                                                                 
-                                                                               
-                                                                              
-                                                                            </tr>
-                                                                            ';
-                                                                      
-                        
-                        
-                                                                   					
-                                                                        } 					
-                                                                echo'</tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>'; 
- 
+                                                  } 	 
+                                                ?>                     
+                                        
+                                          </tbody>
+                                   
+								                                    
+								                    </table>
+                               
+                                </div>
+                            </div>
+               
+						 </div>
+						
+                
+				
 
 
-                    ?>
-			   </div>
- 
-			</div>
-
-			</div>
 
 
-			</div>
-
- 
-		  
+					
+				 
 				 
  
 				  </div>
                 </main>
                
 			   <footer class="py-4 bg-light mt-auto">
-                   <?php 
-				   require("../footer.php"); 
-				   ?>
+					<?php  
+					require("../footer2.php"); 
+					?>	
                 </footer>
 				
 				
@@ -237,74 +181,74 @@
         </div>
     
     
-     
-		<?php 
-			//BOTTOM JAVASCRIPT CODE 
-			require("../footer2.php"); 
-        ?>	 
  
- 
+   
     </body>
 </html>
 
+
 <script>
-     
+ 
+ 	 function postReviewOps(id, cat){
+ 
+ 
+			$.ajax({
+				url:"pageajax.php",
+				method:"POST",
+				dataType:"json",
+				data:{
+					post_id:id,   
+					post_cat:cat,   
+					page:'NewsletterOps',
+					action:'NewsletterOps'
+					},
+			
+				success:function(data)
+				{
+					if(data.success == 'success')
+					{
+						alert(data.feedback);
+						location.href='post_review.php';
+					}
+					else
+					{
+						alert(data.feedback);
+					
+					}
+ 
+				}
+			});	
+		 
+		
+}
+
  
      function deleteSubject(sub_id) {
          
      
-          
+      alert(sub_id)    
          
-                 $.ajax({
-                     url:"pageajax.php",
-                     method:"POST", 
-                     data:{        
-                         delete_id:sub_id,   
-                         category:'deleteQuestion',   
-                         page:'delete',
-                         action:'deleteAccount'
-                         }, 
-                     success:function(data)
-                     {  
+                //  $.ajax({
+                //      url:"pageajax.php",
+                //      method:"POST", 
+                //      data:{        
+                //          delete_id:sub_id,   
+                //          category:'deleteQuestion',   
+                //          page:'delete',
+                //          action:'deleteAccount'
+                //          }, 
+                //      success:function(data)
+                //      {  
                   
-                     alert(data)
-                      window.location.reload();
+                //      alert(data)
+                //       window.location.reload();
                              
-                     }
-                });	
-   
-     }
-     function dropAllSubject(sub_id) {
-         
-     
-          
-         
-                 $.ajax({
-                     url:"pageajax.php",
-                     method:"POST", 
-                     data:{        
-                         delete_id:sub_id,   
-                         category:'dropQuestion',   
-                         page:'delete',
-                         action:'deleteAccount'
-                         }, 
-                     success:function(data)
-                     {  
-                  
-                     alert(data)
-                      window.location.reload();
-                             
-                     }
-                });	
+                //      }
+                // });	
    
      }
 </script>
 
- 
-
- 
-
- 
 
 
  

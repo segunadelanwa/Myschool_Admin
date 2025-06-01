@@ -136,16 +136,10 @@
 
 
 														  <form method="POST"   id="user_register_form"  enctype='multipart/form-data'>
-
-                                                          <div class="form-group">
-														    <label>School Code </label>
+ 
                                                           
-                                                            <input type="text" name='school_code' id='school_code' value="<?php echo$school_code;?>"  i class="form-control py-4"   readonly />
-														   </div>
-
-
-
-                                                            <br/>
+                                                            <input type="hidden" name='school_code' id='school_code' value="<?php echo$school_code;?>"   readonly />
+														  
                                                             <div class="card-header">
                                                             <i class="fas fa-user"></i>
                                                            QUESTION SECTION

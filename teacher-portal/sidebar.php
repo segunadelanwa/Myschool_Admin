@@ -9,6 +9,7 @@
                             <div class="sb-sidenav-menu-heading" style="color:<?php echo$text_code;?>">
 							School Code: <?php echo"$school_code"; ?>
 							Teacher's Code: <?php echo"$teacher_code"; ?>
+							Teacher's Subject:  <?php echo$sub_title = $Loader-> FecthSingleSubject($subject); ?>
 							</div>
 							
                             <a class="nav-link" href="index.php"style="color:<?php echo$text_code;?>">
@@ -32,15 +33,28 @@
 
 						  <a style="color:<?php echo$text_code;?>"class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePaymentLayouts" aria-expanded="false" aria-controls="collapsePaymentLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa fa-users" style="color:<?php echo$text_code;?>"></i></div>
-                                Question Setup
+                                Question Upload
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color:<?php echo$text_code;?>"></i></div>
                             </a>
                             <div class="collapse" id="collapsePaymentLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
-                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="upload_question.php?payee_id=<?php echo"$school_code&name=$school_name" ?>">Upload Question </a> 
+                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="upload_question.php?payee_id=<?php echo"$school_code&name=$school_name" ?>">Upload Objective </a> 
+                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="upload_theory.php?payee_id=<?php echo"$school_code&name=$school_name" ?>">Upload Theory </a>  
+                                  
+                                   
+                                </nav>
+                            </div>
+						  <a style="color:<?php echo$text_code;?>"class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQuestionTheory" aria-expanded="false" aria-controls="collapseQuestionTheory">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users" style="color:<?php echo$text_code;?>"></i></div>
+                                View Question 
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color:<?php echo$text_code;?>"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseQuestionTheory" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">  
                                     <a style="color:<?php echo$text_code;?>"class="nav-link"  href="view_question.php">View Question </a> 
-                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="edit_print_question.php?type=exam">Print Exam </a> 
-                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="edit_print_question.php?type=test" >Print Test </a> 
+                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="review_question.php">Edit Question </a> 
+                                    <a style="color:<?php echo$text_code;?>"class="nav-link"  href="edit_print_question.php?type=exam">Print Question </a> 
+                                    <!-- <a style="color:<?php //echo$text_code;?>"class="nav-link"  href="edit_print_question.php?type=test" >Print Test </a>  -->
                                   
                                    
                                 </nav>
