@@ -1420,6 +1420,129 @@ class ResultServer{
 	
 	}
 		 
+
+	function FetchBankName($bank_code)
+	{
+		 
+		$this->query ="SELECT * FROM `bank_code` WHERE `bank_code` = '$bank_code' ";
+		$total_row = $this->total_row();
+		$result = $this->query_result();
+		foreach($result as $row){ 
+			$output  =  $row['bank_name'];
+		}
+		if($total_row == 1){
+			return $output;
+		}else{
+			return $output = 'Error';
+		}
+		 
+		
+	}
+
+	function EserverSchoolPaymentLink($sch_code)
+	{
+
+		 
+
+		$this->query = "SELECT * FROM `1_school_reg` WHERE  school_code ='$sch_code' ";  
+		$resultquery = $this->query_result(); 
+		foreach($resultquery as $row)
+		{
+			$schoolName     =  $row['school_name'];
+			$school_logo    =  $row['school_logo'];
+			$school_address =  $row['school_address'];
+			$current_term   =  $row['current_term'];
+			$school_email   =  $row['school_email'];
+			$school_website =  $row['school_website'];
+			$school_phone   =  $row['school_phone'];
+			$school_bgcolor =  $row['school_bgcolor'];
+			$bank_code      =  $row['bank_name'];
+			$account_name   =  $row['account_name'];
+			$account_number =  $row['account_number'];
+			
+			
+		}
+  	
+		$bank_name = $this-> FetchBankName($bank_code);
+
+	
+			echo  $output ='   
+ 				<div class="col-xl- col-md-12">
+						<div class="alert alert-danger alert-dismissible fade show" role="alert" style="background-color:'.$school_bgcolor.';padding:30px">
+						
+
+
+					         <div class="card mb-4">
+	                                      <div style="text-align:center;font-weight:bold"> MAKE A PAYMENT  </div><br />
+						         <div class="card-body">
+								       <div class="table-responsive">
+								            <table class="table table-bordered"   width="100%" cellspacing="0">
+								
+							
+												<thead>
+												    	<tr>
+													
+														
+														
+														<th style="width:5%;"> 
+														 <img src="../myschoolapp_api/school/'.$sch_code.'/'.$school_logo.'" style="width:150px;margin-top:-150px" /> 
+														
+														<th>  
+														<div style="display:flex">
+														
+															<div  style="margin-left:20px">
+															
+															<h3 style="text-transform:capitalize;"> '.$schoolName.'   </h3> 
+															<h6 >Address: <span style="text-transform:lowercase;">'.$school_address.'  </span> </h6>
+															<h6 style="text-transform:lowercase;">School Email:'.$school_email.'</h6>
+															<h6 style="text-transform:lowercase;">School Website:'.$school_website.' Questions </h6>
+															<h6 style="text-transform:capitalize;">School Phone: '.$school_phone.'. </h6>
+															</div>
+														</div>	
+													
+														
+														</th>  
+														
+													</tr>
+												</thead>  
+												<tbody>  
+													<tr role="row" class="odd" style="width:100%;">
+													
+													<td style="width:20%;text-align:left;"> 
+														<b style="text-transform:capitalize;padding-top:20px">BANK  NAME:  </b> <hr/>
+														<b style="text-transform:capitalize;padding-top:20px">ACCOUNT NAME:  </b> <hr/>
+														<b style="text-transform:capitalize;padding-top:20px">ACCOUNT NUMBER: </b> 
+													</td> 
+													
+
+													<td style="width:80%;">
+													<b style="text-transform:capitalize;padding-top:20px"> '.$bank_name.' </b> <hr/>
+													<b style="text-transform:capitalize;padding-top:20px"> '.$account_name.' </b>  <hr/>
+													<b style="text-transform:capitalize;padding-top:20px"> '.$account_number.'  </b>  <hr/>
+													<div  >  <img src="../all_photo/thumb_up.jpg" style="width:150px" />Thank you for your encouragement </div> 
+													</td>
+																								
+													</tr>
+																
+												</tbody>
+
+											</table>
+										</div>
+									</div>
+							</div>
+
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+							       </button>
+					</div>  
+			</div> 
+			'; 
+
+ 
+			
+	
+	}
+		 
 	function EserverPaymentClearanceFailed($student_code)
 	{
 
@@ -1553,7 +1676,7 @@ class ResultServer{
 			
 							
 
-					$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id' ";  
+					$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`online_stu_id` ='$online_stu_id'  ";  
 					$result_row = $this->total_row();
 					$result_user_wallet = $this->query_result();
 					foreach($result_user_wallet as $row){
@@ -1591,7 +1714,7 @@ class ResultServer{
 
 
 					// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
+					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `status`='active' "; 
 					$result = $this->query_result();  
 					foreach($result as $row) 
 					{
@@ -1654,7 +1777,7 @@ class ResultServer{
 
 
 
-					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
+					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `status`='active'";
 					$result_que = $this->query_result();  
 					foreach($result_que as $row_2) 
 					{ 
@@ -2868,7 +2991,7 @@ class ResultServer{
 
 
 					// $api_object->query = "SELECT * FROM `student_exam_result` WHERE student_code = '143978' AND school_code ='SCH143091' "; 
-					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id'  "; 
+					$this->query = "SELECT * FROM student_exam_result  WHERE student_code = '$online_stu_id' AND `status`='active' "; 
 					$result = $this->query_result();  
 					foreach($result as $row) 
 					{
@@ -2931,7 +3054,7 @@ class ResultServer{
 
 
 
-					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' ";
+					$this->query = "SELECT * FROM `student_test_result` WHERE student_code = '$online_stu_id' AND `status`='active'";
 					$result_que = $this->query_result();  
 					foreach($result_que as $row_2) 
 					{ 

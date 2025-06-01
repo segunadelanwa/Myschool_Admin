@@ -119,29 +119,15 @@ if(isset($_POST['page'])){
 
 
 								$marketer_code       =  trim($_POST['marketer_code']); 
-								$school_name         =  trim($_POST['school_name']);  
-								@$website             =  trim($_POST['website']);
+								$school_name         =  trim($_POST['school_name']);   
 								$raw_password        =  trim($_POST['school_password']);
 								$school_password     =	password_hash(trim($_POST['school_password']), PASSWORD_DEFAULT);
 								$school_phone        =  trim($_POST['school_phone']);
-								$school_address      =  trim($_POST['school_address']);
-								@$school_motor        =  trim($_POST['school_motor']);
+								$school_address      =  trim($_POST['school_address']); 
 								$school_bgcolor      =  trim($_POST['school_bgcolor']);
-								$text_code           =  trim($_POST['text_code']); 
-								@$school_week         =  trim($_POST['school_week']); 
-								@$bank_name           =  trim($_POST['bank_name']);
-								@$account_name        =  trim($_POST['account_name']);
-								@$account_number      =  trim($_POST['account_number']);   
-								$schl_propritor_name =  trim($_POST['schl_propritor_name']); 
-								@$schl_propritor_msg  =  trim($_POST['schl_propritor_msg']);
-								$schl_head_name      =  trim($_POST['schl_head_name']); 
-								@$schl_head_msg       =  trim($_POST['schl_head_msg']); 
-								@$exam_score          =  trim($_POST['exam_score']); 
-								@$test_score          =  trim($_POST['test_score']); 
-								@$exam_time           =  trim($_POST['exam_time']); 
-								@$test_time           =  trim($_POST['test_time']); 
-								@$current_term        =  trim($_POST['current_term']); 
-								@$session             =  trim($_POST['session']); 
+								$text_code           =  trim($_POST['text_code']);      
+								$schl_head_name      =  trim($_POST['schl_head_name']);
+								$school_type         =  trim($_POST['school_type']); 
 								$passkey             =  MD5("$raw_password$school_email");	
 								
 								
@@ -150,11 +136,7 @@ if(isset($_POST['page'])){
 								$loader->filedata=$_FILES['school_photo'];
 								$school_photo               = $loader->UploadPhoto($source);
 								$loader->filedata=$_FILES['school_logo'];
-								$school_logo               = $loader->UploadPhoto($source);
-								@$loader->filedata=$_FILES['schl_propritor_photo'];
-								$schl_propritor_photo      = $loader->UploadPhoto($source);
-								@$loader->filedata=$_FILES['schl_head_photo']; 
-								$schl_head_photo           = $loader->UploadPhoto($source);
+								$school_logo               = $loader->UploadPhoto($source);  
 
 
 											
@@ -168,39 +150,41 @@ if(isset($_POST['page'])){
 												'".mysqli_real_escape_string($homedb, $school_photo)."',   
 												'".mysqli_real_escape_string($homedb, $school_logo)."',   
 												'".mysqli_real_escape_string($homedb, $school_email)."',   
-												'".mysqli_real_escape_string($homedb, $website)."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
 												'".mysqli_real_escape_string($homedb, $school_password)."',   
 												'".mysqli_real_escape_string($homedb, $school_phone)."',   
 												'".mysqli_real_escape_string($homedb, $school_address)."',   
-												'".mysqli_real_escape_string($homedb, $school_motor)."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
 												'".mysqli_real_escape_string($homedb, $school_bgcolor)."',   
 												'".mysqli_real_escape_string($homedb, $text_code)."',   
-												'".mysqli_real_escape_string($homedb, $school_week)."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
 												'".mysqli_real_escape_string($homedb, '0000-00-00')."',   
-												'".mysqli_real_escape_string($homedb, $bank_name)."',   
-												'".mysqli_real_escape_string($homedb, $account_name)."',   
-												'".mysqli_real_escape_string($homedb, $account_number)."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
 												'".mysqli_real_escape_string($homedb, 'active')."',   
-												'".mysqli_real_escape_string($homedb, $schl_propritor_name)."',   
-												'".mysqli_real_escape_string($homedb, $schl_propritor_photo)."',   
-												'".mysqli_real_escape_string($homedb, $schl_propritor_msg)."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
+												'".mysqli_real_escape_string($homedb, '')."',   
 												'".mysqli_real_escape_string($homedb, $schl_head_name)."',   
-												'".mysqli_real_escape_string($homedb, $schl_head_photo)."',   
-												'".mysqli_real_escape_string($homedb, $schl_head_msg)."',     
+												'".mysqli_real_escape_string($homedb, '')."',   
+												'".mysqli_real_escape_string($homedb, '')."',     
 												'".mysqli_real_escape_string($homedb, $date_init)."',
-												'".mysqli_real_escape_string($homedb, $exam_score)."',
-												'".mysqli_real_escape_string($homedb, $test_score)."',
-												'".mysqli_real_escape_string($homedb, $exam_time)."',
-												'".mysqli_real_escape_string($homedb, $test_time)."',
 												'".mysqli_real_escape_string($homedb, '')."',
 												'".mysqli_real_escape_string($homedb, '')."',
-												'".mysqli_real_escape_string($homedb, $current_term)."',
-												'".mysqli_real_escape_string($homedb, $session)."',
+												'".mysqli_real_escape_string($homedb, '')."',
+												'".mysqli_real_escape_string($homedb, '')."',
+												'".mysqli_real_escape_string($homedb, '')."',
+												'".mysqli_real_escape_string($homedb, '')."',
+												'".mysqli_real_escape_string($homedb, '')."',
+												'".mysqli_real_escape_string($homedb, '')."',
 												'".mysqli_real_escape_string($homedb, 'inactive')."',
 												'".mysqli_real_escape_string($homedb, 'unpaid')."',
 												'".mysqli_real_escape_string($homedb, '')."',
 												'".mysqli_real_escape_string($homedb, $passkey)."',
-												'".mysqli_real_escape_string($homedb, '0')."'
+												'".mysqli_real_escape_string($homedb, '0')."',
+												'".mysqli_real_escape_string($homedb, 'default')."',
+												'".mysqli_real_escape_string($homedb, $school_type)."'
 												)");
 												if(mysqli_query($homedb,$query_wallet))
 												{
@@ -238,7 +222,7 @@ if(isset($_POST['page'])){
 
 																		
 															<p>
-															Hi $schl_propritor_name, your school $school_name portal first phase setup was successful and your school portal has been setup for operations.<br/>
+															Hi $schl_head_name, your school $school_name portal first phase setup was successful and your school portal has been setup for operations.<br/>
 															To complete the final setup of school portals management & CBT integration system software,
 															you need to login with your school admin login credential below
 															
@@ -291,9 +275,9 @@ if(isset($_POST['page'])){
 														";
 
 									 
-													$loader->send_email($school_email, $subject, $body,$schl_propritor_name);
-						
 													$loader->SchoolNoGeneratorUpdate();
+													$loader->send_email($school_email, $subject, $body,$schl_head_name);
+						
 
 
 														$output = array(

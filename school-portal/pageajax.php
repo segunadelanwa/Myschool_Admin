@@ -57,6 +57,7 @@ include("../connect2.php");
 					$session              =  $row['session'];
 					$download_result      =  $row['download_result'];
 					$school_payment       =  $row['school_payment'];
+					$school_type          =  $row['school_type'];
 			 
 	
 				}
@@ -159,6 +160,102 @@ if(isset($_POST['page'])){
  	}
  
  
+	if($_POST["page"] === 'onlinePaymentUpdate')
+	{
+
+
+		if($_POST['action'] == 'onlinePaymentUpdate')
+		{
+
+			
+			$payment_link   = $_POST['payment_link'];
+			$cat_sele       = $_POST['cat_sele'];
+			
+		 if($cat_sele == 'default'){
+			$update_link  = 'default';
+		 }else  if($cat_sele == 'empty'){
+			$update_link  = '';
+		 }else if($cat_sele == 'link'){
+			$update_link  = $payment_link;
+		 }
+			 
+ 
+						$query =("UPDATE `1_school_reg` SET  
+						`payment_link` = '$update_link'
+						WHERE `1_school_reg`.`school_code` = '$school_code'"); 
+						if(mysqli_query($homedb,$query))
+						{
+			
+								$data= array(
+									'success'		=>	'success',
+									'feedback'		=>	'Online payment  updated successfully'
+								);
+			
+						}
+						else
+						{
+								$data= array(
+									'success'		=>	'failed',
+									'feedback'		=>	'Network failed!! '
+								);			
+						}
+	 
+		 
+					   echo json_encode($data);
+        
+        }
+    }
+	if($_POST["page"] === 'lockStudentPortal')
+	{
+
+
+		if($_POST['action'] == 'lockStudentPortal')
+		{
+
+			
+			$stud_id   = $_POST['stud_id'];
+			$cat_sele  = $_POST['cat_sele'];
+			
+			$loader->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`school_code` ='$school_code' AND `4_student_reg`.`online_stu_id`='$stud_id' ";  
+			$result_row = $loader->total_row();
+			 
+			if($result_row == 1)
+			{		
+				
+						$query =("UPDATE `4_student_reg` SET  
+						`portal_lock` = '$cat_sele'
+						WHERE `4_student_reg`.`school_code` = '$school_code'"); 
+						if(mysqli_query($homedb,$query))
+						{
+			
+								$data= array(
+									'success'		=>	'success',
+									'feedback'		=>	'Portal lock updated successfully'
+								);
+			
+						}
+						else
+						{
+								$data= array(
+									'success'		=>	'failed',
+									'feedback'		=>	'Network failed!! '
+								);			
+						}
+			}
+			else
+			{
+					$data= array(
+						'success'		=>	'failed',
+						'feedback'		=>	'Wrong data Passed. Please try again '
+					);			
+			}
+		 
+					   echo json_encode($data);
+        
+        }
+    }
+
+
 	if($_POST["page"] === 'updateAcctPassword')
 	{
 
@@ -335,8 +432,7 @@ if(isset($_POST['page'])){
 				$acct_number          =  trim($_POST['acct_number']);
 				$acct_name            =  trim($_POST['acct_name']);
 				$bank_name            =  trim($_POST['bank_name']); 
-				$sch_code             =  trim($_POST['sch_code']);
-				$school_type          =  trim($_POST['school_type']);
+				$sch_code             =  trim($_POST['sch_code']); 
 
 				$passkey             =   MD5("$raw_password$user");	
 						
@@ -445,8 +541,8 @@ if(isset($_POST['page'])){
 							 </div>				
 								";
 			
-							 $loader->send_email($_POST['user_email_address'], $subject, $body,$sch_logo,$username,$school_name);
 							$loader->TeacherNoGeneratorUpdate();
+							 $loader->send_email($_POST['user_email_address'], $subject, $body,$sch_logo,$username,$school_name);
 
 								$output = array(
 									'success'		=>	'success',
@@ -498,7 +594,7 @@ if(isset($_POST['page'])){
 						
 						
 						
-										$sch_logo="/$school_code/$photo";
+										$sch_logo="../myschoolapp_api/school/$school_code/$photo";
 										$subject = 'TEACHER PORTAL SETUP';
 									
 										$body = "
@@ -723,8 +819,7 @@ if(isset($_POST['page'])){
 				$cur_term          =  trim($_POST['cur_term']);
 				$student_class     =  trim($_POST['student_class']);
 				$class_rep         =  trim($_POST['class_rep']); 
-				$payment_status    =  trim($_POST['payment_status']);
-				$school_type       =  trim($_POST['school_type']);
+				$payment_status    =  trim($_POST['payment_status']); 
 
 
 			$ConfirmStudentExist = $loader->ConfirmStudentExist($student_code);
@@ -770,13 +865,14 @@ if(isset($_POST['page'])){
 													'".mysqli_real_escape_string($homedb, $payment_status)."',      
 													'".mysqli_real_escape_string($homedb, '')."',      
 													'".mysqli_real_escape_string($homedb, 'inactive')."',      
-													'".mysqli_real_escape_string($homedb, 'passive')."',      
-													'".mysqli_real_escape_string($homedb, 'passive')."',      
+													'".mysqli_real_escape_string($homedb, 'active')."',      
+													'".mysqli_real_escape_string($homedb, 'active')."',      
 													'".mysqli_real_escape_string($homedb, $date_init)."',
 													'',
 													'".mysqli_real_escape_string($homedb, $fadmin_code)."',
 													'".mysqli_real_escape_string($homedb, $admincode)."',
-													''
+													'',
+													'".mysqli_real_escape_string($homedb, 'open')."'
 													)");
 													if(mysqli_query($homedb,$query_wallet))
 													{
@@ -1368,6 +1464,10 @@ if(isset($_POST['page'])){
 
 									$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`student_code` = '$delete_id' ";
 									$loader->execute_query();
+
+
+									$loader->query = "DELETE FROM `student_weekly_assesment ` WHERE `student_weekly_assesment `.`student_code` = '$delete_id' ";
+									$loader->execute_query();
 									
 									echo $success ="$student_name account has been deleted from database";
 								}
@@ -1423,6 +1523,10 @@ if(isset($_POST['page'])){
 
 
 								$loader->query = "DELETE FROM `student_test_result` WHERE `student_test_result`.`parent_code` = '$delete_id' ";
+								$loader->execute_query();
+
+
+								$loader->query = "DELETE FROM `student_weekly_assesment ` WHERE `student_weekly_assesment `.`parent_code` = '$delete_id' ";
 								$loader->execute_query();
 								
 								echo $success ="$guidance_name account has been deleted with all connected accounts from database";
@@ -1563,6 +1667,8 @@ if(isset($_POST['page'])){
 
 				 echo json_encode($output);
 		    }	
+
+
 		}
 
 	}	
@@ -5679,5 +5785,234 @@ if(isset($_POST['page'])){
 			}	
 		
 
+
+			if($_POST['action'] == 'enrollStudentNewTer')
+			{
+				if($_POST['page'] == 'enrollStudentNewTer')
+				{
+					$date_term  = date('Y-m-d');	
+
+					$admincode    = $_POST['admincode'];
+					$parent_code  = $_POST['parent_code'];
+					$school_code  = $_POST['school_code'];
+					$student_code = $_POST['student_code'];
+					$school_type  = $_POST['school_type'];
+					 
+					 		
+						$query_wallet =("INSERT INTO student_exam_result VALUE (
+						'', 									 
+						'".mysqli_real_escape_string($homedb, $date_term)."',
+						'".mysqli_real_escape_string($homedb, 'active')."',		 									 
+						'".mysqli_real_escape_string($homedb, $current_term)."',		 									 
+						'".mysqli_real_escape_string($homedb, $parent_code)."', 									 
+						'".mysqli_real_escape_string($homedb, $school_code)."', 									 
+						'".mysqli_real_escape_string($homedb, $student_code)."',   
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',      
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',       
+						'',
+						'".mysqli_real_escape_string($homedb, $school_type)."'
+						)");
+						if(mysqli_query($homedb,$query_wallet))
+						{
+
+
+												$query_wallet =("INSERT INTO student_test_result VALUE (
+												'', 									 
+												'".mysqli_real_escape_string($homedb, $date_term)."',
+												'".mysqli_real_escape_string($homedb, 'active')."',		 									 
+												'".mysqli_real_escape_string($homedb, $current_term)."',		 									 
+												'".mysqli_real_escape_string($homedb, $parent_code)."', 									 
+												'".mysqli_real_escape_string($homedb, $school_code)."', 									 
+												'".mysqli_real_escape_string($homedb, $student_code)."',  
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',
+												'".mysqli_real_escape_string($homedb, $school_type)."'
+												)");
+
+
+												mysqli_query($homedb,$query_wallet);
+												$query_wallet =("INSERT INTO student_weekly_assesment  VALUE (
+												'', 									 
+												'".mysqli_real_escape_string($homedb, $date_term)."',
+												'".mysqli_real_escape_string($homedb, 'active')."',		 									 
+												'".mysqli_real_escape_string($homedb, $current_term)."',		 									 
+												'".mysqli_real_escape_string($homedb, $parent_code)."', 									 
+												'".mysqli_real_escape_string($homedb, $school_code)."', 									 
+												'".mysqli_real_escape_string($homedb, $student_code)."',  
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',      
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',       
+												'',
+												'".mysqli_real_escape_string($homedb, $school_type)."'
+												)");
+												mysqli_query($homedb,$query_wallet);
+
+
+										 
+												$query =("UPDATE `4_student_reg` SET  
+												`test_status` = 'active',
+												`exam_status` = 'active',
+												WHERE `4_student_reg`.`online_stu_id` = '$school_code'"); 
+												mysqli_query($homedb,$query);
+										$output = array(
+											'success'		=>	'success',
+											'feedback'		=>	"Student New Term Enrollment Setup successfully!!. "
+										);
+
+						
+
+							}
+							else
+							{
+								
+									$output = array(
+										'success'		=>	'failed',
+										'feedback'		=>	"Newtwork error"
+									);
+							}
+				
+				}
+		   }
 }
 ?>

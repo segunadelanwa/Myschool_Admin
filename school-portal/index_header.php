@@ -58,6 +58,7 @@ if(isset($_SESSION['token']) AND !empty($_SESSION['school_email']))
 				$current_term         =  $row['current_term'];	 
 				$session              =  $row['session'];
 				$id_card_type         =  $row['id_card_type'];
+				$school_type          =  $row['school_type'];
 			}
 	 
 		 }

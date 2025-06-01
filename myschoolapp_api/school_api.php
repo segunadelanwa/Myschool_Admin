@@ -243,7 +243,8 @@ if($_GET["action"] == 'StudentLogin')
 				{
                     if($row['school_status'] ==  'active')
                     {
-							 
+                        if($row['portal_lock'] ==  'open')
+                        {
                                 if($password == $tokencode)
                                 {
                                     
@@ -258,6 +259,15 @@ if($_GET["action"] == 'StudentLogin')
                                             );
                                     
                                 }
+                        }
+                        else
+                        {
+                                    $data[] = array(
+                                    'success'  =>  'Portal locked',
+                                    'feedback'  =>  'Student portal locked. Please contact your school IT center. Thanks'
+                                    );
+                            
+                        }
 
 
                     }
@@ -266,7 +276,7 @@ if($_GET["action"] == 'StudentLogin')
                          
                             $data[] = array(
                                 'success'  =>  'Invalid password ',
-                                'feedback'  => "".$row['school_name']." account has been suspended. Please kindly contact school admin "
+                                'feedback'  => "".$row['school_name']." account has been suspended. Please kindly contact your school admin for more details "
                                 );
                         
                     }
@@ -279,7 +289,7 @@ if($_GET["action"] == 'StudentLogin')
 			{
 					$data[] = array(
 					'success'  =>  'Invalid Account ',
-					'feedback'  => 	"Invalid student login. Please contact your school IT center"
+					'feedback'  => 	"Invalid student login. Please confirm your student ID and try again"
 					);
 			}
 
@@ -361,7 +371,7 @@ if($_GET["action"] == 'fingerPrintLogin')
 			{
 					$data[] = array(
 					'success'  =>  'Invalid Account ',
-					'feedback'  => 	"Invalid student login. Please contact your school IT center"
+					'feedback'  => 	"Invalid student login. Please confirm your student ID and try again"
 					);
 			}
 

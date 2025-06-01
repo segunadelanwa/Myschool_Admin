@@ -66,6 +66,7 @@ if(isset($_SESSION['token']) AND !empty($_SESSION['school_email']))
 				$term_earn            =  $row['term_earn'];	 	
 				$current_term         =  $row['current_term'];	 
 				$session              =  $row['session'];
+				$school_type          =  $row['school_type'];
  
  
 			}

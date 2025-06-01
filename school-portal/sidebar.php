@@ -59,7 +59,8 @@
                             </a>
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapsePaymentLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">  
-                                    <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="payment_sub.php">CBT App Payment </a> 
+                                    <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="payment_sub.php">Activate student portal  </a> 
+                                    <a  style="color:<?php echo$text_code;?>" class="nav-link"  href="update_payment_link.php">Set school fee Online Payment</a> 
                                    
                                 </nav>
                             </div>
@@ -74,6 +75,17 @@
                                 <nav class="sb-sidenav-menu-nested nav"> 
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="post_newsletter.php">Post Newsletter</a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="post_review.php">View Newsletter</a>      
+                                   
+                                </nav>
+                            </div>
+						  <a style="color:<?php echo$text_code;?>" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapselock_student_portal" aria-expanded="false" aria-controls="collapselock_student_portal">
+                                <div class="sb-nav-link-icon"><i style="color:<?php echo$text_code;?>" class="fa fa-lock"></i></div>
+                              Lock Portal
+                                <div class="sb-sidenav-collapse-arrow"><i style="color:<?php echo$text_code;?>" class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div style="color:<?php echo$text_code;?>" class="collapse" id="collapselock_student_portal" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"> 
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="lock_student_portal.php">Portal Lock</a>      
                                    
                                 </nav>
                             </div>
@@ -114,7 +126,7 @@
                             <div style="color:<?php echo$text_code;?>" class="collapse" id="collapseCreateTicket" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"> 
                                       
-                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_review.php"> Create Ticket</a>   
+                                    <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_create.php"> Create Ticket</a>   
                                     <a style="color:<?php echo$text_code;?>" class="nav-link"  href="ticket_review.php"> View Ticket</a>   
                                    
                                 </nav>

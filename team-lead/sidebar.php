@@ -24,7 +24,21 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">  
-                                    <a class="nav-link"  href="add_field_admin.php">Field Admin </a>  
+                                    <a class="nav-link"  href="add_field_admin.php">Field Officer </a>  
+                                </nav>
+                            </div>
+						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProjectDocument" aria-expanded="false" aria-controls="collapseProjectDocument">
+                                <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                                Official Download
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseProjectDocument" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">  
+                                    <a class="nav-link"  href="../assets/downloads/need_to_adopt_software.pdf" download>Software Needs</a>  
+                                    <a class="nav-link"  href="../assets/downloads/onboard_process.pdf" download>Onboard Process</a>  
+                                    <a class="nav-link"  href="../assets/downloads/project_proposal.pdf" download>Project Proposal </a>  
+                                    <a class="nav-link"  href="../assets/downloads/project_slide.pdf" download>Project Slide </a>  
+                                    <a class="nav-link"  href="../assets/downloads/project_acceptance_form.pdf" download>Acceptance Form </a>   
                                 </nav>
                             </div>
 						  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePaymentLayouts" aria-expanded="false" aria-controls="collapsePaymentLayouts">

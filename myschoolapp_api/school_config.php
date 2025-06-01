@@ -81,11 +81,11 @@ class Loader{
 
 			//$mail->SMTPSecure = '';
             $mail->SMTPDebug = 0;  
-			$mail->setFrom('noreply@rsbdigitalshares.com.ng', 'GST MY SCHOOL APP');
+			$mail->setFrom('noreply@hebzihubnigltd.com.ng', 'HEBZIHUB NIG LTD');
 
-			$mail->FromName = 'GST MY SCHOOL APP';
+			$mail->FromName = 'HEBZIHUB NIG LTD';
 			
-			$mail->AddReplyTo = 'surpport@rsbdigitalshares.com.ng';
+			$mail->AddReplyTo = 'surpport@hebzihubnigltd.com.ng';
 
 			$mail->AddAddress($receiver_email, '');
 
@@ -557,6 +557,7 @@ class Loader{
                         $sub_status          =  $row['sub_status'];
                         $date                =  $row['date']; 
                         $token               =  $row['token']; 
+                        $portal_lock         =  $row['portal_lock']; 
                              
 				}
 								
@@ -572,6 +573,7 @@ class Loader{
                         $guidance_name        = $row['guidance_name'];
                         $address              = $row['address'];
                         $email                = $row['email'];  
+                        $ptoken               = $row['token'];  
                              
 				}
 				$this->query = "SELECT * FROM `2_teacher_reg` WHERE `teacher_code` ='$teacher_code'";
@@ -637,6 +639,7 @@ class Loader{
                                     'guidance_name'      =>  $guidance_name,
                                     'address'            =>  $address,
                                     'email'              =>  $email,  
+                                    'ptoken'             =>  $ptoken,  
 
       //////////////////////////////////STUDENT BLOCK /////////////////////////////                                                    
                                                     
@@ -652,6 +655,7 @@ class Loader{
                                     'sub_status'          =>  $sub_status,
                                     'token'               =>  $token,                                                     
                                     'date'                =>  $date,     
+                                    'portal_lock'         =>  $portal_lock,     
 
  
 									

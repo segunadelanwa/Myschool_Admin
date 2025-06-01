@@ -93,11 +93,11 @@
                     </div>
                 </main>
             </div>
-            <div id="layoutAuthentication_footer">
+            <!-- <div id="layoutAuthentication_footer">
 					<?php
 					require('../footer.php');
 					?>
-            </div>
+            </div> -->
         </div>
  
     </body>

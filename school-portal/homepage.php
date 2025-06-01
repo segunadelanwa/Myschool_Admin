@@ -108,13 +108,13 @@
 		
             <div id="layoutSidenav_nav">
 
-				<?php
-				require("sidebar.php");
-        $default_pass = "000000$username";
-       $encrypt_pass = md5($default_pass) 
-				?>
+                  <?php
+                  require("sidebar.php");
+                  $default_pass = "000000$username";
+                  $encrypt_pass = md5($default_pass) 
+                  ?>
 				
-		  </div>
+		        </div>
            
 		   <div id="layoutSidenav_content">
 		   
@@ -204,7 +204,7 @@
 
 
                                                       <div class="form-group">			
-                                                      <label>Session</label>
+                                                      <label>Academy Session</label>
                                                       <input type="text" name="session" placeholder="session"  id="session" class="form-control py-4"  required />
                                                       </div><hr/>
 
@@ -284,6 +284,7 @@
                               ?>
                               <h3><?php echo $school_name; 	?></h3>  
                               <h5><?php echo $school_address; 	?></h5>  
+                              <h5 >School Type <span style="text-transform:capitalize"><?php echo $school_type; 	?></span></h5>  
                               <h5>School Code: <?php echo $school_code; 	?></h5>  
                               <h5> HI, <?php echo $schl_head_name; 	?></h5>  
 						             </div>
@@ -406,11 +407,11 @@
                                              
                                                 $parent_name  = $loader-> ParentName($active['parent_code']);	
                                                 $teacher_name = $loader->TeacherName($active['teacher_code']);	
+                                                $StartNewTerm = $loader->StartNewTerm($active['online_stu_id']);	
                                                   
-                                                    
-                                                    echo'<tr role="row" class="odd">
-                                                          
-                                                      <td style="text-align:center;">
+                                                    if($StartNewTerm == 'success'){
+                                                       $rawData ='
+                                                       
                                                         <a href="edit_data.php?data_id='.$active['online_stu_id'].'&name=student"> 
                                                           <b class="btn btn-dark myFont mb-2"> Edit Student </b>
                                                         </a><br/>
@@ -425,7 +426,28 @@
                                                         </a><br/>
                                                         <a href="delete_account.php?delete_id='.$active['online_stu_id'].'&name=student"> 
                                                           <b class="btn btn-danger myFont mb-2">Delete Account </b>
-                                                        </a>
+                                                        </a>';
+                                                    }else  if($StartNewTerm == 'inactive'){
+                                                      //41_student_subjects : admincode parent_code school_code student_code
+                                                      //student_exam_result:date_term,'active',cur_term,parent_code,school_code,student_code,school_type
+                                                      //student_test_result:date_term,'active',cur_term,parent_code,school_code,student_code,school_type
+                                                      //student_weekly_assesment:date_term,'active',cur_term,parent_code,school_code,student_code,school_type
+                                                   $admincode    =  $active['admincode']; 
+                                                   $parent_code  =  $active['parent_code']; 
+                                                   $school_code  =  $active['school_code']; 
+                                                   $student_code =  $active['online_stu_id']; 
+                                                     $rawData ="
+                                                        <div  onclick='enrollStudentNewTerm(\"$admincode\",\"$parent_code\",\"$school_code\",\"$student_code\",\"$school_type\")'> 
+                                                          <b class='btn btn-primary myFont mb-2'> Enroll Student For New Term </b>
+                                                        </div>
+                                                     ";
+                                                    }
+
+
+                                                    echo'<tr role="row" class="odd">
+                                                          
+                                                      <td style="text-align:center;">
+                                                           '.$rawData.'
                                                       </td> 
                                                       <th>
                                                        <img src="../'.$SchoolIMG .'/'.$active['school_code'].'/'.$active['photo'].'"  style="width:100px;height:100px;border-radius:1500px"/>  <br/>
@@ -635,7 +657,7 @@
 		
 
 					
-				       </div>
+				           </div>
                 </main>
                
                   <footer class="py-4 bg-light mt-auto">
@@ -698,6 +720,45 @@ const	equipment_id = document.getElementById("equip_id").value;
 });
   
 
+
+function enrollStudentNewTerm(a,b,c,d,e){
+
+     //alert(a+b+c+d+e) 
+              $.ajax({
+                  url:"pageajax.php",
+                  method:"POST",
+                  dataType:"json",
+                  data:{
+                    admincode:a,   
+                    parent_code:b,   
+                    school_code:d,
+                    student_code:d,
+                    school_type:e,    
+                    page:'enrollStudentNewTerm',
+                    action:'enrollStudentNewTerm'
+                    },
+                  success:function(data)
+                  {
+                      if(data.success){
+                        window.location.reload();
+  
+                      }
+                      else
+                      {
+                        
+                        alert(data.feedback);
+                        
+                      }
+                  }
+
+
+                });	
+
+  
+    
+  
+}
+ 
 
 
 $(document).on('click', '#approveDelete', function(event){

@@ -113,17 +113,30 @@
 
 
 
-															<div class="form-group">	
-															<label>Class Teacher ID</label>
-                                                            <input class="form-control " placeholder="Enter teacher Code"   type="text" name="teacher_code" id="teacher_code" class="form-control" required />
-
-															</div>
+			 
 															
-						 
+															<div class="form-group">	
+															<label>Student Class Teacher </label>
+															<select id='teacher_code' name='teacher_code' class="form-control" required>
+															        <option disabled="disabled" selected="selected">---Select School Teacher----</option>
+				 
+																	<?php
+																		$result = $Loader-> FecthClassTeacher($school_code);
+																		foreach($result as $data)
+																		{
+																		$full_name=$data['fullname'];
+																		$teacher_code = $data['teacher_code'];  
+																		echo"<option  value='$teacher_code' class='text-dark'> $full_name </option>";
+																		}
+																	?>
+																
+																</select>	
+															
+															</div>						 
 															
 															<div class="form-group">	
 															<label>Student Photo   </label>
-                                                            <input class="form-control "    type="file" name="student_photo" id="student_photo" class="form-control" required />
+                                                            <input class="form-control"    type="file" name="student_photo" id="student_photo" class="form-control" required />
 
 															</div>
 															
@@ -157,27 +170,43 @@
 															</div>
 															
 															
-															
-															<div class="form-group">	
+															<?php
+															if($school_type == 'primary'){
+																echo'
+																															<div class="form-group">	
 															<label>Student Class </label>
-															<select  name='student_class' id='student_class'  class="form-control "    >
+															<select  name="student_class" id="student_class"  class="form-control "    >
 															<option  value="" selected="selected"> --Select class--</option> 
 																<option value="primary1">Primary 1 </option> 
 																<option value="primary2">Primary 2 </option> 
 																<option value="primary3">Primary 3 </option> 
 																<option value="primary4">Primary 4 </option> 
 																<option value="primary5">Primary 5 </option> 
-																<option value="primary6">Primary 6 </option> 
+																<option value="primary6">Primary 6 </option>  
+																</select>
+																</div>
+																';
+															}
+														    else if($school_type == 'secondary')
+															{
+																echo'
+																															<div class="form-group">	
+															<label>Student Class </label>
+															<select  name="student_class" id="student_class"  class="form-control "    >
+															<option  value="" selected="selected"> --Select class--</option> 
+																 
 																<option value="jss1">JSS 1 </option> 
 																<option value="jss2">JSS 2 </option> 
 																<option value="jss3">JSS 3 </option> 
 																<option value="ss1">SS 1 </option> 
 																<option value="ss2">SS 2 </option> 
-																<option value="ss3">SS 3 </option> 
-																
+																<option value="ss3">SS 3 </option>  
 																</select>
 																</div>
-	 
+																';
+															}
+															?>
+												 
 																														
 															 
 															<div class="form-group">			
@@ -202,14 +231,7 @@
 															</div>
 
 
-															<div class="form-group">			
- 															<label>School  </label>
-															<select   name="school_type"  id="school_type" class="form-control "   required>
-															<option  value="">  Select Option   </option>
-															<option  value="primary">Primary  </option>
-															<option  value="secondary">Secondary </option>  
-															</select> 
-															</div>
+														 
 
 															<div class="form-group">			
  															<label>School Fee Status  </label>

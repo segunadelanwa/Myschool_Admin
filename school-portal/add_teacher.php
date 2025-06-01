@@ -118,16 +118,7 @@
 															<input type="text" name="fullname" placeholder="fullname"  id="fullname" class="form-control py-4"   required />
 															</div>
  
-
-															<div class="form-group">	
-															<label>School  </label>
-														   <select   name="school_type"  id="school_type"  class="form-control"   required>
-															   <option disabled="disabled" selected="selected" > Select School  </option>
-															   <option  value="primary">Primary </option>
-															   <option  value="secondary">Secondary </option> 
-															
-															</select> 
-															</div>
+ 
 
 
 															<div class="form-group">	
@@ -154,7 +145,7 @@
 
 
 															<div class="form-group">	
-															<label>Teacher Subject </label>
+															<label>Teacher Core Subject </label>
 															<select id='subject' name='subject' class="form-control" >
 															        <option disabled="disabled" selected="selected">---Select Subject----</option>
 				 

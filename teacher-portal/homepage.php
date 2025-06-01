@@ -634,8 +634,7 @@
                                                                                echo'<tr role="row" class="odd">
                                                                                  <td>  
                                                                                  
-                                                                                     <b class="btn btn-success myFont" data-toggle="modal" data-target="#test'.$active['id'].'">Edit Mid-Term Test Score</b>
-                                                                                   
+                                                                                     
                                                                                  </td>
 
                                                                                  <td style="display:flex;"> 
@@ -675,10 +674,7 @@
                                                                                  </center><hr />										
                                                                                  <div lass="row center">
                                                                                  <center>
-                                                                                       <input type="text" class="form-control" value="'.$active["$subject"].'"      id="testScore'.$stuCode.'"      name="testScore"   /><br/>
-                                                                                 ';
-                                                                               echo" <input type='button' class='btn btn-primary' onclick='getTestscore(\"$schCode\",\"$stuCode\",\"$score\",\"$subject\")' value='Update Score'>";
-                                                                                 echo'
+                                                                                     
                                                                                      </center>
                                                                                  </div>  
                                                                                  </div>
@@ -834,7 +830,7 @@ const	equipment_id = document.getElementById("equip_id").value;
 
  
  
-  if(score > 0)
+  if(score > 0 && score < 71)
   {
 		 
             $.ajax({
@@ -847,8 +843,8 @@ const	equipment_id = document.getElementById("equip_id").value;
                   subject:d,   
                   score:score,   
                   type:'examScore',
-                  page:'updateStudentScore',
-                  action:'updateStudentScore'
+                  page:'updateStudentScoreMark',
+                  action:'updateStudentScoreMark'
                   },
                 success:function(data)
                 {
@@ -866,57 +862,99 @@ const	equipment_id = document.getElementById("equip_id").value;
               });	
 
 	  }else{
-          alert('Score field must not be empty');
+          alert('Score field must not be empty and must be less or equal to 70Marks');
     }
 	 
  
 }
+
+
   function getTestscore(a,b,c,d) {
 
     var	score = document.getElementById("testScore"+b).value;  
  
  
-//  console.log(a);
-//  console.log(b); 
-//  console.log(score); 
  
- 
-if(score > 0)
-  {
-		 
-            $.ajax({
-                url:"pageajax.php",
-                method:"POST",
-                dataType:"json",
-                data:{
-                  schCode:a,   
-                  stuCode:b,   
-                  subject:d,
-                  score:score,   
-                  type:'testScore',
-                  page:'updateStudentScore',
-                  action:'updateStudentScore'
-                  },
-                success:function(data)
-                {
-                    if(data.success){
-                      window.location.reload();
- 
-                    }
-                    else
-                    {
-                      
-                      alert(data.feedback);
-                      
-                    }
-                }
-              });	
+  
+        if(score > 0 && score < 31)
+          {
+          
+                  $.ajax({
+                      url:"pageajax.php",
+                      method:"POST",
+                      dataType:"json",
+                      data:{
+                        schCode:a,   
+                        stuCode:b,   
+                        subject:d,
+                        score:score,   
+                        type:'testScore',
+                        page:'updateStudentScoreMark',
+                        action:'updateStudentScoreMark'
+                        },
+                      success:function(data)
+                      {
+                          if(data.success){
+                            window.location.reload();
+      
+                          }
+                          else
+                          {
+                            
+                            alert(data.feedback);
+                            
+                          }
+                      }
+                    });	
 
-	  }else{
-          alert('Score field must not be empty');
-    }
-	 
+          }else{
+            alert('Score field must not be empty and must be less or equal to 30Marks');
+          }
+        
+      
+}
+
+
+function restoreScoreAssessment(a,b,c,d) {
+
+    var	score = document.getElementById("testScore"+b).value;  
  
+ 
+ 
+  
+    
+          
+                  $.ajax({
+                      url:"pageajax.php",
+                      method:"POST",
+                      dataType:"json",
+                      data:{
+                        schCode:a,   
+                        stuCode:b,   
+                        subject:d,
+                        score:score,   
+                        type:'testScore',
+                        page:'restoreScoreAssessment',
+                        action:'restoreScoreAssessment'
+                        },
+                      success:function(data)
+                      {
+                          if(data.success){
+                            window.location.reload();
+      
+                          }
+                          else
+                          {
+                            
+                            alert(data.feedback);
+                            
+                          }
+                      }
+                    });	
+
+      
+        
+      
 }
 
 // Set new default font family and font color to mimic Bootstrap's default styling

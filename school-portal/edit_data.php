@@ -292,13 +292,23 @@
 																</div>
 
 
+			 
+																
 																<div class="form-group">	
-																<label>Teacher Code </label>
-																<input class="form-control " value="'.$teacher_code.'"   type="text" name="teacher_code" id="teacher_code" class="form-control"   />
+																<label>Student Class Teacher </label>
+																<select id="teacher_code" name="teacher_code" class="form-control" > 
+																<option disabled="disabled"  value='.$teacher_code.'selected="selected">'.$Loader->TeacherName($teacher_code).'</option>                                                                  
+																';		
+																$result = $Loader-> FecthClassTeacher($school_code);
+																foreach($result as $data)
+																{ 
+																echo"<option  value=".$data['teacher_code']."> ".$data['fullname']." </option>";
+																}
+
+
+																echo'	</select>	
 
 																</div>
-																
-							
 																
 																<div class="form-group">	
 																<label>Change Student Photo   </label> 
@@ -593,7 +603,7 @@
 
 																<div class="form-group">	
 																<label>School Email   </label>
-																<input class="form-control " value="'.$school_email.'"   type="email" name="school_email" id="school_email" class="form-control"   />
+																<input class="form-control " value="'.$school_email.'"   type="email" name="school_email" id="school_email" class="form-control"   readonly/>
 																</div>
 																											
 																<div class="form-group">	

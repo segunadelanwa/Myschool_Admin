@@ -3641,10 +3641,10 @@ if(isset($_POST['page'])){
 	}	
 
 
-	if($_POST['page'] == 'updateStudentScore')
+	if($_POST['page'] == 'updateStudentScoreMark')
 	{
 		   
-		if($_POST['action'] == 'updateStudentScore')
+		if($_POST['action'] == 'updateStudentScoreMark')
 		{
 	 
 			 
@@ -3654,17 +3654,13 @@ if(isset($_POST['page'])){
 			$type      =  htmlentities($_POST['type']); 
 			$subject   =  htmlentities($_POST['subject']); 
 				 
-			
-
-
-	
-							 
+ 				 
 							
 			if($type == 'examScore'){
 
 				$query =("UPDATE `student_exam_result` SET  
 				`$subject`  = '$score' 
-				WHERE `student_exam_result`.`student_code` = '$stuCode'"); 
+				WHERE `student_exam_result`.`student_code` = '$stuCode' AND `student_exam_result`.`status` ='active' "); 
 				if(mysqli_query($homedb,$query))
 				{
 					 					   
@@ -3686,7 +3682,7 @@ if(isset($_POST['page'])){
 
 				$query =("UPDATE `student_test_result` SET  
 				`$subject`  = '$score' 
-				WHERE `student_test_result`.`student_code` = '$stuCode'"); 
+				WHERE `student_test_result`.`student_code` = '$stuCode' AND `student_test_result`.`status` ='active' "); 
 				if(mysqli_query($homedb,$query))
 				{
 					 					   
@@ -3709,6 +3705,50 @@ if(isset($_POST['page'])){
 
 	    
 				 echo json_encode($output);
+				 
+	   
+			 
+		}
+	}	
+
+ 
+	if($_POST['page'] == 'restoreScoreAssessment')
+	{
+		   
+		if($_POST['action'] == 'restoreScoreAssessment')
+		{
+	 
+			 
+			$schCode   =  htmlentities($_POST['schCode']); 
+			$stuCode   =  htmlentities($_POST['stuCode']); 
+			$score     =  htmlentities($_POST['score']); 
+			$type      =  htmlentities($_POST['type']); 
+			$subject   =  htmlentities($_POST['subject']); 
+				 
+ 				 
+							
+	 
+				$query =("UPDATE `student_weekly_assesment` SET  
+				`$subject`  = 'null' 
+				WHERE `student_weekly_assesment`.`student_code` = '$stuCode' AND `student_weekly_assesment`.`status` ='active' "); 
+				if(mysqli_query($homedb,$query))
+				{
+					 					   
+						$output = array(
+							'success'   =>	'success' 
+						);
+	
+				}
+				else
+				{ 
+						$output = array(
+							'success'		=>	'failed',
+							'feedback'		=>	"Newtwork error"
+						);
+				}
+
+ 	    
+			 echo json_encode($output);
 				 
 	   
 			 

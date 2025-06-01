@@ -8,10 +8,10 @@ require("../phpmailer/PHPMailerAutoload.php");
 $current_datetime = date("Y-m-d");
 $time = date("H:i:s", STRTOTIME(date('h:i:sa')));
 
-
+//___Werrew___123123___
 class Loader{
 	
-	
+
 	
 	
 	var $host; 
@@ -531,7 +531,7 @@ class Loader{
 			{
 				 
 				 
-				$this->query = "SELECT * FROM `4_student_reg` WHERE teacher_code='$teacher_code' AND school_code = '$school_code' ";
+				$this->query = "SELECT * FROM `4_student_reg` WHERE teacher_code='$teacher_code' AND school_code = '$school_code' AND `sub_status` ='active'";
 		 
 				$output = $this->total_row();
 				 
@@ -635,7 +635,7 @@ class Loader{
 
 			function TeacherStudentList($teacher_code)
 			{
-				$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`teacher_code` = '$teacher_code' ";
+				$this->query = "SELECT * FROM `4_student_reg` WHERE  `4_student_reg`.`teacher_code` = '$teacher_code' AND `test_status` ='active' AND `exam_status` ='active'";
 		 
 				$result = $this->query_result();
 			 
@@ -647,7 +647,7 @@ class Loader{
 			{ 
 				//$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND  `$subject` !='' OR `school_code` = '$school_code' AND `$subject` ='null'";
 				
-				$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' ";
+				$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND `status` ='active' ";
 				
 		 
 				$result = $this->query_result();
@@ -660,7 +660,7 @@ class Loader{
 			{ 
 				//$this->query = "SELECT * FROM `student_test_result` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND  `$subject` !='' OR `school_code` = '$school_code' AND `$subject` ='null'";
 				
-				$this->query = "SELECT * FROM `student_weekly_assesment` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' ";
+				$this->query = "SELECT * FROM `student_weekly_assesment` WHERE  `school_code` = '$school_code' AND `school_type` = 'secondary' AND `status` ='active' ";
 				
 		 
 				$result = $this->query_result();
@@ -673,7 +673,7 @@ class Loader{
 			{ 
 				 //$this->query = "SELECT * FROM `student_exam_result` WHERE  `school_code` = '$school_code' AND `school_type` ='secondary' AND  `$subject` !='' OR `school_code` = '$school_code' AND `$subject` ='null'";
 				 
-				 $this->query = "SELECT * FROM `student_exam_result` WHERE  `school_code` = '$school_code' AND `school_type` ='secondary' ";
+				 $this->query = "SELECT * FROM `student_exam_result` WHERE  `school_code` = '$school_code' AND `school_type` ='secondary' AND `status` ='active' ";
 		 
 				$result = $this->query_result();
 			 
